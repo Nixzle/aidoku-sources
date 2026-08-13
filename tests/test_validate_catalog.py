@@ -6,7 +6,12 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from scripts.validate_catalog import ValidationFailure, safe_relative_path, validate_aix
+from scripts.validate_catalog import (
+    ValidationFailure,
+    safe_relative_path,
+    validate_aix,
+    validate_status,
+)
 
 
 class ValidateCatalogTests(unittest.TestCase):
@@ -47,6 +52,32 @@ class ValidateCatalogTests(unittest.TestCase):
 
             with self.assertRaises(ValidationFailure):
                 validate_aix(package, entry, "test catalog")
+
+    def test_validate_status_rejects_stale_catalog_counts(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            (root / "config").mkdir()
+            (root / "config" / "source_policy.json").write_text(
+                json.dumps({"quarantinedSources": {}}), encoding="utf-8"
+            )
+            (root / "config" / "source_health.json").write_text(
+                json.dumps({"version": 1, "sources": {}}), encoding="utf-8"
+            )
+            (root / "status.json").write_text(
+                json.dumps(
+                    {
+                        "generatedAt": "2026-08-13T00:00:00+00:00",
+                        "summary": {"maintained": 0, "legacyOnly": 0},
+                        "manualQuarantine": [],
+                        "automaticQuarantine": [],
+                        "degraded": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "status.md").write_text("# Status\n" + ("x" * 120), encoding="utf-8")
+            with self.assertRaisesRegex(ValidationFailure, "maintained count"):
+                validate_status(root, {"en.example"}, set())
 
 
 if __name__ == "__main__":

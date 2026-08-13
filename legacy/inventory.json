@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Legacy Public English Aidoku Sources",
-  "generatedAt": "2026-08-13T03:06:11+00:00",
+  "generatedAt": "2026-08-13T03:28:53+00:00",
   "sourceCount": 49,
   "catalogPolicy": "Older unique packages not present in the maintained catalog; these may no longer work",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -42,6 +42,7 @@
       "file": "sources/en.anigliscans-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.anigliscans-v2.aix",
       "sha256": "046c8e614020d32e80a1d3c429a13cbfb9cfd0e674b4262da6e0870b6e7ecb2f"
     },
     {
@@ -51,6 +52,7 @@
       "file": "sources/en.arcrelight-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.arcrelight-v3.aix",
       "sha256": "5acf349ab2773d7820a769cdeba2d54a19cc5694d537c813ca40cb2fc44e3a95"
     },
     {
@@ -60,6 +62,7 @@
       "file": "sources/en.assortedscans-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.assortedscans-v4.aix",
       "sha256": "eda818dc6e605429eccf4367dd2fee880507d2291ba04dc1290c89efe217f284"
     },
     {
@@ -69,6 +72,7 @@
       "file": "sources/en.astrascans-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.astrascans-v1.aix",
       "sha256": "49147fb3372c8e7eaf0abb8382b99c47d630a385017d01ad325b0621b93f7257"
     },
     {
@@ -78,6 +82,7 @@
       "file": "sources/en.disasterscans-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.disasterscans-v3.aix",
       "sha256": "3c2910eeaef64ddd9b3cbb76e42f073c5cc75614e5c43080beaf4779268cf257"
     },
     {
@@ -87,6 +92,7 @@
       "file": "sources/en.dynastyscans-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.dynastyscans-v3.aix",
       "sha256": "469d9e58e4cdb47ab15ce5c41dac0146efdc8f378fc7478c5969d71c63a9d3c0"
     },
     {
@@ -96,6 +102,7 @@
       "file": "sources/en.fallen-angels-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.fallen-angels-v1.aix",
       "sha256": "b07560ff7f2d5bc16093c1f76ce757a3fd8c743830361e014b958fa5d92d0b6b"
     },
     {
@@ -105,6 +112,7 @@
       "file": "sources/en.firstkissmanga-v5.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.firstkissmanga-v5.aix",
       "sha256": "8517d9f6c31ec12256d8e5d57abf27a8ef30b1be59aa442df49d929ec94a420a"
     },
     {
@@ -114,6 +122,7 @@
       "file": "sources/en.galaxydegenscans-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.galaxydegenscans-v1.aix",
       "sha256": "345e6d9f23150a4a7e7f55179c43a66b98517d2b1983bdafd52a36e1d90a8d83"
     },
     {
@@ -123,6 +132,7 @@
       "file": "sources/en.hachirumi-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.hachirumi-v1.aix",
       "sha256": "535adcb94d6b637f90d937666b0a785181a7a05effb66cc002877e940cc08476"
     },
     {
@@ -132,6 +142,7 @@
       "file": "sources/en.harimanga-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.harimanga-v2.aix",
       "sha256": "623276871a8194b7a766535c8af7c99a8d9bc9184665a8120cec73c2dc00965c"
     },
     {
@@ -141,6 +152,7 @@
       "file": "sources/en.hentai2read-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.hentai2read-v2.aix",
       "sha256": "6005a71dc70f9e798643864f436d77039883fe4084b1fa742021da540e7be85c"
     },
     {
@@ -150,6 +162,7 @@
       "file": "sources/en.hentaifox-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.hentaifox-v4.aix",
       "sha256": "37c76e4f7dd87c0bec421f0a8b958a6961637dfa6e205163ac37c26c36b98f4b"
     },
     {
@@ -159,6 +172,7 @@
       "file": "sources/en.hiperdex-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.hiperdex-v4.aix",
       "sha256": "f9b315a82c9df9c21f7a6b8f4ef3feb02aaa60ae1080c9c1eb772497403f7ed6"
     },
     {
@@ -168,6 +182,7 @@
       "file": "sources/en.lhtranslation-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.lhtranslation-v4.aix",
       "sha256": "028e818db783766a6f998ece565e69535cbdbe807aff7fd1faabe2f742dd94c7"
     },
     {
@@ -177,6 +192,7 @@
       "file": "sources/en.lilymanga-v8.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.lilymanga-v8.aix",
       "sha256": "0581a05698c3de83bea930c30d21a0816170bf8311f62f4aa8f8e59b59b9d06a"
     },
     {
@@ -186,6 +202,7 @@
       "file": "sources/en.mangafox-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.mangafox-v4.aix",
       "sha256": "ef3dc19865bef6f7072f460bf7452a4bac46cca74e33f8d3722f38ac2ec27b87"
     },
     {
@@ -195,6 +212,7 @@
       "file": "sources/en.mangairo-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.mangairo-v1.aix",
       "sha256": "fd23b981a8154b358329c29e6ae6c5d2900c6a8c04f89cdf2b01614667cc00e9"
     },
     {
@@ -204,6 +222,7 @@
       "file": "sources/en.mangakatana-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.mangakatana-v3.aix",
       "sha256": "f99756106367ec0021a271bbe55c36d9312eba9eceba16bc46cef0a3167815b3"
     },
     {
@@ -213,6 +232,7 @@
       "file": "sources/en.mangapill-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.mangapill-v2.aix",
       "sha256": "e49fdfb1a7074007e7dd2f30d838ab325ff5ac91eaa6ef24eeaca3f761c0be8a"
     },
     {
@@ -222,6 +242,7 @@
       "file": "sources/en.manhuafast-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhuafast-v3.aix",
       "sha256": "9e2c86fc24d70b372f2ce4790e2d0c18d47e4601b7ce93e9bbe59cecf2e651e4"
     },
     {
@@ -231,6 +252,7 @@
       "file": "sources/en.manhuaplus-v9.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhuaplus-v9.aix",
       "sha256": "3c6ead458ea227c9de6d2b8e834f94280ed16c8aaf84feef08caeda021c6d22e"
     },
     {
@@ -240,6 +262,7 @@
       "file": "sources/en.manhuaus-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhuaus-v4.aix",
       "sha256": "36b361defef18a1a40c216d880c4fd978f1617e750ed83316e624c3f15c4bc76"
     },
     {
@@ -249,6 +272,7 @@
       "file": "sources/en.manhwafreak-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhwafreak-v4.aix",
       "sha256": "31e37c741efde95955c4073c46165237f376a38302af3e6abb068d94189d69ad"
     },
     {
@@ -258,6 +282,7 @@
       "file": "sources/en.manhwasmen-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhwasmen-v1.aix",
       "sha256": "4f0c2f1c4ee734332da04acb4bffe58bfb6addbf034f8c51bbc0c69ff2d611bb"
     },
     {
@@ -267,6 +292,7 @@
       "file": "sources/en.manhwatop-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.manhwatop-v2.aix",
       "sha256": "e17b21648a4a12b7feae0ce56efdc2ee0463af06774e905d0ddb20acdcb90fca"
     },
     {
@@ -276,6 +302,7 @@
       "file": "sources/en.nightcomic-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.nightcomic-v3.aix",
       "sha256": "b3b5b5e7a15a468f4c99ae0c8f3e0204a80b9904aad13ef1ed12d250f23c5fde"
     },
     {
@@ -285,6 +312,7 @@
       "file": "sources/en.novelfull-v7.aix",
       "repository": "tachibana-shin/aidoku-sources-next",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-sources-next/gh-pages/sources/en.novelfull-v7.aix",
       "sha256": "f59cf88a64a98b311c717d95e243e46c3033e3d98bff698d50d3572d5b8781ba"
     },
     {
@@ -294,6 +322,7 @@
       "file": "sources/en.novelmic-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.novelmic-v1.aix",
       "sha256": "2260df1a8246c64a14ba6da4f09d36dfd44410bb98205d51abee9be10ae0ec7b"
     },
     {
@@ -303,6 +332,7 @@
       "file": "sources/en.omegascans-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.omegascans-v3.aix",
       "sha256": "afe8fca268ab448c07afbe841f7185376258200b76528dfe6e223eb767faa915"
     },
     {
@@ -312,6 +342,7 @@
       "file": "sources/en.questionablecontent-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.questionablecontent-v1.aix",
       "sha256": "fc2941497377dd88ff420bced72b5d99acc5db1a7215e173b6d709e9030d00eb"
     },
     {
@@ -321,6 +352,7 @@
       "file": "sources/en.readcomicsbook-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.readcomicsbook-v2.aix",
       "sha256": "fe68665b2ef1b308e308c961ae090b4a9b39bfa2a574b94b369975757fddbac6"
     },
     {
@@ -330,6 +362,7 @@
       "file": "sources/en.readcomicsfree-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.readcomicsfree-v1.aix",
       "sha256": "7eea22c2b152d7273aee7c50e77951153bec87360a8f0b0b2fb5844b2c2c7b32"
     },
     {
@@ -339,6 +372,7 @@
       "file": "sources/en.resetscans-v13.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.resetscans-v13.aix",
       "sha256": "371ba03f712dfb851772b7e4d6e36283f5f4017cc5a82f5f0c082a6e06dadeb8"
     },
     {
@@ -348,6 +382,7 @@
       "file": "sources/en.setsuscans-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.setsuscans-v4.aix",
       "sha256": "d4560df2efacbe53583bdfb6685d4a30f64a09c3f228bd6679e7843d866d2af6"
     },
     {
@@ -357,6 +392,7 @@
       "file": "sources/en.suryatoon-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.suryatoon-v3.aix",
       "sha256": "df68e59543f261d6cb77a5ed62d054094ff12c6d1205f7dfa18b5d752d387022"
     },
     {
@@ -366,6 +402,7 @@
       "file": "sources/en.theblank-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.theblank-v3.aix",
       "sha256": "ef189c2d061a23a39c997735f45491330261e5cf14fe58c89c1d33dea2b3ded0"
     },
     {
@@ -375,6 +412,7 @@
       "file": "sources/en.tsumino-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.tsumino-v1.aix",
       "sha256": "7bda06b923091d87ea16801ad6c73cc7bd4f7da23a9fe500c2cded5509954cec"
     },
     {
@@ -384,6 +422,7 @@
       "file": "sources/en.voidscans-v4.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.voidscans-v4.aix",
       "sha256": "f86420c1de9799f2f218e9e1ef9c6d9387e7d9ed291da75bfa3cdca41cd79ec0"
     },
     {
@@ -393,6 +432,7 @@
       "file": "sources/en.xoxocomics-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.xoxocomics-v3.aix",
       "sha256": "54d9d6cfafaace57d851b89df68d1581197513bccaf9768cea9b820a5913c05c"
     },
     {
@@ -402,6 +442,7 @@
       "file": "sources/en.zeroscans-v5.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.zeroscans-v5.aix",
       "sha256": "03de9990516e029b428ac8c43f3057a248f29c2c115948775203055cddf80e2d"
     },
     {
@@ -411,6 +452,7 @@
       "file": "sources/multi.batoto-v5.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.batoto-v5.aix",
       "sha256": "6f36788899d4b326d2092b17e90f6a22269cdcf35121207eb1569234957a5e19"
     },
     {
@@ -420,6 +462,7 @@
       "file": "sources/multi.komga-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.komga-v3.aix",
       "sha256": "affa5ecd0fa927aa7cf9e38a0b483925b342df2f026b1a94c2abc6273d83202e"
     },
     {
@@ -429,6 +472,7 @@
       "file": "sources/multi.myrockmanga-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.myrockmanga-v1.aix",
       "sha256": "d5ce5700085a09cfb5959baf74c2716e5e6860fc12b1032f87b0a7a842351c46"
     },
     {
@@ -438,6 +482,7 @@
       "file": "sources/multi.ninemanga-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.ninemanga-v1.aix",
       "sha256": "8550bf8d53526bde62d4e4a0dbd9337b1409ddbee08f37330d8a81a9a10dd35f"
     },
     {
@@ -447,6 +492,7 @@
       "file": "sources/multi.otakusan-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.otakusan-v1.aix",
       "sha256": "220fdbc97a87045edf1b1695421557c39828d2056331b95794d296a8174a681e"
     },
     {
@@ -456,6 +502,7 @@
       "file": "sources/multi.simplyhentai-v2.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.simplyhentai-v2.aix",
       "sha256": "92d7a5822f8e0e387c7cd0762db2da1c2d51d738ea44ecb4f860c800b14f213f"
     },
     {
@@ -465,6 +512,7 @@
       "file": "sources/multi.webtoon-v3.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.webtoon-v3.aix",
       "sha256": "1f7864d2ab762a629e2f67229baf36fb7224297ee37b4f1d8729c4031bf4756c"
     },
     {
@@ -474,6 +522,7 @@
       "file": "sources/multi.xkcd-v1.aix",
       "repository": "tachibana-shin/aidoku-community-sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.xkcd-v1.aix",
       "sha256": "00051520ce36ad903e8e1857d8d63de6e3ec9bfd77b5d04d9f23e785f5ad47b6"
     }
   ]

@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-13T03:06:11+00:00",
+  "generatedAt": "2026-08-13T03:28:53+00:00",
   "sourceCount": 53,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -32,6 +32,7 @@
       "file": "sources/en.armageddon-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.armageddon-v5.aix",
       "sha256": "ddcd09571af038033bfd065304fb0519b27cf04ab28c2eb65327603acdf3dd4f"
     },
     {
@@ -41,6 +42,7 @@
       "file": "sources/en.asurascans-v18.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.asurascans-v18.aix",
       "sha256": "bd80b1537fe2b7f844b38af6fedc32a71af8fb453ff434240eb71ed2e1cff312"
     },
     {
@@ -50,6 +52,7 @@
       "file": "sources/en.athreascans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.athreascans-v1.aix",
       "sha256": "a52a3f81596265ade95e4c0f2d023442e9b8513b784b96b4846b64fd71e929a3"
     },
     {
@@ -59,6 +62,7 @@
       "file": "sources/en.batcave-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.batcave-v2.aix",
       "sha256": "decd237504483292eabaf03b39c2e5932262e77117f1fb9377baada4f91bb9af"
     },
     {
@@ -68,6 +72,7 @@
       "file": "sources/en.comix-v23.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.comix-v23.aix",
       "sha256": "f00b717d6972b46024d2fc83bd07e06a4e50cce929c15650da20908e4b77ed27"
     },
     {
@@ -77,6 +82,7 @@
       "file": "sources/en.dankefurslesen-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.dankefurslesen-v3.aix",
       "sha256": "13a81d834823d741a80b1abf70e239525682dc81a57aa5f981f6ea9450a8be04"
     },
     {
@@ -86,6 +92,7 @@
       "file": "sources/en.drakescans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v1.aix",
       "sha256": "d4f7281707f7cc1c922ef86e5e32616215d9abb3387cf69c705ba8ff75ec8f48"
     },
     {
@@ -95,6 +102,7 @@
       "file": "sources/en.elftoon-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.elftoon-v2.aix",
       "sha256": "610f8fad7d0f340024ee03495e32cca2f891ce903fe25ab9398adaec6e774b47"
     },
     {
@@ -104,6 +112,7 @@
       "file": "sources/en.ezmanga-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.ezmanga-v2.aix",
       "sha256": "7036eba0735cafe7fed47bfcafcb260df51199fbc86a7c24baf621fdc7e50868"
     },
     {
@@ -113,6 +122,7 @@
       "file": "sources/en.flamecomics-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v4.aix",
       "sha256": "26bba1041d45872e382e089744bc26df76f017bbc0fdfed7a05c967b3e921afc"
     },
     {
@@ -122,6 +132,7 @@
       "file": "sources/en.freewebnovel-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.freewebnovel-v3.aix",
       "sha256": "ca3aab77c1a183a7d18c07a4c006f4e237fbc3ab3950ddb94cbb371c806b77d6"
     },
     {
@@ -131,6 +142,7 @@
       "file": "sources/en.guya-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.guya-v2.aix",
       "sha256": "a243f9a1e5c077eec094dd23650871d868e597be477a4a03d08d31b1c267ef57"
     },
     {
@@ -140,6 +152,7 @@
       "file": "sources/en.hennoveltranslations-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hennoveltranslations-v1.aix",
       "sha256": "c4d624122957079f55c32702f9e4590d025b38ab9f94f158b2dfa4e51ff8e94f"
     },
     {
@@ -149,6 +162,7 @@
       "file": "sources/en.hivescans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v1.aix",
       "sha256": "b7ca652fe6370e699448f9e0e7bc5a08b59a65ac63029e43482ccad2f78fd200"
     },
     {
@@ -158,6 +172,7 @@
       "file": "sources/en.madokami-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.madokami-v1.aix",
       "sha256": "4a05f9c87e3305b9c7af9547f4a25e4a9377f307be92109b950372711fb4a7a3"
     },
     {
@@ -167,6 +182,7 @@
       "file": "sources/en.magusmanga-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v1.aix",
       "sha256": "ebdf9fdf3b77a88c836ec6d10f255fbd4974371ea35138dcfd5063ceb08d6cb8"
     },
     {
@@ -176,6 +192,7 @@
       "file": "sources/en.mangabat-v9.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangabat-v9.aix",
       "sha256": "5768eed904b92e18e773c6306d952c3c58e23c675cb9ab319fe38694db352a16"
     },
     {
@@ -185,6 +202,7 @@
       "file": "sources/en.mangademon-v7.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangademon-v7.aix",
       "sha256": "0340e71fbcc5bdb278ab99ce4171cb357517cd168428412105472619e548be5e"
     },
     {
@@ -194,6 +212,7 @@
       "file": "sources/en.mangadistrict-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangadistrict-v1.aix",
       "sha256": "5a6cdfad8f4c593f3be3614f2e263bca4844a06d6c19a5f50c72eb4b07086042"
     },
     {
@@ -203,6 +222,7 @@
       "file": "sources/en.mangago-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangago-v3.aix",
       "sha256": "fd95c6e964903382e49251ec85ba5ef25f1895b4480a2b522a1466b3ec262f52"
     },
     {
@@ -212,6 +232,7 @@
       "file": "sources/en.mangakakalot-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangakakalot-v5.aix",
       "sha256": "953bb18eca6b0b479d0356a1fdd2fbb3473fb998300f61c62a2e503ccd29afc7"
     },
     {
@@ -221,6 +242,7 @@
       "file": "sources/en.manganato-v8.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manganato-v8.aix",
       "sha256": "1f85b0ff38b663f84a6bf6eb6eaae77f9b1ec1a199f63407238d462c79e36577"
     },
     {
@@ -230,6 +252,7 @@
       "file": "sources/en.manganelo-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manganelo-v4.aix",
       "sha256": "e18c00a2e8270fb6807d633e54603f909bff4fbfdec1c95f11080a5d9c655a63"
     },
     {
@@ -239,6 +262,7 @@
       "file": "sources/en.mangareadorg-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangareadorg-v2.aix",
       "sha256": "7b10de627e03eef862485d0dde9e1b1ccf4f76c28a1f571f0a1106fcdf890adf"
     },
     {
@@ -248,6 +272,7 @@
       "file": "sources/en.mangasect-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangasect-v1.aix",
       "sha256": "3cef5a5ecc5b7bbdc383599afe98f1def5e879e5991666164cf5b400bcc26cb9"
     },
     {
@@ -257,6 +282,7 @@
       "file": "sources/en.mangatx-v10.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangatx-v10.aix",
       "sha256": "d9089dad677c88cd66585a7459c4a1c1a5584cac33d50c5f30c47ada73d08528"
     },
     {
@@ -266,6 +292,7 @@
       "file": "sources/en.manhuagold-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhuagold-v1.aix",
       "sha256": "88a1d9ea281a915e512b12de62b900df1d3701ee0d787c1f92c2935d14b492f7"
     },
     {
@@ -275,6 +302,7 @@
       "file": "sources/en.manhuaplusorg-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhuaplusorg-v1.aix",
       "sha256": "0e12e24d6b982f824f883ec0d8326f7732f9cc1b74366df9a10c33e94fe7c033"
     },
     {
@@ -284,6 +312,7 @@
       "file": "sources/en.manhwax-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhwax-v5.aix",
       "sha256": "d5d2db6fcfcd706b5e8e5e096e8a7900e783f8f844f0b9305117c3fcc58ee20b"
     },
     {
@@ -293,6 +322,7 @@
       "file": "sources/en.novelbuddy-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v4.aix",
       "sha256": "3aaddab5044223ab96e126d97823730b56007b8c68e8abdb07eb1b742825c0ca"
     },
     {
@@ -302,6 +332,7 @@
       "file": "sources/en.nyxscans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.nyxscans-v1.aix",
       "sha256": "19311e4ed532ded6a64452e22bdc39b3e65234a3824e020c038c6a62e5b69bf9"
     },
     {
@@ -311,6 +342,7 @@
       "file": "sources/en.readcomicsonline-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v2.aix",
       "sha256": "581bc2a452cda96cd60050994bbb2f45a9bc82fd0d2f15cc5c414eb9adce2449"
     },
     {
@@ -320,6 +352,7 @@
       "file": "sources/en.rizzfables-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.rizzfables-v2.aix",
       "sha256": "889b6eaa868352e5188a840a9f6b83690109cac88d08464c89b249df0922ea05"
     },
     {
@@ -329,6 +362,7 @@
       "file": "sources/en.stonescape-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.stonescape-v1.aix",
       "sha256": "1660c7efcceceaad796f2d404d001531cf36d484ffb39477a285f639e1d08fc4"
     },
     {
@@ -338,6 +372,7 @@
       "file": "sources/en.tcbscans-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.tcbscans-v6.aix",
       "sha256": "3dfcf4f5c6fd848c2cdf206a0985771fb28cc3a47b4e695354558f70d8ff6b9d"
     },
     {
@@ -347,6 +382,7 @@
       "file": "sources/en.toonily-v10.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonily-v10.aix",
       "sha256": "31701725e54145d1bd03f593a409f0cd7df5ed36a34c8174ce2aefbd5cb043f4"
     },
     {
@@ -356,6 +392,7 @@
       "file": "sources/en.toonilyme-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v1.aix",
       "sha256": "773fc2c71626839075efdfb0127ed3e900d36ba5519aa9a63225e285315f53cd"
     },
     {
@@ -365,6 +402,7 @@
       "file": "sources/en.vortexscans-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v2.aix",
       "sha256": "03385473e82bb0dbf56c782f089ae9e7f5863f14837553d4bd0f9ac301fe9959"
     },
     {
@@ -374,6 +412,7 @@
       "file": "sources/en.webtoonxyz-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.webtoonxyz-v2.aix",
       "sha256": "4a75d3f99065289f99a292c48cdc871cdf87f3ff492de2f3d5f5400f0dcc04bb"
     },
     {
@@ -383,6 +422,7 @@
       "file": "sources/en.weebcentral-v7.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.weebcentral-v7.aix",
       "sha256": "01c061b514dccf11bb721c9ea024070e201e8a7f2d18ead817c935bcb311a5ec"
     },
     {
@@ -392,6 +432,7 @@
       "file": "sources/multi.cubari-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.cubari-v1.aix",
       "sha256": "6fa323b4ae720d88084b33d660dff1f1abf9ec696ddfd33c5c11ca957de062a3"
     },
     {
@@ -401,6 +442,7 @@
       "file": "sources/multi.ehentai-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.ehentai-v2.aix",
       "sha256": "b12d2b73b6dd092e36cad57634160894f41bae916db390f7e633fcdb23b3e982"
     },
     {
@@ -410,6 +452,7 @@
       "file": "sources/multi.grabberzone-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.grabberzone-v1.aix",
       "sha256": "8f72ab54ccf41f57b8c715cccc883bfecd3c965fbe456426a4e257ce4c092c50"
     },
     {
@@ -419,6 +462,7 @@
       "file": "sources/multi.hitomi-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.hitomi-v2.aix",
       "sha256": "fe62401bd0b8c5f056e3ff18bbb2b736c777ffa22cbd3097765a08e5aec753e8"
     },
     {
@@ -428,6 +472,7 @@
       "file": "sources/multi.kagane-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v2.aix",
       "sha256": "498a234045c0fa55c4767e513e3b1cbb68167541487210ef0094f8300853930c"
     },
     {
@@ -437,6 +482,7 @@
       "file": "sources/multi.lanraragi-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.lanraragi-v2.aix",
       "sha256": "1458c5f74263f5aa131c5089f3cddc17412eb15169735633a57c77bbd6789ea0"
     },
     {
@@ -446,6 +492,7 @@
       "file": "sources/multi.mangadex-v14.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadex-v14.aix",
       "sha256": "9154dbcec43d0f1440314cc14b7d4b1f4438e3d4505e0c6aea5bae0f6d4234e6"
     },
     {
@@ -455,6 +502,7 @@
       "file": "sources/multi.mangadotnet-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v5.aix",
       "sha256": "af05264117373fadb0f72bafd0e112e9bf5d978ee05162adddd7e810c356c61d"
     },
     {
@@ -464,6 +512,7 @@
       "file": "sources/multi.mangafire-v8.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangafire-v8.aix",
       "sha256": "5fa26bd0deabbeb1f021e450e150d606cb719cb420627dbf0f30ad865545ef94"
     },
     {
@@ -473,6 +522,7 @@
       "file": "sources/multi.mangaplus-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangaplus-v6.aix",
       "sha256": "27fc0e044fe88515e6e147ba1c3e8f73063ea4a726c2287466b3da57aa5e0433"
     },
     {
@@ -482,6 +532,7 @@
       "file": "sources/multi.myreadingmanga-v12.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.myreadingmanga-v12.aix",
       "sha256": "1d45f6d5c3c1d875455c01c56c9fd743c165a2dff567dd76ae7d5524e66e21d9"
     },
     {
@@ -491,6 +542,7 @@
       "file": "sources/multi.nhentai-v17.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.nhentai-v17.aix",
       "sha256": "d2ba853418fad777b41076fa5cb551f59a451904f0225e598bde845617b8d5d3"
     },
     {
@@ -500,6 +552,7 @@
       "file": "sources/multi.suwayomi-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.suwayomi-v4.aix",
       "sha256": "8b6ca200f4fd83aa6f9a79d543df3cbb23e2b951b7683bb3a2ff23929bfa6efb"
     }
   ]

@@ -61,6 +61,8 @@ jobs:
             index.min.json \
             inventory.json \
             legacy \
+            status.json \
+            status.md \
             sources
 
           if ! git diff --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]]; then

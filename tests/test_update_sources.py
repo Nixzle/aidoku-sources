@@ -223,6 +223,10 @@ class CacheTests(unittest.TestCase):
             )
         fetch.assert_not_called()
         self.assertEqual(candidate["package"], package)
+        self.assertEqual(
+            candidate["upstreamPackageURL"],
+            "https://assets.example/catalog/sources/en.example-v3.aix",
+        )
 
 
 class HealthStateTests(unittest.TestCase):
@@ -294,6 +298,14 @@ class HealthStateTests(unittest.TestCase):
         self.assertEqual(quarantined, set())
         self.assertEqual(updated, state)
 
+    def test_health_state_is_sorted_deterministically(self):
+        state, _ = updater.update_health_state(
+            {"version": 1, "sources": {}},
+            {"en.zeta": False, "en.alpha": False},
+            observation_date="2026-08-10",
+        )
+        self.assertEqual(list(state["sources"]), ["en.alpha", "en.zeta"])
+
 
 class SelectionAndDeterminismTests(unittest.TestCase):
     def test_legacy_delta_excludes_maintained_ids(self):
@@ -332,6 +344,45 @@ class SelectionAndDeterminismTests(unittest.TestCase):
             set(policy["requiredMaintainedSources"]),
             {"en.comix", "en.mangadistrict", "en.readcomicsonline"},
         )
+
+    def test_status_report_matches_policy_and_health(self):
+        policy = {
+            "quarantinedSources": {
+                "en.dead": {
+                    "name": "Dead Source",
+                    "catalogs": ["maintained", "legacy"],
+                    "reason": "Offline",
+                }
+            },
+            "requiredMaintainedSources": ["en.example"],
+        }
+        health = {
+            "version": 1,
+            "sources": {
+                "en.example": {
+                    "status": "failing",
+                    "consecutiveFailures": 1,
+                    "consecutiveSuccesses": 0,
+                    "lastObservationDate": "2026-08-10",
+                }
+            },
+        }
+        candidate = {
+            "id": "en.example",
+            "name": "Example",
+            "baseURL": "https://example.com",
+            "priority": 1,
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            with mock.patch.object(updater, "STATUS_JSON_PATH", root / "status.json"), mock.patch.object(
+                updater, "STATUS_MARKDOWN_PATH", root / "status.md"
+            ):
+                updater.write_status_report(policy, health, [candidate], [candidate], [], set())
+            report = json.loads((root / "status.json").read_text(encoding="utf-8"))
+            self.assertEqual(report["summary"]["maintained"], 1)
+            self.assertEqual(report["manualQuarantine"][0]["name"], "Dead Source")
+            self.assertTrue(report["degraded"][0]["required"])
 
 
 if __name__ == "__main__":

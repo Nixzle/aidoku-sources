@@ -16,6 +16,8 @@ The catalog is checked every day. Downloads are retried, packages are validated 
 
 Known parser or website failures are quarantined manually until an upstream fix is available. Package provenance and SHA-256 checksums are recorded in each catalog's `inventory.json` and `CHECKSUMS.sha256`.
 
+Current degraded and quarantined sources are listed in the [public status report](status.md), with a [machine-readable JSON version](https://nixzle.github.io/aidoku-sources/status.json). Its timestamp changes only when catalog or health status changes, although checks still run daily.
+
 ### ReadComicOnline replacement
 
 The original ReadComicOnline websites no longer resolve, so that broken entry is hidden from the maintained list. Install **Read Comics Online** (with spaces) instead. It is a separate website, so bookmarks from the original source do not migrate automatically.

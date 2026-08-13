@@ -31,6 +31,8 @@ from urllib.parse import unquote, urljoin, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 POLICY_PATH = ROOT / "config" / "source_policy.json"
 HEALTH_STATE_PATH = ROOT / "config" / "source_health.json"
+STATUS_JSON_PATH = ROOT / "status.json"
+STATUS_MARKDOWN_PATH = ROOT / "status.md"
 USER_AGENT = "Nixzle-Aidoku-Sources-Updater/2.0"
 TIMEOUT_SECONDS = 45
 HEALTH_TIMEOUT_SECONDS = 12
@@ -453,6 +455,7 @@ def candidate_from_package(
     *,
     expected_version: int,
     min_app_version_overrides: dict[str, str],
+    upstream_package_url: str | None = None,
 ) -> dict:
     source_id = validate_source_id(str(entry.get("id", "")))
     label = f"{upstream['name']}:{source_id}"
@@ -508,6 +511,7 @@ def candidate_from_package(
         "repository": upstream["name"],
         "priority": int(upstream["priority"]),
         "license": upstream["license"],
+        "upstreamPackageURL": upstream_package_url,
     }
 
 
@@ -526,6 +530,7 @@ def candidate_from_entry(
         raise ValueError(f"{source_id} has no valid index version") from error
     if not 1 <= version <= 1_000_000:
         raise ValueError(f"{source_id} index version is outside the accepted range")
+    upstream_package_url = package_url(upstream, entry)
 
     # Treat a published (repository, ID, version) as immutable. This prevents a
     # same-version upstream rebuild from silently changing bytes behind an
@@ -539,6 +544,7 @@ def candidate_from_entry(
                 exact_package,
                 expected_version=version,
                 min_app_version_overrides=min_app_version_overrides,
+                upstream_package_url=upstream_package_url,
             )
         except Exception as error:
             print(
@@ -548,7 +554,7 @@ def candidate_from_entry(
 
     live_error: Exception | None = None
     try:
-        url = package_url(upstream, entry)
+        url = upstream_package_url
         host = _safe_https_url(str(upstream["asset_base"]), "asset base").hostname.casefold()
         package = fetch_bytes(url, allowed_hosts={host}, maximum=MAX_PACKAGE_BYTES)
         return candidate_from_package(
@@ -557,6 +563,7 @@ def candidate_from_entry(
             package,
             expected_version=version,
             min_app_version_overrides=min_app_version_overrides,
+            upstream_package_url=url,
         )
     except Exception as error:  # source-level isolation is applied by the caller
         live_error = error
@@ -645,6 +652,15 @@ def load_policy(path: Path = POLICY_PATH) -> dict:
         validate_source_id(source_id, "quarantined source ID")
         if not isinstance(detail, dict):
             raise ValueError(f"Quarantine policy for {source_id} must be an object")
+        name = detail.get("name")
+        reason = detail.get("reason")
+        if name is not None and (not isinstance(name, str) or not name.strip() or len(name) > 200):
+            raise ValueError(f"Quarantine policy for {source_id} has an invalid name")
+        if not isinstance(reason, str) or not reason.strip() or len(reason) > 1000:
+            raise ValueError(f"Quarantine policy for {source_id} has an invalid reason")
+        issue = detail.get("issue")
+        if issue is not None:
+            _safe_https_url(str(issue), f"quarantine issue for {source_id}")
         scopes = set(as_list(detail.get("catalogs", ["maintained", "legacy"])))
         if not scopes or not scopes <= {"maintained", "legacy"}:
             raise ValueError(f"Quarantine policy for {source_id} has invalid catalogs")
@@ -744,7 +760,8 @@ def update_health_state(
         raise ValueError("Health thresholds must both be at least 2")
     updated = {"version": 1, "sources": dict(state.get("sources", {}))}
     records = updated["sources"]
-    for source_id, reachable in observations.items():
+    for source_id in sorted(observations):
+        reachable = observations[source_id]
         validate_source_id(source_id)
         previous = dict(records.get(source_id, {}))
         if previous.get("lastObservationDate") == observation_date:
@@ -777,6 +794,7 @@ def update_health_state(
                 "consecutiveSuccesses": 0,
                 "lastObservationDate": observation_date,
             }
+    updated["sources"] = {source_id: records[source_id] for source_id in sorted(records)}
     quarantined = {
         source_id
         for source_id, record in records.items()
@@ -953,6 +971,7 @@ def write_catalog(
                     "file": f"sources/{package_name}",
                     "repository": source["repository"],
                     "license": source["license"],
+                    "upstreamPackageURL": source["upstreamPackageURL"],
                     "sha256": digest,
                 }
             )
@@ -1035,8 +1054,124 @@ def _write_health_state_if_changed(state: dict, path: Path = HEALTH_STATE_PATH) 
     temporary.replace(path)
 
 
+def write_status_report(
+    policy: dict,
+    health_state: dict,
+    candidates: list[dict],
+    maintained: list[dict],
+    legacy: list[dict],
+    automatic_quarantine: set[str],
+) -> None:
+    """Publish a compact, human-readable explanation of catalog health."""
+    source_metadata: dict[str, dict] = {}
+    for candidate in sorted(candidates, key=lambda item: (item["id"], -item["priority"])):
+        source_metadata.setdefault(
+            candidate["id"],
+            {"name": candidate["name"], "baseURL": candidate["baseURL"]},
+        )
+
+    manual_entries = []
+    for source_id, detail in sorted(policy.get("quarantinedSources", {}).items()):
+        metadata = source_metadata.get(source_id, {})
+        entry = {
+            "id": source_id,
+            "name": str(detail.get("name") or metadata.get("name", source_id)),
+            "type": "manual",
+            "reason": str(detail.get("reason", "Manually quarantined")),
+            "catalogs": sorted(as_list(detail.get("catalogs", ["maintained", "legacy"]))),
+        }
+        if detail.get("issue"):
+            entry["issue"] = str(detail["issue"])
+        manual_entries.append(entry)
+
+    automatic_entries = []
+    degraded_entries = []
+    required_ids = set(policy.get("requiredMaintainedSources", []))
+    for source_id, record in sorted(health_state.get("sources", {}).items()):
+        metadata = source_metadata.get(source_id, {})
+        entry = {
+            "id": source_id,
+            "name": metadata.get("name", source_id),
+            "baseURL": metadata.get("baseURL"),
+            "status": str(record.get("status", "failing")),
+            "consecutiveFailures": int(record.get("consecutiveFailures", 0)),
+            "consecutiveSuccesses": int(record.get("consecutiveSuccesses", 0)),
+            "lastObservationDate": record.get("lastObservationDate"),
+            "required": source_id in required_ids,
+        }
+        if source_id in automatic_quarantine:
+            automatic_entries.append(entry)
+        else:
+            degraded_entries.append(entry)
+
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    status = {
+        "generatedAt": now,
+        "summary": {
+            "maintained": len(maintained),
+            "legacyOnly": len(legacy),
+            "manualQuarantined": len(manual_entries),
+            "automaticQuarantined": len(automatic_entries),
+            "degraded": len(degraded_entries),
+        },
+        "requiredMaintainedSources": sorted(required_ids),
+        "manualQuarantine": manual_entries,
+        "automaticQuarantine": automatic_entries,
+        "degraded": degraded_entries,
+    }
+    status["generatedAt"] = _stable_generated_at(status, STATUS_JSON_PATH, now)
+    status = {"generatedAt": status.pop("generatedAt"), **status}
+    json_text = json.dumps(status, ensure_ascii=False, indent=2) + "\n"
+    if not STATUS_JSON_PATH.exists() or STATUS_JSON_PATH.read_text(encoding="utf-8-sig") != json_text:
+        STATUS_JSON_PATH.write_text(json_text, encoding="utf-8")
+
+    lines = [
+        "# Aidoku Source Status",
+        "",
+        f"Status last changed: {status['generatedAt']}",
+        "",
+        "Checks run daily; this timestamp changes only when catalog or health status changes.",
+        "",
+        f"- Maintained: {len(maintained)}",
+        f"- Legacy-only: {len(legacy)}",
+        f"- Manually quarantined: {len(manual_entries)}",
+        f"- Automatically quarantined: {len(automatic_entries)}",
+        f"- Degraded/under observation: {len(degraded_entries)}",
+        "",
+        "## Quarantined",
+        "",
+    ]
+    if not manual_entries and not automatic_entries:
+        lines.append("None.")
+    for entry in manual_entries:
+        issue = f" ([upstream issue]({entry['issue']}))" if entry.get("issue") else ""
+        lines.append(f"- **{entry['name']}** (`{entry['id']}`): {entry['reason']}{issue}")
+    for entry in automatic_entries:
+        lines.append(
+            f"- **{entry['name']}** (`{entry['id']}`): unreachable for "
+            f"{entry['consecutiveFailures']} consecutive daily checks"
+        )
+    lines.extend(["", "## Under observation", ""])
+    if not degraded_entries:
+        lines.append("None.")
+    for entry in degraded_entries:
+        protected = "; protected as a required source" if entry["required"] else ""
+        lines.append(
+            f"- **{entry['name']}** (`{entry['id']}`): {entry['consecutiveFailures']} "
+            f"consecutive failed check(s), last observed {entry['lastObservationDate']}{protected}"
+        )
+    markdown_text = "\n".join(lines) + "\n"
+    if not STATUS_MARKDOWN_PATH.exists() or STATUS_MARKDOWN_PATH.read_text(
+        encoding="utf-8-sig"
+    ) != markdown_text:
+        STATUS_MARKDOWN_PATH.write_text(markdown_text, encoding="utf-8")
+
+
 def main() -> None:
     policy = load_policy()
+    manual_maintained = excluded_ids(policy, "maintained")
+    manual_legacy = excluded_ids(policy, "legacy")
+    excluded_everywhere = manual_maintained & manual_legacy
     cache = build_package_cache((ROOT, ROOT / "legacy"))
     current_index, _ = load_current(ROOT)
     legacy_index, _ = load_current(ROOT / "legacy")
@@ -1072,8 +1207,16 @@ def main() -> None:
         entries = payload.get("sources", []) if isinstance(payload, dict) else payload
         if not isinstance(entries, list):
             raise ValueError(f"{upstream['name']} index sources must be a list")
-        english_entries = [entry for entry in entries if isinstance(entry, dict) and is_english_entry(entry)]
-        print(f"{upstream['name']}: {len(english_entries)} English/multilingual index entries")
+        english_entries = [
+            entry
+            for entry in entries
+            if isinstance(entry, dict)
+            and is_english_entry(entry)
+            and str(entry.get("id", "")) not in excluded_everywhere
+        ]
+        print(
+            f"{upstream['name']}: {len(english_entries)} eligible English/multilingual index entries"
+        )
         indexed_entries.extend((upstream, entry) for entry in english_entries)
 
     candidates: list[dict] = list(cached_only_candidates)
@@ -1100,8 +1243,6 @@ def main() -> None:
     if errors:
         print(f"WARNING: {len(errors)} source package(s) could not be refreshed or recovered")
 
-    manual_maintained = excluded_ids(policy, "maintained")
-    manual_legacy = excluded_ids(policy, "legacy")
     required_maintained = set(policy.get("requiredMaintainedSources", []))
     active_health_candidates = [
         candidate
@@ -1110,6 +1251,8 @@ def main() -> None:
         and candidate["id"] not in manual_maintained
     ]
     automatic_quarantine, health_state = refresh_health_state(active_health_candidates, policy)
+    for source_id in manual_maintained:
+        health_state.get("sources", {}).pop(source_id, None)
     # Required sources guard against accidental upstream/package disappearance.
     # They are never auto-quarantined by a coarse website reachability probe;
     # a confirmed failure must be handled explicitly in source_policy.json.
@@ -1174,6 +1317,14 @@ def main() -> None:
         UPSTREAMS,
     )
     _write_health_state_if_changed(health_state)
+    write_status_report(
+        policy,
+        health_state,
+        candidates,
+        active_selected,
+        legacy_selected,
+        automatic_quarantine,
+    )
     print(
         f"Published {len(active_selected)} maintained sources and "
         f"{len(legacy_selected)} unique sources in the legacy catalog"

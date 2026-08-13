@@ -1,6 +1,7 @@
 {
   "quarantinedSources": {
     "en.aquamanga": {
+      "name": "Aqua Manga",
       "catalogs": [
         "maintained",
         "legacy"
@@ -9,6 +10,7 @@
       "issue": "https://github.com/Aidoku-Community/sources/issues/605"
     },
     "en.firescans": {
+      "name": "Fire Scans",
       "catalogs": [
         "maintained",
         "legacy"
@@ -16,6 +18,7 @@
       "reason": "The configured source domain does not currently resolve."
     },
     "en.qiscans": {
+      "name": "Qi Scans",
       "catalogs": [
         "maintained",
         "legacy"
@@ -23,6 +26,7 @@
       "reason": "The configured source domain does not currently resolve."
     },
     "en.readcomiconline": {
+      "name": "ReadComicOnline",
       "catalogs": [
         "maintained",
         "legacy"

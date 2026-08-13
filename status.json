@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-08-13T03:28:53+00:00",
+  "summary": {
+    "maintained": 53,
+    "legacyOnly": 49,
+    "manualQuarantined": 4,
+    "automaticQuarantined": 0,
+    "degraded": 4
+  },
+  "requiredMaintainedSources": [
+    "en.comix",
+    "en.mangadistrict",
+    "en.readcomicsonline"
+  ],
+  "manualQuarantine": [
+    {
+      "id": "en.aquamanga",
+      "name": "Aqua Manga",
+      "type": "manual",
+      "reason": "The site/parser changed and the source needs a rewrite before it is installable again.",
+      "catalogs": [
+        "legacy",
+        "maintained"
+      ],
+      "issue": "https://github.com/Aidoku-Community/sources/issues/605"
+    },
+    {
+      "id": "en.firescans",
+      "name": "Fire Scans",
+      "type": "manual",
+      "reason": "The configured source domain does not currently resolve.",
+      "catalogs": [
+        "legacy",
+        "maintained"
+      ]
+    },
+    {
+      "id": "en.qiscans",
+      "name": "Qi Scans",
+      "type": "manual",
+      "reason": "The configured source domain does not currently resolve.",
+      "catalogs": [
+        "legacy",
+        "maintained"
+      ]
+    },
+    {
+      "id": "en.readcomiconline",
+      "name": "ReadComicOnline",
+      "type": "manual",
+      "reason": "The original ReadComicOnline service has no live domain; use en.readcomicsonline instead.",
+      "catalogs": [
+        "legacy",
+        "maintained"
+      ],
+      "issue": "https://github.com/Aidoku-Community/sources/issues/639"
+    }
+  ],
+  "automaticQuarantine": [],
+  "degraded": [
+    {
+      "id": "en.armageddon",
+      "name": "Armageddon",
+      "baseURL": "https://www.silentquill.net",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-08-13",
+      "required": false
+    },
+    {
+      "id": "en.mangasect",
+      "name": "Manga Sect",
+      "baseURL": "https://mangasect.net",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-08-13",
+      "required": false
+    },
+    {
+      "id": "en.manhuagold",
+      "name": "Manhuagold",
+      "baseURL": "https://manhuagold.top",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-08-13",
+      "required": false
+    },
+    {
+      "id": "en.manhwax",
+      "name": "Manhwax",
+      "baseURL": "https://manhwax.top",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-08-13",
+      "required": false
+    }
+  ]
+}
