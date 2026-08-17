@@ -16,9 +16,9 @@
     {
       "id": "en.asurascans",
       "name": "Asura Scans",
-      "version": 18,
-      "iconURL": "icons/en.asurascans-v18.png",
-      "downloadURL": "sources/en.asurascans-v18.aix",
+      "version": 19,
+      "iconURL": "icons/en.asurascans-v19.png",
+      "downloadURL": "sources/en.asurascans-v19.aix",
       "languages": [
         "en"
       ],
