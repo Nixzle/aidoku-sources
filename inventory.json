@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-17T14:48:56+00:00",
+  "generatedAt": "2026-08-20T14:56:27+00:00",
   "sourceCount": 50,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -328,12 +328,12 @@
     {
       "id": "en.stonescape",
       "name": "StoneScape",
-      "version": 1,
-      "file": "sources/en.stonescape-v1.aix",
+      "version": 2,
+      "file": "sources/en.stonescape-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.stonescape-v1.aix",
-      "sha256": "1660c7efcceceaad796f2d404d001531cf36d484ffb39477a285f639e1d08fc4"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.stonescape-v2.aix",
+      "sha256": "f9b233349c048150de14e1401dc4c17de69ff9b10b229005d90e913e87807aee"
     },
     {
       "id": "en.tcbscans",
