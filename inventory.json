@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-20T14:56:27+00:00",
+  "generatedAt": "2026-08-22T14:40:03+00:00",
   "sourceCount": 50,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -158,12 +158,12 @@
     {
       "id": "en.hivescans",
       "name": "Hive Scans",
-      "version": 1,
-      "file": "sources/en.hivescans-v1.aix",
+      "version": 2,
+      "file": "sources/en.hivescans-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v1.aix",
-      "sha256": "b7ca652fe6370e699448f9e0e7bc5a08b59a65ac63029e43482ccad2f78fd200"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v2.aix",
+      "sha256": "0dc3ae47f66d8d24cb2e84b037ed36c82aa490cbf4522a534199eb69a2b143e4"
     },
     {
       "id": "en.madokami",
@@ -178,12 +178,12 @@
     {
       "id": "en.magusmanga",
       "name": "Magus Manga",
-      "version": 1,
-      "file": "sources/en.magusmanga-v1.aix",
+      "version": 2,
+      "file": "sources/en.magusmanga-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v1.aix",
-      "sha256": "ebdf9fdf3b77a88c836ec6d10f255fbd4974371ea35138dcfd5063ceb08d6cb8"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v2.aix",
+      "sha256": "1b74c60d4cf67fcfdee386a71f5f59d71bcf1531d4dc7acb940afc427d263299"
     },
     {
       "id": "en.mangabat",
@@ -388,12 +388,12 @@
     {
       "id": "en.weebcentral",
       "name": "Weeb Central",
-      "version": 7,
-      "file": "sources/en.weebcentral-v7.aix",
+      "version": 8,
+      "file": "sources/en.weebcentral-v8.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.weebcentral-v7.aix",
-      "sha256": "01c061b514dccf11bb721c9ea024070e201e8a7f2d18ead817c935bcb311a5ec"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.weebcentral-v8.aix",
+      "sha256": "4b1230e1012d9e98acb043d588e59fdc01047439a9b51f3b8da4852554802f55"
     },
     {
       "id": "multi.cubari",

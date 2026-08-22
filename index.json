@@ -168,9 +168,9 @@
     {
       "id": "en.hivescans",
       "name": "Hive Scans",
-      "version": 1,
-      "iconURL": "icons/en.hivescans-v1.png",
-      "downloadURL": "sources/en.hivescans-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.hivescans-v2.png",
+      "downloadURL": "sources/en.hivescans-v2.aix",
       "languages": [
         "en"
       ],
@@ -192,9 +192,9 @@
     {
       "id": "en.magusmanga",
       "name": "Magus Manga",
-      "version": 1,
-      "iconURL": "icons/en.magusmanga-v1.png",
-      "downloadURL": "sources/en.magusmanga-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.magusmanga-v2.png",
+      "downloadURL": "sources/en.magusmanga-v2.aix",
       "languages": [
         "en"
       ],
@@ -447,9 +447,9 @@
     {
       "id": "en.weebcentral",
       "name": "Weeb Central",
-      "version": 7,
-      "iconURL": "icons/en.weebcentral-v7.png",
-      "downloadURL": "sources/en.weebcentral-v7.aix",
+      "version": 8,
+      "iconURL": "icons/en.weebcentral-v8.png",
+      "downloadURL": "sources/en.weebcentral-v8.aix",
       "languages": [
         "en"
       ],
