@@ -325,9 +325,9 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 4,
-      "iconURL": "icons/en.novelbuddy-v4.png",
-      "downloadURL": "sources/en.novelbuddy-v4.aix",
+      "version": 5,
+      "iconURL": "icons/en.novelbuddy-v5.png",
+      "downloadURL": "sources/en.novelbuddy-v5.aix",
       "languages": [
         "en"
       ],
@@ -423,9 +423,9 @@
     {
       "id": "en.vortexscans",
       "name": "Vortex Scans",
-      "version": 2,
-      "iconURL": "icons/en.vortexscans-v2.png",
-      "downloadURL": "sources/en.vortexscans-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.vortexscans-v3.png",
+      "downloadURL": "sources/en.vortexscans-v3.aix",
       "languages": [
         "en"
       ],

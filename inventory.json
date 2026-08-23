@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-22T14:40:03+00:00",
+  "generatedAt": "2026-08-23T14:41:40+00:00",
   "sourceCount": 50,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -288,12 +288,12 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 4,
-      "file": "sources/en.novelbuddy-v4.aix",
+      "version": 5,
+      "file": "sources/en.novelbuddy-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v4.aix",
-      "sha256": "3aaddab5044223ab96e126d97823730b56007b8c68e8abdb07eb1b742825c0ca"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v5.aix",
+      "sha256": "948e0a369a7ce3d12e0c85f66f75ebce58e95d6a3b21446051956d745b74e852"
     },
     {
       "id": "en.nyxscans",
@@ -368,12 +368,12 @@
     {
       "id": "en.vortexscans",
       "name": "Vortex Scans",
-      "version": 2,
-      "file": "sources/en.vortexscans-v2.aix",
+      "version": 3,
+      "file": "sources/en.vortexscans-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v2.aix",
-      "sha256": "03385473e82bb0dbf56c782f089ae9e7f5863f14837553d4bd0f9ac301fe9959"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v3.aix",
+      "sha256": "71a8a00b95e3088be5791b151c6e5234a56248b9505905e52e03254094901ebc"
     },
     {
       "id": "en.webtoonxyz",
