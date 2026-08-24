@@ -1,18 +1,6 @@
 {
   "version": 1,
   "sources": {
-    "en.elftoon": {
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-23"
-    },
-    "en.mangareadorg": {
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-23"
-    },
     "en.mangasect": {
       "status": "quarantined",
       "consecutiveFailures": 3,

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-23T14:41:40+00:00",
+  "generatedAt": "2026-08-24T15:02:04+00:00",
   "summary": {
     "maintained": 50,
     "legacyOnly": 49,
     "manualQuarantined": 4,
     "automaticQuarantined": 3,
-    "degraded": 2
+    "degraded": 0
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -88,26 +88,5 @@
       "required": false
     }
   ],
-  "degraded": [
-    {
-      "id": "en.elftoon",
-      "name": "Elf Toon",
-      "baseURL": "https://elftoon.com",
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-23",
-      "required": false
-    },
-    {
-      "id": "en.mangareadorg",
-      "name": "MangaRead.org",
-      "baseURL": "https://www.mangaread.org",
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-23",
-      "required": false
-    }
-  ]
+  "degraded": []
 }
