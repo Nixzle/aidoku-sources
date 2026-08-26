@@ -325,15 +325,15 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 5,
-      "iconURL": "icons/en.novelbuddy-v5.png",
-      "downloadURL": "sources/en.novelbuddy-v5.aix",
+      "version": 6,
+      "iconURL": "icons/en.novelbuddy-v6.png",
+      "downloadURL": "sources/en.novelbuddy-v6.aix",
       "languages": [
         "en"
       ],
       "contentRating": 1,
       "baseURL": "https://novelbuddy.me",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.nyxscans",

@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-23T14:41:40+00:00",
+  "generatedAt": "2026-08-26T15:53:49+00:00",
   "sourceCount": 50,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -288,12 +288,12 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 5,
-      "file": "sources/en.novelbuddy-v5.aix",
+      "version": 6,
+      "file": "sources/en.novelbuddy-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v5.aix",
-      "sha256": "948e0a369a7ce3d12e0c85f66f75ebce58e95d6a3b21446051956d745b74e852"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v6.aix",
+      "sha256": "8791fa19ffc72cf02257255658a6bf4a7f024ca24cc48349c93eb3badbd0df64"
     },
     {
       "id": "en.nyxscans",
