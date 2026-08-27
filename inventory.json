@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-26T15:53:49+00:00",
+  "generatedAt": "2026-08-27T23:48:20+00:00",
   "sourceCount": 50,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -468,12 +468,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 5,
-      "file": "sources/multi.mangadotnet-v5.aix",
+      "version": 6,
+      "file": "sources/multi.mangadotnet-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v5.aix",
-      "sha256": "af05264117373fadb0f72bafd0e112e9bf5d978ee05162adddd7e810c356c61d"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v6.aix",
+      "sha256": "6835ebe00cc7b05abe0e84ce2de6e7ca5c7fa32f1519cfa2100847656653db3f"
     },
     {
       "id": "multi.mangafire",

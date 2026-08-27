@@ -652,9 +652,9 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 5,
-      "iconURL": "icons/multi.mangadotnet-v5.png",
-      "downloadURL": "sources/multi.mangadotnet-v5.aix",
+      "version": 6,
+      "iconURL": "icons/multi.mangadotnet-v6.png",
+      "downloadURL": "sources/multi.mangadotnet-v6.aix",
       "languages": [
         "multi"
       ],

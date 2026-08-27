@@ -1,6 +1,12 @@
 {
   "version": 1,
   "sources": {
+    "en.hennoveltranslations": {
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-08-27"
+    },
     "en.mangasect": {
       "status": "quarantined",
       "consecutiveFailures": 3,
