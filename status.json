@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T23:48:21+00:00",
+  "generatedAt": "2026-08-28T23:33:56+00:00",
   "summary": {
     "maintained": 50,
     "legacyOnly": 49,
@@ -90,13 +90,13 @@
   ],
   "degraded": [
     {
-      "id": "en.hennoveltranslations",
-      "name": "Hennoveltranslations",
-      "baseURL": "https://hennoveltranslations.com",
+      "id": "en.tcbscans",
+      "name": "TCB Scans",
+      "baseURL": "https://tcbonepiecechapters.com",
       "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-27",
+      "lastObservationDate": "2026-08-28",
       "required": false
     }
   ]
