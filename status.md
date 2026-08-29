@@ -1,6 +1,6 @@
 # Aidoku Source Status
 
-Status last changed: 2026-08-28T23:33:56+00:00
+Status last changed: 2026-08-29T17:44:23+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
@@ -22,4 +22,4 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **TCB Scans** (`en.tcbscans`): 1 consecutive failed check(s), last observed 2026-08-28
+- **TCB Scans** (`en.tcbscans`): 2 consecutive failed check(s), last observed 2026-08-29
