@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-29T17:44:23+00:00",
+  "generatedAt": "2026-08-30T18:04:55+00:00",
   "summary": {
-    "maintained": 50,
+    "maintained": 49,
     "legacyOnly": 49,
     "manualQuarantined": 4,
-    "automaticQuarantined": 3,
-    "degraded": 1
+    "automaticQuarantined": 4,
+    "degraded": 0
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -86,18 +86,17 @@
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15",
       "required": false
-    }
-  ],
-  "degraded": [
+    },
     {
       "id": "en.tcbscans",
       "name": "TCB Scans",
       "baseURL": "https://tcbonepiecechapters.com",
-      "status": "failing",
-      "consecutiveFailures": 2,
+      "status": "quarantined",
+      "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-29",
+      "lastObservationDate": "2026-08-30",
       "required": false
     }
-  ]
+  ],
+  "degraded": []
 }

@@ -20,10 +20,10 @@
       "lastObservationDate": "2026-08-15"
     },
     "en.tcbscans": {
-      "status": "failing",
-      "consecutiveFailures": 2,
+      "status": "quarantined",
+      "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-29"
+      "lastObservationDate": "2026-08-30"
     }
   }
 }

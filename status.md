@@ -1,14 +1,14 @@
 # Aidoku Source Status
 
-Status last changed: 2026-08-29T17:44:23+00:00
+Status last changed: 2026-08-30T18:04:55+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
-- Maintained: 50
+- Maintained: 49
 - Legacy-only: 49
 - Manually quarantined: 4
-- Automatically quarantined: 3
-- Degraded/under observation: 1
+- Automatically quarantined: 4
+- Degraded/under observation: 0
 
 ## Quarantined
 
@@ -19,7 +19,8 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 - **Manga Sect** (`en.mangasect`): unreachable for 3 consecutive daily checks
 - **Manhuagold** (`en.manhuagold`): unreachable for 3 consecutive daily checks
 - **Manhwax** (`en.manhwax`): unreachable for 3 consecutive daily checks
+- **TCB Scans** (`en.tcbscans`): unreachable for 3 consecutive daily checks
 
 ## Under observation
 
-- **TCB Scans** (`en.tcbscans`): 2 consecutive failed check(s), last observed 2026-08-29
+None.

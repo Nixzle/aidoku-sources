@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-27T23:48:20+00:00",
-  "sourceCount": 50,
+  "generatedAt": "2026-08-30T18:04:55+00:00",
+  "sourceCount": 49,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -334,16 +334,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.stonescape-v2.aix",
       "sha256": "f9b233349c048150de14e1401dc4c17de69ff9b10b229005d90e913e87807aee"
-    },
-    {
-      "id": "en.tcbscans",
-      "name": "TCB Scans",
-      "version": 6,
-      "file": "sources/en.tcbscans-v6.aix",
-      "repository": "Aidoku-Community/sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.tcbscans-v6.aix",
-      "sha256": "3dfcf4f5c6fd848c2cdf206a0985771fb28cc3a47b4e695354558f70d8ff6b9d"
     },
     {
       "id": "en.toonily",

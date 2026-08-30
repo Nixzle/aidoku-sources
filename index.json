@@ -385,18 +385,6 @@
       "baseURL": "https://stonescape.xyz"
     },
     {
-      "id": "en.tcbscans",
-      "name": "TCB Scans",
-      "version": 6,
-      "iconURL": "icons/en.tcbscans-v6.png",
-      "downloadURL": "sources/en.tcbscans-v6.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 0,
-      "baseURL": "https://tcbonepiecechapters.com"
-    },
-    {
       "id": "en.toonily",
       "name": "Toonily",
       "version": 10,
