@@ -1,6 +1,13 @@
 name: Daily source update
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "config/source_policy.json"
+      - "overrides/**"
+      - ".github/workflows/daily-update.yml"
   schedule:
     - cron: "17 14 * * *"
   workflow_dispatch:
@@ -80,3 +87,21 @@ jobs:
             python scripts/validate_catalog.py
             git push origin HEAD:main
           fi
+
+  report:
+    needs: update
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Report failure or recovery
+        run: python3 scripts/report_automation.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_RESULT: ${{ needs.update.result }}

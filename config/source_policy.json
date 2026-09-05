@@ -41,7 +41,8 @@
   "localPackageOverrides": {
     "en.readcomicsonline": {
       "path": "overrides/en.readcomicsonline-v3.aix",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/main/overrides/en.readcomicsonline-v3.aix"
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
+      "sha256": "99983f0a4a8e4d6d1c17357ad77ef42082b6b9f99b11046337be2af1b7af5126"
     }
   },
   "requiredMaintainedSources": [

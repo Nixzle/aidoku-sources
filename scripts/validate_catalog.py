@@ -481,7 +481,15 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
         )
         entry = maintained_entries[source_id]
         override_path = root.joinpath(*override_relative.parts)
-        override_digest = validate_aix(override_path, entry, f"local override {source_id}")
+        with zipfile.ZipFile(override_path) as archive:
+            manifest = json.loads(archive.read("Payload/source.json"))
+        override_info = manifest.get("info", manifest)
+        override_entry = {"id": source_id, "version": override_info.get("version")}
+        override_digest = validate_aix(override_path, override_entry, f"local override {source_id}")
+        if details.get("sha256"):
+            require(override_digest == details["sha256"], f"Pinned checksum mismatch for {source_id}")
+        if entry["version"] > override_entry["version"]:
+            continue  # Upstream has superseded this archived override.
         published_relative = safe_relative_path(
             entry.get("downloadURL"), f"published package for {source_id}", "sources"
         )

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Install Nixzle's English Aidoku source lists and check update status.">
+  <meta name="color-scheme" content="dark light">
+  <title>Nixzle · Aidoku Sources</title>
+  <link rel="stylesheet" href="web/style.css">
+  <script src="web/status.js" defer></script>
+</head>
+<body>
+<main>
+  <header><p class="eyebrow">NIXZLE / AIDOKU</p><h1>Your next read<br>starts here.</h1><p>English source lists. Updated daily on GitHub.</p></header>
+  <section aria-labelledby="maintained-title">
+    <p class="eyebrow">START HERE</p><h2 id="maintained-title">Maintained sources</h2>
+    <p>Community packages, with reviewed fixes and checks before publishing. <span id="source-count"></span></p>
+    <a class="button" href="https://aidoku.app/add-source-list/?url=https%3A%2F%2Fnixzle.github.io%2Faidoku-sources%2Findex.min.json">Add to Aidoku ↗</a>
+    <div class="copy-row"><input id="catalog-url" aria-label="Source list URL" readonly value="https://nixzle.github.io/aidoku-sources/index.min.json"><button id="copy" type="button">Copy link</button></div>
+    <p class="small" id="copy-result" role="status">Or paste this link into Aidoku → Settings → Source Lists.</p>
+  </section>
+  <section aria-labelledby="status-title" aria-live="polite">
+    <h2 id="status-title">Update status</h2>
+    <p id="automation-status">Checking the latest update…</p>
+    <p id="last-success">Last successful update: checking…</p>
+    <p class="small" id="catalog-changed">Catalog changes: checking…</p>
+    <a href="https://github.com/Nixzle/aidoku-sources/actions/workflows/daily-update.yml">View update runs</a> · <a href="https://github.com/Nixzle/aidoku-sources/blob/main/status.md">Source health report</a>
+    <p class="small">Health checks measure reachability, not successful reading on your device. A source website may still be slow or require human verification.</p>
+  </section>
+  <details><summary>Optional lists</summary>
+    <h3>Legacy sources</h3><p>Older unique sources absent from the maintained list. Some may no longer work.</p>
+    <a href="https://aidoku.app/add-source-list/?url=https%3A%2F%2Fnixzle.github.io%2Faidoku-sources%2Flegacy%2Findex.min.json">Add legacy list ↗</a>
+    <h3>Experimental: PoppingMango</h3><p>English Aidoku ports of Paperback sources. Best-effort support from the original author; not mirrored or verified by Nixzle.</p>
+    <a href="https://poppingmangosources.github.io/popmango-aidoku-sources/">Visit the original install page ↗</a>
+  </details>
+  <footer>Unofficial sources; some include adult content. <a href="https://github.com/Nixzle/aidoku-sources">Code &amp; checksums</a></footer>
+</main>
+</body>
+</html>
