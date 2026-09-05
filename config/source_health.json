@@ -22,8 +22,8 @@
     "en.tcbscans": {
       "status": "quarantined",
       "consecutiveFailures": 3,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-30"
+      "consecutiveSuccesses": 1,
+      "lastObservationDate": "2026-09-05"
     }
   }
 }

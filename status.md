@@ -1,10 +1,10 @@
 # Aidoku Source Status
 
-Status last changed: 2026-08-30T18:04:55+00:00
+Status last changed: 2026-09-05T02:26:50+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
-- Maintained: 49
+- Maintained: 51
 - Legacy-only: 49
 - Manually quarantined: 4
 - Automatically quarantined: 4

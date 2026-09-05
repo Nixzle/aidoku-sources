@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-08-30T18:04:55+00:00",
-  "sourceCount": 49,
+  "generatedAt": "2026-09-05T02:26:50+00:00",
+  "sourceCount": 51,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -64,6 +64,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.batcave-v2.aix",
       "sha256": "decd237504483292eabaf03b39c2e5932262e77117f1fb9377baada4f91bb9af"
+    },
+    {
+      "id": "en.chikari",
+      "name": "Chikari",
+      "version": 1,
+      "file": "sources/en.chikari-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v1.aix",
+      "sha256": "da4cac00572b12e3269d7de9c0b7f330d1a5f17558e3455a3f56569cee1b54f0"
     },
     {
       "id": "en.comix",
@@ -312,7 +322,7 @@
       "file": "sources/en.readcomicsonline-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://github.com/Nixzle/aidoku-sources/blob/main/overrides/en.readcomicsonline-v3.aix",
+      "upstreamPackageURL": "https://github.com/Nixzle/aidoku-sources/blob/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
       "sha256": "99983f0a4a8e4d6d1c17357ad77ef42082b6b9f99b11046337be2af1b7af5126"
     },
     {
@@ -428,12 +438,12 @@
     {
       "id": "multi.kagane",
       "name": "Kagane",
-      "version": 2,
-      "file": "sources/multi.kagane-v2.aix",
+      "version": 3,
+      "file": "sources/multi.kagane-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v2.aix",
-      "sha256": "498a234045c0fa55c4767e513e3b1cbb68167541487210ef0094f8300853930c"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v3.aix",
+      "sha256": "d4f327ee86a202fa701edfa5c6301e87a50cdf79f12ed7bb67aeeb428de1f6a4"
     },
     {
       "id": "multi.lanraragi",
@@ -514,6 +524,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.suwayomi-v4.aix",
       "sha256": "8b6ca200f4fd83aa6f9a79d543df3cbb23e2b951b7683bb3a2ff23929bfa6efb"
+    },
+    {
+      "id": "multi.xcomic",
+      "name": "XCOMIC",
+      "version": 1,
+      "file": "sources/multi.xcomic-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v1.aix",
+      "sha256": "4f16de1647c38fa8bc20cfb40d8a5a95780cc338beacb34eca9926869793e31d"
     }
   ]
 }
