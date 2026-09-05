@@ -3,6 +3,8 @@ name: Validate source catalogs
 on:
   pull_request:
     paths:
+      - "index.html"
+      - "web/**"
       - ".github/workflows/**"
       - "config/**"
       - "scripts/**"
@@ -20,6 +22,8 @@ on:
       - "status.md"
   push:
     paths:
+      - "index.html"
+      - "web/**"
       - ".github/workflows/**"
       - "config/**"
       - "scripts/**"
@@ -71,3 +75,6 @@ jobs:
 
       - name: Check whitespace errors
         run: git diff --check
+
+      - name: Check install-page JavaScript
+        run: node --check web/status.js

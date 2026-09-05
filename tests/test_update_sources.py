@@ -338,7 +338,7 @@ class SelectionAndDeterminismTests(unittest.TestCase):
         self.assertEqual(result[0]["version"], 3)
         self.assertEqual(result[0]["repository"], updater.ACTIVE_REPOSITORY)
 
-    def test_local_override_rejects_non_newer_version(self):
+    def test_local_override_accepts_identical_upstream_version(self):
         upstream = next(
             item for item in updater.UPSTREAMS if item["name"] == updater.ACTIVE_REPOSITORY
         )
@@ -352,7 +352,7 @@ class SelectionAndDeterminismTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             (root / "overrides").mkdir()
-            (root / "overrides" / "en.example-v3.aix").write_bytes(make_aix("en.example", 3))
+            (root / "overrides" / "en.example-v3.aix").write_bytes(original["package"])
             policy = {
                 "localPackageOverrides": {
                     "en.example": {
@@ -361,8 +361,8 @@ class SelectionAndDeterminismTests(unittest.TestCase):
                     }
                 }
             }
-            with self.assertRaisesRegex(ValueError, "must be newer"):
-                updater.apply_local_package_overrides([original], policy, root=root)
+            result = updater.apply_local_package_overrides([original], policy, root=root)
+            self.assertIs(result[0], original)
 
     def test_legacy_delta_excludes_maintained_ids(self):
         selected = [
@@ -372,6 +372,49 @@ class SelectionAndDeterminismTests(unittest.TestCase):
         active_ids = {"en.active"}
         legacy = [candidate for candidate in selected if candidate["id"] not in active_ids]
         self.assertEqual([candidate["id"] for candidate in legacy], ["en.legacy"])
+
+    def test_override_conflict_retains_pinned_bytes_and_other_sources(self):
+        upstream = updater.UPSTREAMS[0]
+        package = make_aix()
+        other = {"id": "en.other", "repository": updater.ACTIVE_REPOSITORY}
+        original = updater.candidate_from_package(upstream, {"id": "en.example"},
+            package + b"different", expected_version=3, min_app_version_overrides={})
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "overrides").mkdir()
+            (root / "overrides/example.aix").write_bytes(package)
+            policy = {"localPackageOverrides": {"en.example": {
+                "path": "overrides/example.aix", "provenanceURL": "https://example.com/pinned"}}}
+            result = updater.apply_local_package_overrides([original, other], policy, root=root)
+        self.assertIn(other, result)
+        self.assertEqual(next(x for x in result if x["id"] == "en.example")["package"], package)
+
+    def test_newer_upstream_retires_override(self):
+        original = updater.candidate_from_package(updater.UPSTREAMS[0], {"id": "en.example"},
+            make_aix(version=4), expected_version=4, min_app_version_overrides={})
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "overrides").mkdir()
+            (root / "overrides/example.aix").write_bytes(make_aix())
+            policy = {"localPackageOverrides": {"en.example": {
+                "path": "overrides/example.aix", "provenanceURL": "https://example.com/pinned"}}}
+            self.assertIs(updater.apply_local_package_overrides([original], policy, root=root)[0], original)
+            policy["localPackageOverrides"]["en.example"]["sha256"] = "0" * 64
+            with self.assertRaisesRegex(ValueError, "Pinned checksum"):
+                updater.apply_local_package_overrides([original], policy, root=root)
+
+    def test_override_refresh_checks_live_bytes_but_retains_outage_cache(self):
+        upstream = updater.UPSTREAMS[0]
+        package = make_aix()
+        cache = {(upstream["name"], "en.example", 3): package}
+        entry = {"id": "en.example", "version": 3, "downloadURL": "sources/en.example-v3.aix"}
+        with mock.patch.object(updater, "fetch_bytes", return_value=package + b"upstream") as fetch:
+            result = updater.candidate_from_entry(upstream, entry, cache, {}, True)
+            fetch.assert_called_once()
+            self.assertNotEqual(result["package"], package)
+        with mock.patch.object(updater, "fetch_bytes", side_effect=OSError("offline")):
+            result = updater.candidate_from_entry(upstream, entry, cache, {}, True)
+            self.assertEqual(result["package"], package)
 
     def test_generated_at_is_preserved_when_inventory_is_unchanged(self):
         with tempfile.TemporaryDirectory() as temporary:

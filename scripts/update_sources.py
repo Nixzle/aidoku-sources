@@ -520,6 +520,7 @@ def candidate_from_entry(
     entry: dict,
     cache: dict[tuple[str, str, int], bytes],
     min_app_version_overrides: dict[str, str],
+    refresh_cached: bool = False,
 ) -> dict:
     if not isinstance(entry, dict):
         raise ValueError(f"{upstream['name']} contains a non-object source entry")
@@ -536,7 +537,7 @@ def candidate_from_entry(
     # same-version upstream rebuild from silently changing bytes behind an
     # already-public download URL. New bytes require a new source version.
     exact_package = cache.get((upstream["name"], source_id, version))
-    if exact_package is not None:
+    if exact_package is not None and not refresh_cached:
         try:
             return candidate_from_package(
                 upstream,
@@ -647,7 +648,7 @@ def apply_local_package_overrides(
     """Replace active-upstream packages with reviewed, repository-pinned fixes.
 
     Overrides remain explicit policy rather than an invisible preference. The
-    package must have a newer version than the active upstream package, and it
+    package is used until a newer upstream version supersedes it, and it
     is subjected to the same manifest/archive validation as downloaded AIX
     files. This lets a compatibility fix survive the nightly mirror refresh.
     """
@@ -664,6 +665,9 @@ def apply_local_package_overrides(
         if override_root not in path.parents or path.suffix.casefold() != ".aix":
             raise ValueError(f"Local override for {source_id} must be an .aix inside overrides/")
         package = path.read_bytes()
+        expected_digest = detail.get("sha256")
+        if expected_digest and hashlib.sha256(package).hexdigest() != expected_digest:
+            raise ValueError(f"Pinned checksum mismatch for {source_id}")
         if len(package) > MAX_PACKAGE_BYTES:
             raise ValueError(f"Local override for {source_id} exceeds the package size limit")
         info, _ = read_package(package, f"local override {source_id}", expected_id=source_id)
@@ -679,9 +683,20 @@ def apply_local_package_overrides(
         if not active_matches:
             raise ValueError(f"Local override source {source_id} is absent from the active upstream")
         upstream_version = max(candidate["version"] for candidate in active_matches)
-        if version <= upstream_version:
-            raise ValueError(
-                f"Local override {source_id} v{version} must be newer than upstream v{upstream_version}"
+        if upstream_version > version:
+            print(f"Retired local override {source_id} v{version}; upstream is v{upstream_version}")
+            continue
+        if upstream_version == version:
+            upstream_package = max(active_matches, key=lambda item: item["version"])["package"]
+            if upstream_package == package:
+                print(f"Local override {source_id} matches upstream v{version}")
+                for candidate in active_matches:
+                    if candidate["package"] == package:
+                        candidate["upstreamPackageURL"] = str(detail["provenanceURL"])
+                continue
+            print(
+                f"::warning::Override conflict for {source_id} v{version}: retaining pinned bytes; "
+                "review upstream before replacing this version. Other sources will continue updating."
             )
         entry = {
             "id": source_id,
@@ -1266,6 +1281,9 @@ def main() -> None:
     manual_legacy = excluded_ids(policy, "legacy")
     excluded_everywhere = manual_maintained & manual_legacy
     cache = build_package_cache((ROOT, ROOT / "legacy"))
+    # Force a live check for overrides, but retain their verified cache for
+    # outages. A local package must not masquerade as an upstream cache hit.
+    override_ids = set(policy.get("localPackageOverrides", {}))
     current_index, _ = load_current(ROOT)
     legacy_index, _ = load_current(ROOT / "legacy")
     min_app_version_overrides = {
@@ -1322,6 +1340,7 @@ def main() -> None:
                 entry,
                 cache,
                 min_app_version_overrides,
+                upstream["name"] == ACTIVE_REPOSITORY and entry.get("id") in override_ids,
             ): (upstream["name"], entry.get("id", "<unknown>"))
             for upstream, entry in indexed_entries
         }
