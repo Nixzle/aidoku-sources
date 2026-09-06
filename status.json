@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-05T02:26:50+00:00",
+  "generatedAt": "2026-09-06T17:05:08+00:00",
   "summary": {
-    "maintained": 51,
+    "maintained": 52,
     "legacyOnly": 49,
     "manualQuarantined": 4,
-    "automaticQuarantined": 4,
+    "automaticQuarantined": 3,
     "degraded": 0
   },
   "requiredMaintainedSources": [
@@ -85,16 +85,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15",
-      "required": false
-    },
-    {
-      "id": "en.tcbscans",
-      "name": "TCB Scans",
-      "baseURL": "https://tcbonepiecechapters.com",
-      "status": "quarantined",
-      "consecutiveFailures": 3,
-      "consecutiveSuccesses": 1,
-      "lastObservationDate": "2026-09-05",
       "required": false
     }
   ],

@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-05T02:26:50+00:00",
-  "sourceCount": 51,
+  "generatedAt": "2026-09-06T17:05:08+00:00",
+  "sourceCount": 52,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -346,6 +346,16 @@
       "sha256": "f9b233349c048150de14e1401dc4c17de69ff9b10b229005d90e913e87807aee"
     },
     {
+      "id": "en.tcbscans",
+      "name": "TCB Scans",
+      "version": 6,
+      "file": "sources/en.tcbscans-v6.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.tcbscans-v6.aix",
+      "sha256": "4b8552f296873216132585fe607ff8b30c47fc9c1735c19ce28c9af0843ab552"
+    },
+    {
       "id": "en.toonily",
       "name": "Toonily",
       "version": 10,
@@ -528,12 +538,12 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 1,
-      "file": "sources/multi.xcomic-v1.aix",
+      "version": 2,
+      "file": "sources/multi.xcomic-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v1.aix",
-      "sha256": "4f16de1647c38fa8bc20cfb40d8a5a95780cc338beacb34eca9926869793e31d"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v2.aix",
+      "sha256": "12235a77494b79e19457f048871cd424d56d69c7df3c7a73fd92f8c3a11cd75e"
     }
   ]
 }
