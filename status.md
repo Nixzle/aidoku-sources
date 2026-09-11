@@ -1,6 +1,6 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-08T17:56:36+00:00
+Status last changed: 2026-09-11T17:46:05+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
@@ -8,7 +8,7 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 - Legacy-only: 49
 - Manually quarantined: 4
 - Automatically quarantined: 3
-- Degraded/under observation: 1
+- Degraded/under observation: 0
 
 ## Quarantined
 
@@ -22,4 +22,4 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **Drake Scans** (`en.drakescans`): 1 consecutive failed check(s), last observed 2026-09-08
+None.

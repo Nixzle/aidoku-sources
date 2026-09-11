@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-06T17:05:08+00:00",
+  "generatedAt": "2026-09-11T17:46:05+00:00",
   "sourceCount": 52,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -98,12 +98,12 @@
     {
       "id": "en.drakescans",
       "name": "Drake Scans",
-      "version": 1,
-      "file": "sources/en.drakescans-v1.aix",
+      "version": 2,
+      "file": "sources/en.drakescans-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v1.aix",
-      "sha256": "d4f7281707f7cc1c922ef86e5e32616215d9abb3387cf69c705ba8ff75ec8f48"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v2.aix",
+      "sha256": "2db85aede3ac1c41629fd7041d443bfb6216d31666aae3be623d70abbd7b68b1"
     },
     {
       "id": "en.elftoon",

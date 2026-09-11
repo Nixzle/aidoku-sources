@@ -94,14 +94,15 @@
     {
       "id": "en.drakescans",
       "name": "Drake Scans",
-      "version": 1,
-      "iconURL": "icons/en.drakescans-v1.png",
-      "downloadURL": "sources/en.drakescans-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.drakescans-v2.png",
+      "downloadURL": "sources/en.drakescans-v2.aix",
       "languages": [
         "en"
       ],
       "contentRating": 1,
-      "baseURL": "https://drakecomic.org"
+      "baseURL": "https://drakecomic.net",
+      "minAppVersion": "0.7.1"
     },
     {
       "id": "en.elftoon",
