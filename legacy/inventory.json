@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Legacy Public English Aidoku Sources",
-  "generatedAt": "2026-08-13T03:28:53+00:00",
-  "sourceCount": 49,
+  "generatedAt": "2026-09-14T19:23:51+00:00",
+  "sourceCount": 48,
   "catalogPolicy": "Older unique packages not present in the maintained catalog; these may no longer work",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -84,16 +84,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.disasterscans-v3.aix",
       "sha256": "3c2910eeaef64ddd9b3cbb76e42f073c5cc75614e5c43080beaf4779268cf257"
-    },
-    {
-      "id": "en.dynastyscans",
-      "name": "Dynasty Scans",
-      "version": 3,
-      "file": "sources/en.dynastyscans-v3.aix",
-      "repository": "tachibana-shin/aidoku-community-sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.dynastyscans-v3.aix",
-      "sha256": "469d9e58e4cdb47ab15ce5c41dac0146efdc8f378fc7478c5969d71c63a9d3c0"
     },
     {
       "id": "en.fallen-angels",

@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-11T17:46:05+00:00",
-  "sourceCount": 52,
+  "generatedAt": "2026-09-14T19:23:51+00:00",
+  "sourceCount": 53,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -104,6 +104,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v2.aix",
       "sha256": "2db85aede3ac1c41629fd7041d443bfb6216d31666aae3be623d70abbd7b68b1"
+    },
+    {
+      "id": "en.dynastyscans",
+      "name": "Dynasty Scans",
+      "version": 4,
+      "file": "sources/en.dynastyscans-v4.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.dynastyscans-v4.aix",
+      "sha256": "2448950acd3027c7e5d055a337da2d8668b57ef72b6c061234a701d30c683a02"
     },
     {
       "id": "en.elftoon",

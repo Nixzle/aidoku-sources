@@ -105,6 +105,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.dynastyscans",
+      "name": "Dynasty Scans",
+      "version": 4,
+      "iconURL": "icons/en.dynastyscans-v4.png",
+      "downloadURL": "sources/en.dynastyscans-v4.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://dynasty-scans.com",
+      "minAppVersion": "0.9"
+    },
+    {
       "id": "en.elftoon",
       "name": "Elf Toon",
       "version": 2,

@@ -62,18 +62,6 @@
       "baseURL": "https://disasterscans.com"
     },
     {
-      "id": "en.dynastyscans",
-      "name": "Dynasty Scans",
-      "version": 3,
-      "iconURL": "icons/en.dynastyscans-v3.png",
-      "downloadURL": "sources/en.dynastyscans-v3.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 2,
-      "baseURL": "https://dynasty-scans.com/"
-    },
-    {
       "id": "en.fallen-angels",
       "name": "Fallen Angels",
       "version": 1,
