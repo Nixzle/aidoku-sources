@@ -779,9 +779,9 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 2,
-      "iconURL": "icons/multi.xcomic-v2.png",
-      "downloadURL": "sources/multi.xcomic-v2.aix",
+      "version": 3,
+      "iconURL": "icons/multi.xcomic-v3.png",
+      "downloadURL": "sources/multi.xcomic-v3.aix",
       "languages": [
         "en",
         "fr",

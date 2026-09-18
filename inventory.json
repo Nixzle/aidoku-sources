@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-14T19:23:51+00:00",
+  "generatedAt": "2026-09-18T17:42:18+00:00",
   "sourceCount": 53,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -548,12 +548,12 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 2,
-      "file": "sources/multi.xcomic-v2.aix",
+      "version": 3,
+      "file": "sources/multi.xcomic-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v2.aix",
-      "sha256": "12235a77494b79e19457f048871cd424d56d69c7df3c7a73fd92f8c3a11cd75e"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v3.aix",
+      "sha256": "8a5acba90a4332834ba8868f2684577381d3c282d83997869349b067f2ba0a4d"
     }
   ]
 }
