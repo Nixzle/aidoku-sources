@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-20T17:29:42+00:00",
+  "generatedAt": "2026-09-21T19:29:59+00:00",
   "summary": {
     "maintained": 53,
     "legacyOnly": 48,
     "manualQuarantined": 4,
     "automaticQuarantined": 3,
-    "degraded": 1
+    "degraded": 0
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -88,16 +88,5 @@
       "required": false
     }
   ],
-  "degraded": [
-    {
-      "id": "en.nyxscans",
-      "name": "Nyx Scans",
-      "baseURL": "https://nyxscans.com",
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-20",
-      "required": false
-    }
-  ]
+  "degraded": []
 }
