@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-21T19:29:59+00:00",
+  "generatedAt": "2026-09-22T18:06:44+00:00",
   "summary": {
     "maintained": 53,
     "legacyOnly": 48,
     "manualQuarantined": 4,
     "automaticQuarantined": 3,
-    "degraded": 0
+    "degraded": 3
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -88,5 +88,36 @@
       "required": false
     }
   ],
-  "degraded": []
+  "degraded": [
+    {
+      "id": "en.elftoon",
+      "name": "Elf Toon",
+      "baseURL": "https://elftoon.com",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-22",
+      "required": false
+    },
+    {
+      "id": "en.hivescans",
+      "name": "Hive Scans",
+      "baseURL": "https://hivetoons.org",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-22",
+      "required": false
+    },
+    {
+      "id": "en.tcbscans",
+      "name": "TCB Scans",
+      "baseURL": "https://tcbonepiecechapters.com",
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-22",
+      "required": false
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-21T19:29:59+00:00
+Status last changed: 2026-09-22T18:06:44+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
@@ -8,7 +8,7 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 - Legacy-only: 48
 - Manually quarantined: 4
 - Automatically quarantined: 3
-- Degraded/under observation: 0
+- Degraded/under observation: 3
 
 ## Quarantined
 
@@ -22,4 +22,6 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-None.
+- **Elf Toon** (`en.elftoon`): 1 consecutive failed check(s), last observed 2026-09-22
+- **Hive Scans** (`en.hivescans`): 1 consecutive failed check(s), last observed 2026-09-22
+- **TCB Scans** (`en.tcbscans`): 1 consecutive failed check(s), last observed 2026-09-22
