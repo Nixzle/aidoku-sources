@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-22T18:06:44+00:00",
+  "generatedAt": "2026-09-23T18:25:10+00:00",
   "summary": {
     "maintained": 53,
     "legacyOnly": 48,
     "manualQuarantined": 4,
     "automaticQuarantined": 3,
-    "degraded": 3
+    "degraded": 4
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -90,23 +90,23 @@
   ],
   "degraded": [
     {
-      "id": "en.elftoon",
-      "name": "Elf Toon",
-      "baseURL": "https://elftoon.com",
+      "id": "en.comix",
+      "name": "Comix",
+      "baseURL": "https://comix.to",
       "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-22",
-      "required": false
+      "lastObservationDate": "2026-09-23",
+      "required": true
     },
     {
       "id": "en.hivescans",
       "name": "Hive Scans",
       "baseURL": "https://hivetoons.org",
       "status": "failing",
-      "consecutiveFailures": 1,
+      "consecutiveFailures": 2,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-22",
+      "lastObservationDate": "2026-09-23",
       "required": false
     },
     {
@@ -114,9 +114,19 @@
       "name": "TCB Scans",
       "baseURL": "https://tcbonepiecechapters.com",
       "status": "failing",
+      "consecutiveFailures": 2,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-23",
+      "required": false
+    },
+    {
+      "id": "multi.mangafire",
+      "name": "MangaFire",
+      "baseURL": "https://mangafire.to",
+      "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-22",
+      "lastObservationDate": "2026-09-23",
       "required": false
     }
   ]
