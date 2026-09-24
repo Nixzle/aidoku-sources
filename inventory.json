@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-18T17:42:18+00:00",
-  "sourceCount": 53,
+  "generatedAt": "2026-09-24T18:26:28+00:00",
+  "sourceCount": 52,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -174,16 +174,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hennoveltranslations-v1.aix",
       "sha256": "c4d624122957079f55c32702f9e4590d025b38ab9f94f158b2dfa4e51ff8e94f"
-    },
-    {
-      "id": "en.hivescans",
-      "name": "Hive Scans",
-      "version": 2,
-      "file": "sources/en.hivescans-v2.aix",
-      "repository": "Aidoku-Community/sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v2.aix",
-      "sha256": "0dc3ae47f66d8d24cb2e84b037ed36c82aa490cbf4522a534199eb69a2b143e4"
     },
     {
       "id": "en.madokami",
@@ -488,12 +478,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 6,
-      "file": "sources/multi.mangadotnet-v6.aix",
+      "version": 7,
+      "file": "sources/multi.mangadotnet-v7.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v6.aix",
-      "sha256": "6835ebe00cc7b05abe0e84ce2de6e7ca5c7fa32f1519cfa2100847656653db3f"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v7.aix",
+      "sha256": "9c58cb31f64b7a98fb7c51dd9e65e49e41538a8d1551f8b321fc5c2577c60bf4"
     },
     {
       "id": "multi.mangafire",
