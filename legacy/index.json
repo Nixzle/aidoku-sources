@@ -554,18 +554,6 @@
       "baseURL": "https://simply-hentai.com/"
     },
     {
-      "id": "multi.webtoon",
-      "name": "WEBTOON",
-      "version": 3,
-      "iconURL": "icons/multi.webtoon-v3.png",
-      "downloadURL": "sources/multi.webtoon-v3.aix",
-      "languages": [
-        "multi"
-      ],
-      "contentRating": 0,
-      "baseURL": "https://www.webtoons.com"
-    },
-    {
       "id": "multi.xkcd",
       "name": "xkcd",
       "version": 1,

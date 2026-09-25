@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-24T18:26:28+00:00",
-  "sourceCount": 52,
+  "generatedAt": "2026-09-25T18:38:45+00:00",
+  "sourceCount": 53,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -534,6 +534,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.suwayomi-v4.aix",
       "sha256": "8b6ca200f4fd83aa6f9a79d543df3cbb23e2b951b7683bb3a2ff23929bfa6efb"
+    },
+    {
+      "id": "multi.webtoon",
+      "name": "WEBTOON",
+      "version": 4,
+      "file": "sources/multi.webtoon-v4.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.webtoon-v4.aix",
+      "sha256": "16170a99d71bdab4ecd5cc203b1b9a2bcb721ae6284eeab638bfd9455e74bb2a"
     },
     {
       "id": "multi.xcomic",

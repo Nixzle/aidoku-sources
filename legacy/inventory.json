@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Legacy Public English Aidoku Sources",
-  "generatedAt": "2026-09-14T19:23:51+00:00",
-  "sourceCount": 48,
+  "generatedAt": "2026-09-25T18:38:45+00:00",
+  "sourceCount": 47,
   "catalogPolicy": "Older unique packages not present in the maintained catalog; these may no longer work",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -494,16 +494,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.simplyhentai-v2.aix",
       "sha256": "92d7a5822f8e0e387c7cd0762db2da1c2d51d738ea44ecb4f860c800b14f213f"
-    },
-    {
-      "id": "multi.webtoon",
-      "name": "WEBTOON",
-      "version": 3,
-      "file": "sources/multi.webtoon-v3.aix",
-      "repository": "tachibana-shin/aidoku-community-sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/multi.webtoon-v3.aix",
-      "sha256": "1f7864d2ab762a629e2f67229baf36fb7224297ee37b4f1d8729c4031bf4756c"
     },
     {
       "id": "multi.xkcd",

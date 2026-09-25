@@ -1,14 +1,14 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-24T18:26:28+00:00
+Status last changed: 2026-09-25T18:38:46+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
-- Maintained: 52
-- Legacy-only: 48
+- Maintained: 53
+- Legacy-only: 47
 - Manually quarantined: 4
 - Automatically quarantined: 4
-- Degraded/under observation: 4
+- Degraded/under observation: 2
 
 ## Quarantined
 
@@ -23,7 +23,5 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **EzManga** (`en.ezmanga`): 1 consecutive failed check(s), last observed 2026-09-24
-- **Nyx Scans** (`en.nyxscans`): 1 consecutive failed check(s), last observed 2026-09-24
-- **Rizz Fables** (`en.rizzfables`): 1 consecutive failed check(s), last observed 2026-09-24
-- **Vortex Scans** (`en.vortexscans`): 1 consecutive failed check(s), last observed 2026-09-24
+- **Elf Toon** (`en.elftoon`): 1 consecutive failed check(s), last observed 2026-09-25
+- **MangaTx** (`en.mangatx`): 1 consecutive failed check(s), last observed 2026-09-25

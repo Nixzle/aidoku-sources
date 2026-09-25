@@ -1,11 +1,11 @@
 {
   "version": 1,
   "sources": {
-    "en.ezmanga": {
+    "en.elftoon": {
       "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24"
+      "lastObservationDate": "2026-09-25"
     },
     "en.hivescans": {
       "status": "quarantined",
@@ -19,6 +19,12 @@
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15"
     },
+    "en.mangatx": {
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-25"
+    },
     "en.manhuagold": {
       "status": "quarantined",
       "consecutiveFailures": 3,
@@ -30,24 +36,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15"
-    },
-    "en.nyxscans": {
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24"
-    },
-    "en.rizzfables": {
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24"
-    },
-    "en.vortexscans": {
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24"
     }
   }
 }

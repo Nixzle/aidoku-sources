@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-24T18:26:28+00:00",
+  "generatedAt": "2026-09-25T18:38:46+00:00",
   "summary": {
-    "maintained": 52,
-    "legacyOnly": 48,
+    "maintained": 53,
+    "legacyOnly": 47,
     "manualQuarantined": 4,
     "automaticQuarantined": 4,
-    "degraded": 4
+    "degraded": 2
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -100,43 +100,23 @@
   ],
   "degraded": [
     {
-      "id": "en.ezmanga",
-      "name": "EzManga",
-      "baseURL": "https://ezmanga.org",
+      "id": "en.elftoon",
+      "name": "Elf Toon",
+      "baseURL": "https://elftoon.com",
       "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24",
+      "lastObservationDate": "2026-09-25",
       "required": false
     },
     {
-      "id": "en.nyxscans",
-      "name": "Nyx Scans",
-      "baseURL": "https://nyxscans.com",
+      "id": "en.mangatx",
+      "name": "MangaTx",
+      "baseURL": "https://mangatx.cc",
       "status": "failing",
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24",
-      "required": false
-    },
-    {
-      "id": "en.rizzfables",
-      "name": "Rizz Fables",
-      "baseURL": "https://rizzfables.com",
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24",
-      "required": false
-    },
-    {
-      "id": "en.vortexscans",
-      "name": "Vortex Scans",
-      "baseURL": "https://vortexscans.org",
-      "status": "failing",
-      "consecutiveFailures": 1,
-      "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24",
+      "lastObservationDate": "2026-09-25",
       "required": false
     }
   ]

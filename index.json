@@ -789,6 +789,25 @@
       "baseURL": "https://github.com/Suwayomi"
     },
     {
+      "id": "multi.webtoon",
+      "name": "WEBTOON",
+      "version": 4,
+      "iconURL": "icons/multi.webtoon-v4.png",
+      "downloadURL": "sources/multi.webtoon-v4.aix",
+      "languages": [
+        "en",
+        "zh-Hant",
+        "th",
+        "id",
+        "es",
+        "fr",
+        "de"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://www.webtoons.com",
+      "minAppVersion": "0.7.2"
+    },
+    {
       "id": "multi.xcomic",
       "name": "XCOMIC",
       "version": 3,
