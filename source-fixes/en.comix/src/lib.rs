@@ -25,12 +25,14 @@ mod transport;
 use transport::ReaderResponse as Response;
 
 use crate::helpers::create_request_get;
-use crate::settings::VERIFY_KEY;
+use crate::settings::{VERIFY_FALLBACK_KEY, VERIFY_KEY};
 use models::*;
 use web::*;
 
 const BASE_URL: &str = "https://comix.to";
+const FALLBACK_BASE_URL: &str = "https://comix.ws";
 const API_URL: &str = "https://comix.to/api/v1";
+const COMIX_ORIGINS: &[&str] = &[BASE_URL, FALLBACK_BASE_URL];
 
 const CONTENT_TYPES: &[&str] = &["manga", "manhwa", "manhua", "other"];
 // adult, boys love, ecchi, girls love, hentai, smut
@@ -518,7 +520,8 @@ impl ListingProvider for Comix {
 
 impl ImageRequestProvider for Comix {
 	fn get_image_request(&self, url: String, _context: Option<PageContext>) -> Result<Request> {
-		Ok(create_request_get(&url)?.header("Referer", &format!("{BASE_URL}/")))
+		let referer = if url.contains("comix.ws") { FALLBACK_BASE_URL } else { BASE_URL };
+		Ok(create_request_get(&url)?.header("Referer", &format!("{referer}/")))
 	}
 }
 
@@ -572,7 +575,11 @@ impl NotificationHandler for Comix {
 
 impl DeepLinkHandler for Comix {
 	fn handle_deep_link(&self, url: String) -> Result<Option<DeepLinkResult>> {
-		let Some(path) = url.strip_prefix(&format!("{BASE_URL}/")) else {
+		let path = if let Some(path) = url.strip_prefix(&format!("{BASE_URL}/")) {
+			path
+		} else if let Some(path) = url.strip_prefix(&format!("{FALLBACK_BASE_URL}/")) {
+			path
+		} else {
 			return Ok(None);
 		};
 
@@ -607,7 +614,7 @@ const VERIFY_COOKIE_KEY: &str = "waf_pass";
 
 impl WebLoginHandler for Comix {
 	fn handle_web_login(&self, key: String, cookies: HashMap<String, String>) -> Result<bool> {
-		if key == VERIFY_KEY {
+		if key == VERIFY_KEY || key == VERIFY_FALLBACK_KEY {
 			// This is verifying button not to be confused with actual login button.
 			// We need to intercept waf_pass cookie so that we can pass the checks.
 			// This will not log you in even if you do the login page afterward.

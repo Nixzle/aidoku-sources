@@ -1,19 +1,26 @@
 # Reader repair candidates
 
-These are Comix v24 and Asura Scans v20 source packages for Aidoku 0.9 or newer, not an Aidoku app update. Back up Aidoku before testing. The maintained feed remains unchanged.
+## Comix v25
 
-Add this separate list under Aidoku Settings > Source Lists, refresh it, then update the two sources:
+Comix v25 is the current Nixzle iPhone repair candidate for Aidoku 0.9+. It preserves source id en.comix.
 
-`https://nixzle.github.io/aidoku-sources/reader-candidates/index.min.json`
+It adds:
+- Connection: Auto / Native only / WebView only. Use WebView only when Cloudflare accepts the browser session but Aidoku native requests report offline/source errors.
+- bounded WebView recovery for blocked native requests and transient 5xx edge failures;
+- automatic startup failover from comix.to to Comix's official comix.ws alternate;
+- separate verification state/actions for each official domain;
+- deep-link and image Referer support for both official domains.
 
-Source IDs are unchanged. For Comix, use Source Settings > Verify Comix Captcha. Asura has a separate Verify Asura Access control; its account/subscription login is unchanged. No configuration here bypasses CAPTCHA or premium chapters.
+Add this source list in Aidoku Settings > Source Lists:
 
-## Verification
+https://nixzle.github.io/aidoku-sources/reader-candidates/index.min.json
 
-CI run 36220911474 compiled both exact package WASMs; 45 Python tests, 6 browser transport tests and 5 Rust tests passed. The Asura candidate returned 10 search results, 145 chapters, a 22-page chapter and a valid first image. Comix's headless check was blocked by HTTP 403, so the new WKWebView fallback still requires iPhone verification. Neither candidate is claimed iOS-verified. See verification.json and inventory.json for exact hashes and evidence scope.
+Then update Comix to v25. Start with Connection > WebView only for the owner-reported failure and complete Verify Comix Captcha. If the primary site is unavailable and the fallback asks for verification, use Verify comix.ws Captcha.
 
-## Recovery
+### Evidence ceiling
 
-Keep your Aidoku backup. Removing a source list alone does not undo an installed higher-version source package; retain the original source package before testing. Do not delete your library. The unmodified maintained feed remains at ../index.min.json.
+Exact-head CI run 36223909289 compiled the locked v25 WASM and passed the repository, browser-transport and runtime tests. The headless reader could reach both official hosts but received HTTP 403 from both because it has no user-completed WebKit challenge; therefore Comix remains iPhone verification pending. A headless protection block is not a failed iPhone WebView path and is not a pass.
 
-Code adapted from Aidoku-Community/sources. Full MIT and Apache-2.0 notices are alongside this document; source provenance is in the inventory and ../source-fixes/PROVENANCE.json.
+Asura Scans v20 remains in this candidate list and has passed the recorded search -> chapters -> pages -> first-image chain.
+
+Back up Aidoku before testing. Do not delete your library. CAPTCHA and premium permissions are not bypassed.

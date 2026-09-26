@@ -13,6 +13,7 @@ const HIDDEN_GENRES_KEY: &str = "hiddenGenres";
 const HIDDEN_THEMES_KEY: &str = "hiddenThemes";
 
 pub const VERIFY_KEY: &str = "verify";
+pub const VERIFY_FALLBACK_KEY: &str = "verifyFallback";
 
 pub fn hide_nsfw() -> bool {
 	defaults_get::<bool>(HIDE_NSFW_KEY).unwrap_or(true)
@@ -56,8 +57,13 @@ pub fn reset_filters() {
 	defaults_set(HIDDEN_THEMES_KEY, DefaultValue::Null);
 }
 
-pub fn get_verify_cookie() -> Option<String> {
-	defaults_get_map(VERIFY_KEY)?
-		.get(VERIFY_COOKIE_KEY)
-		.cloned()
+pub fn get_verify_cookie(url: &str) -> Option<String> {
+	let key = if url == crate::FALLBACK_BASE_URL
+		|| url.starts_with(&aidoku::alloc::format!("{}/", crate::FALLBACK_BASE_URL))
+	{
+		VERIFY_FALLBACK_KEY
+	} else {
+		VERIFY_KEY
+	};
+	defaults_get_map(key)?.get(VERIFY_COOKIE_KEY).cloned()
 }

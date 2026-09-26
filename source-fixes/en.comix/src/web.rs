@@ -1,5 +1,5 @@
 // reference: https://github.com/nobottomline/extensions-source/blob/c8fe930f315f3baee23587559edfceab5e969202/src/en/comix/src/eu/kanade/tachiyomi/extension/en/comix/Signer.kt
-use crate::{BASE_URL, helpers::create_request_get, models::ErrorResponse};
+use crate::{BASE_URL, COMIX_ORIGINS, FALLBACK_BASE_URL, helpers::create_request_get, models::ErrorResponse};
 use aidoku::{
 	HashMap, Result,
 	alloc::{string::String, string::ToString, vec::Vec},
@@ -61,6 +61,7 @@ struct DescrambleResponseObject {
 pub struct ComixWebView {
 	web_view: WebView,
 	is_initialized: bool,
+	active_base_url: &'static str,
 }
 
 impl ComixWebView {
@@ -68,6 +69,7 @@ impl ComixWebView {
 		Self {
 			web_view: WebView::new(),
 			is_initialized: false,
+			active_base_url: BASE_URL,
 		}
 	}
 
@@ -77,16 +79,28 @@ impl ComixWebView {
     }
 
     fn load_webview(&mut self) -> Result<()> {
+        let primary = self.load_webview_from(BASE_URL);
+        if primary.is_ok() {
+            self.active_base_url = BASE_URL;
+            return Ok(());
+        }
+        self.load_webview_from(FALLBACK_BASE_URL).map_err(|_| {
+            error!("Comix primary and fallback hosts are unavailable")
+        })?;
+        self.active_base_url = FALLBACK_BASE_URL;
+        Ok(())
+    }
+
+    fn load_webview_from(&mut self, base_url: &'static str) -> Result<()> {
         self.reset();
-        let response = ReaderRequest::new(create_request_get(BASE_URL)?, BASE_URL,
-            &[BASE_URL], HashMap::new())?.send()?;
+        let response = ReaderRequest::new(create_request_get(base_url)?, base_url,
+            COMIX_ORIGINS, HashMap::new())?.send()?;
         let body = response.get_string()?.replace("<head>", JS_PATCHER);
-        // Do not wait indefinitely for a remote script/navigation to finish.
-        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"24\">");
-        self.web_view.load_html(&body, Some(BASE_URL))?;
+        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"25\">");
+        self.web_view.load_html(&body, Some(base_url))?;
         let mut loaded = false;
         for _ in 0..15 {
-            if self.web_view.eval("String(document.querySelector('meta[name=aidoku-reader-document]')?.content === '24' && document.readyState !== 'loading')").unwrap_or_default() == "true" {
+            if self.web_view.eval("String(document.querySelector('meta[name=aidoku-reader-document]')?.content === '25' && document.readyState !== 'loading')").unwrap_or_default() == "true" {
                 loaded = true;
                 break;
             }
@@ -107,14 +121,14 @@ impl ComixWebView {
             .and_then(|e| e.attr("abs:src"))
             .ok_or_else(|| error!("Comix main module was not found; website layout may have changed"))?;
         let contents = ReaderRequest::new(create_request_get(&main_url)?, &main_url,
-            &[BASE_URL], HashMap::new())?.send()?.get_string()?;
+            COMIX_ORIGINS, HashMap::new())?.send()?.get_string()?;
         let regex = Regex::new("(secure-[A-Za-z0-9_-]+?\\.js)")
             .map_err(|_| error!("Invalid module pattern"))?;
         let secure = regex.captures(&contents).and_then(|c| c.get(1))
             .ok_or_else(|| error!("Comix secure module was not found"))?;
         let directory = main_url.rsplit_once('/').ok_or_else(|| error!("Invalid module URL"))?.0;
         let url = format!("{directory}/{}", secure.as_str());
-        transport::origin_for(&url, &[BASE_URL])?;
+        transport::origin_for(&url, COMIX_ORIGINS)?;
         let url_js = serde_json::to_string(&url)?;
         transport::run_task(&self.web_view, &format!("import({url_js}).then(module => {{window.vm = module; return '';}})"))?;
         Ok(())
@@ -205,7 +219,12 @@ impl ComixWebView {
 			self.load_webview()?
 		}
 
-		let url_literal = serde_json::to_string(url)?;
+		let effective_url = if self.active_base_url != BASE_URL && url.starts_with(BASE_URL) {
+			format!("{}{}", self.active_base_url, &url[BASE_URL.len()..])
+		} else {
+			url.to_string()
+		};
+		let url_literal = serde_json::to_string(&effective_url)?;
 		let result = transport::run_task(&self.web_view, &format!(
 			"(async () => {{
 			const url = new URL({url_literal});
@@ -311,9 +330,9 @@ impl ComixWebView {
 
 		if let Some(params) = axios_request.params {
 			let query = build_query(&params);
-			{ let url = format!("{}?{query}", axios_request.url); ReaderRequest::new(create_request_get(&url)?, &url, &[BASE_URL], HashMap::new()) }
+			{ let url = format!("{}?{query}", axios_request.url); ReaderRequest::new(create_request_get(&url)?, &url, COMIX_ORIGINS, HashMap::new()) }
 		} else {
-			ReaderRequest::new(create_request_get(&axios_request.url)?, &axios_request.url, &[BASE_URL], HashMap::new())
+			ReaderRequest::new(create_request_get(&axios_request.url)?, &axios_request.url, COMIX_ORIGINS, HashMap::new())
 		}
 	}
 
