@@ -442,6 +442,26 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
             f"quarantined source {source_id} is still present in the legacy catalog",
         )
 
+    refresh_cached_sources = policy.get("refreshCachedSources", [])
+    require(isinstance(refresh_cached_sources, list), "source policy refreshCachedSources must be a list")
+    require(
+        all(
+            isinstance(source_id, str) and SOURCE_ID_PATTERN.fullmatch(source_id) is not None
+            for source_id in refresh_cached_sources
+        ),
+        "source policy refreshCachedSources contains an invalid id",
+    )
+    require(
+        len(refresh_cached_sources) == len(set(refresh_cached_sources)),
+        "source policy refreshCachedSources contains duplicates",
+    )
+    missing_refresh_sources = set(refresh_cached_sources) - maintained_ids
+    require(
+        not missing_refresh_sources,
+        "same-version refresh sources are missing from maintained catalog: "
+        + ", ".join(sorted(missing_refresh_sources)),
+    )
+
     required_sources = policy.get("requiredMaintainedSources")
     require(isinstance(required_sources, list), "source policy requiredMaintainedSources must be a list")
     require(
