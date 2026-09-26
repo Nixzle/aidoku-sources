@@ -92,11 +92,11 @@
   },
   "localPackageOverrides": {
     "en.comix": {
-      "path": "overrides/en.comix-v127.aix",
-      "sha256": "748e56573028f4f8a2a861c2fbe6286fc5bb3f07f0e851c65fef07d3a0edbb8f",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/13dc336b3ef37b0c24ecf86d837935ece2d15c2c/overrides/en.comix-v127.aix",
-      "sourceCommit": "13dc336b3ef37b0c24ecf86d837935ece2d15c2c",
-      "sourcePath": "overrides/en.comix-v127.aix"
+      "path": "overrides/en.comix-v128.aix",
+      "sha256": "5da4ee3ebf1ecd86c885a4edd36af7e807a141bc3a0ef3d978d0096d190e854e",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/3121d586ec63f6104273b8217bd8c2185870c31d/overrides/en.comix-v128.aix",
+      "sourceCommit": "3121d586ec63f6104273b8217bd8c2185870c31d",
+      "sourcePath": "overrides/en.comix-v128.aix"
     }
   }
 }
