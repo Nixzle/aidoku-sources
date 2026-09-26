@@ -84,8 +84,8 @@ impl ComixWebView {
             self.active_base_url = BASE_URL;
             return Ok(());
         }
-        self.load_webview_from(FALLBACK_BASE_URL).map_err(|fallback| {
-            error!("Comix primary and fallback hosts are unavailable: primary={}; fallback={}", primary.unwrap_err(), fallback)
+        self.load_webview_from(FALLBACK_BASE_URL).map_err(|_| {
+            error!("Comix primary and fallback hosts are unavailable")
         })?;
         self.active_base_url = FALLBACK_BASE_URL;
         Ok(())
