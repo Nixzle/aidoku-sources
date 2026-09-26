@@ -21,7 +21,7 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-CASES = {"en.asurascans": "solo", "en.comix": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
+CASES = {"en.asurascans": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
 
 
 def settings_defaults(items) -> dict:
