@@ -457,7 +457,7 @@ class SelectionAndDeterminismTests(unittest.TestCase):
         policy = updater.load_policy()
         self.assertEqual(
             set(policy["requiredMaintainedSources"]),
-            {"en.comix", "en.mangadistrict", "en.readcomicsonline"},
+            {"en.mangadistrict", "en.readcomicsonline"},
         )
 
     def test_status_report_matches_policy_and_health(self):

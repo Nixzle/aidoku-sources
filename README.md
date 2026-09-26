@@ -61,3 +61,7 @@ badge. A screenshot containing only a chapter number cannot identify the affecte
 source. For chapter failures include source name/version, series title, chapter,
 Aidoku version and whether the reader's website button loads that same chapter.
 Never post account cookies or access tokens.
+
+### Comix reliability notice
+
+Nixzle's experimental Comix v127/v128 packages are retired after failing real-device acceptance on an affected Cloudflare client. They are not considered working releases. This repository does not rehost third-party replacement packages. The independently maintained Yomu Comix list documents full WebView transport plus bad-page-image recovery: https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json . Back up Aidoku before changing an installed source.

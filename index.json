@@ -66,19 +66,6 @@
       "minAppVersion": "0.8.3"
     },
     {
-      "id": "en.comix",
-      "name": "Comix",
-      "version": 128,
-      "iconURL": "icons/en.comix-v128.png",
-      "downloadURL": "sources/en.comix-v128.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 1,
-      "baseURL": "https://comix.to",
-      "minAppVersion": "0.9"
-    },
-    {
       "id": "en.dankefurslesen",
       "name": "Danke fürs Lesen",
       "version": 3,
