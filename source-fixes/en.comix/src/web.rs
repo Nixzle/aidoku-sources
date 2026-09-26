@@ -93,14 +93,17 @@ impl ComixWebView {
 
     fn load_webview_from(&mut self, base_url: &'static str) -> Result<()> {
         self.reset();
+        // Seed the persistent view with the target origin first. In browser mode,
+        // every subsequent request stays in this exact WKWebView session.
+        self.web_view.load_html_blocking("<!doctype html><html><head></head><body></body></html>", Some(base_url))?;
         let response = ReaderRequest::new(create_request_get(base_url)?, base_url,
-            COMIX_ORIGINS, HashMap::new())?.send()?;
+            COMIX_ORIGINS, HashMap::new())?.send_with_view(&self.web_view)?;
         let body = response.get_string()?.replace("<head>", JS_PATCHER);
-        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"127\">");
+        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"128\">");
         self.web_view.load_html(&body, Some(base_url))?;
         let mut loaded = false;
         for _ in 0..15 {
-            if self.web_view.eval("String(document.querySelector('meta[name=aidoku-reader-document]')?.content === '127' && document.readyState !== 'loading')").unwrap_or_default() == "true" {
+            if self.web_view.eval("String(document.querySelector('meta[name=aidoku-reader-document]')?.content === '128' && document.readyState !== 'loading')").unwrap_or_default() == "true" {
                 loaded = true;
                 break;
             }
@@ -121,7 +124,7 @@ impl ComixWebView {
             .and_then(|e| e.attr("abs:src"))
             .ok_or_else(|| error!("Comix main module was not found; website layout may have changed"))?;
         let contents = ReaderRequest::new(create_request_get(&main_url)?, &main_url,
-            COMIX_ORIGINS, HashMap::new())?.send()?.get_string()?;
+            COMIX_ORIGINS, HashMap::new())?.send_with_view(&self.web_view)?.get_string()?;
         let regex = Regex::new("(secure-[A-Za-z0-9_-]+?\\.js)")
             .map_err(|_| error!("Invalid module pattern"))?;
         let secure = regex.captures(&contents).and_then(|c| c.get(1))
@@ -214,7 +217,7 @@ impl ComixWebView {
 		Ok(())
 	}
 
-	pub fn build_request(&mut self, url: &str) -> Result<ReaderRequest> {
+	fn build_request(&mut self, url: &str) -> Result<ReaderRequest> {
 		if !self.is_initialized {
 			self.load_webview()?
 		}
@@ -334,6 +337,11 @@ impl ComixWebView {
 		} else {
 			ReaderRequest::new(create_request_get(&axios_request.url)?, &axios_request.url, COMIX_ORIGINS, HashMap::new())
 		}
+	}
+
+	pub fn send_request(&mut self, url: &str) -> Result<Response> {
+		let request = self.build_request(url)?;
+		request.send_with_view(&self.web_view)
 	}
 
 	pub fn decode_json_owned<T>(&mut self, response: &Response) -> Result<T>
