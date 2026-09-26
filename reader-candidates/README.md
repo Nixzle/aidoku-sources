@@ -1,24 +1,26 @@
 # Reader repair candidates
 
-## Comix v24 retired
+## Comix v25
 
-The local Comix v24 candidate is **not accepted for iPhone use**. Owner-device testing still produced Aidoku's offline/source failure. Do not treat its successful compile or headless fixtures as reader acceptance.
+Comix v25 is the current Nixzle iPhone repair candidate for Aidoku 0.9+. It preserves source id en.comix.
 
-Current evidence shows two independent conditions:
+It adds:
+- Connection: Auto / Native only / WebView only. Use WebView only when Cloudflare accepts the browser session but Aidoku native requests report offline/source errors.
+- bounded WebView recovery for blocked native requests and transient 5xx edge failures;
+- automatic startup failover from comix.to to Comix's official comix.ws alternate;
+- separate verification state/actions for each official domain;
+- deep-link and image Referer support for both official domains.
 
-- Comix keeps `https://comix.to` as its primary site and officially advertises `https://comix.ws` when the primary is unreachable.
-- Some Aidoku devices can pass Cloudflare in WebKit while ordinary app networking remains rejected. The v24 candidate does not provide sufficient host/transport recovery for that device state.
+Add this source list in Aidoku Settings > Source Lists:
 
-The maintained external Yomu Comix package currently advertises the same source id (`en.comix`) at v126 and provides selectable connection handling. Its source list is maintained by its own author and is **not rehosted or repackaged here**:
+https://nixzle.github.io/aidoku-sources/reader-candidates/index.min.json
 
-`https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json`
+Then update Comix to v25. Start with Connection > WebView only for the owner-reported failure and complete Verify Comix Captcha. If the primary site is unavailable and the fallback asks for verification, use Verify comix.ws Captcha.
 
-This repository does not claim that external package as its own work. The old v24 artifact is retained only as historical evidence and must not be promoted into the normal Nixzle catalog.
+### Evidence ceiling
 
-## Asura Scans v20
+Exact-head CI run 36223909289 compiled the locked v25 WASM and passed the repository, browser-transport and runtime tests. The headless reader could reach both official hosts but received HTTP 403 from both because it has no user-completed WebKit challenge; therefore Comix remains iPhone verification pending. A headless protection block is not a failed iPhone WebView path and is not a pass.
 
-Asura Scans v20 remains the qualified repair candidate. CI compiled the exact package WASM and the recorded functional test completed search, metadata/chapters, a 22-page page list and first-image retrieval.
+Asura Scans v20 remains in this candidate list and has passed the recorded search -> chapters -> pages -> first-image chain.
 
-## Recovery
-
-Back up Aidoku before source changes. Source IDs are unchanged, but removing a source list does not automatically downgrade an already-installed higher source version. Do not delete the library merely to change source implementations.
+Back up Aidoku before testing. Do not delete your library. CAPTCHA and premium permissions are not bypassed.

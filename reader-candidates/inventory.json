@@ -5,23 +5,21 @@
       "id": "en.asurascans",
       "version": 20,
       "file": "sources/en.asurascans-v20.aix",
-      "sha256": "11e55c8e06a384835296da4ef64ec03283e0941b2ef4083e7cd1b9f1b963fb06",
-      "wasmSha256": "b60941d88b4e8241ccd626a4304f5af490d6559b0c772f4e6455851b47a4ab8d",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/9081a2d581561f8b2c3f22a90d99a23ad29d43fc/source-fixes",
-      "sourceCommit": "9081a2d581561f8b2c3f22a90d99a23ad29d43fc",
-      "acceptance": "Candidate: requires iOS reader verification",
-      "license": "MIT OR Apache-2.0"
+      "sha256": "6061fdcbda60d0deecdb94c03981572035f6fd907626f56dbfe23aa7554eed50",
+      "wasmSha256": "9f7e229df63dae9bbe3394b1c6b73547cda4d5c011fcee1f6d7ec95fe54794b2",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/main/source-fixes",
+      "sourceCommit": "63999fdeb5f5b1544b6d5ab22037b31771bd623a",
+      "acceptance": "Candidate: requires iOS reader verification"
     },
     {
       "id": "en.comix",
-      "version": 24,
-      "file": "sources/en.comix-v24.aix",
-      "sha256": "839c7004bb7e5319b01bd17d93cfe0f701f66e17e59e4237d3d8f0da69ad05e9",
-      "wasmSha256": "34038491751d30ef1f6ce78a08f9d3ba04524a278b2d79bd7045cf1b30a2bce4",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/9081a2d581561f8b2c3f22a90d99a23ad29d43fc/source-fixes",
-      "sourceCommit": "9081a2d581561f8b2c3f22a90d99a23ad29d43fc",
-      "acceptance": "Candidate: requires iOS reader verification",
-      "license": "MIT OR Apache-2.0"
+      "version": 25,
+      "file": "sources/en.comix-v25.aix",
+      "sha256": "44e3312f44d04f4525d0db3ab11eaa900302a3661c2e5b3ee051d5e0bf5f3478",
+      "wasmSha256": "b69331739a4585433a90f5af8dca5f5f4aa3805bf7f5a0b2725fe057ab9a6214",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/main/source-fixes",
+      "sourceCommit": "63999fdeb5f5b1544b6d5ab22037b31771bd623a",
+      "acceptance": "Candidate: requires iOS reader verification"
     }
   ]
 }
