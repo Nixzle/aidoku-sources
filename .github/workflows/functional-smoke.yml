@@ -61,7 +61,7 @@ jobs:
         run: |
           python - <<'PY'
           import json
-          wanted = {"en.comix", "en.mangadistrict", "en.readcomicsonline"}
+          wanted = {"en.mangadistrict", "en.readcomicsonline"}
           inventory = json.load(open("inventory.json", encoding="utf-8"))
           for item in inventory["sources"]:
               if item["id"] in wanted:
