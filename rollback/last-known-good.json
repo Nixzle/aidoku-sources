@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-26T07:23:43+00:00",
+  "capturedAt": "2026-09-26T07:25:38+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -1470,10 +1470,10 @@
     ]
   },
   "status": {
-    "generatedAt": "2026-09-26T07:23:04+00:00",
+    "generatedAt": "2026-09-26T07:23:44+00:00",
     "summary": {
       "maintained": 52,
-      "legacyOnly": 48,
+      "legacyOnly": 47,
       "manualQuarantined": 5,
       "automaticQuarantined": 4,
       "degraded": 2,
@@ -1537,6 +1537,7 @@
         "type": "manual",
         "reason": "Nixzle v127/v128 failed owner-device acceptance on the affected Aidoku Cloudflare client. Do not advertise these builds as reliable. Use a separately maintained Comix implementation with full WebView page-image/cover handling until the app image transport is fixed.",
         "catalogs": [
+          "legacy",
           "maintained"
         ],
         "issue": "https://github.com/Aidoku/Aidoku/issues/1034"
