@@ -1,19 +1,24 @@
 # Reader repair candidates
 
-These are Comix v24 and Asura Scans v20 source packages for Aidoku 0.9 or newer, not an Aidoku app update. Back up Aidoku before testing. The maintained feed remains unchanged.
+## Comix v24 retired
 
-Add this separate list under Aidoku Settings > Source Lists, refresh it, then update the two sources:
+The local Comix v24 candidate is **not accepted for iPhone use**. Owner-device testing still produced Aidoku's offline/source failure. Do not treat its successful compile or headless fixtures as reader acceptance.
 
-`https://nixzle.github.io/aidoku-sources/reader-candidates/index.min.json`
+Current evidence shows two independent conditions:
 
-Source IDs are unchanged. For Comix, use Source Settings > Verify Comix Captcha. Asura has a separate Verify Asura Access control; its account/subscription login is unchanged. No configuration here bypasses CAPTCHA or premium chapters.
+- Comix keeps `https://comix.to` as its primary site and officially advertises `https://comix.ws` when the primary is unreachable.
+- Some Aidoku devices can pass Cloudflare in WebKit while ordinary app networking remains rejected. The v24 candidate does not provide sufficient host/transport recovery for that device state.
 
-## Verification
+The maintained external Yomu Comix package currently advertises the same source id (`en.comix`) at v126 and provides selectable connection handling. Its source list is maintained by its own author and is **not rehosted or repackaged here**:
 
-CI run 36220911474 compiled both exact package WASMs; 45 Python tests, 6 browser transport tests and 5 Rust tests passed. The Asura candidate returned 10 search results, 145 chapters, a 22-page chapter and a valid first image. Comix's headless check was blocked by HTTP 403, so the new WKWebView fallback still requires iPhone verification. Neither candidate is claimed iOS-verified. See verification.json and inventory.json for exact hashes and evidence scope.
+`https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json`
+
+This repository does not claim that external package as its own work. The old v24 artifact is retained only as historical evidence and must not be promoted into the normal Nixzle catalog.
+
+## Asura Scans v20
+
+Asura Scans v20 remains the qualified repair candidate. CI compiled the exact package WASM and the recorded functional test completed search, metadata/chapters, a 22-page page list and first-image retrieval.
 
 ## Recovery
 
-Keep your Aidoku backup. Removing a source list alone does not undo an installed higher-version source package; retain the original source package before testing. Do not delete your library. The unmodified maintained feed remains at ../index.min.json.
-
-Code adapted from Aidoku-Community/sources. Full MIT and Apache-2.0 notices are alongside this document; source provenance is in the inventory and ../source-fixes/PROVENANCE.json.
+Back up Aidoku before source changes. Source IDs are unchanged, but removing a source list does not automatically downgrade an already-installed higher source version. Do not delete the library merely to change source implementations.
