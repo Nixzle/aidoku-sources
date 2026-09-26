@@ -11,9 +11,11 @@ import sys
 import time
 import urllib.request
 import zipfile
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
-USER_AGENT = "Nixzle-Aidoku-Public-Acceptance/1.0"
+ROOT = Path(__file__).resolve().parents[1]
+USER_AGENT = "Nixzle-Aidoku-Public-Acceptance/1.1"
 MAX_JSON = 12 * 1024 * 1024
 MAX_PACKAGE = 32 * 1024 * 1024
 REQUIRED_MEMBERS = {"Payload/source.json", "Payload/main.wasm", "Payload/icon.png"}
@@ -64,12 +66,20 @@ def verify_package(source: dict, inventory: dict, base: str) -> dict:
     return {"id": source_id, "version": source["version"], "sha256": digest}
 
 
-def run(base: str) -> dict:
+def run(base: str, expected_root: Path = ROOT) -> dict:
     if not base.endswith("/"):
         base += "/"
     index = load_json(base, "index.min.json")
     inventory = load_json(base, "inventory.json")
     status = load_json(base, "status.json")
+    for name, public_value in (
+        ("index.min.json", index),
+        ("inventory.json", inventory),
+        ("status.json", status),
+    ):
+        expected = json.loads((expected_root / name).read_text(encoding="utf-8-sig"))
+        if public_value != expected:
+            raise RuntimeError(f"public {name} has not caught up to the committed catalog")
     sources = {item["id"]: item for item in index.get("sources", [])}
     inventory_sources = {item["id"]: item for item in inventory.get("sources", [])}
     required = status.get("requiredMaintainedSources", [])
@@ -88,9 +98,20 @@ def run(base: str) -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default="https://nixzle.github.io/aidoku-sources/")
+    parser.add_argument("--freshness-attempts", type=int, default=12)
+    parser.add_argument("--freshness-delay", type=float, default=10.0)
     args = parser.parse_args(argv)
-    print(json.dumps(run(args.base_url), indent=2))
-    return 0
+    last_error = None
+    for attempt in range(max(1, args.freshness_attempts)):
+        try:
+            print(json.dumps(run(args.base_url), indent=2))
+            return 0
+        except RuntimeError as error:
+            last_error = error
+            if attempt + 1 < max(1, args.freshness_attempts):
+                print(f"Waiting for public Pages deployment: {error}", file=sys.stderr)
+                time.sleep(max(0.0, args.freshness_delay))
+    raise RuntimeError(f"public acceptance did not converge: {last_error}")
 
 
 if __name__ == "__main__":
