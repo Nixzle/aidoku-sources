@@ -28,6 +28,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+      actions: write
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -53,6 +54,7 @@ jobs:
           git diff --check
 
       - name: Commit refreshed catalog
+        id: publish
         shell: bash
         run: |
           set -euo pipefail
@@ -81,6 +83,7 @@ jobs:
 
           if git diff --cached --quiet; then
             echo "No catalog changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore: daily source update"
             git fetch origin main
