@@ -1,9 +1,9 @@
-"""Maintain one bot-owned incident using the result of the scheduled job."""
+"""Maintain one bot-owned incident for updater, chapter smoke, and public-host acceptance."""
 import json
 import os
 import urllib.request
 
-TITLE = "Daily source updater needs attention"
+TITLE = "Aidoku source reliability check needs attention"
 MARKER = "<!-- nixzle-updater-incident -->"
 
 
@@ -32,19 +32,31 @@ def main():
         if len(issues) < 100:
             break
         page += 1
-    status = os.environ["UPDATE_RESULT"]
+
+    results = {
+        "catalog update": os.environ.get("UPDATE_RESULT", "unknown"),
+        "critical chapter smoke": os.environ.get("SMOKE_RESULT", "unknown"),
+        "public Pages acceptance": os.environ.get("ACCEPTANCE_RESULT", "unknown"),
+    }
     run = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}'
-    if status == "success":
+    healthy = all(value == "success" for value in results.values())
+    if healthy:
         for incident in incidents:
             api("PATCH", f'/issues/{incident["number"]}',
-                {"state": "closed", "body": f"{MARKER}\nRecovered: [successful run]({run})."})
+                {"state": "closed", "body": f"{MARKER}\nRecovered: [all reliability checks passed]({run})."})
+        return
+
+    summary = "\n".join(f"- {name}: `{value}`" for name, value in results.items())
+    body = (
+        f"{MARKER}\nOne or more Aidoku reliability checks did not pass.\n\n"
+        f"{summary}\n\n[Inspect run]({run}).\n\n"
+        "The previous published catalog remains recoverable through git history and rollback metadata."
+    )
+    if incidents:
+        for incident in incidents:
+            api("PATCH", f'/issues/{incident["number"]}', {"body": body})
     else:
-        body = f"{MARKER}\nThe daily source update finished with `{status}`.\n\n[Inspect latest run]({run}).\n\nThe previous published catalog is retained."
-        if incidents:
-            for incident in incidents:
-                api("PATCH", f'/issues/{incident["number"]}', {"body": body})
-        else:
-            api("POST", "/issues", {"title": TITLE, "body": body})
+        api("POST", "/issues", {"title": TITLE, "body": body})
 
 
 if __name__ == "__main__":
