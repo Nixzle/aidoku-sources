@@ -33,6 +33,7 @@ POLICY_PATH = ROOT / "config" / "source_policy.json"
 HEALTH_STATE_PATH = ROOT / "config" / "source_health.json"
 STATUS_JSON_PATH = ROOT / "status.json"
 STATUS_MARKDOWN_PATH = ROOT / "status.md"
+ROLLBACK_PATH = ROOT / "rollback" / "last-known-good.json"
 USER_AGENT = "Nixzle-Aidoku-Sources-Updater/2.0"
 TIMEOUT_SECONDS = 45
 HEALTH_TIMEOUT_SECONDS = 12
@@ -512,6 +513,7 @@ def candidate_from_package(
         "priority": int(upstream["priority"]),
         "license": upstream["license"],
         "upstreamPackageURL": upstream_package_url,
+        "provenanceURL": None,
     }
 
 
@@ -692,7 +694,7 @@ def apply_local_package_overrides(
                 print(f"Local override {source_id} matches upstream v{version}")
                 for candidate in active_matches:
                     if candidate["package"] == package:
-                        candidate["upstreamPackageURL"] = str(detail["provenanceURL"])
+                        candidate["provenanceURL"] = str(detail["provenanceURL"])
                 continue
             print(
                 f"::warning::Override conflict for {source_id} v{version}: retaining pinned bytes; "
@@ -716,8 +718,9 @@ def apply_local_package_overrides(
                 str(key): str(value)
                 for key, value in policy.get("minAppVersionOverrides", {}).items()
             },
-            upstream_package_url=str(detail["provenanceURL"]),
+            upstream_package_url=max(active_matches, key=lambda item: item["version"]).get("upstreamPackageURL"),
         )
+        override["provenanceURL"] = str(detail["provenanceURL"])
         result = [
             candidate
             for candidate in result
@@ -1137,7 +1140,8 @@ def write_catalog(
                     "file": f"sources/{package_name}",
                     "repository": source["repository"],
                     "license": source["license"],
-                    "upstreamPackageURL": source["upstreamPackageURL"],
+                    "upstreamPackageURL": source.get("upstreamPackageURL"),
+                    **({"provenanceURL": source["provenanceURL"]} if source.get("provenanceURL") else {}),
                     "sha256": digest,
                 }
             )
@@ -1205,6 +1209,37 @@ def write_catalog(
         )
         readme_path.write_text(readme, encoding="utf-8")
     (catalog_root / ".nojekyll").touch()
+
+
+def write_rollback_snapshot(path: Path = ROLLBACK_PATH) -> None:
+    """Persist the previous published metadata as a bounded rollback checkpoint."""
+    inputs = {
+        "index": ROOT / "index.min.json",
+        "inventory": ROOT / "inventory.json",
+        "status": ROOT / "status.json",
+    }
+    if not all(item.is_file() for item in inputs.values()):
+        return
+    snapshot = {
+        key: json.loads(item.read_text(encoding="utf-8-sig"))
+        for key, item in inputs.items()
+    }
+    previous = None
+    if path.exists():
+        try:
+            previous = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    comparable = dict(previous or {})
+    comparable.pop("capturedAt", None)
+    if comparable == snapshot:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "capturedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **snapshot,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _write_health_state_if_changed(state: dict, path: Path = HEALTH_STATE_PATH) -> None:
@@ -1470,6 +1505,7 @@ def main() -> None:
     active_upstreams = tuple(
         upstream for upstream in UPSTREAMS if upstream["name"] == ACTIVE_REPOSITORY
     )
+    write_rollback_snapshot()
     write_catalog(
         active_selected,
         active_duplicates,
