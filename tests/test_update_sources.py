@@ -258,7 +258,7 @@ class HealthStateTests(unittest.TestCase):
         )
         self.assertEqual(state["sources"]["en.example"]["consecutiveFailures"], 1)
 
-    def test_ongoing_failure_does_not_rewrite_stable_quarantine(self):
+    def test_ongoing_failure_updates_probe_time_without_growing_counter(self):
         original = {
             "version": 1,
             "sources": {
@@ -273,7 +273,9 @@ class HealthStateTests(unittest.TestCase):
         updated, quarantined = updater.update_health_state(
             original, {"en.example": False}, observation_date="2026-08-11"
         )
-        self.assertEqual(updated, original)
+        self.assertEqual(updated["sources"]["en.example"]["consecutiveFailures"], 3)
+        self.assertEqual(updated["sources"]["en.example"]["lastProbeAt"], "2026-08-11T00:00:00+00:00")
+        self.assertEqual(original["sources"]["en.example"]["lastObservationDate"], "2026-08-10")
         self.assertEqual(quarantined, {"en.example"})
 
     def test_refresh_does_not_probe_twice_on_a_recorded_day(self):

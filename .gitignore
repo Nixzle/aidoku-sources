@@ -1,2 +1,6 @@
 __pycache__/
 *.py[cod]
+
+# Local verification evidence is retained as CI artifacts, not catalog content.
+acceptance/
+runtime-smoke/target/

@@ -27,6 +27,11 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urljoin, urlparse
 
+try:
+    from scripts import source_health
+except ModuleNotFoundError:
+    import source_health
+
 
 ROOT = Path(__file__).resolve().parents[1]
 POLICY_PATH = ROOT / "config" / "source_policy.json"
@@ -639,6 +644,32 @@ def select_candidates(candidates: list[dict]) -> tuple[list[dict], list[dict]]:
     return sorted(selected_by_site.values(), key=lambda item: item["id"]), duplicates
 
 
+def override_provenance(detail: dict) -> dict:
+    provenance = str(detail["provenanceURL"])
+    parsed = _safe_https_url(provenance, "override provenance")
+    download = detail.get("downloadURL", provenance)
+    metadata = {"provenanceURL": provenance}
+    parts = parsed.path.strip("/").split("/")
+    if parsed.hostname == "github.com" and len(parts) >= 5 and parts[2] == "blob":
+        owner, repo, _, commit, *path = parts
+        if not re.fullmatch(r"[0-9a-f]{40}", commit):
+            raise ValueError("Override provenance must be pinned to a full commit SHA")
+        package_path = "/".join(path)
+        expected = f"https://raw.githubusercontent.com/{owner}/{repo}/{commit}/{package_path}"
+        if detail.get("downloadURL") and download != expected:
+            raise ValueError("Override download URL does not match its provenance commit/path")
+        download = expected
+        metadata.update(packageRepository=f"{owner}/{repo}", sourceCommit=commit, sourcePath=package_path)
+        for key in ("sourceCommit", "sourcePath"):
+            if detail.get(key) is not None and detail[key] != metadata[key]:
+                raise ValueError(f"Override {key} does not match provenance")
+    candidate = _safe_https_url(str(download), "override download")
+    if candidate.hostname == "github.com" and "/blob/" in candidate.path:
+        raise ValueError("An HTML blob page is not a package download URL")
+    metadata["upstreamPackageURL"] = str(download)
+    return metadata
+
+
 def apply_local_package_overrides(
     candidates: list[dict],
     policy: dict,
@@ -692,7 +723,7 @@ def apply_local_package_overrides(
                 print(f"Local override {source_id} matches upstream v{version}")
                 for candidate in active_matches:
                     if candidate["package"] == package:
-                        candidate["upstreamPackageURL"] = str(detail["provenanceURL"])
+                        candidate.update(override_provenance(detail))
                 continue
             print(
                 f"::warning::Override conflict for {source_id} v{version}: retaining pinned bytes; "
@@ -716,7 +747,7 @@ def apply_local_package_overrides(
                 str(key): str(value)
                 for key, value in policy.get("minAppVersionOverrides", {}).items()
             },
-            upstream_package_url=str(detail["provenanceURL"]),
+            upstream_package_url=override_provenance(detail)["upstreamPackageURL"],
         )
         result = [
             candidate
@@ -726,6 +757,7 @@ def apply_local_package_overrides(
                 and candidate["repository"] == ACTIVE_REPOSITORY
             )
         ]
+        override.update(override_provenance(detail))
         result.append(override)
         print(
             f"Applied reviewed local override {source_id} v{version} "
@@ -797,7 +829,7 @@ def _health_state(path: Path = HEALTH_STATE_PATH) -> dict:
         state = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError) as error:
         raise RuntimeError(f"Unable to read health state {path}: {error}") from error
-    if state.get("version") != 1 or not isinstance(state.get("sources"), dict):
+    if state.get("version") not in (1, 2) or not isinstance(state.get("sources"), dict):
         raise ValueError(f"Unsupported health state in {path}")
     return state
 
@@ -837,115 +869,65 @@ def probe_source_url(url: str, *, attempts: int = 2) -> bool:
     return False
 
 
-def observe_source_health(candidates: list[dict], health_policy: dict) -> dict[str, bool]:
+def observe_source_health(candidates: list[dict], health_policy: dict) -> dict[str, dict]:
     attempts = int(health_policy.get("probeAttempts", 2))
-    observations: dict[str, bool] = {}
+    unique = {candidate["id"]: candidate for candidate in candidates if candidate.get("baseURL")}
+    observations = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=HEALTH_WORKERS) as executor:
-        futures = {
-            executor.submit(probe_source_url, candidate["baseURL"], attempts=attempts): candidate["id"]
-            for candidate in candidates
-            if candidate.get("baseURL")
-        }
+        futures = {executor.submit(source_health.probe, candidate["baseURL"],
+                    opener=_open_url, attempts=attempts, timeout=HEALTH_TIMEOUT_SECONDS): source_id
+                   for source_id, candidate in unique.items()}
         for future in concurrent.futures.as_completed(futures):
             source_id = futures[future]
             try:
-                observations[source_id] = bool(future.result())
-            except Exception as error:
-                print(f"WARNING: health probe for {source_id} was inconclusive: {error}")
+                observations[source_id] = future.result()
+            except Exception:
+                observations[source_id] = source_health.observation("probe_error", conclusive=False)
     return observations
 
 
-def update_health_state(
-    state: dict,
-    observations: dict[str, bool],
-    *,
-    observation_date: str,
-    failure_threshold: int = 3,
-    recovery_threshold: int = 2,
-) -> tuple[dict, set[str]]:
-    """Update daily counters; repeated runs on one UTC day do not double-count."""
-    if failure_threshold < 2 or recovery_threshold < 2:
-        raise ValueError("Health thresholds must both be at least 2")
-    updated = {"version": 1, "sources": dict(state.get("sources", {}))}
-    records = updated["sources"]
-    for source_id in sorted(observations):
-        reachable = observations[source_id]
+def update_health_state(state: dict, observations: dict, *, observation_date: str,
+                        failure_threshold: int = 3, recovery_threshold: int = 2) -> tuple[dict, set[str]]:
+    for source_id in observations:
         validate_source_id(source_id)
-        previous = dict(records.get(source_id, {}))
-        if previous.get("lastObservationDate") == observation_date:
-            continue
-        status = previous.get("status", "healthy")
-        if reachable:
-            if status == "quarantined":
-                successes = int(previous.get("consecutiveSuccesses", 0)) + 1
-                if successes >= recovery_threshold:
-                    records.pop(source_id, None)
-                else:
-                    records[source_id] = {
-                        "status": "quarantined",
-                        "consecutiveFailures": failure_threshold,
-                        "consecutiveSuccesses": successes,
-                        "lastObservationDate": observation_date,
-                    }
-            else:
-                records.pop(source_id, None)
-        else:
-            if status == "quarantined":
-                # Keep stable quarantine state stable: only a recovery attempt
-                # changes it, avoiding a timestamp-only daily commit.
-                continue
-            failures = int(previous.get("consecutiveFailures", 0)) + 1
-            failures = min(failures, failure_threshold)
-            records[source_id] = {
-                "status": "quarantined" if failures >= failure_threshold else "failing",
-                "consecutiveFailures": failures,
-                "consecutiveSuccesses": 0,
-                "lastObservationDate": observation_date,
-            }
-    updated["sources"] = {source_id: records[source_id] for source_id in sorted(records)}
-    quarantined = {
-        source_id
-        for source_id, record in records.items()
-        if record.get("status") == "quarantined"
-    }
-    return updated, quarantined
+    return source_health.transition(state, observations, observation_date=observation_date,
+                                   failure_threshold=failure_threshold, recovery_threshold=recovery_threshold)
 
 
-def refresh_health_state(
-    candidates: list[dict], policy: dict, state_path: Path = HEALTH_STATE_PATH
-) -> tuple[set[str], dict]:
+def refresh_health_state(candidates: list[dict], policy: dict,
+                         state_path: Path = HEALTH_STATE_PATH) -> tuple[set[str], dict]:
     health_policy = policy.get("automaticHealth", {})
     old_state = _health_state(state_path)
-    existing_quarantine = {
-        source_id
-        for source_id, record in old_state["sources"].items()
-        if record.get("status") == "quarantined"
-    }
+    existing = {key for key, value in old_state["sources"].items() if value.get("status") == "quarantined"}
     if not health_policy.get("enabled", True):
-        return existing_quarantine, old_state
-    today = datetime.now(timezone.utc).date().isoformat()
-    if any(
-        record.get("lastObservationDate") == today
-        for record in old_state["sources"].values()
-    ):
-        # A scheduled run already recorded this day's result. Avoid allowing a
-        # manual/retried run to add a second, inconsistent sample for the day.
-        return existing_quarantine, old_state
+        return existing, old_state
+    now = source_health.utc_now()
+    today = now[:10]
+    already_sampled = old_state.get("lastHealthSweepDate") == today
+    if old_state.get("version") == 1:
+        already_sampled = any(value.get("lastObservationDate") == today
+                              for value in old_state["sources"].values())
+    if already_sampled:
+        return existing, old_state
     observations = observe_source_health(candidates, health_policy)
-    if observations:
-        successes = sum(observations.values())
-        minimum_ratio = float(health_policy.get("minimumConclusiveSuccessRatio", 0.5))
-        if successes / len(observations) < minimum_ratio:
-            print("WARNING: discarding health observations because the probe run appears globally degraded")
-            return existing_quarantine, old_state
-    new_state, quarantined = update_health_state(
-        old_state,
-        observations,
-        observation_date=today,
+    for source_id in observations:
+        validate_source_id(source_id)
+    controls = [source_health.probe(url, opener=_open_url, attempts=1, timeout=8)
+                for url in source_health.CONTROL_URLS]
+    minimum = float(health_policy.get("minimumConclusiveRatio", 0.5))
+    if not 0 <= minimum <= 1:
+        raise ValueError("minimumConclusiveRatio must be between zero and one")
+    quality = source_health.sweep_quality(observations, controls, minimum)
+    new_state, quarantined = source_health.transition(
+        old_state, observations, observation_date=today, checked_at=now,
         failure_threshold=int(health_policy.get("failureThreshold", 3)),
         recovery_threshold=int(health_policy.get("recoveryThreshold", 2)),
-    )
+        required_ids=policy.get("requiredMaintainedSources", []), accepted=quality["accepted"])
+    new_state["lastSweep"] = {**quality, "controls": controls}
+    if not quality["accepted"]:
+        print("::warning::Health sweep inconclusive: counters preserved; observations retained.")
     return quarantined, new_state
+
 
 
 def cached_candidates_for_repository(
@@ -1081,6 +1063,7 @@ def write_catalog(
                     "license": source["license"],
                     "upstreamPackageURL": source["upstreamPackageURL"],
                     "sha256": digest,
+                    **{key: source[key] for key in ("provenanceURL", "packageRepository", "sourceCommit", "sourcePath") if key in source},
                 }
             )
 
@@ -1206,6 +1189,7 @@ def write_status_report(
             "consecutiveSuccesses": int(record.get("consecutiveSuccesses", 0)),
             "lastObservationDate": record.get("lastObservationDate"),
             "required": source_id in required_ids,
+            **{key: record[key] for key in ("classification", "httpStatus", "lastProbeAt", "lastStateChangeAt", "severity", "functional") if key in record},
         }
         if source_id in automatic_quarantine:
             automatic_entries.append(entry)
@@ -1226,6 +1210,17 @@ def write_status_report(
         "manualQuarantine": manual_entries,
         "automaticQuarantine": automatic_entries,
         "degraded": degraded_entries,
+        "lastHealthSweepAt": health_state.get("lastHealthSweepAt"),
+        "lastSweep": health_state.get("lastSweep"),
+        "websiteChecks": health_state.get("probes", {}),
+        "publicAcceptance": {
+            "workflowURL": "https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml",
+            "resultAuthority": "The post-deployment workflow receipt, not this pre-deployment catalog",
+        },
+        "functionalAcceptance": {
+            "workflowURL": "https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml",
+            "resultAuthority": "Pinned-package runtime report; blocked checks are not passes",
+        },
     }
     status["generatedAt"] = _stable_generated_at(status, STATUS_JSON_PATH, now)
     status = {"generatedAt": status.pop("generatedAt"), **status}
@@ -1238,7 +1233,9 @@ def write_status_report(
         "",
         f"Status last changed: {status['generatedAt']}",
         "",
-        "Checks run daily; this timestamp changes only when catalog or health status changes.",
+        f"Last website sweep: {health_state.get('lastHealthSweepAt') or 'not recorded by the legacy checker'}",
+        "Website reachability, package delivery and chapter reading are separate checks.",
+        "[Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)",
         "",
         f"- Maintained: {len(maintained)}",
         f"- Legacy-only: {len(legacy)}",
@@ -1266,7 +1263,7 @@ def write_status_report(
         protected = "; protected as a required source" if entry["required"] else ""
         lines.append(
             f"- **{entry['name']}** (`{entry['id']}`): {entry['consecutiveFailures']} "
-            f"consecutive failed check(s), last observed {entry['lastObservationDate']}{protected}"
+            f"failed sample(s); {entry.get('classification', 'legacy observation')}; last probe {entry.get('lastProbeAt', entry['lastObservationDate'])}{protected}"
         )
     markdown_text = "\n".join(lines) + "\n"
     if not STATUS_MARKDOWN_PATH.exists() or STATUS_MARKDOWN_PATH.read_text(

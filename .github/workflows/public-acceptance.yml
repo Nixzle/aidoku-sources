@@ -1,0 +1,67 @@
+name: Public feed acceptance
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - "scripts/verify_public.py"
+      - ".github/workflows/public-acceptance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: public-feed-acceptance
+  cancel-in-progress: true
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  verify:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - name: Check public manifests, all packages and icons
+        env:
+          EXPECTED_COMMIT: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: python scripts/verify_public.py --expected-commit "$EXPECTED_COMMIT"
+      - name: Retain acceptance receipt and verified recovery bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: public-acceptance-${{ github.event.workflow_run.head_sha || github.sha }}
+          path: acceptance/public*
+          if-no-files-found: error
+          retention-days: 30
+  report:
+    needs: verify
+    if: always() && (needs.verify.result == 'success' || needs.verify.result == 'failure')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Report public delivery failure or recovery
+        run: python scripts/report_automation.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_RESULT: ${{ needs.verify.result }}
+          INCIDENT_KIND: public
