@@ -96,7 +96,7 @@ impl ComixWebView {
         let response = ReaderRequest::new(create_request_get(base_url)?, base_url,
             COMIX_ORIGINS, HashMap::new())?.send()?;
         let body = response.get_string()?.replace("<head>", JS_PATCHER);
-        let body = body.replace("<head>", "<head><meta name="aidoku-reader-document" content="25">");
+        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"25\">");
         self.web_view.load_html(&body, Some(base_url))?;
         let mut loaded = false;
         for _ in 0..15 {
