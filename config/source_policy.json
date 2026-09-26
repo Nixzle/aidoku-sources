@@ -89,5 +89,14 @@
       "minimumPublishedVersion": 4,
       "reason": "Replace previously distributed different v3 bytes with a detectable client update. Keep source ID, WASM and chapter keys unchanged; future upstream revisions remain monotonic."
     }
+  },
+  "localPackageOverrides": {
+    "en.comix": {
+      "path": "overrides/en.comix-v127.aix",
+      "sha256": "748e56573028f4f8a2a861c2fbe6286fc5bb3f07f0e851c65fef07d3a0edbb8f",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/13dc336b3ef37b0c24ecf86d837935ece2d15c2c/overrides/en.comix-v127.aix",
+      "sourceCommit": "13dc336b3ef37b0c24ecf86d837935ece2d15c2c",
+      "sourcePath": "overrides/en.comix-v127.aix"
+    }
   }
 }
