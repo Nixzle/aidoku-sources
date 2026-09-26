@@ -28,6 +28,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+      actions: write
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -88,6 +89,11 @@ jobs:
             python scripts/validate_catalog.py
             git push origin HEAD:main
           fi
+
+      - name: Dispatch runtime source acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run functional-smoke.yml --ref main
 
   critical-smoke:
     needs: update

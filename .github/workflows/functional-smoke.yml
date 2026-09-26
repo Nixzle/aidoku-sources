@@ -15,9 +15,11 @@ on:
       - "config/source_policy.json"
       - "runtime-smoke/**"
       - "scripts/functional_smoke.py"
+      - "scripts/update_sources.py"
+      - "scripts/validate_catalog.py"
       - ".github/workflows/functional-smoke.yml"
   pull_request:
-    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
+    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", "scripts/update_sources.py", "scripts/validate_catalog.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
   workflow_dispatch:
 
 permissions:
@@ -50,6 +52,16 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           git diff --check
+      - name: Record critical candidate identity
+        run: |
+          python - <<'PY'
+          import json
+          wanted = {"en.comix", "en.mangadistrict", "en.readcomicsonline"}
+          inventory = json.load(open("inventory.json", encoding="utf-8"))
+          for item in inventory["sources"]:
+              if item["id"] in wanted:
+                  print(item["id"], "v" + str(item["version"]), item["sha256"], item.get("upstreamPackageURL"), item.get("provenanceURL"))
+          PY
       - name: Rust toolchain identity
         id: toolchain
         run: echo "version=$(rustc --version | tr ' ' '-')" >> "$GITHUB_OUTPUT"
