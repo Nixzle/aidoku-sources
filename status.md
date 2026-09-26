@@ -1,6 +1,6 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-25T18:38:46+00:00
+Status last changed: 2026-09-26T04:05:00+00:00
 
 Checks run daily; this timestamp changes only when catalog or health status changes.
 
@@ -9,6 +9,14 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 - Manually quarantined: 4
 - Automatically quarantined: 4
 - Degraded/under observation: 2
+- Required degraded/unknown: 1
+- Last health sweep: 2026-09-26T04:04:33+00:00
+
+## Required source health
+
+- **Comix** (`en.comix`): healthy (healthy)
+- **MangaDistrict** (`en.mangadistrict`): healthy (healthy)
+- **Read Comics Online** (`en.readcomicsonline`): degraded (protected)
 
 ## Quarantined
 
@@ -23,5 +31,5 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **Elf Toon** (`en.elftoon`): 1 consecutive failed check(s), last observed 2026-09-25
+- **Elf Toon** (`en.elftoon`): 2 consecutive failed check(s), last observed 2026-09-26
 - **MangaTx** (`en.mangatx`): 1 consecutive failed check(s), last observed 2026-09-25

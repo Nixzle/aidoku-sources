@@ -3,9 +3,13 @@
   "sources": {
     "en.elftoon": {
       "status": "failing",
-      "consecutiveFailures": 1,
+      "consecutiveFailures": 2,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-25"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T04:04:33+00:00",
+      "lastStateChangeAt": "2026-09-26T04:04:33+00:00",
+      "lastProbeKind": "server_error",
+      "lastHttpStatus": 503
     },
     "en.hivescans": {
       "status": "quarantined",
@@ -36,6 +40,41 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15"
+    }
+  },
+  "lastSweepAt": "2026-09-26T04:04:33+00:00",
+  "lastSweepDate": "2026-09-26",
+  "lastSweepSummary": {
+    "attempted": 57,
+    "conclusive": 48,
+    "kinds": {
+      "auth_required": 1,
+      "healthy": 38,
+      "inconclusive_exception": 4,
+      "network_error": 4,
+      "protected": 8,
+      "server_error": 1,
+      "transient_http_error": 1
+    }
+  },
+  "requiredObservations": {
+    "en.comix": {
+      "kind": "healthy",
+      "reachable": true,
+      "conclusive": true,
+      "httpStatus": 200
+    },
+    "en.mangadistrict": {
+      "kind": "healthy",
+      "reachable": true,
+      "conclusive": true,
+      "httpStatus": 200
+    },
+    "en.readcomicsonline": {
+      "kind": "protected",
+      "reachable": true,
+      "conclusive": true,
+      "httpStatus": 403
     }
   }
 }

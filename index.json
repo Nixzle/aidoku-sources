@@ -76,7 +76,7 @@
       ],
       "contentRating": 1,
       "baseURL": "https://comix.to",
-      "minAppVersion": "0.8.4"
+      "minAppVersion": "0.9"
     },
     {
       "id": "en.dankefurslesen",
@@ -373,7 +373,7 @@
       ],
       "contentRating": 1,
       "baseURL": "https://readcomicsonline.ru",
-      "minAppVersion": "0.8.4"
+      "minAppVersion": "0.9"
     },
     {
       "id": "en.rizzfables",
