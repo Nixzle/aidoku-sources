@@ -1,41 +1,726 @@
 {
-  "version": 1,
+  "version": 2,
   "sources": {
+    "en.batcave": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
     "en.elftoon": {
       "status": "failing",
-      "consecutiveFailures": 1,
+      "classification": "server_error",
+      "httpStatus": 503,
+      "consecutiveFailures": 2,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-25"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     },
     "en.hivescans": {
       "status": "quarantined",
+      "classification": "http_error",
+      "httpStatus": 307,
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-24"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "en.madokami": {
+      "status": "protected",
+      "classification": "auth_required",
+      "httpStatus": 401,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     },
     "en.mangasect": {
       "status": "quarantined",
+      "classification": "timeout",
+      "httpStatus": null,
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-15"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     },
     "en.mangatx": {
       "status": "failing",
-      "consecutiveFailures": 1,
+      "classification": "tls_failure",
+      "httpStatus": null,
+      "consecutiveFailures": 2,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-09-25"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     },
     "en.manhuagold": {
       "status": "quarantined",
+      "classification": "timeout",
+      "httpStatus": null,
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-15"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     },
     "en.manhwax": {
       "status": "quarantined",
+      "classification": "timeout",
+      "httpStatus": null,
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-08-15"
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "en.readcomicsonline": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "high",
+      "functional": "not_tested"
+    },
+    "en.webtoonxyz": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "en.weebcentral": {
+      "status": "protected",
+      "classification": "forbidden",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "multi.ehentai": {
+      "status": "protected",
+      "classification": "restricted",
+      "httpStatus": 451,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "multi.kagane": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "multi.mangadotnet": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
+    },
+    "multi.myreadingmanga": {
+      "status": "protected",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-26",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00",
+      "severity": "warning",
+      "functional": "not_tested"
     }
+  },
+  "probes": {
+    "en.armageddon": {
+      "classification": "redirect_blocked",
+      "httpStatus": null,
+      "conclusive": false,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.asurascans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.athreascans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.batcave": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.chikari": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.comix": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.dankefurslesen": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.drakescans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.dynastyscans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.elftoon": {
+      "classification": "server_error",
+      "httpStatus": 503,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.ezmanga": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.flamecomics": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.freewebnovel": {
+      "classification": "redirect_blocked",
+      "httpStatus": null,
+      "conclusive": false,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.guya": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.hennoveltranslations": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.hivescans": {
+      "classification": "http_error",
+      "httpStatus": 307,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.madokami": {
+      "classification": "auth_required",
+      "httpStatus": 401,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.magusmanga": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangabat": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangademon": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangadistrict": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangago": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangakakalot": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.manganato": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.manganelo": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangareadorg": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangasect": {
+      "classification": "timeout",
+      "httpStatus": null,
+      "conclusive": true,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.mangatx": {
+      "classification": "tls_failure",
+      "httpStatus": null,
+      "conclusive": true,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.manhuagold": {
+      "classification": "timeout",
+      "httpStatus": null,
+      "conclusive": true,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.manhuaplusorg": {
+      "classification": "redirect_blocked",
+      "httpStatus": null,
+      "conclusive": false,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.manhwax": {
+      "classification": "timeout",
+      "httpStatus": null,
+      "conclusive": true,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.novelbuddy": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.nyxscans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.readcomicsonline": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.rizzfables": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.stonescape": {
+      "classification": "redirect_blocked",
+      "httpStatus": null,
+      "conclusive": false,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.tcbscans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.toonily": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.toonilyme": {
+      "classification": "redirect_blocked",
+      "httpStatus": null,
+      "conclusive": false,
+      "reachable": false,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.vortexscans": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.webtoonxyz": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "en.weebcentral": {
+      "classification": "forbidden",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.cubari": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.ehentai": {
+      "classification": "restricted",
+      "httpStatus": 451,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.grabberzone": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.hitomi": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.kagane": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.lanraragi": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.mangadex": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.mangadotnet": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.mangafire": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.mangaplus": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.myreadingmanga": {
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.nhentai": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.suwayomi": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.webtoon": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    },
+    "multi.xcomic": {
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
+      "functional": "not_tested",
+      "lastProbeAt": "2026-09-26T03:46:31+00:00",
+      "lastStateChangeAt": "2026-09-26T03:46:31+00:00"
+    }
+  },
+  "lastHealthSweepDate": "2026-09-26",
+  "lastHealthSweepAt": "2026-09-26T03:46:31+00:00",
+  "lastSweep": {
+    "attempted": 57,
+    "conclusive": 52,
+    "conclusiveRatio": 0.9122807017543859,
+    "networkObserved": true,
+    "accepted": true,
+    "reason": "accepted",
+    "controls": [
+      {
+        "classification": "ok",
+        "httpStatus": 200,
+        "conclusive": true,
+        "reachable": true,
+        "functional": "not_tested"
+      },
+      {
+        "classification": "ok",
+        "httpStatus": 200,
+        "conclusive": true,
+        "reachable": true,
+        "functional": "not_tested"
+      }
+    ]
   }
 }

@@ -10,13 +10,21 @@ Paste this URL into Aidoku under Settings > Source Lists:
 
 The normal list contains the currently maintained packages that are not known to be broken. Comix and Read Comics Online use maintained builds and require Aidoku 0.8.4 or newer. The source-list host is static GitHub Pages and normally responds in well under a second; browsing speed after installation depends on each source website.
 
+### Verification results
+
+[Public feed and package acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) checks the actual GitHub Pages bytes against an immutable repository commit, including both lists and every package/icon. Each successful run retains a checksummed recovery bundle for 30 days.
+
+[Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml) execute the published WASM for Comix, MangaDistrict and Read Comics Online through search, details, chapter discovery, page parsing and first-page retrieval. This headless test does not share your iPhone's cookies or implement its WebView. Blocked, unsupported, incomplete and failed runs are not passes.
+
+A green updater only means the catalog was generated successfully. A green public-feed check proves delivery, not reading. See [verification and recovery](docs/reliability.md) for exact acceptance and troubleshooting.
+
 ### Reliability
 
-The catalog is checked every day. Downloads are retried, packages are validated before publication, and the previous working package is retained when an individual upstream download fails. Repeated DNS or connection failures can temporarily quarantine a source; Cloudflare responses such as 403 or 429 count as reachable so protected sites are not hidden by mistake.
+The catalog is checked every day. Downloads are retried, packages are validated before publication, and the previous working package is retained when an individual upstream download fails. Repeated conclusive failures can temporarily quarantine a source. Authentication, forbidden access, rate limits and explicit Cloudflare challenges are reported separately. Protection is not counted as a successful parser or recovery check.
 
 Known parser or website failures are quarantined manually until an upstream fix is available. Package provenance and SHA-256 checksums are recorded in each catalog's `inventory.json` and `CHECKSUMS.sha256`.
 
-Current degraded and quarantined sources are listed in the [public status report](status.md), with a [machine-readable JSON version](https://nixzle.github.io/aidoku-sources/status.json). Its timestamp changes only when catalog or health status changes, although checks still run daily.
+Current degraded and quarantined sources are listed in the [public status report](status.md), with a [machine-readable JSON version](https://nixzle.github.io/aidoku-sources/status.json). It records the last actual health sweep, per-source probe times and separate state-change times. Inconclusive sweeps retain counters and expose their evidence instead of hiding a failed check.
 
 ### ReadComicOnline replacement
 

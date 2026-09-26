@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-25T18:38:45+00:00",
+  "generatedAt": "2026-09-26T03:46:59+00:00",
   "sourceCount": 53,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -322,8 +322,12 @@
       "file": "sources/en.readcomicsonline-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://github.com/Nixzle/aidoku-sources/blob/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
-      "sha256": "99983f0a4a8e4d6d1c17357ad77ef42082b6b9f99b11046337be2af1b7af5126"
+      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
+      "sha256": "99983f0a4a8e4d6d1c17357ad77ef42082b6b9f99b11046337be2af1b7af5126",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
+      "packageRepository": "Nixzle/aidoku-sources",
+      "sourceCommit": "9589cef7c9e6f06eae586cb6dcfe0d16425e2be4",
+      "sourcePath": "overrides/en.readcomicsonline-v3.aix"
     },
     {
       "id": "en.rizzfables",

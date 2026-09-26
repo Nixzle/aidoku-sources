@@ -2,7 +2,7 @@
 //! This is a headless functional check, not proof of iOS WebView/cookie parity.
 use aidoku::{Chapter, FilterValue, Manga, PageContext};
 use aidoku_test_runner::{imports, libs::{DefaultValue, HttpMethod, NetRequest, NetResponse, StoreItem, WasmEnv}};
-use anyhow::{anyhow, bail, ensure, Context, Result};
+use anyhow::{bail, ensure, Context, Result};
 use reqwest::{header::HeaderMap, Method, Url};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use serde_json::{json, Value as Json};
@@ -48,7 +48,7 @@ fn request(url: &Url, method: Method, headers: HeaderMap, body: Option<Vec<u8>>)
         // Pin the checked DNS answer. Redirects are validated before every new request.
         let client = reqwest::blocking::Client::builder().no_proxy()
             .redirect(reqwest::redirect::Policy::none()).timeout(Duration::from_secs(15))
-            .resolve(&host, addresses[0]).build()?;
+            .resolve(&host, *addresses.iter().find(|a| a.is_ipv4()).unwrap_or(&addresses[0])).build()?;
         let mut builder = client.request(method.clone(), url.clone()).headers(headers.clone())
             .header("User-Agent", "Aidoku/1 CFNetwork/3826.500.131 Darwin/24.5.0");
         if let Some(data) = body.clone() { builder = builder.body(data); }
@@ -125,6 +125,11 @@ impl Runner {
         }
         let env = FunctionEnv::new(&mut store,data);
         let mut imports = imports::generate_imports(&mut store,&env);
+        // Published 0.8.x sources use std.* for the same logging/abort ABI.
+        for name in ["print", "abort"] {
+            let implementation = imports.get_export("env",name).context("missing donor env implementation")?;
+            imports.define("std",name,implementation);
+        }
         imports.define("net","send",Function::new_typed_with_env(&mut store,&env,send));
         imports.define("net","send_all",Function::new_typed_with_env(&mut store,&env,send_all));
         let instance = Instance::new(&mut store,&module,&imports)?;

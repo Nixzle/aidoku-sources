@@ -1,14 +1,16 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-25T18:38:46+00:00
+Status last changed: 2026-09-26T03:46:59+00:00
 
-Checks run daily; this timestamp changes only when catalog or health status changes.
+Last website sweep: 2026-09-26T03:46:31+00:00
+Website reachability, package delivery and chapter reading are separate checks.
+[Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
 - Maintained: 53
 - Legacy-only: 47
 - Manually quarantined: 4
 - Automatically quarantined: 4
-- Degraded/under observation: 2
+- Degraded/under observation: 11
 
 ## Quarantined
 
@@ -23,5 +25,14 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **Elf Toon** (`en.elftoon`): 1 consecutive failed check(s), last observed 2026-09-25
-- **MangaTx** (`en.mangatx`): 1 consecutive failed check(s), last observed 2026-09-25
+- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00
+- **Elf Toon** (`en.elftoon`): 2 failed sample(s); server_error; last probe 2026-09-26T03:46:31+00:00
+- **Madokami** (`en.madokami`): 0 failed sample(s); auth_required; last probe 2026-09-26T03:46:31+00:00
+- **MangaTx** (`en.mangatx`): 2 failed sample(s); tls_failure; last probe 2026-09-26T03:46:31+00:00
+- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00; protected as a required source
+- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00
+- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-09-26T03:46:31+00:00
+- **E-Hentai** (`multi.ehentai`): 0 failed sample(s); restricted; last probe 2026-09-26T03:46:31+00:00
+- **Kagane** (`multi.kagane`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00
+- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00
+- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-26T03:46:31+00:00
