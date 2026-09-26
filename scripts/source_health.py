@@ -161,7 +161,7 @@ def transition(state: dict, observations: dict, *, observation_date: str,
             status = "quarantined" if was_quarantined else "protected"
         if source_id in required and status == "quarantined":
             status = "failing"
-        changed = previous.get("status") != status or previous.get("classification") != kind
+        changed = previous.get("status") != status or (previous.get("classification") is not None and previous.get("classification") != kind)
         records[source_id] = {"status": status, "classification": kind,
                               "httpStatus": result.get("httpStatus"),
                               "consecutiveFailures": failures, "consecutiveSuccesses": successes,

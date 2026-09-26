@@ -480,6 +480,18 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
             and bool(parsed_provenance.hostname),
             f"local override provenance for {source_id} is unsafe",
         )
+        source_commit = details.get("sourceCommit")
+        require(
+            isinstance(source_commit, str)
+            and len(source_commit) == 40
+            and all(character in "0123456789abcdef" for character in source_commit.casefold()),
+            f"local override source commit for {source_id} is invalid",
+        )
+        source_path = details.get("sourcePath")
+        require(
+            isinstance(source_path, str) and source_path == details.get("path"),
+            f"local override source path for {source_id} must identify the pinned override",
+        )
         entry = maintained_entries[source_id]
         override_path = root.joinpath(*override_relative.parts)
         with zipfile.ZipFile(override_path) as archive:
@@ -499,6 +511,34 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
         require(
             override_digest == published_digest,
             f"local override {source_id} does not match its published package",
+        )
+
+    smoke_tests = policy.get("criticalSmokeTests")
+    require(isinstance(smoke_tests, dict), "source policy criticalSmokeTests must be an object")
+    require(
+        set(required_sources) <= set(smoke_tests),
+        "every required maintained source must have a critical smoke definition",
+    )
+    for source_id, details in smoke_tests.items():
+        require(
+            isinstance(source_id, str) and SOURCE_ID_PATTERN.fullmatch(source_id) is not None,
+            f"critical smoke contains an invalid source id {source_id!r}",
+        )
+        require(isinstance(details, dict), f"critical smoke for {source_id} must be an object")
+        smoke_url = urlsplit(details.get("url")) if isinstance(details.get("url"), str) else None
+        require(
+            smoke_url is not None and smoke_url.scheme == "https" and bool(smoke_url.hostname),
+            f"critical smoke URL for {source_id} is unsafe",
+        )
+        markers = details.get("requiredSubstrings")
+        require(
+            isinstance(markers, list) and bool(markers)
+            and all(isinstance(marker, str) and marker for marker in markers),
+            f"critical smoke markers for {source_id} are invalid",
+        )
+        require(
+            details.get("level") == "chapter",
+            f"critical smoke for {source_id} must exercise a chapter-level endpoint",
         )
 
     safety = policy.get("safety")

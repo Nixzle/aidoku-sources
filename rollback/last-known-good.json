@@ -1,0 +1,1685 @@
+{
+  "capturedAt": "2026-09-26T04:06:40+00:00",
+  "index": {
+    "name": "Nixzle's Maintained English Aidoku Sources",
+    "sources": [
+      {
+        "id": "en.armageddon",
+        "name": "Armageddon",
+        "version": 5,
+        "iconURL": "icons/en.armageddon-v5.png",
+        "downloadURL": "sources/en.armageddon-v5.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://www.silentquill.net"
+      },
+      {
+        "id": "en.asurascans",
+        "name": "Asura Scans",
+        "version": 19,
+        "iconURL": "icons/en.asurascans-v19.png",
+        "downloadURL": "sources/en.asurascans-v19.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://asurascans.com",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.athreascans",
+        "name": "Athrea Scans",
+        "version": 1,
+        "iconURL": "icons/en.athreascans-v1.png",
+        "downloadURL": "sources/en.athreascans-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://athreascans.com",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.batcave",
+        "name": "BatCave",
+        "version": 2,
+        "iconURL": "icons/en.batcave-v2.png",
+        "downloadURL": "sources/en.batcave-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://batcave.biz",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.chikari",
+        "name": "Chikari",
+        "version": 1,
+        "iconURL": "icons/en.chikari-v1.png",
+        "downloadURL": "sources/en.chikari-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://chikari.moe",
+        "minAppVersion": "0.8.3"
+      },
+      {
+        "id": "en.comix",
+        "name": "Comix",
+        "version": 23,
+        "iconURL": "icons/en.comix-v23.png",
+        "downloadURL": "sources/en.comix-v23.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://comix.to",
+        "minAppVersion": "0.9"
+      },
+      {
+        "id": "en.dankefurslesen",
+        "name": "Danke fürs Lesen",
+        "version": 3,
+        "iconURL": "icons/en.dankefurslesen-v3.png",
+        "downloadURL": "sources/en.dankefurslesen-v3.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://danke.moe",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.drakescans",
+        "name": "Drake Scans",
+        "version": 2,
+        "iconURL": "icons/en.drakescans-v2.png",
+        "downloadURL": "sources/en.drakescans-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://drakecomic.net",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.dynastyscans",
+        "name": "Dynasty Scans",
+        "version": 4,
+        "iconURL": "icons/en.dynastyscans-v4.png",
+        "downloadURL": "sources/en.dynastyscans-v4.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://dynasty-scans.com",
+        "minAppVersion": "0.9"
+      },
+      {
+        "id": "en.elftoon",
+        "name": "Elf Toon",
+        "version": 2,
+        "iconURL": "icons/en.elftoon-v2.png",
+        "downloadURL": "sources/en.elftoon-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://elftoon.com"
+      },
+      {
+        "id": "en.ezmanga",
+        "name": "EzManga",
+        "version": 2,
+        "iconURL": "icons/en.ezmanga-v2.png",
+        "downloadURL": "sources/en.ezmanga-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://ezmanga.org",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.flamecomics",
+        "name": "Flame Comics",
+        "version": 4,
+        "iconURL": "icons/en.flamecomics-v4.png",
+        "downloadURL": "sources/en.flamecomics-v4.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://flamecomics.xyz"
+      },
+      {
+        "id": "en.freewebnovel",
+        "name": "FreeWebNovel",
+        "version": 3,
+        "iconURL": "icons/en.freewebnovel-v3.png",
+        "downloadURL": "sources/en.freewebnovel-v3.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://freewebnovel.com",
+        "minAppVersion": "0.8.3"
+      },
+      {
+        "id": "en.guya",
+        "name": "Guya",
+        "version": 2,
+        "iconURL": "icons/en.guya-v2.png",
+        "downloadURL": "sources/en.guya-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://guya.cubari.moe",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.hennoveltranslations",
+        "name": "Hennoveltranslations",
+        "version": 1,
+        "iconURL": "icons/en.hennoveltranslations-v1.png",
+        "downloadURL": "sources/en.hennoveltranslations-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://hennoveltranslations.com"
+      },
+      {
+        "id": "en.madokami",
+        "name": "Madokami",
+        "version": 1,
+        "iconURL": "icons/en.madokami-v1.png",
+        "downloadURL": "sources/en.madokami-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://manga.madokami.al"
+      },
+      {
+        "id": "en.magusmanga",
+        "name": "Magus Manga",
+        "version": 2,
+        "iconURL": "icons/en.magusmanga-v2.png",
+        "downloadURL": "sources/en.magusmanga-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://magustoon.org"
+      },
+      {
+        "id": "en.mangabat",
+        "name": "MangaBat",
+        "version": 9,
+        "iconURL": "icons/en.mangabat-v9.png",
+        "downloadURL": "sources/en.mangabat-v9.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://www.mangabats.com"
+      },
+      {
+        "id": "en.mangademon",
+        "name": "MangaDemon",
+        "version": 7,
+        "iconURL": "icons/en.mangademon-v7.png",
+        "downloadURL": "sources/en.mangademon-v7.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://demonicscans.org"
+      },
+      {
+        "id": "en.mangadistrict",
+        "name": "MangaDistrict",
+        "version": 1,
+        "iconURL": "icons/en.mangadistrict-v1.png",
+        "downloadURL": "sources/en.mangadistrict-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://mangadistrict.com"
+      },
+      {
+        "id": "en.mangago",
+        "name": "Mangago",
+        "version": 3,
+        "iconURL": "icons/en.mangago-v3.png",
+        "downloadURL": "sources/en.mangago-v3.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://www.mangago.me"
+      },
+      {
+        "id": "en.mangakakalot",
+        "name": "MangaKakalot",
+        "version": 5,
+        "iconURL": "icons/en.mangakakalot-v5.png",
+        "downloadURL": "sources/en.mangakakalot-v5.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://www.mangakakalot.gg",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.manganato",
+        "name": "MangaNato",
+        "version": 8,
+        "iconURL": "icons/en.manganato-v8.png",
+        "downloadURL": "sources/en.manganato-v8.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://www.manganato.gg"
+      },
+      {
+        "id": "en.manganelo",
+        "name": "MangaNelo",
+        "version": 4,
+        "iconURL": "icons/en.manganelo-v4.png",
+        "downloadURL": "sources/en.manganelo-v4.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://www.nelomanga.net"
+      },
+      {
+        "id": "en.mangareadorg",
+        "name": "MangaRead.org",
+        "version": 2,
+        "iconURL": "icons/en.mangareadorg-v2.png",
+        "downloadURL": "sources/en.mangareadorg-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://www.mangaread.org"
+      },
+      {
+        "id": "en.mangatx",
+        "name": "MangaTx",
+        "version": 10,
+        "iconURL": "icons/en.mangatx-v10.png",
+        "downloadURL": "sources/en.mangatx-v10.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://mangatx.cc"
+      },
+      {
+        "id": "en.manhuaplusorg",
+        "name": "Manhuaplus.org",
+        "version": 1,
+        "iconURL": "icons/en.manhuaplusorg-v1.png",
+        "downloadURL": "sources/en.manhuaplusorg-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://manhuaplus.org"
+      },
+      {
+        "id": "en.novelbuddy",
+        "name": "NovelBuddy",
+        "version": 6,
+        "iconURL": "icons/en.novelbuddy-v6.png",
+        "downloadURL": "sources/en.novelbuddy-v6.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://novelbuddy.me",
+        "minAppVersion": "0.8.3"
+      },
+      {
+        "id": "en.nyxscans",
+        "name": "Nyx Scans",
+        "version": 1,
+        "iconURL": "icons/en.nyxscans-v1.png",
+        "downloadURL": "sources/en.nyxscans-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://nyxscans.com"
+      },
+      {
+        "id": "en.readcomicsonline",
+        "name": "Read Comics Online",
+        "version": 3,
+        "iconURL": "icons/en.readcomicsonline-v3.png",
+        "downloadURL": "sources/en.readcomicsonline-v3.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://readcomicsonline.ru",
+        "minAppVersion": "0.9"
+      },
+      {
+        "id": "en.rizzfables",
+        "name": "Rizz Fables",
+        "version": 2,
+        "iconURL": "icons/en.rizzfables-v2.png",
+        "downloadURL": "sources/en.rizzfables-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://rizzfables.com"
+      },
+      {
+        "id": "en.stonescape",
+        "name": "StoneScape",
+        "version": 2,
+        "iconURL": "icons/en.stonescape-v2.png",
+        "downloadURL": "sources/en.stonescape-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://stonescape.xyz"
+      },
+      {
+        "id": "en.tcbscans",
+        "name": "TCB Scans",
+        "version": 6,
+        "iconURL": "icons/en.tcbscans-v6.png",
+        "downloadURL": "sources/en.tcbscans-v6.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://tcbonepiecechapters.com"
+      },
+      {
+        "id": "en.toonily",
+        "name": "Toonily",
+        "version": 10,
+        "iconURL": "icons/en.toonily-v10.png",
+        "downloadURL": "sources/en.toonily-v10.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://toonily.com"
+      },
+      {
+        "id": "en.toonilyme",
+        "name": "Toonily.me",
+        "version": 1,
+        "iconURL": "icons/en.toonilyme-v1.png",
+        "downloadURL": "sources/en.toonilyme-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://toonily.me"
+      },
+      {
+        "id": "en.vortexscans",
+        "name": "Vortex Scans",
+        "version": 3,
+        "iconURL": "icons/en.vortexscans-v3.png",
+        "downloadURL": "sources/en.vortexscans-v3.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://vortexscans.org"
+      },
+      {
+        "id": "en.webtoonxyz",
+        "name": "WebtoonXYZ",
+        "version": 2,
+        "iconURL": "icons/en.webtoonxyz-v2.png",
+        "downloadURL": "sources/en.webtoonxyz-v2.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://www.webtoon.xyz"
+      },
+      {
+        "id": "en.weebcentral",
+        "name": "Weeb Central",
+        "version": 8,
+        "iconURL": "icons/en.weebcentral-v8.png",
+        "downloadURL": "sources/en.weebcentral-v8.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://weebcentral.com"
+      },
+      {
+        "id": "multi.cubari",
+        "name": "Cubari",
+        "version": 1,
+        "iconURL": "icons/multi.cubari-v1.png",
+        "downloadURL": "sources/multi.cubari-v1.aix",
+        "languages": [
+          "multi"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://cubari.moe"
+      },
+      {
+        "id": "multi.ehentai",
+        "name": "E-Hentai",
+        "version": 2,
+        "iconURL": "icons/multi.ehentai-v2.png",
+        "downloadURL": "sources/multi.ehentai-v2.aix",
+        "languages": [
+          "All",
+          "ja",
+          "en",
+          "zh",
+          "nl",
+          "fr",
+          "de",
+          "hu",
+          "it",
+          "ko",
+          "pl",
+          "pt-BR",
+          "ru",
+          "es",
+          "th",
+          "vi"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://e-hentai.org"
+      },
+      {
+        "id": "multi.grabberzone",
+        "name": "GrabberZone",
+        "version": 1,
+        "iconURL": "icons/multi.grabberzone-v1.png",
+        "downloadURL": "sources/multi.grabberzone-v1.aix",
+        "languages": [
+          "multi"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://grabber.zone",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "multi.hitomi",
+        "name": "Hitomi",
+        "version": 2,
+        "iconURL": "icons/multi.hitomi-v2.png",
+        "downloadURL": "sources/multi.hitomi-v2.aix",
+        "languages": [
+          "All",
+          "en",
+          "id",
+          "jv",
+          "ca",
+          "ceb",
+          "cs",
+          "da",
+          "de",
+          "et",
+          "es",
+          "eo",
+          "fr",
+          "it",
+          "hi",
+          "hu",
+          "pl",
+          "pt",
+          "vi",
+          "tr",
+          "ru",
+          "uk",
+          "ar",
+          "ko",
+          "zh",
+          "ja"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://hitomi.la"
+      },
+      {
+        "id": "multi.kagane",
+        "name": "Kagane",
+        "version": 3,
+        "iconURL": "icons/multi.kagane-v3.png",
+        "downloadURL": "sources/multi.kagane-v3.aix",
+        "languages": [
+          "en",
+          "es",
+          "it",
+          "fr",
+          "tr",
+          "pt",
+          "pt-BR",
+          "pl",
+          "ru",
+          "de",
+          "id",
+          "vi",
+          "th",
+          "ar",
+          "he"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://kagane.to",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "multi.lanraragi",
+        "name": "LANraragi",
+        "version": 2,
+        "iconURL": "icons/multi.lanraragi-v2.png",
+        "downloadURL": "sources/multi.lanraragi-v2.aix",
+        "languages": [
+          "multi"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://github.com/Difegue/LANraragi"
+      },
+      {
+        "id": "multi.mangadex",
+        "name": "MangaDex",
+        "version": 14,
+        "iconURL": "icons/multi.mangadex-v14.png",
+        "downloadURL": "sources/multi.mangadex-v14.aix",
+        "languages": [
+          "en",
+          "sq",
+          "ar",
+          "az",
+          "bn",
+          "bg",
+          "my",
+          "ca",
+          "zh-Hans",
+          "zh-Hant",
+          "hr",
+          "cs",
+          "da",
+          "nl",
+          "eo",
+          "et",
+          "fil",
+          "fi",
+          "fr",
+          "ka",
+          "de",
+          "el",
+          "he",
+          "hi",
+          "hu",
+          "id",
+          "it",
+          "ja",
+          "kk",
+          "ko",
+          "la",
+          "lt",
+          "ms",
+          "mn",
+          "ne",
+          "no",
+          "fa",
+          "pl",
+          "pt",
+          "pt-BR",
+          "ro",
+          "ru",
+          "sr",
+          "sk",
+          "sl",
+          "es",
+          "es-419",
+          "sv",
+          "ta",
+          "te",
+          "th",
+          "tr",
+          "uk",
+          "vi"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://mangadex.org"
+      },
+      {
+        "id": "multi.mangadotnet",
+        "name": "Mangadotnet",
+        "version": 7,
+        "iconURL": "icons/multi.mangadotnet-v7.png",
+        "downloadURL": "sources/multi.mangadotnet-v7.aix",
+        "languages": [
+          "ar",
+          "cs",
+          "de",
+          "el",
+          "en",
+          "es",
+          "es-la",
+          "fr",
+          "hi",
+          "id",
+          "it",
+          "ja",
+          "ko",
+          "ms",
+          "nl",
+          "pl",
+          "pt",
+          "pt-br",
+          "ru",
+          "sv",
+          "th",
+          "tl",
+          "tr",
+          "vi",
+          "zh-hk"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://mangadot.net",
+        "minAppVersion": "0.9"
+      },
+      {
+        "id": "multi.mangafire",
+        "name": "MangaFire",
+        "version": 8,
+        "iconURL": "icons/multi.mangafire-v8.png",
+        "downloadURL": "sources/multi.mangafire-v8.aix",
+        "languages": [
+          "en",
+          "es",
+          "es-419",
+          "fr",
+          "ja",
+          "pt",
+          "pt-BR"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://mangafire.to",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "multi.mangaplus",
+        "name": "MANGA Plus",
+        "version": 6,
+        "iconURL": "icons/multi.mangaplus-v6.png",
+        "downloadURL": "sources/multi.mangaplus-v6.aix",
+        "languages": [
+          "en",
+          "es",
+          "fr",
+          "id",
+          "pt-BR",
+          "ru",
+          "th",
+          "vi",
+          "de"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://mangaplus.shueisha.co.jp",
+        "minAppVersion": "0.7.2"
+      },
+      {
+        "id": "multi.myreadingmanga",
+        "name": "MyReadingManga",
+        "version": 12,
+        "iconURL": "icons/multi.myreadingmanga-v12.png",
+        "downloadURL": "sources/multi.myreadingmanga-v12.aix",
+        "languages": [
+          "en",
+          "ja",
+          "zh",
+          "ko",
+          "es",
+          "fr",
+          "de",
+          "it",
+          "pt"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://myreadingmanga.info"
+      },
+      {
+        "id": "multi.nhentai",
+        "name": "nhentai",
+        "version": 17,
+        "iconURL": "icons/multi.nhentai-v17.png",
+        "downloadURL": "sources/multi.nhentai-v17.aix",
+        "languages": [
+          "All",
+          "en",
+          "ja",
+          "zh"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://nhentai.net"
+      },
+      {
+        "id": "multi.suwayomi",
+        "name": "Suwayomi",
+        "version": 4,
+        "iconURL": "icons/multi.suwayomi-v4.png",
+        "downloadURL": "sources/multi.suwayomi-v4.aix",
+        "languages": [
+          "multi"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://github.com/Suwayomi"
+      },
+      {
+        "id": "multi.webtoon",
+        "name": "WEBTOON",
+        "version": 4,
+        "iconURL": "icons/multi.webtoon-v4.png",
+        "downloadURL": "sources/multi.webtoon-v4.aix",
+        "languages": [
+          "en",
+          "zh-Hant",
+          "th",
+          "id",
+          "es",
+          "fr",
+          "de"
+        ],
+        "contentRating": 0,
+        "baseURL": "https://www.webtoons.com",
+        "minAppVersion": "0.7.2"
+      },
+      {
+        "id": "multi.xcomic",
+        "name": "XCOMIC",
+        "version": 3,
+        "iconURL": "icons/multi.xcomic-v3.png",
+        "downloadURL": "sources/multi.xcomic-v3.aix",
+        "languages": [
+          "en",
+          "fr",
+          "es",
+          "es-419",
+          "pt",
+          "pt-BR",
+          "ja",
+          "ko",
+          "zh",
+          "ru",
+          "id",
+          "ab",
+          "af",
+          "sq",
+          "am",
+          "ar",
+          "hy",
+          "az",
+          "be",
+          "bn",
+          "bs",
+          "bg",
+          "my",
+          "km",
+          "ca",
+          "ceb",
+          "hr",
+          "cs",
+          "cv",
+          "da",
+          "nl",
+          "et",
+          "eo",
+          "eu",
+          "fo",
+          "fil",
+          "fi",
+          "ka",
+          "de",
+          "el",
+          "gn",
+          "gu",
+          "ht",
+          "ha",
+          "he",
+          "hi",
+          "hu",
+          "is",
+          "ig",
+          "ga",
+          "gl",
+          "it",
+          "jv",
+          "kn",
+          "kk",
+          "ku",
+          "ky",
+          "la",
+          "lo",
+          "lv",
+          "lt",
+          "lb",
+          "mk",
+          "mg",
+          "ms",
+          "ml",
+          "mt",
+          "mi",
+          "mr",
+          "mo",
+          "mn",
+          "ne",
+          "no",
+          "ny",
+          "ps",
+          "fa",
+          "pl",
+          "ro",
+          "rm",
+          "sm",
+          "sr",
+          "sh",
+          "ss",
+          "st",
+          "sn",
+          "sd",
+          "si",
+          "sk",
+          "sl",
+          "so",
+          "sw",
+          "sv",
+          "tg",
+          "ta",
+          "te",
+          "th",
+          "ti",
+          "to",
+          "tr",
+          "tk",
+          "uk",
+          "ur",
+          "uz",
+          "vi",
+          "yo",
+          "zu"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://xcomic.me",
+        "minAppVersion": "0.7.1"
+      }
+    ]
+  },
+  "inventory": {
+    "name": "Nixzle's Maintained Public English Aidoku Sources",
+    "generatedAt": "2026-09-26T04:05:00+00:00",
+    "sourceCount": 53,
+    "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
+    "languagePolicy": "English or multilingual entries advertising en, All, or multi",
+    "excludedPersonalUseOnly": [
+      "en.atsumaru",
+      "multi.mangaball",
+      "multi.onisaga"
+    ],
+    "replacedWithCommunityBuilds": [
+      "multi.mangadotnet",
+      "multi.kagane"
+    ],
+    "excludedNonEnglish": [
+      "Non-English-only source packages"
+    ],
+    "upstreams": [
+      {
+        "repository": "Aidoku-Community/sources",
+        "index": "https://aidoku-community.github.io/sources/index.min.json",
+        "license": "MIT OR Apache-2.0"
+      }
+    ],
+    "excludedDuplicates": [],
+    "sources": [
+      {
+        "id": "en.armageddon",
+        "name": "Armageddon",
+        "version": 5,
+        "file": "sources/en.armageddon-v5.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.armageddon-v5.aix",
+        "sha256": "ddcd09571af038033bfd065304fb0519b27cf04ab28c2eb65327603acdf3dd4f"
+      },
+      {
+        "id": "en.asurascans",
+        "name": "Asura Scans",
+        "version": 19,
+        "file": "sources/en.asurascans-v19.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.asurascans-v19.aix",
+        "sha256": "b7287a3bd4aea709e8afbcf08677c8131e8cd2dcdc95b57540297cfd16e50fa3"
+      },
+      {
+        "id": "en.athreascans",
+        "name": "Athrea Scans",
+        "version": 1,
+        "file": "sources/en.athreascans-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.athreascans-v1.aix",
+        "sha256": "a52a3f81596265ade95e4c0f2d023442e9b8513b784b96b4846b64fd71e929a3"
+      },
+      {
+        "id": "en.batcave",
+        "name": "BatCave",
+        "version": 2,
+        "file": "sources/en.batcave-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.batcave-v2.aix",
+        "sha256": "decd237504483292eabaf03b39c2e5932262e77117f1fb9377baada4f91bb9af"
+      },
+      {
+        "id": "en.chikari",
+        "name": "Chikari",
+        "version": 1,
+        "file": "sources/en.chikari-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v1.aix",
+        "sha256": "da4cac00572b12e3269d7de9c0b7f330d1a5f17558e3455a3f56569cee1b54f0"
+      },
+      {
+        "id": "en.comix",
+        "name": "Comix",
+        "version": 23,
+        "file": "sources/en.comix-v23.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.comix-v23.aix",
+        "sha256": "f00b717d6972b46024d2fc83bd07e06a4e50cce929c15650da20908e4b77ed27"
+      },
+      {
+        "id": "en.dankefurslesen",
+        "name": "Danke fürs Lesen",
+        "version": 3,
+        "file": "sources/en.dankefurslesen-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.dankefurslesen-v3.aix",
+        "sha256": "13a81d834823d741a80b1abf70e239525682dc81a57aa5f981f6ea9450a8be04"
+      },
+      {
+        "id": "en.drakescans",
+        "name": "Drake Scans",
+        "version": 2,
+        "file": "sources/en.drakescans-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v2.aix",
+        "sha256": "2db85aede3ac1c41629fd7041d443bfb6216d31666aae3be623d70abbd7b68b1"
+      },
+      {
+        "id": "en.dynastyscans",
+        "name": "Dynasty Scans",
+        "version": 4,
+        "file": "sources/en.dynastyscans-v4.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.dynastyscans-v4.aix",
+        "sha256": "2448950acd3027c7e5d055a337da2d8668b57ef72b6c061234a701d30c683a02"
+      },
+      {
+        "id": "en.elftoon",
+        "name": "Elf Toon",
+        "version": 2,
+        "file": "sources/en.elftoon-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.elftoon-v2.aix",
+        "sha256": "610f8fad7d0f340024ee03495e32cca2f891ce903fe25ab9398adaec6e774b47"
+      },
+      {
+        "id": "en.ezmanga",
+        "name": "EzManga",
+        "version": 2,
+        "file": "sources/en.ezmanga-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.ezmanga-v2.aix",
+        "sha256": "7036eba0735cafe7fed47bfcafcb260df51199fbc86a7c24baf621fdc7e50868"
+      },
+      {
+        "id": "en.flamecomics",
+        "name": "Flame Comics",
+        "version": 4,
+        "file": "sources/en.flamecomics-v4.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v4.aix",
+        "sha256": "26bba1041d45872e382e089744bc26df76f017bbc0fdfed7a05c967b3e921afc"
+      },
+      {
+        "id": "en.freewebnovel",
+        "name": "FreeWebNovel",
+        "version": 3,
+        "file": "sources/en.freewebnovel-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.freewebnovel-v3.aix",
+        "sha256": "ca3aab77c1a183a7d18c07a4c006f4e237fbc3ab3950ddb94cbb371c806b77d6"
+      },
+      {
+        "id": "en.guya",
+        "name": "Guya",
+        "version": 2,
+        "file": "sources/en.guya-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.guya-v2.aix",
+        "sha256": "a243f9a1e5c077eec094dd23650871d868e597be477a4a03d08d31b1c267ef57"
+      },
+      {
+        "id": "en.hennoveltranslations",
+        "name": "Hennoveltranslations",
+        "version": 1,
+        "file": "sources/en.hennoveltranslations-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hennoveltranslations-v1.aix",
+        "sha256": "c4d624122957079f55c32702f9e4590d025b38ab9f94f158b2dfa4e51ff8e94f"
+      },
+      {
+        "id": "en.madokami",
+        "name": "Madokami",
+        "version": 1,
+        "file": "sources/en.madokami-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.madokami-v1.aix",
+        "sha256": "4a05f9c87e3305b9c7af9547f4a25e4a9377f307be92109b950372711fb4a7a3"
+      },
+      {
+        "id": "en.magusmanga",
+        "name": "Magus Manga",
+        "version": 2,
+        "file": "sources/en.magusmanga-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v2.aix",
+        "sha256": "1b74c60d4cf67fcfdee386a71f5f59d71bcf1531d4dc7acb940afc427d263299"
+      },
+      {
+        "id": "en.mangabat",
+        "name": "MangaBat",
+        "version": 9,
+        "file": "sources/en.mangabat-v9.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangabat-v9.aix",
+        "sha256": "5768eed904b92e18e773c6306d952c3c58e23c675cb9ab319fe38694db352a16"
+      },
+      {
+        "id": "en.mangademon",
+        "name": "MangaDemon",
+        "version": 7,
+        "file": "sources/en.mangademon-v7.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangademon-v7.aix",
+        "sha256": "0340e71fbcc5bdb278ab99ce4171cb357517cd168428412105472619e548be5e"
+      },
+      {
+        "id": "en.mangadistrict",
+        "name": "MangaDistrict",
+        "version": 1,
+        "file": "sources/en.mangadistrict-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangadistrict-v1.aix",
+        "sha256": "5a6cdfad8f4c593f3be3614f2e263bca4844a06d6c19a5f50c72eb4b07086042"
+      },
+      {
+        "id": "en.mangago",
+        "name": "Mangago",
+        "version": 3,
+        "file": "sources/en.mangago-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangago-v3.aix",
+        "sha256": "fd95c6e964903382e49251ec85ba5ef25f1895b4480a2b522a1466b3ec262f52"
+      },
+      {
+        "id": "en.mangakakalot",
+        "name": "MangaKakalot",
+        "version": 5,
+        "file": "sources/en.mangakakalot-v5.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangakakalot-v5.aix",
+        "sha256": "953bb18eca6b0b479d0356a1fdd2fbb3473fb998300f61c62a2e503ccd29afc7"
+      },
+      {
+        "id": "en.manganato",
+        "name": "MangaNato",
+        "version": 8,
+        "file": "sources/en.manganato-v8.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manganato-v8.aix",
+        "sha256": "1f85b0ff38b663f84a6bf6eb6eaae77f9b1ec1a199f63407238d462c79e36577"
+      },
+      {
+        "id": "en.manganelo",
+        "name": "MangaNelo",
+        "version": 4,
+        "file": "sources/en.manganelo-v4.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manganelo-v4.aix",
+        "sha256": "e18c00a2e8270fb6807d633e54603f909bff4fbfdec1c95f11080a5d9c655a63"
+      },
+      {
+        "id": "en.mangareadorg",
+        "name": "MangaRead.org",
+        "version": 2,
+        "file": "sources/en.mangareadorg-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangareadorg-v2.aix",
+        "sha256": "7b10de627e03eef862485d0dde9e1b1ccf4f76c28a1f571f0a1106fcdf890adf"
+      },
+      {
+        "id": "en.mangatx",
+        "name": "MangaTx",
+        "version": 10,
+        "file": "sources/en.mangatx-v10.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangatx-v10.aix",
+        "sha256": "d9089dad677c88cd66585a7459c4a1c1a5584cac33d50c5f30c47ada73d08528"
+      },
+      {
+        "id": "en.manhuaplusorg",
+        "name": "Manhuaplus.org",
+        "version": 1,
+        "file": "sources/en.manhuaplusorg-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhuaplusorg-v1.aix",
+        "sha256": "0e12e24d6b982f824f883ec0d8326f7732f9cc1b74366df9a10c33e94fe7c033"
+      },
+      {
+        "id": "en.novelbuddy",
+        "name": "NovelBuddy",
+        "version": 6,
+        "file": "sources/en.novelbuddy-v6.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v6.aix",
+        "sha256": "8791fa19ffc72cf02257255658a6bf4a7f024ca24cc48349c93eb3badbd0df64"
+      },
+      {
+        "id": "en.nyxscans",
+        "name": "Nyx Scans",
+        "version": 1,
+        "file": "sources/en.nyxscans-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.nyxscans-v1.aix",
+        "sha256": "19311e4ed532ded6a64452e22bdc39b3e65234a3824e020c038c6a62e5b69bf9"
+      },
+      {
+        "id": "en.readcomicsonline",
+        "name": "Read Comics Online",
+        "version": 3,
+        "file": "sources/en.readcomicsonline-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
+        "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/9589cef7c9e6f06eae586cb6dcfe0d16425e2be4/overrides/en.readcomicsonline-v3.aix",
+        "sha256": "99983f0a4a8e4d6d1c17357ad77ef42082b6b9f99b11046337be2af1b7af5126"
+      },
+      {
+        "id": "en.rizzfables",
+        "name": "Rizz Fables",
+        "version": 2,
+        "file": "sources/en.rizzfables-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.rizzfables-v2.aix",
+        "sha256": "889b6eaa868352e5188a840a9f6b83690109cac88d08464c89b249df0922ea05"
+      },
+      {
+        "id": "en.stonescape",
+        "name": "StoneScape",
+        "version": 2,
+        "file": "sources/en.stonescape-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.stonescape-v2.aix",
+        "sha256": "f9b233349c048150de14e1401dc4c17de69ff9b10b229005d90e913e87807aee"
+      },
+      {
+        "id": "en.tcbscans",
+        "name": "TCB Scans",
+        "version": 6,
+        "file": "sources/en.tcbscans-v6.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.tcbscans-v6.aix",
+        "sha256": "4b8552f296873216132585fe607ff8b30c47fc9c1735c19ce28c9af0843ab552"
+      },
+      {
+        "id": "en.toonily",
+        "name": "Toonily",
+        "version": 10,
+        "file": "sources/en.toonily-v10.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonily-v10.aix",
+        "sha256": "31701725e54145d1bd03f593a409f0cd7df5ed36a34c8174ce2aefbd5cb043f4"
+      },
+      {
+        "id": "en.toonilyme",
+        "name": "Toonily.me",
+        "version": 1,
+        "file": "sources/en.toonilyme-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v1.aix",
+        "sha256": "773fc2c71626839075efdfb0127ed3e900d36ba5519aa9a63225e285315f53cd"
+      },
+      {
+        "id": "en.vortexscans",
+        "name": "Vortex Scans",
+        "version": 3,
+        "file": "sources/en.vortexscans-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v3.aix",
+        "sha256": "71a8a00b95e3088be5791b151c6e5234a56248b9505905e52e03254094901ebc"
+      },
+      {
+        "id": "en.webtoonxyz",
+        "name": "WebtoonXYZ",
+        "version": 2,
+        "file": "sources/en.webtoonxyz-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.webtoonxyz-v2.aix",
+        "sha256": "4a75d3f99065289f99a292c48cdc871cdf87f3ff492de2f3d5f5400f0dcc04bb"
+      },
+      {
+        "id": "en.weebcentral",
+        "name": "Weeb Central",
+        "version": 8,
+        "file": "sources/en.weebcentral-v8.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.weebcentral-v8.aix",
+        "sha256": "4b1230e1012d9e98acb043d588e59fdc01047439a9b51f3b8da4852554802f55"
+      },
+      {
+        "id": "multi.cubari",
+        "name": "Cubari",
+        "version": 1,
+        "file": "sources/multi.cubari-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.cubari-v1.aix",
+        "sha256": "6fa323b4ae720d88084b33d660dff1f1abf9ec696ddfd33c5c11ca957de062a3"
+      },
+      {
+        "id": "multi.ehentai",
+        "name": "E-Hentai",
+        "version": 2,
+        "file": "sources/multi.ehentai-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.ehentai-v2.aix",
+        "sha256": "b12d2b73b6dd092e36cad57634160894f41bae916db390f7e633fcdb23b3e982"
+      },
+      {
+        "id": "multi.grabberzone",
+        "name": "GrabberZone",
+        "version": 1,
+        "file": "sources/multi.grabberzone-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.grabberzone-v1.aix",
+        "sha256": "8f72ab54ccf41f57b8c715cccc883bfecd3c965fbe456426a4e257ce4c092c50"
+      },
+      {
+        "id": "multi.hitomi",
+        "name": "Hitomi",
+        "version": 2,
+        "file": "sources/multi.hitomi-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.hitomi-v2.aix",
+        "sha256": "fe62401bd0b8c5f056e3ff18bbb2b736c777ffa22cbd3097765a08e5aec753e8"
+      },
+      {
+        "id": "multi.kagane",
+        "name": "Kagane",
+        "version": 3,
+        "file": "sources/multi.kagane-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v3.aix",
+        "sha256": "d4f327ee86a202fa701edfa5c6301e87a50cdf79f12ed7bb67aeeb428de1f6a4"
+      },
+      {
+        "id": "multi.lanraragi",
+        "name": "LANraragi",
+        "version": 2,
+        "file": "sources/multi.lanraragi-v2.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.lanraragi-v2.aix",
+        "sha256": "1458c5f74263f5aa131c5089f3cddc17412eb15169735633a57c77bbd6789ea0"
+      },
+      {
+        "id": "multi.mangadex",
+        "name": "MangaDex",
+        "version": 14,
+        "file": "sources/multi.mangadex-v14.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadex-v14.aix",
+        "sha256": "9154dbcec43d0f1440314cc14b7d4b1f4438e3d4505e0c6aea5bae0f6d4234e6"
+      },
+      {
+        "id": "multi.mangadotnet",
+        "name": "Mangadotnet",
+        "version": 7,
+        "file": "sources/multi.mangadotnet-v7.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v7.aix",
+        "sha256": "9c58cb31f64b7a98fb7c51dd9e65e49e41538a8d1551f8b321fc5c2577c60bf4"
+      },
+      {
+        "id": "multi.mangafire",
+        "name": "MangaFire",
+        "version": 8,
+        "file": "sources/multi.mangafire-v8.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangafire-v8.aix",
+        "sha256": "5fa26bd0deabbeb1f021e450e150d606cb719cb420627dbf0f30ad865545ef94"
+      },
+      {
+        "id": "multi.mangaplus",
+        "name": "MANGA Plus",
+        "version": 6,
+        "file": "sources/multi.mangaplus-v6.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangaplus-v6.aix",
+        "sha256": "27fc0e044fe88515e6e147ba1c3e8f73063ea4a726c2287466b3da57aa5e0433"
+      },
+      {
+        "id": "multi.myreadingmanga",
+        "name": "MyReadingManga",
+        "version": 12,
+        "file": "sources/multi.myreadingmanga-v12.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.myreadingmanga-v12.aix",
+        "sha256": "1d45f6d5c3c1d875455c01c56c9fd743c165a2dff567dd76ae7d5524e66e21d9"
+      },
+      {
+        "id": "multi.nhentai",
+        "name": "nhentai",
+        "version": 17,
+        "file": "sources/multi.nhentai-v17.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.nhentai-v17.aix",
+        "sha256": "d2ba853418fad777b41076fa5cb551f59a451904f0225e598bde845617b8d5d3"
+      },
+      {
+        "id": "multi.suwayomi",
+        "name": "Suwayomi",
+        "version": 4,
+        "file": "sources/multi.suwayomi-v4.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.suwayomi-v4.aix",
+        "sha256": "8b6ca200f4fd83aa6f9a79d543df3cbb23e2b951b7683bb3a2ff23929bfa6efb"
+      },
+      {
+        "id": "multi.webtoon",
+        "name": "WEBTOON",
+        "version": 4,
+        "file": "sources/multi.webtoon-v4.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.webtoon-v4.aix",
+        "sha256": "16170a99d71bdab4ecd5cc203b1b9a2bcb721ae6284eeab638bfd9455e74bb2a"
+      },
+      {
+        "id": "multi.xcomic",
+        "name": "XCOMIC",
+        "version": 3,
+        "file": "sources/multi.xcomic-v3.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v3.aix",
+        "sha256": "8a5acba90a4332834ba8868f2684577381d3c282d83997869349b067f2ba0a4d"
+      }
+    ]
+  },
+  "status": {
+    "generatedAt": "2026-09-26T04:05:00+00:00",
+    "summary": {
+      "maintained": 53,
+      "legacyOnly": 47,
+      "manualQuarantined": 4,
+      "automaticQuarantined": 4,
+      "degraded": 2,
+      "requiredDegraded": 1
+    },
+    "healthSweep": {
+      "lastSweepAt": "2026-09-26T04:04:33+00:00",
+      "summary": {
+        "attempted": 57,
+        "conclusive": 48,
+        "kinds": {
+          "auth_required": 1,
+          "healthy": 38,
+          "inconclusive_exception": 4,
+          "network_error": 4,
+          "protected": 8,
+          "server_error": 1,
+          "transient_http_error": 1
+        }
+      }
+    },
+    "requiredMaintainedSources": [
+      "en.comix",
+      "en.mangadistrict",
+      "en.readcomicsonline"
+    ],
+    "requiredHealth": [
+      {
+        "id": "en.comix",
+        "name": "Comix",
+        "severity": "healthy",
+        "kind": "healthy",
+        "reachable": true,
+        "conclusive": true,
+        "httpStatus": 200
+      },
+      {
+        "id": "en.mangadistrict",
+        "name": "MangaDistrict",
+        "severity": "healthy",
+        "kind": "healthy",
+        "reachable": true,
+        "conclusive": true,
+        "httpStatus": 200
+      },
+      {
+        "id": "en.readcomicsonline",
+        "name": "Read Comics Online",
+        "severity": "degraded",
+        "kind": "protected",
+        "reachable": true,
+        "conclusive": true,
+        "httpStatus": 403
+      }
+    ],
+    "manualQuarantine": [
+      {
+        "id": "en.aquamanga",
+        "name": "Aqua Manga",
+        "type": "manual",
+        "reason": "The site/parser changed and the source needs a rewrite before it is installable again.",
+        "catalogs": [
+          "legacy",
+          "maintained"
+        ],
+        "issue": "https://github.com/Aidoku-Community/sources/issues/605"
+      },
+      {
+        "id": "en.firescans",
+        "name": "Fire Scans",
+        "type": "manual",
+        "reason": "The configured source domain does not currently resolve.",
+        "catalogs": [
+          "legacy",
+          "maintained"
+        ]
+      },
+      {
+        "id": "en.qiscans",
+        "name": "Qi Scans",
+        "type": "manual",
+        "reason": "The configured source domain does not currently resolve.",
+        "catalogs": [
+          "legacy",
+          "maintained"
+        ]
+      },
+      {
+        "id": "en.readcomiconline",
+        "name": "ReadComicOnline",
+        "type": "manual",
+        "reason": "The original ReadComicOnline service has no live domain; use en.readcomicsonline instead.",
+        "catalogs": [
+          "legacy",
+          "maintained"
+        ],
+        "issue": "https://github.com/Aidoku-Community/sources/issues/639"
+      }
+    ],
+    "automaticQuarantine": [
+      {
+        "id": "en.hivescans",
+        "name": "Hive Scans",
+        "baseURL": "https://hivetoons.org",
+        "status": "quarantined",
+        "consecutiveFailures": 3,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-09-24",
+        "lastProbeAt": null,
+        "lastStateChangeAt": null,
+        "lastProbeKind": null,
+        "lastHttpStatus": null,
+        "required": false
+      },
+      {
+        "id": "en.mangasect",
+        "name": "Manga Sect",
+        "baseURL": "https://mangasect.net",
+        "status": "quarantined",
+        "consecutiveFailures": 3,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-08-15",
+        "lastProbeAt": null,
+        "lastStateChangeAt": null,
+        "lastProbeKind": null,
+        "lastHttpStatus": null,
+        "required": false
+      },
+      {
+        "id": "en.manhuagold",
+        "name": "Manhuagold",
+        "baseURL": "https://manhuagold.top",
+        "status": "quarantined",
+        "consecutiveFailures": 3,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-08-15",
+        "lastProbeAt": null,
+        "lastStateChangeAt": null,
+        "lastProbeKind": null,
+        "lastHttpStatus": null,
+        "required": false
+      },
+      {
+        "id": "en.manhwax",
+        "name": "Manhwax",
+        "baseURL": "https://manhwax.top",
+        "status": "quarantined",
+        "consecutiveFailures": 3,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-08-15",
+        "lastProbeAt": null,
+        "lastStateChangeAt": null,
+        "lastProbeKind": null,
+        "lastHttpStatus": null,
+        "required": false
+      }
+    ],
+    "degraded": [
+      {
+        "id": "en.elftoon",
+        "name": "Elf Toon",
+        "baseURL": "https://elftoon.com",
+        "status": "failing",
+        "consecutiveFailures": 2,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-09-26",
+        "lastProbeAt": "2026-09-26T04:04:33+00:00",
+        "lastStateChangeAt": "2026-09-26T04:04:33+00:00",
+        "lastProbeKind": "server_error",
+        "lastHttpStatus": 503,
+        "required": false
+      },
+      {
+        "id": "en.mangatx",
+        "name": "MangaTx",
+        "baseURL": "https://mangatx.cc",
+        "status": "failing",
+        "consecutiveFailures": 1,
+        "consecutiveSuccesses": 0,
+        "lastObservationDate": "2026-09-25",
+        "lastProbeAt": null,
+        "lastStateChangeAt": null,
+        "lastProbeKind": null,
+        "lastHttpStatus": null,
+        "required": false
+      }
+    ]
+  }
+}

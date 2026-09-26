@@ -39,6 +39,10 @@ def main():
             break
         page += 1
     status = os.environ["UPDATE_RESULT"]
+    if os.environ.get("INCIDENT_KIND", "updater") == "updater":
+        aggregate = {"catalog update": status, "critical chapter smoke": os.environ.get("SMOKE_RESULT", "success"), "public Pages acceptance": os.environ.get("ACCEPTANCE_RESULT", "success")}
+        status = "success" if all(value == "success" for value in aggregate.values()) else "failure"
+        guidance += " Results: " + ", ".join(f"{key}={value}" for key,value in aggregate.items())
     run = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}'
     if status == "success":
         for incident in incidents:

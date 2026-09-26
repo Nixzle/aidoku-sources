@@ -38,6 +38,7 @@ POLICY_PATH = ROOT / "config" / "source_policy.json"
 HEALTH_STATE_PATH = ROOT / "config" / "source_health.json"
 STATUS_JSON_PATH = ROOT / "status.json"
 STATUS_MARKDOWN_PATH = ROOT / "status.md"
+ROLLBACK_PATH = ROOT / "rollback" / "last-known-good.json"
 USER_AGENT = "Nixzle-Aidoku-Sources-Updater/2.0"
 TIMEOUT_SECONDS = 45
 HEALTH_TIMEOUT_SECONDS = 12
@@ -834,6 +835,69 @@ def _health_state(path: Path = HEALTH_STATE_PATH) -> dict:
     return state
 
 
+def _health_observation(kind: str, *, reachable: bool, conclusive: bool,
+                        http_status: int | None = None, detail: str | None = None) -> dict:
+    value = {"kind": kind, "reachable": bool(reachable), "conclusive": bool(conclusive)}
+    if http_status is not None:
+        value["httpStatus"] = int(http_status)
+    if detail:
+        value["detail"] = str(detail)[:300]
+    return value
+
+
+def probe_source_health(url: str, *, attempts: int = 2) -> dict:
+    """Classify a probe; protection is reachable but not equivalent to functional health."""
+    parsed = _safe_https_url(url, "source health URL")
+    host = parsed.hostname.casefold()
+    if not _is_public_host(host):
+        return _health_observation("unsafe_or_unresolvable_host", reachable=False, conclusive=True)
+    protected = {401: "auth_required", 403: "protected", 429: "rate_limited", 451: "restricted"}
+    last = _health_observation("inconclusive", reachable=False, conclusive=False)
+    for attempt in range(max(1, attempts)):
+        try:
+            request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Range": "bytes=0-0"})
+            with _open_url(request, timeout=HEALTH_TIMEOUT_SECONDS, allowed_hosts={host},
+                           require_public=True) as response:
+                status = int(getattr(response, "status", response.getcode()))
+                final_url = response.geturl() if hasattr(response, "geturl") else url
+                _safe_https_url(final_url, "final source health URL")
+                response.read(1)
+                if 200 <= status < 400:
+                    return _health_observation("healthy", reachable=True, conclusive=True,
+                                               http_status=status)
+                if status in protected:
+                    return _health_observation(protected[status], reachable=True, conclusive=True,
+                                               http_status=status)
+                last = _health_observation("http_error", reachable=False, conclusive=True,
+                                           http_status=status)
+        except urllib.error.HTTPError as error:
+            if error.code in protected:
+                return _health_observation(protected[error.code], reachable=True, conclusive=True,
+                                           http_status=error.code)
+            if 400 <= error.code < 600 and error.code not in {408, 425}:
+                last = _health_observation("client_error" if error.code < 500 else "server_error",
+                                           reachable=False, conclusive=True, http_status=error.code,
+                                           detail=str(error.reason or ""))
+            else:
+                last = _health_observation("transient_http_error", reachable=False, conclusive=False,
+                                           http_status=error.code, detail=str(error.reason or ""))
+        except urllib.error.URLError as error:
+            reason = getattr(error, "reason", None)
+            if isinstance(reason, socket.gaierror):
+                last = _health_observation("dns_failure", reachable=False, conclusive=True,
+                                           detail=str(reason))
+            else:
+                last = _health_observation("network_error", reachable=False, conclusive=False,
+                                           detail=str(reason or error))
+        except (TimeoutError, ConnectionError, OSError) as error:
+            kind = "dns_failure" if isinstance(error, socket.gaierror) else "network_error"
+            last = _health_observation(kind, reachable=False,
+                                       conclusive=isinstance(error, socket.gaierror), detail=str(error))
+        if attempt + 1 < max(1, attempts):
+            time.sleep(0.25 * (2**attempt))
+    return last
+
+
 def probe_source_url(url: str, *, attempts: int = 2) -> bool:
     """Return whether a website is reachable; protected HTTP responses count."""
     parsed = _safe_https_url(url, "source health URL")
@@ -887,11 +951,12 @@ def observe_source_health(candidates: list[dict], health_policy: dict) -> dict[s
 
 
 def update_health_state(state: dict, observations: dict, *, observation_date: str,
-                        failure_threshold: int = 3, recovery_threshold: int = 2) -> tuple[dict, set[str]]:
+                        failure_threshold: int = 3, recovery_threshold: int = 2,
+                        observation_at: str | None = None) -> tuple[dict, set[str]]:
     for source_id in observations:
         validate_source_id(source_id)
     return source_health.transition(state, observations, observation_date=observation_date,
-                                   failure_threshold=failure_threshold, recovery_threshold=recovery_threshold)
+                                   failure_threshold=failure_threshold, recovery_threshold=recovery_threshold, checked_at=observation_at)
 
 
 def refresh_health_state(candidates: list[dict], policy: dict,
@@ -903,9 +968,9 @@ def refresh_health_state(candidates: list[dict], policy: dict,
         return existing, old_state
     now = source_health.utc_now()
     today = now[:10]
-    already_sampled = old_state.get("lastHealthSweepDate") == today
+    already_sampled = old_state.get("lastHealthSweepDate", old_state.get("lastSweepDate")) == today
     if old_state.get("version") == 1:
-        already_sampled = any(value.get("lastObservationDate") == today
+        already_sampled = already_sampled or any(value.get("lastObservationDate") == today
                               for value in old_state["sources"].values())
     if already_sampled:
         return existing, old_state
@@ -924,6 +989,13 @@ def refresh_health_state(candidates: list[dict], policy: dict,
         recovery_threshold=int(health_policy.get("recoveryThreshold", 2)),
         required_ids=policy.get("requiredMaintainedSources", []), accepted=quality["accepted"])
     new_state["lastSweep"] = {**quality, "controls": controls}
+    new_state["lastSweepAt"] = now
+    new_state["lastSweepDate"] = today
+    new_state["lastSweepSummary"] = new_state["lastSweep"]
+    new_state["requiredObservations"] = {
+        key: {**value, "kind": "healthy" if value["classification"] == "ok" else value["classification"]}
+        for key, value in observations.items() if key in set(policy.get("requiredMaintainedSources", []))
+    }
     if not quality["accepted"]:
         print("::warning::Health sweep inconclusive: counters preserved; observations retained.")
     return quarantined, new_state
@@ -1132,6 +1204,37 @@ def write_catalog(
     (catalog_root / ".nojekyll").touch()
 
 
+def write_rollback_snapshot(path: Path = ROLLBACK_PATH) -> None:
+    """Persist the previous published metadata as a bounded rollback checkpoint."""
+    inputs = {
+        "index": ROOT / "index.min.json",
+        "inventory": ROOT / "inventory.json",
+        "status": ROOT / "status.json",
+    }
+    if not all(item.is_file() for item in inputs.values()):
+        return
+    snapshot = {
+        key: json.loads(item.read_text(encoding="utf-8-sig"))
+        for key, item in inputs.items()
+    }
+    previous = None
+    if path.exists():
+        try:
+            previous = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    comparable = dict(previous or {})
+    comparable.pop("capturedAt", None)
+    if comparable == snapshot:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "capturedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        **snapshot,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def _write_health_state_if_changed(state: dict, path: Path = HEALTH_STATE_PATH) -> None:
     text = json.dumps(state, ensure_ascii=False, indent=2) + "\n"
     if path.exists() and path.read_text(encoding="utf-8-sig") == text:
@@ -1196,6 +1299,24 @@ def write_status_report(
         else:
             degraded_entries.append(entry)
 
+    required_health = []
+    for source_id in sorted(required_ids):
+        observation = dict(health_state.get("requiredObservations", {}).get(source_id, {}))
+        kind = str(observation.get("kind", "unknown"))
+        severity = (
+            "healthy" if kind == "healthy"
+            else "degraded" if observation.get("reachable")
+            else "critical" if observation.get("conclusive")
+            else "unknown"
+        )
+        metadata = source_metadata.get(source_id, {})
+        required_health.append({
+            "id": source_id,
+            "name": metadata.get("name", source_id),
+            "severity": severity,
+            **observation,
+        })
+
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     status = {
         "generatedAt": now,
@@ -1205,13 +1326,16 @@ def write_status_report(
             "manualQuarantined": len(manual_entries),
             "automaticQuarantined": len(automatic_entries),
             "degraded": len(degraded_entries),
+            "requiredDegraded": sum(item["severity"] != "healthy" for item in required_health),
         },
         "requiredMaintainedSources": sorted(required_ids),
+        "requiredHealth": required_health,
+        "healthSweep": {"lastSweepAt": health_state.get("lastHealthSweepAt", health_state.get("lastSweepAt")), "summary": health_state.get("lastSweep", health_state.get("lastSweepSummary", {}))},
         "manualQuarantine": manual_entries,
         "automaticQuarantine": automatic_entries,
         "degraded": degraded_entries,
-        "lastHealthSweepAt": health_state.get("lastHealthSweepAt"),
-        "lastSweep": health_state.get("lastSweep"),
+        "lastHealthSweepAt": health_state.get("lastHealthSweepAt", health_state.get("lastSweepAt")),
+        "lastSweep": health_state.get("lastSweep", health_state.get("lastSweepSummary")),
         "websiteChecks": health_state.get("probes", {}),
         "publicAcceptance": {
             "workflowURL": "https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml",
@@ -1233,7 +1357,7 @@ def write_status_report(
         "",
         f"Status last changed: {status['generatedAt']}",
         "",
-        f"Last website sweep: {health_state.get('lastHealthSweepAt') or 'not recorded by the legacy checker'}",
+        f"Last website sweep: {health_state.get('lastHealthSweepAt', health_state.get('lastSweepAt')) or 'not recorded by the legacy checker'}",
         "Website reachability, package delivery and chapter reading are separate checks.",
         "[Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)",
         "",
@@ -1409,6 +1533,7 @@ def main() -> None:
     active_upstreams = tuple(
         upstream for upstream in UPSTREAMS if upstream["name"] == ACTIVE_REPOSITORY
     )
+    write_rollback_snapshot()
     write_catalog(
         active_selected,
         active_duplicates,

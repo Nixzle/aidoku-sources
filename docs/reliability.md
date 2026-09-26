@@ -10,7 +10,7 @@ None of these claims alone proves that every chapter renders on an iPhone. Cloud
 
 ## Execution
 
-Existing `Daily source update` remains the only scheduled catalog updater. The two acceptance workflows run after the existing `pages build and deployment` workflow. Both support a manual dispatch for recovery. No extra ChatGPT schedule, local wake process, privileged repository token or service account is required.
+Existing `Daily source update` remains the only scheduled catalog updater. Its concurrent lightweight chapter endpoint checks, required-package Pages checks and committed rollback metadata are preserved alongside the deeper acceptance workflows. The two acceptance workflows run after the existing `pages build and deployment` workflow. Both support a manual dispatch for recovery. No extra ChatGPT schedule, local wake process, privileged repository token or service account is required.
 
 `Public feed acceptance` checks both feeds and all source packages, not just a sample. It compares served manifests to `git show <full SHA>:<path>` rather than a working copy with potentially different line endings. Failed delivery has a separate bot-owned incident from updater failures. It does not silently change the install URL or switch users to legacy sources.
 
@@ -68,3 +68,7 @@ Do not automatically revert `main` or overwrite concurrent edits. Identify the l
 ## Chapter failure reports
 
 A useful report includes source ID/name, source version, Aidoku version, series title, chapter number and whether the same page loads using the reader's website button. No account cookies or login tokens should be posted. A chapter number alone cannot identify a source or justify a parser change.
+
+## Concurrent-change reconciliation
+
+The integration preserves the Aidoku 0.9 compatibility floor for Comix and Read Comics Online, the existing critical chapter fixtures and their tests, and the previous metadata snapshot. The version-1 health state from the concurrent deployment is retained without replaying same-day failure counters; version 2 takes over on the next eligible sweep. A metadata-only rollback snapshot is not a substitute for the separately verified complete package recovery bundle.
