@@ -45,6 +45,18 @@ def valid_pass(report: dict) -> bool:
             and (report.get("firstPageBytes", 0) > 64 or report.get("firstPageTextLength", 0) > 0))
 
 
+def overall_status(results: list[dict]) -> str:
+    if not results or any(item.get("status") not in {"passed", "failed", "blocked", "inconclusive"} for item in results):
+        return "failed"
+    if any(item.get("status") == "failed" or (item.get("status") == "passed" and not valid_pass(item)) for item in results):
+        return "failed"
+    if all(valid_pass(item) for item in results):
+        return "passed"
+    if any(item.get("status") == "inconclusive" for item in results):
+        return "inconclusive"
+    return "blocked"
+
+
 def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path) -> dict:
     inventory = json.loads((root / "inventory.json").read_text(encoding="utf-8-sig"))
     item = next((entry for entry in inventory["sources"] if entry["id"] == source_id), None)
@@ -76,14 +88,18 @@ def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path)
             (output / f"{source_id}.stderr.log").write_bytes(process.stderr)
             report = json.loads(result_file.read_text()) if result_file.exists() else {
                 "status": "failed", "error": "runner did not produce a result", "exitCode": process.returncode}
+            report["exitCode"] = process.returncode
             if process.returncode != 0 or not valid_pass(report):
                 report["status"] = "failed"
                 report.setdefault("error", "incomplete functional acceptance")
-                if any(event.get("status") in (401,403,429,451) for event in report.get("network", [])):
+                network = report.get("network", [])
+                if network and network[-1].get("status") in (401, 403, 429, 451):
                     report["status"] = "blocked"
                     report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
-        except subprocess.TimeoutExpired:
-            report = {"status": "blocked", "error": "150-second per-source timeout"}
+        except subprocess.TimeoutExpired as error:
+            (output / f"{source_id}.stdout.log").write_bytes(error.stdout or b"")
+            (output / f"{source_id}.stderr.log").write_bytes(error.stderr or b"")
+            report = {"status": "inconclusive", "error": "150-second per-source timeout; no protection diagnosis established"}
         report.update(id=source_id, version=item["version"], packageSha256=digest,
                       wasmSha256=hashlib.sha256(wasm).hexdigest(), checkedAt=utc_now())
         return report
@@ -106,22 +122,25 @@ def main() -> int:
         (args.output / f"{source_id}.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
         results.append(result)
         print(source_id, result["status"], result.get("stage", "setup"), result.get("error", ""))
-    statuses = [str(item.get("status", "failed")) for item in results]
-    if any(status == "failed" for status in statuses):
-        overall = "failed"
-    elif all(valid_pass(item) for item in results):
-        overall = "passed"
-    else:
-        # Cloudflare/WAF protection cannot be completed by a headless runner.
-        # Preserve that limitation as blocked evidence without pretending the
-        # source itself failed. A deterministic parser/runtime failure remains
-        # a hard CI failure above.
-        overall = "blocked"
+    overall = overall_status(results)
     report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":utc_now(),
               "status":overall,
               "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
               "cases":results}
     (args.output / "summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
+    output_path = os.environ.get("GITHUB_OUTPUT")
+    if output_path:
+        with open(output_path, "a", encoding="utf-8") as handle:
+            handle.write(f"acceptance={overall}\n")
+            unverified = ", ".join(item["id"] for item in results if item.get("status") != "passed")
+            handle.write(f"unverified_sources={unverified}\n")
+    step_summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if step_summary:
+        with open(step_summary, "a", encoding="utf-8") as handle:
+            handle.write("## Functional source acceptance\n\n")
+            for item in results:
+                handle.write(f"- {item['id']}: **{item['status']}** at {item.get('stage', 'setup')}\n")
+            handle.write("\nA green job with blocked or inconclusive sources is not a reader pass.\n")
     if overall == "blocked":
         blocked = ", ".join(item["id"] for item in results if item.get("status") == "blocked")
         print(f"::warning::Functional acceptance blocked by site protection: {blocked}")

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T04:05:00+00:00",
+  "generatedAt": "2026-09-26T05:23:59+00:00",
   "summary": {
     "maintained": 53,
     "legacyOnly": 47,
@@ -7,22 +7,6 @@
     "automaticQuarantined": 4,
     "degraded": 2,
     "requiredDegraded": 1
-  },
-  "healthSweep": {
-    "lastSweepAt": "2026-09-26T04:04:33+00:00",
-    "summary": {
-      "attempted": 57,
-      "conclusive": 48,
-      "kinds": {
-        "auth_required": 1,
-        "healthy": 38,
-        "inconclusive_exception": 4,
-        "network_error": 4,
-        "protected": 8,
-        "server_error": 1,
-        "transient_http_error": 1
-      }
-    }
   },
   "requiredMaintainedSources": [
     "en.comix",
@@ -58,6 +42,22 @@
       "httpStatus": 403
     }
   ],
+  "healthSweep": {
+    "lastSweepAt": "2026-09-26T04:04:33+00:00",
+    "summary": {
+      "attempted": 57,
+      "conclusive": 48,
+      "kinds": {
+        "auth_required": 1,
+        "healthy": 38,
+        "inconclusive_exception": 4,
+        "network_error": 4,
+        "protected": 8,
+        "server_error": 1,
+        "transient_http_error": 1
+      }
+    }
+  },
   "manualQuarantine": [
     {
       "id": "en.aquamanga",
@@ -111,10 +111,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-09-24",
-      "lastProbeAt": null,
-      "lastStateChangeAt": null,
-      "lastProbeKind": null,
-      "lastHttpStatus": null,
       "required": false
     },
     {
@@ -125,10 +121,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15",
-      "lastProbeAt": null,
-      "lastStateChangeAt": null,
-      "lastProbeKind": null,
-      "lastHttpStatus": null,
       "required": false
     },
     {
@@ -139,10 +131,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15",
-      "lastProbeAt": null,
-      "lastStateChangeAt": null,
-      "lastProbeKind": null,
-      "lastHttpStatus": null,
       "required": false
     },
     {
@@ -153,10 +141,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15",
-      "lastProbeAt": null,
-      "lastStateChangeAt": null,
-      "lastProbeKind": null,
-      "lastHttpStatus": null,
       "required": false
     }
   ],
@@ -169,11 +153,9 @@
       "consecutiveFailures": 2,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-09-26",
+      "required": false,
       "lastProbeAt": "2026-09-26T04:04:33+00:00",
-      "lastStateChangeAt": "2026-09-26T04:04:33+00:00",
-      "lastProbeKind": "server_error",
-      "lastHttpStatus": 503,
-      "required": false
+      "lastStateChangeAt": "2026-09-26T04:04:33+00:00"
     },
     {
       "id": "en.mangatx",
@@ -183,11 +165,30 @@
       "consecutiveFailures": 1,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-09-25",
-      "lastProbeAt": null,
-      "lastStateChangeAt": null,
-      "lastProbeKind": null,
-      "lastHttpStatus": null,
       "required": false
     }
-  ]
+  ],
+  "lastHealthSweepAt": "2026-09-26T04:04:33+00:00",
+  "lastSweep": {
+    "attempted": 57,
+    "conclusive": 48,
+    "kinds": {
+      "auth_required": 1,
+      "healthy": 38,
+      "inconclusive_exception": 4,
+      "network_error": 4,
+      "protected": 8,
+      "server_error": 1,
+      "transient_http_error": 1
+    }
+  },
+  "websiteChecks": {},
+  "publicAcceptance": {
+    "workflowURL": "https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml",
+    "resultAuthority": "The post-deployment workflow receipt, not this pre-deployment catalog"
+  },
+  "functionalAcceptance": {
+    "workflowURL": "https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml",
+    "resultAuthority": "Pinned-package runtime report; blocked checks are not passes"
+  }
 }

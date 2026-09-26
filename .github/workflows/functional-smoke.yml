@@ -1,6 +1,7 @@
 name: Functional source smoke
 
 on:
+  page_build:
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
@@ -35,6 +36,9 @@ env:
 
 jobs:
   smoke:
+    outputs:
+      acceptance: ${{ steps.functional.outputs.acceptance }}
+      unverified_sources: ${{ steps.functional.outputs.unverified_sources }}
     if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 35
@@ -47,6 +51,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Build candidate catalog
+        if: github.event_name == 'pull_request'
         run: python scripts/update_sources.py
       - name: Validate candidate source bytes before execution
         run: |
@@ -92,6 +97,7 @@ jobs:
             runtime-smoke/target
           key: ${{ steps.rust-cache.outputs.cache-primary-key }}
       - name: Run real source exports through first-page content
+        id: functional
         run: python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke
       - name: Retain functional evidence and dependency lock
         if: always()
@@ -122,3 +128,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           UPDATE_RESULT: ${{ needs.smoke.result }}
           INCIDENT_KIND: functional
+          FUNCTIONAL_STATUS: ${{ needs.smoke.outputs.acceptance }}
+          UNVERIFIED_SOURCES: ${{ needs.smoke.outputs.unverified_sources }}
