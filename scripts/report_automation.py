@@ -44,7 +44,9 @@ def main():
         page += 1
 
     if kind == "functional":
-        results = {"functional WASM acceptance": os.environ.get("UPDATE_RESULT", "unknown")}
+        acceptance = os.environ.get("FUNCTIONAL_STATUS", "unknown")
+        results = {"workflow execution": os.environ.get("UPDATE_RESULT", "unknown"),
+                   "functional WASM acceptance": "success" if acceptance == "passed" else acceptance}
     elif kind == "public":
         results = {"public feed acceptance": os.environ.get("UPDATE_RESULT", "unknown")}
     else:
@@ -62,6 +64,9 @@ def main():
         return
 
     summary = "\n".join(f"- {name}: `{value}`" for name, value in results.items())
+    if kind == "functional":
+        summary += "\n- Unverified source IDs: " + os.environ.get("UNVERIFIED_SOURCES", "see attached run evidence")
+        summary += "\n\nBlocked means the headless runner did not establish reader usability; it is not a confirmed iOS parser failure."
     body = (
         f"{marker}\nOne or more Aidoku reliability checks did not pass.\n\n"
         f"{summary}\n\n[Inspect run]({run}).\n\n"

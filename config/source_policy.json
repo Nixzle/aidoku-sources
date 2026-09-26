@@ -83,5 +83,11 @@
       "allowProtected": true,
       "level": "chapter"
     }
+  },
+  "republishedSources": {
+    "en.readcomicsonline": {
+      "minimumPublishedVersion": 4,
+      "reason": "Replace previously distributed different v3 bytes with a detectable client update. Keep source ID, WASM and chapter keys unchanged; future upstream revisions remain monotonic."
+    }
   }
 }

@@ -300,6 +300,15 @@ def validate_inventory(
             and digest == package_hashes[source_id],
             f"{catalog_name}: {source_id} inventory checksum mismatch",
         )
+        validate_provenance(inventory_entry, f"{catalog_name}: {source_id}")
+        try:
+            try:
+                from scripts import publication
+            except ModuleNotFoundError:
+                import publication
+            publication.validate_record(inventory_entry, (catalog_root / inventory_entry["file"]).read_bytes())
+        except ValueError as error:
+            raise ValidationFailure(f"{catalog_name}: {source_id}: {error}") from error
         provenance_url = inventory_entry.get("upstreamPackageURL")
         if provenance_url is not None:
             require(
@@ -580,6 +589,32 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
         len(legacy_ids) >= minimum_legacy,
         f"legacy catalog has {len(legacy_ids)} sources; policy requires {minimum_legacy}",
     )
+
+
+def validate_provenance(entry: dict, label: str) -> None:
+    download = entry.get("upstreamPackageURL")
+    if download is not None:
+        require(isinstance(download, str), f"{label}: invalid upstream download URL")
+        parsed = urlsplit(download)
+        require(parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username and not parsed.password,
+                f"{label}: unsafe upstream download URL")
+        require(not (parsed.hostname == "github.com" and "/blob/" in parsed.path),
+                f"{label}: HTML blob page is not a package download URL")
+    fields = {"sourceCommit", "sourcePath", "packageRepository", "provenanceURL"}
+    if fields & set(entry):
+        require(fields <= set(entry), f"{label}: incomplete pinned provenance")
+        commit, path, repository = entry["sourceCommit"], entry["sourcePath"], entry["packageRepository"]
+        require(isinstance(commit, str) and re.fullmatch(r"[0-9a-f]{40}", commit) is not None,
+                f"{label}: provenance commit must be pinned")
+        require(isinstance(repository, str) and re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository) is not None,
+                f"{label}: invalid provenance repository")
+        require(isinstance(path, str) and path.startswith("overrides/") and path.endswith(".aix")
+                and ".." not in path.split("/") and "\\" not in path and "%" not in path
+                and "?" not in path and "#" not in path, f"{label}: invalid provenance path")
+        require(entry["provenanceURL"] == f"https://github.com/{repository}/blob/{commit}/{path}",
+                f"{label}: provenance URL does not match its pin")
+        require(download == f"https://raw.githubusercontent.com/{repository}/{commit}/{path}",
+                f"{label}: package URL does not match its pin")
 
 
 def validate_status(root: Path, maintained_ids: set[str], legacy_ids: set[str]) -> None:

@@ -1,2 +1,4 @@
 __pycache__/
 *.py[cod]
+acceptance/
+runtime-smoke/target/

@@ -1,22 +1,22 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-26T04:05:00+00:00
+Status last changed: 2026-09-26T05:23:59+00:00
 
-Checks run daily; this timestamp changes only when catalog or health status changes.
+Last website sweep: 2026-09-26T04:04:33+00:00
+Website reachability, package delivery and chapter reading are separate checks.
+[Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
 - Maintained: 53
 - Legacy-only: 47
 - Manually quarantined: 4
 - Automatically quarantined: 4
 - Degraded/under observation: 2
-- Required degraded/unknown: 1
-- Last health sweep: 2026-09-26T04:04:33+00:00
 
 ## Required source health
 
-- **Comix** (`en.comix`): healthy (healthy)
-- **MangaDistrict** (`en.mangadistrict`): healthy (healthy)
-- **Read Comics Online** (`en.readcomicsonline`): degraded (protected)
+- **Comix** (`en.comix`): healthy (healthy); reader not certified by reachability
+- **MangaDistrict** (`en.mangadistrict`): healthy (healthy); reader not certified by reachability
+- **Read Comics Online** (`en.readcomicsonline`): degraded (protected); reader not certified by reachability
 
 ## Quarantined
 
@@ -31,5 +31,5 @@ Checks run daily; this timestamp changes only when catalog or health status chan
 
 ## Under observation
 
-- **Elf Toon** (`en.elftoon`): 2 consecutive failed check(s), last observed 2026-09-26
-- **MangaTx** (`en.mangatx`): 1 consecutive failed check(s), last observed 2026-09-25
+- **Elf Toon** (`en.elftoon`): 2 failed sample(s); legacy observation; last probe 2026-09-26T04:04:33+00:00
+- **MangaTx** (`en.mangatx`): 1 failed sample(s); legacy observation; last probe 2026-09-25

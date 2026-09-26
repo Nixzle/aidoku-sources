@@ -40,3 +40,24 @@ json("inventory.json").then(data => {
   put("catalog-changed", "Catalog last changed: " + date(data.generatedAt));
   if (Number.isInteger(data.sourceCount)) put("source-count", data.sourceCount + " sources available.");
 }).catch(() => put("catalog-changed", "Catalog timestamp unavailable."));
+
+// Workflow completion is not the same as every source passing a functional test.
+for (const [workflow,id,label] of [
+  ["public-acceptance.yml","public-acceptance","Public feed verification job"],
+  ["functional-smoke.yml","functional-acceptance","Functional workflow execution"]
+]) {
+  const endpoint = "https://api.github.com/repos/Nixzle/aidoku-sources/actions/workflows/" + workflow + "/runs?branch=main&per_page=1";
+  json(endpoint).then(data => {
+    const latest = data.workflow_runs?.[0];
+    if (!latest) throw new Error("No acceptance run");
+    const result = latest.status === "completed" ? latest.conclusion : latest.status;
+    const age = Date.now() - Date.parse(latest.updated_at);
+    const note = workflow === "functional-smoke.yml" ? " / See evidence for passed or blocked sources" : "";
+    put(id, label + ": " + result + " / " + date(latest.updated_at) + (age > 48*60*60*1000 ? " / stale evidence" : "") + note);
+  }).catch(() => put(id,label + ": unable to verify. Open the evidence link below."));
+}
+json("status.json").then(data => {
+  const value = data.lastHealthSweepAt;
+  put("website-sweep", "Last website sweep: " + (value ? date(value) : "not recorded")
+      + (data.lastSweep?.accepted === false ? " / inconclusive; health counters preserved" : ""));
+}).catch(() => put("website-sweep","Last website sweep: unable to verify."));
