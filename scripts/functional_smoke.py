@@ -21,7 +21,7 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-CASES = {"en.comix": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
+CASES = {"en.asurascans": "solo", "en.comix": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
 
 
 def settings_defaults(items) -> dict:
@@ -110,11 +110,14 @@ def main() -> int:
     parser.add_argument("--runner", type=Path, required=True)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, default=Path("acceptance/functional"))
+    parser.add_argument("--source", action="append", choices=sorted(CASES))
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     runner = args.runner.resolve()
     results = []
     for source_id, query in CASES.items():
+        if args.source and source_id not in args.source:
+            continue
         try:
             result = run_case(args.root, runner, source_id, query, args.output)
         except Exception as error:
@@ -126,7 +129,7 @@ def main() -> int:
     report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":utc_now(),
               "status":overall,
               "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
-              "cases":results}
+              "catalogRoot":str(args.root), "cases":results}
     (args.output / "summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     output_path = os.environ.get("GITHUB_OUTPUT")
     if output_path:

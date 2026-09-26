@@ -1,0 +1,23 @@
+{
+  "upstreamRepository": "Aidoku-Community/sources",
+  "upstreamCommit": "5964c70831435db2109c020fa7dafbffaf40b525",
+  "license": "MIT OR Apache-2.0",
+  "sources": [
+    {
+      "id": "en.comix",
+      "upstreamPath": "sources/en.comix",
+      "baseVersion": 23,
+      "candidateVersion": 24,
+      "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
+    },
+    {
+      "id": "en.asurascans",
+      "upstreamPath": "sources/en.asurascans",
+      "baseVersion": 19,
+      "candidateVersion": 20,
+      "sdkCommit": "b0818704a5487778999bcd11239fa4c7a44da6ab"
+    }
+  ],
+  "modifications": "Bounded native-to-WebView transport, reader error handling, page parser, verification state and request-header fixes. See README.md.",
+  "restrictedDonors": "No Yomu binary or code was copied."
+}
