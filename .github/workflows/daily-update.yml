@@ -68,6 +68,7 @@ jobs:
             index.min.json \
             inventory.json \
             legacy \
+            rollback \
             status.json \
             status.md \
             sources
@@ -88,8 +89,46 @@ jobs:
             git push origin HEAD:main
           fi
 
-  report:
+  critical-smoke:
     needs: update
+    if: ${{ needs.update.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+          check-latest: false
+      - name: Exercise critical chapter endpoints
+        run: python scripts/critical_smoke.py
+
+  public-acceptance:
+    needs: update
+    if: ${{ needs.update.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+          check-latest: false
+      - name: Verify public Pages catalog and required packages
+        run: python scripts/public_acceptance.py
+
+  report:
+    needs: [update, critical-smoke, public-acceptance]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -105,3 +144,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           UPDATE_RESULT: ${{ needs.update.result }}
+          SMOKE_RESULT: ${{ needs.critical-smoke.result }}
+          ACCEPTANCE_RESULT: ${{ needs.public-acceptance.result }}

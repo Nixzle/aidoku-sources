@@ -258,7 +258,7 @@ class HealthStateTests(unittest.TestCase):
         )
         self.assertEqual(state["sources"]["en.example"]["consecutiveFailures"], 1)
 
-    def test_ongoing_failure_does_not_rewrite_stable_quarantine(self):
+    def test_ongoing_failure_updates_probe_time_without_advancing_failure_count(self):
         original = {
             "version": 1,
             "sources": {
@@ -267,14 +267,30 @@ class HealthStateTests(unittest.TestCase):
                     "consecutiveFailures": 3,
                     "consecutiveSuccesses": 0,
                     "lastObservationDate": "2026-08-10",
+                    "lastStateChangeAt": "2026-08-10T00:00:00+00:00",
                 }
             },
         }
         updated, quarantined = updater.update_health_state(
             original, {"en.example": False}, observation_date="2026-08-11"
         )
-        self.assertEqual(updated, original)
+        record = updated["sources"]["en.example"]
+        self.assertEqual(record["consecutiveFailures"], 3)
+        self.assertEqual(record["lastProbeAt"], "2026-08-11T00:00:00+00:00")
+        self.assertEqual(record["lastStateChangeAt"], "2026-08-10T00:00:00+00:00")
         self.assertEqual(quarantined, {"en.example"})
+
+    def test_cloudflare_probe_is_classified_as_protected(self):
+        error = updater.urllib.error.HTTPError(
+            "https://example.com", 403, "Forbidden", {}, None
+        )
+        with mock.patch.object(updater, "_is_public_host", return_value=True), mock.patch.object(
+            updater, "_open_url", side_effect=error
+        ):
+            observation = updater.probe_source_health("https://example.com", attempts=1)
+        self.assertEqual(observation["kind"], "protected")
+        self.assertTrue(observation["reachable"])
+        self.assertTrue(observation["conclusive"])
 
     def test_refresh_does_not_probe_twice_on_a_recorded_day(self):
         today = updater.datetime.now(updater.timezone.utc).date().isoformat()
