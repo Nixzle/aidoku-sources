@@ -802,151 +802,209 @@ def _health_state(path: Path = HEALTH_STATE_PATH) -> dict:
     return state
 
 
-def probe_source_url(url: str, *, attempts: int = 2) -> bool:
-    """Return whether a website is reachable; protected HTTP responses count."""
+def _health_observation(kind: str, *, reachable: bool, conclusive: bool,
+                        http_status: int | None = None, detail: str | None = None) -> dict:
+    value = {"kind": kind, "reachable": bool(reachable), "conclusive": bool(conclusive)}
+    if http_status is not None:
+        value["httpStatus"] = int(http_status)
+    if detail:
+        value["detail"] = str(detail)[:300]
+    return value
+
+
+def probe_source_health(url: str, *, attempts: int = 2) -> dict:
+    """Classify a probe; protection is reachable but not equivalent to functional health."""
     parsed = _safe_https_url(url, "source health URL")
     host = parsed.hostname.casefold()
     if not _is_public_host(host):
-        return False
+        return _health_observation("unsafe_or_unresolvable_host", reachable=False, conclusive=True)
+    protected = {401: "auth_required", 403: "protected", 429: "rate_limited", 451: "restricted"}
+    last = _health_observation("inconclusive", reachable=False, conclusive=False)
     for attempt in range(max(1, attempts)):
         try:
-            request = urllib.request.Request(
-                url,
-                headers={"User-Agent": USER_AGENT, "Range": "bytes=0-0"},
-            )
-            with _open_url(
-                request,
-                timeout=HEALTH_TIMEOUT_SECONDS,
-                allowed_hosts={host},
-                require_public=True,
-            ) as response:
+            request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Range": "bytes=0-0"})
+            with _open_url(request, timeout=HEALTH_TIMEOUT_SECONDS, allowed_hosts={host},
+                           require_public=True) as response:
                 status = int(getattr(response, "status", response.getcode()))
                 final_url = response.geturl() if hasattr(response, "geturl") else url
                 _safe_https_url(final_url, "final source health URL")
                 response.read(1)
-                return 200 <= status < 400 or status in PROTECTED_HTTP_STATUSES
+                if 200 <= status < 400:
+                    return _health_observation("healthy", reachable=True, conclusive=True,
+                                               http_status=status)
+                if status in protected:
+                    return _health_observation(protected[status], reachable=True, conclusive=True,
+                                               http_status=status)
+                last = _health_observation("http_error", reachable=False, conclusive=True,
+                                           http_status=status)
         except urllib.error.HTTPError as error:
-            if error.code in PROTECTED_HTTP_STATUSES:
-                return True
-            if 400 <= error.code < 500 and error.code not in {408, 425}:
-                return False
-        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError):
-            pass
+            if error.code in protected:
+                return _health_observation(protected[error.code], reachable=True, conclusive=True,
+                                           http_status=error.code)
+            if 400 <= error.code < 600 and error.code not in {408, 425}:
+                last = _health_observation("client_error" if error.code < 500 else "server_error",
+                                           reachable=False, conclusive=True, http_status=error.code,
+                                           detail=str(error.reason or ""))
+            else:
+                last = _health_observation("transient_http_error", reachable=False, conclusive=False,
+                                           http_status=error.code, detail=str(error.reason or ""))
+        except urllib.error.URLError as error:
+            reason = getattr(error, "reason", None)
+            if isinstance(reason, socket.gaierror):
+                last = _health_observation("dns_failure", reachable=False, conclusive=True,
+                                           detail=str(reason))
+            else:
+                last = _health_observation("network_error", reachable=False, conclusive=False,
+                                           detail=str(reason or error))
+        except (TimeoutError, ConnectionError, OSError) as error:
+            kind = "dns_failure" if isinstance(error, socket.gaierror) else "network_error"
+            last = _health_observation(kind, reachable=False,
+                                       conclusive=isinstance(error, socket.gaierror), detail=str(error))
         if attempt + 1 < max(1, attempts):
             time.sleep(0.25 * (2**attempt))
-    return False
+    return last
 
 
-def observe_source_health(candidates: list[dict], health_policy: dict) -> dict[str, bool]:
+def probe_source_url(url: str, *, attempts: int = 2) -> bool:
+    """Compatibility wrapper for callers that only need reachability."""
+    return bool(probe_source_health(url, attempts=attempts).get("reachable"))
+
+
+def observe_source_health(candidates: list[dict], health_policy: dict) -> dict[str, dict]:
     attempts = int(health_policy.get("probeAttempts", 2))
-    observations: dict[str, bool] = {}
+    observations: dict[str, dict] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=HEALTH_WORKERS) as executor:
         futures = {
-            executor.submit(probe_source_url, candidate["baseURL"], attempts=attempts): candidate["id"]
-            for candidate in candidates
-            if candidate.get("baseURL")
+            executor.submit(probe_source_health, candidate["baseURL"], attempts=attempts): candidate["id"]
+            for candidate in candidates if candidate.get("baseURL")
         }
         for future in concurrent.futures.as_completed(futures):
             source_id = futures[future]
             try:
-                observations[source_id] = bool(future.result())
+                observations[source_id] = dict(future.result())
             except Exception as error:
-                print(f"WARNING: health probe for {source_id} was inconclusive: {error}")
+                observations[source_id] = _health_observation(
+                    "inconclusive_exception", reachable=False, conclusive=False, detail=str(error)
+                )
     return observations
 
 
-def update_health_state(
-    state: dict,
-    observations: dict[str, bool],
-    *,
-    observation_date: str,
-    failure_threshold: int = 3,
-    recovery_threshold: int = 2,
-) -> tuple[dict, set[str]]:
-    """Update daily counters; repeated runs on one UTC day do not double-count."""
+def _normalize_health_observation(value) -> dict:
+    if isinstance(value, bool):
+        return _health_observation("healthy" if value else "unreachable",
+                                   reachable=value, conclusive=True)
+    if not isinstance(value, dict):
+        raise ValueError("health observation must be a boolean or object")
+    return _health_observation(
+        str(value.get("kind", "unknown")),
+        reachable=bool(value.get("reachable", False)),
+        conclusive=bool(value.get("conclusive", False)),
+        http_status=value.get("httpStatus"),
+        detail=value.get("detail"),
+    )
+
+
+def update_health_state(state: dict, observations: dict[str, object], *, observation_date: str,
+                        observation_at: str | None = None, failure_threshold: int = 3,
+                        recovery_threshold: int = 2) -> tuple[dict, set[str]]:
+    """Advance counters only for conclusive daily observations and retain truthful timestamps."""
     if failure_threshold < 2 or recovery_threshold < 2:
         raise ValueError("Health thresholds must both be at least 2")
-    updated = {"version": 1, "sources": dict(state.get("sources", {}))}
+    observed_at = observation_at or f"{observation_date}T00:00:00+00:00"
+    updated = dict(state)
+    updated["version"] = 1
+    updated["sources"] = dict(state.get("sources", {}))
     records = updated["sources"]
     for source_id in sorted(observations):
-        reachable = observations[source_id]
+        obs = _normalize_health_observation(observations[source_id])
         validate_source_id(source_id)
+        if not obs["conclusive"]:
+            continue
         previous = dict(records.get(source_id, {}))
         if previous.get("lastObservationDate") == observation_date:
             continue
         status = previous.get("status", "healthy")
-        if reachable:
+        if obs["reachable"]:
             if status == "quarantined":
                 successes = int(previous.get("consecutiveSuccesses", 0)) + 1
                 if successes >= recovery_threshold:
                     records.pop(source_id, None)
                 else:
-                    records[source_id] = {
-                        "status": "quarantined",
-                        "consecutiveFailures": failure_threshold,
-                        "consecutiveSuccesses": successes,
-                        "lastObservationDate": observation_date,
-                    }
+                    previous.update({"status": "quarantined",
+                                     "consecutiveFailures": failure_threshold,
+                                     "consecutiveSuccesses": successes,
+                                     "lastObservationDate": observation_date,
+                                     "lastProbeAt": observed_at,
+                                     "lastProbeKind": obs["kind"]})
+                    if "httpStatus" in obs:
+                        previous["lastHttpStatus"] = obs["httpStatus"]
+                    records[source_id] = previous
             else:
                 records.pop(source_id, None)
-        else:
-            if status == "quarantined":
-                # Keep stable quarantine state stable: only a recovery attempt
-                # changes it, avoiding a timestamp-only daily commit.
-                continue
-            failures = int(previous.get("consecutiveFailures", 0)) + 1
-            failures = min(failures, failure_threshold)
-            records[source_id] = {
-                "status": "quarantined" if failures >= failure_threshold else "failing",
-                "consecutiveFailures": failures,
-                "consecutiveSuccesses": 0,
-                "lastObservationDate": observation_date,
-            }
+            continue
+        failures = min(int(previous.get("consecutiveFailures", 0)) + 1, failure_threshold)
+        new_status = "quarantined" if failures >= failure_threshold else "failing"
+        state_change = previous.get("lastStateChangeAt")
+        if not state_change or status != new_status:
+            state_change = observed_at
+        record = {"status": new_status, "consecutiveFailures": failures,
+                  "consecutiveSuccesses": 0, "lastObservationDate": observation_date,
+                  "lastProbeAt": observed_at, "lastStateChangeAt": state_change,
+                  "lastProbeKind": obs["kind"]}
+        if "httpStatus" in obs:
+            record["lastHttpStatus"] = obs["httpStatus"]
+        records[source_id] = record
     updated["sources"] = {source_id: records[source_id] for source_id in sorted(records)}
-    quarantined = {
-        source_id
-        for source_id, record in records.items()
-        if record.get("status") == "quarantined"
-    }
-    return updated, quarantined
+    return updated, {source_id for source_id, record in records.items()
+                     if record.get("status") == "quarantined"}
 
 
-def refresh_health_state(
-    candidates: list[dict], policy: dict, state_path: Path = HEALTH_STATE_PATH
-) -> tuple[set[str], dict]:
+def refresh_health_state(candidates: list[dict], policy: dict,
+                         state_path: Path = HEALTH_STATE_PATH) -> tuple[set[str], dict]:
     health_policy = policy.get("automaticHealth", {})
     old_state = _health_state(state_path)
-    existing_quarantine = {
-        source_id
-        for source_id, record in old_state["sources"].items()
-        if record.get("status") == "quarantined"
-    }
+    existing = {source_id for source_id, record in old_state["sources"].items()
+                if record.get("status") == "quarantined"}
     if not health_policy.get("enabled", True):
-        return existing_quarantine, old_state
-    today = datetime.now(timezone.utc).date().isoformat()
-    if any(
-        record.get("lastObservationDate") == today
-        for record in old_state["sources"].values()
+        return existing, old_state
+    now = datetime.now(timezone.utc).replace(microsecond=0)
+    today = now.date().isoformat()
+    if old_state.get("lastSweepDate") == today or (
+        "lastSweepDate" not in old_state
+        and any(record.get("lastObservationDate") == today for record in old_state["sources"].values())
     ):
-        # A scheduled run already recorded this day's result. Avoid allowing a
-        # manual/retried run to add a second, inconsistent sample for the day.
-        return existing_quarantine, old_state
+        return existing, old_state
     observations = observe_source_health(candidates, health_policy)
     if observations:
-        successes = sum(observations.values())
-        minimum_ratio = float(health_policy.get("minimumConclusiveSuccessRatio", 0.5))
-        if successes / len(observations) < minimum_ratio:
-            print("WARNING: discarding health observations because the probe run appears globally degraded")
-            return existing_quarantine, old_state
+        conclusive = sum(bool(item.get("conclusive")) for item in observations.values())
+        minimum_ratio = float(health_policy.get(
+            "minimumConclusiveRatio", health_policy.get("minimumConclusiveSuccessRatio", 0.5)
+        ))
+        if conclusive / len(observations) < minimum_ratio:
+            print(f"WARNING: discarding health sweep: only {conclusive}/{len(observations)} probes were conclusive")
+            return existing, old_state
+    observed_at = now.isoformat()
     new_state, quarantined = update_health_state(
-        old_state,
-        observations,
-        observation_date=today,
+        old_state, observations, observation_date=today, observation_at=observed_at,
         failure_threshold=int(health_policy.get("failureThreshold", 3)),
         recovery_threshold=int(health_policy.get("recoveryThreshold", 2)),
     )
+    kinds: dict[str, int] = {}
+    for item in observations.values():
+        kind = str(item.get("kind", "unknown"))
+        kinds[kind] = kinds.get(kind, 0) + 1
+    new_state["lastSweepAt"] = observed_at
+    new_state["lastSweepDate"] = today
+    new_state["lastSweepSummary"] = {
+        "attempted": len(observations),
+        "conclusive": sum(bool(item.get("conclusive")) for item in observations.values()),
+        "kinds": {key: kinds[key] for key in sorted(kinds)},
+    }
+    required = set(policy.get("requiredMaintainedSources", []))
+    new_state["requiredObservations"] = {
+        source_id: observations[source_id] for source_id in sorted(required & set(observations))
+    }
     return quarantined, new_state
-
 
 def cached_candidates_for_repository(
     upstream: dict,
