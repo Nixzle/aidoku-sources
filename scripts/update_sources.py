@@ -800,6 +800,15 @@ def load_policy(path: Path = POLICY_PATH) -> dict:
         validate_source_id(source_id, "minimum-version override source ID")
         if not APP_VERSION_RE.fullmatch(str(version)):
             raise ValueError(f"Invalid minimum-version override for {source_id}")
+    refresh_cached_sources = policy.get("refreshCachedSources", [])
+    if not isinstance(refresh_cached_sources, list) or any(
+        not isinstance(source_id, str) for source_id in refresh_cached_sources
+    ):
+        raise ValueError("refreshCachedSources must be a list of source IDs")
+    if len(refresh_cached_sources) != len(set(refresh_cached_sources)):
+        raise ValueError("refreshCachedSources must not contain duplicates")
+    for source_id in refresh_cached_sources:
+        validate_source_id(source_id, "same-version refresh source ID")
     package_overrides = policy.get("localPackageOverrides", {})
     if not isinstance(package_overrides, dict):
         raise ValueError("localPackageOverrides must be an object")
@@ -1405,6 +1414,7 @@ def main() -> None:
     # Force a live check for overrides, but retain their verified cache for
     # outages. A local package must not masquerade as an upstream cache hit.
     override_ids = set(policy.get("localPackageOverrides", {}))
+    refresh_cached_ids = set(policy.get("refreshCachedSources", []))
     current_index, _ = load_current(ROOT)
     legacy_index, _ = load_current(ROOT / "legacy")
     min_app_version_overrides = {
@@ -1461,7 +1471,8 @@ def main() -> None:
                 entry,
                 cache,
                 min_app_version_overrides,
-                upstream["name"] == ACTIVE_REPOSITORY and entry.get("id") in override_ids,
+                upstream["name"] == ACTIVE_REPOSITORY
+                and entry.get("id") in (override_ids | refresh_cached_ids),
             ): (upstream["name"], entry.get("id", "<unknown>"))
             for upstream, entry in indexed_entries
         }

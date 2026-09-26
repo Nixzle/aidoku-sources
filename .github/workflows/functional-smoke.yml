@@ -5,8 +5,21 @@ on:
     workflows: ["pages build and deployment"]
     types: [completed]
     branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - "sources/**"
+      - "overrides/**"
+      - "index.min.json"
+      - "inventory.json"
+      - "config/source_policy.json"
+      - "runtime-smoke/**"
+      - "scripts/functional_smoke.py"
+      - "scripts/update_sources.py"
+      - "scripts/validate_catalog.py"
+      - ".github/workflows/functional-smoke.yml"
   pull_request:
-    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", ".github/workflows/functional-smoke.yml"]
+    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", "scripts/update_sources.py", "scripts/validate_catalog.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
   workflow_dispatch:
 
 permissions:
@@ -33,8 +46,23 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: "3.13"
-      - name: Validate source bytes before execution
-        run: python scripts/validate_catalog.py
+      - name: Build candidate catalog
+        if: github.event_name == 'pull_request'
+        run: python scripts/update_sources.py
+      - name: Validate candidate source bytes before execution
+        run: |
+          python scripts/validate_catalog.py
+          git diff --check
+      - name: Record critical candidate identity
+        run: |
+          python - <<'PY'
+          import json
+          wanted = {"en.comix", "en.mangadistrict", "en.readcomicsonline"}
+          inventory = json.load(open("inventory.json", encoding="utf-8"))
+          for item in inventory["sources"]:
+              if item["id"] in wanted:
+                  print(item["id"], "v" + str(item["version"]), item["sha256"], item.get("upstreamPackageURL"), item.get("provenanceURL"))
+          PY
       - name: Rust toolchain identity
         id: toolchain
         run: echo "version=$(rustc --version | tr ' ' '-')" >> "$GITHUB_OUTPUT"

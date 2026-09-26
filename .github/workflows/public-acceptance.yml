@@ -8,6 +8,17 @@ on:
   push:
     branches: [main]
     paths:
+      - "index.min.json"
+      - "index.json"
+      - "inventory.json"
+      - "CHECKSUMS.sha256"
+      - "status.json"
+      - "status.md"
+      - "config/source_policy.json"
+      - "config/source_health.json"
+      - "sources/**"
+      - "icons/**"
+      - "legacy/**"
       - "scripts/verify_public.py"
       - ".github/workflows/public-acceptance.yml"
   workflow_dispatch:

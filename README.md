@@ -32,7 +32,7 @@ Current degraded and quarantined sources are listed in the [public status report
 
 The original ReadComicOnline websites no longer resolve, so that broken entry is hidden from the maintained list. Install **Read Comics Online** (with spaces) instead. It is a separate website, so bookmarks from the original source do not migrate automatically.
 
-Read Comics Online v3 reuses the Cloudflare clearance obtained through **Source Settings > Verify Read Comics Online Access**. Complete the check once and return to Browse; repeat it only when the website expires the clearance. If it remains stuck, update Aidoku to 0.9 or newer, clear the network cache under Aidoku's Advanced settings, and retry.
+The maintained Read Comics Online build reuses the Cloudflare clearance obtained through **Source Settings > Verify Read Comics Online Access**. Complete the check once and return to Browse; repeat it only when the website expires the clearance. If it remains stuck, update Aidoku to 0.9 or newer, clear the network cache under Aidoku's Advanced settings, and retry.
 
 Comix already reuses its verification cookie, but Comix itself currently gives that cookie a short lifetime (about 30 minutes). Use **Source Settings > Verify Comix Captcha** when it expires. That limit is controlled by Comix and cannot be extended by this catalog host. **BatCave** is included as a second comics fallback; open its source settings and use **Verify BatCave Access** if it fails to load.
 

@@ -14,7 +14,7 @@ Existing `Daily source update` remains the only scheduled catalog updater. Its c
 
 `Public feed acceptance` checks both feeds and all source packages, not just a sample. It compares served manifests to `git show <full SHA>:<path>` rather than a working copy with potentially different line endings. Failed delivery has a separate bot-owned incident from updater failures. It does not silently change the install URL or switch users to legacy sources.
 
-`Functional source smoke` uses a separate hosted runner. Rust dependencies are locked, the donor is commit-pinned, and build caching is distinct from website acceptance so a Cloudflare block does not force rebuilding the runtime daily. Blocked and incomplete checks fail acceptance and retain their per-source evidence. The site is not automatically quarantined solely because a headless runner was blocked.
+`Functional source smoke` uses a separate hosted runner. Rust dependencies are locked, the donor is commit-pinned, and build caching is distinct from website acceptance so a Cloudflare block does not force rebuilding the runtime daily. Blocked and incomplete checks never pass functional acceptance and retain their per-source evidence. A protection-only block is a workflow warning, not a successful source check; deterministic parser/runtime failures fail the workflow. The site is not automatically quarantined solely because a headless runner was blocked.
 
 ## Health state version 2
 
@@ -30,7 +30,7 @@ Three failure samples quarantine an ordinary source. Two consecutive successful 
 
 ## Package provenance
 
-The Read Comics Online override preserves its reviewed bytes and SHA-256. Its provenance page, raw artifact download URL, package repository, full commit and package path are separate fields. `sourceCommit` and `sourcePath` identify the committed **package artifact**; they do not claim that the underlying Rust implementation is reproducibly built from that commit. The validator rejects HTML blob pages as downloads, partial pins and contradictions between URL, path and commit.
+The obsolete Read Comics Online override has been retired by the concurrent source repair. Its approved same-version refresh policy must remain in place so stale v3 bytes do not mask the corrected upstream v3 package. For any future reviewed local override, its provenance page, raw artifact download URL, package repository, full commit and package path are separate fields. `sourceCommit` and `sourcePath` identify the committed **package artifact**; they do not claim that the underlying Rust implementation is reproducibly built from that commit. The validator rejects HTML blob pages as downloads, partial pins and contradictions between URL, path and commit.
 
 ## Runtime donor and limits
 
@@ -72,3 +72,5 @@ A useful report includes source ID/name, source version, Aidoku version, series 
 ## Concurrent-change reconciliation
 
 The integration preserves the Aidoku 0.9 compatibility floor for Comix and Read Comics Online, the existing critical chapter fixtures and their tests, and the previous metadata snapshot. The version-1 health state from the concurrent deployment is retained without replaying same-day failure counters; version 2 takes over on the next eligible sweep. A metadata-only rollback snapshot is not a substitute for the separately verified complete package recovery bundle.
+
+Post-deployment and manually dispatched main-branch runtime checks use the committed packages. Pull-request qualification may regenerate a candidate catalog, but records its critical package hashes and does not claim that candidate was already deployed.
