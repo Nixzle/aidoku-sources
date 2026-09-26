@@ -1366,10 +1366,22 @@ def write_status_report(
         f"- Manually quarantined: {len(manual_entries)}",
         f"- Automatically quarantined: {len(automatic_entries)}",
         f"- Degraded/under observation: {len(degraded_entries)}",
+        f"- Required degraded/unknown: {sum(item['severity'] != 'healthy' for item in required_health)}",
+        f"- Last health sweep: {health_state.get('lastSweepAt') or 'not yet recorded'}",
+        "",
+        "## Required source health",
+        "",
+    ]
+    for entry in required_health:
+        lines.append(
+            f"- **{entry['name']}** (`{entry['id']}`): {entry['severity']} "
+            f"({entry.get('kind', 'unknown')})"
+        )
+    lines.extend([
         "",
         "## Quarantined",
         "",
-    ]
+    ])
     if not manual_entries and not automatic_entries:
         lines.append("None.")
     for entry in manual_entries:
