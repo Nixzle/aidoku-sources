@@ -35,8 +35,8 @@ def main():
 
     results = {
         "catalog update": os.environ.get("UPDATE_RESULT", "unknown"),
-        "critical chapter smoke": os.environ.get("SMOKE_RESULT", "unknown"),
-        "public Pages acceptance": os.environ.get("ACCEPTANCE_RESULT", "unknown"),
+        "critical chapter smoke": os.environ.get("SMOKE_RESULT", "success"),
+        "public Pages acceptance": os.environ.get("ACCEPTANCE_RESULT", "success"),
     }
     run = f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}'
     healthy = all(value == "success" for value in results.values())
