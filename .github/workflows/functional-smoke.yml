@@ -15,9 +15,11 @@ on:
       - "config/source_policy.json"
       - "runtime-smoke/**"
       - "scripts/functional_smoke.py"
+      - "scripts/update_sources.py"
+      - "scripts/validate_catalog.py"
       - ".github/workflows/functional-smoke.yml"
   pull_request:
-    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
+    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", "scripts/update_sources.py", "scripts/validate_catalog.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
   workflow_dispatch:
 
 permissions:
