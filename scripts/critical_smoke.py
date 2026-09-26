@@ -55,7 +55,40 @@ def run(policy: dict) -> dict:
     failed = False
     for source_id in sorted(required):
         spec = tests[source_id]
-        status, body = fetch(str(spec["url"]))
+        try:
+            status, body = fetch(str(spec["url"]))
+        except (TimeoutError, socket.timeout) as error:
+            results.append({
+                "id": source_id,
+                "level": spec.get("level", "chapter"),
+                "url": spec["url"],
+                "result": "inconclusive",
+                "httpStatus": None,
+                "detail": f"network timeout: {error}",
+            })
+            continue
+        except urllib.error.URLError as error:
+            reason = getattr(error, "reason", error)
+            if isinstance(reason, socket.gaierror):
+                results.append({
+                    "id": source_id,
+                    "level": spec.get("level", "chapter"),
+                    "url": spec["url"],
+                    "result": "fail",
+                    "httpStatus": None,
+                    "detail": f"DNS failure: {reason}",
+                })
+                failed = True
+            else:
+                results.append({
+                    "id": source_id,
+                    "level": spec.get("level", "chapter"),
+                    "url": spec["url"],
+                    "result": "inconclusive",
+                    "httpStatus": None,
+                    "detail": f"network error: {reason}",
+                })
+            continue
         text = body.decode("utf-8", errors="replace")
         if 200 <= status < 400:
             missing = [marker for marker in spec.get("requiredSubstrings", []) if marker not in text]
@@ -78,7 +111,11 @@ def run(policy: dict) -> dict:
         })
     return {
         "checkedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "result": "fail" if failed else ("degraded" if any(x["result"] == "protected" for x in results) else "pass"),
+        "result": "fail" if failed else (
+            "degraded"
+            if any(x["result"] in {"protected", "inconclusive"} for x in results)
+            else "pass"
+        ),
         "sources": results,
     }
 

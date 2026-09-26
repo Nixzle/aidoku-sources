@@ -65,6 +65,22 @@ class CriticalSmokeTests(unittest.TestCase):
             report = critical_smoke.run(policy)
         self.assertEqual(report["result"], "fail")
 
+    def test_timeout_is_degraded_not_a_runner_crash(self):
+        policy = {
+            "requiredMaintainedSources": ["en.example"],
+            "criticalSmokeTests": {
+                "en.example": {
+                    "url": "https://example.com/chapter-1",
+                    "requiredSubstrings": ["Page 1"],
+                    "allowProtected": True,
+                }
+            },
+        }
+        with mock.patch.object(critical_smoke, "fetch", side_effect=TimeoutError("timed out")):
+            report = critical_smoke.run(policy)
+        self.assertEqual(report["result"], "degraded")
+        self.assertEqual(report["sources"][0]["result"], "inconclusive")
+
 
 class PublicAcceptanceTests(unittest.TestCase):
     def test_public_package_checksum_and_manifest_are_verified(self):

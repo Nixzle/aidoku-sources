@@ -83,8 +83,5 @@
       "allowProtected": true,
       "level": "chapter"
     }
-  },
-  "refreshCachedSources": [
-    "en.readcomicsonline"
-  ]
+  }
 }
