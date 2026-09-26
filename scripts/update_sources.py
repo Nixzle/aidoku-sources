@@ -1298,12 +1298,34 @@ def write_status_report(
             "consecutiveFailures": int(record.get("consecutiveFailures", 0)),
             "consecutiveSuccesses": int(record.get("consecutiveSuccesses", 0)),
             "lastObservationDate": record.get("lastObservationDate"),
+            "lastProbeAt": record.get("lastProbeAt"),
+            "lastStateChangeAt": record.get("lastStateChangeAt"),
+            "lastProbeKind": record.get("lastProbeKind"),
+            "lastHttpStatus": record.get("lastHttpStatus"),
             "required": source_id in required_ids,
         }
         if source_id in automatic_quarantine:
             automatic_entries.append(entry)
         else:
             degraded_entries.append(entry)
+
+    required_health = []
+    for source_id in sorted(required_ids):
+        observation = dict(health_state.get("requiredObservations", {}).get(source_id, {}))
+        kind = str(observation.get("kind", "unknown"))
+        severity = (
+            "healthy" if kind == "healthy"
+            else "degraded" if observation.get("reachable")
+            else "critical" if observation.get("conclusive")
+            else "unknown"
+        )
+        metadata = source_metadata.get(source_id, {})
+        required_health.append({
+            "id": source_id,
+            "name": metadata.get("name", source_id),
+            "severity": severity,
+            **observation,
+        })
 
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     status = {
@@ -1314,8 +1336,14 @@ def write_status_report(
             "manualQuarantined": len(manual_entries),
             "automaticQuarantined": len(automatic_entries),
             "degraded": len(degraded_entries),
+            "requiredDegraded": sum(item["severity"] != "healthy" for item in required_health),
+        },
+        "healthSweep": {
+            "lastSweepAt": health_state.get("lastSweepAt"),
+            "summary": health_state.get("lastSweepSummary", {}),
         },
         "requiredMaintainedSources": sorted(required_ids),
+        "requiredHealth": required_health,
         "manualQuarantine": manual_entries,
         "automaticQuarantine": automatic_entries,
         "degraded": degraded_entries,
