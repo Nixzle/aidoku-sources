@@ -35,7 +35,7 @@ def valid_pass(report: dict) -> bool:
     # An empty test run or mere WASM instantiation is never sufficient.
     return (report.get("status") == "passed" and report.get("stage") == "complete"
             and report.get("runtimeLoaded") is True
-            and all(isinstance(report.get(key), int) and report[key] > 0
+            and all(type(report.get(key)) is int and report[key] > 0
                     for key in ("searchCount", "chapterCount", "pageCount"))
             and (report.get("firstPageBytes", 0) > 64 or report.get("firstPageTextLength", 0) > 0))
 
@@ -103,7 +103,7 @@ def main() -> int:
         print(source_id, result["status"], result.get("stage", "setup"), result.get("error", ""))
     report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":updater.source_health.utc_now(),
               "status":"passed" if all(valid_pass(item) for item in results) else "needs_attention",
-              "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or the unidentified Chapter 220.",
+              "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
               "cases":results}
     (args.output / "summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     return 0 if report["status"] == "passed" else 1

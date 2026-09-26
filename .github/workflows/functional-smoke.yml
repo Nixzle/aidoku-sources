@@ -5,9 +5,6 @@ on:
     workflows: ["pages build and deployment"]
     types: [completed]
     branches: [main]
-  push:
-    branches: ["fix/reliability-20260926"]
-    paths: ["runtime-smoke/**", "scripts/functional_smoke.py", ".github/workflows/functional-smoke.yml"]
   pull_request:
     paths: ["runtime-smoke/**", "scripts/functional_smoke.py", ".github/workflows/functional-smoke.yml"]
   workflow_dispatch:

@@ -95,14 +95,14 @@ fn send_all(mut env: FunctionEnvMut<WasmEnv>, ptr: u32, len: u32) -> i32 {
     0
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 struct SearchResult { entries: Vec<Manga>, #[allow(dead_code)] has_next_page: bool }
 // Keep all wire variants, including the image-reference slot absent in no-import builds.
 #[allow(dead_code)]
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 enum PageContent { Url(String, Option<PageContext>), Text(String), Image(i32), Zip(String,String) }
 #[allow(dead_code)]
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 struct Page { content: PageContent, thumbnail: Option<String>, has_description: bool, description: Option<String> }
 
 struct Runner { store: Store, env: FunctionEnv<WasmEnv>, instance: Instance }
@@ -234,4 +234,40 @@ mod tests {
         let result:SearchResult=postcard::from_bytes(&bytes).unwrap();
         assert!(result.entries.is_empty());
     }
+    #[test]
+    fn offline_wasm_runs_reader_chain_and_rejects_empty_search() {
+        fn payload<T: Serialize>(value: &T) -> String {
+            let bytes=postcard::to_allocvec(value).unwrap();
+            let length=(bytes.len()+8) as u32;
+            let mut result=length.to_le_bytes().to_vec();
+            result.extend_from_slice(&length.to_le_bytes());
+            result.extend(bytes);
+            result.iter().map(|b| format!("\\{:02x}",b)).collect()
+        }
+        for empty in [false,true] {
+            let manga=Manga{key:"fixture-manga".into(),title:"Fixture".into(),
+                chapters:Some(vec![Chapter{key:"fixture-chapter".into(),..Chapter::default()}]),..Manga::default()};
+            let search=SearchResult{entries:if empty{vec![]}else{vec![manga.clone()]},has_next_page:false};
+            let pages=vec![Page{content:PageContent::Text("Fixture chapter body".into()),thumbnail:None,has_description:false,description:None}];
+            let wat=format!(r#"(module
+                (memory (export "memory") 1)
+                (func (export "start"))
+                (func (export "free_result") (param i32))
+                (func (export "get_search_manga_list") (param i32 i32 i32) (result i32) i32.const 64)
+                (func (export "get_manga_update") (param i32 i32 i32) (result i32) i32.const 4096)
+                (func (export "get_page_list") (param i32 i32) (result i32) i32.const 8192)
+                (data (i32.const 64) "{}")
+                (data (i32.const 4096) "{}")
+                (data (i32.const 8192) "{}"))"#,payload(&search),payload(&manga),payload(&pages));
+            let bytes=wasmer::wat2wasm(wat.as_bytes()).unwrap();
+            let path=std::env::temp_dir().join(format!("aidoku-fixture-{}-{empty}.wasm",std::process::id()));
+            std::fs::write(&path,bytes).unwrap();
+            let mut report=json!({});
+            let result=smoke(path.to_str().unwrap(),"fixture",&json!({}),&mut report);
+            std::fs::remove_file(path).unwrap();
+            assert_eq!(result.is_ok(),!empty,"{result:?}");
+            if !empty { assert_eq!(report["stage"],"complete"); assert_eq!(report["pageCount"],1); }
+        }
+    }
+
 }
