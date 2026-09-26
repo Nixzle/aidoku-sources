@@ -108,47 +108,53 @@ impl ReaderRequest {
         origin_for(url, allowed)?;
         Ok(Self {request, url: url.into(), allowed, headers})
     }
-    fn native_attempt(&self) -> Result<ReaderResponse> {
-        let response = self.request.send()?;
-        Ok(ReaderResponse {status: response.status_code(),
-            body: response.get_string()?, url: self.url.clone(),
-            x_enc: response.get_header("x-enc"),
-            challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")})
-    }
-
     pub fn send_with_view(self, view: &WebView) -> Result<ReaderResponse> {
         let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
         let legacy_fallback = defaults_get::<bool>("browserFallback").unwrap_or(true);
+        let Self { request, url, allowed, headers } = self;
         if mode == "browser" {
-            return browser_get_in(view, &self.url, self.allowed, &self.headers);
+            return browser_get_in(view, &url, allowed, &headers);
         }
-        match self.native_attempt() {
-            Ok(value) => {
+        match request.send() {
+            Ok(response) => {
+                let value = ReaderResponse {status: response.status_code(),
+                    body: response.get_string()?, url: url.clone(),
+                    x_enc: response.get_header("x-enc"),
+                    challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")};
                 if !value.blocked() && value.status < 500 { return value.checked(); }
                 if mode == "native" { return value.checked(); }
             }
             Err(error) => {
-                if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error); }
+                if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error.into()); }
             }
         }
         if mode == "auto" && !legacy_fallback {
             bail!("Source request blocked; browser recovery is disabled in source settings");
         }
-        browser_get_in(view, &self.url, self.allowed, &self.headers)
+        browser_get_in(view, &url, allowed, &headers)
     }
 
     pub fn send(self) -> Result<ReaderResponse> {
         let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
+        let Self { request, url, allowed, headers } = self;
         if mode == "browser" {
-            return browser_get(&self.url, self.allowed, &self.headers);
+            return browser_get(&url, allowed, &headers);
         }
-        match self.native_attempt() {
-            Ok(value) if !value.blocked() && value.status < 500 => value.checked(),
-            Ok(value) if mode == "native" => value.checked(),
-            Err(error) if mode == "native" => Err(error),
-            _ => browser_get(&self.url, self.allowed, &self.headers),
+        match request.send() {
+            Ok(response) => {
+                let value = ReaderResponse {status: response.status_code(),
+                    body: response.get_string()?, url: url.clone(),
+                    x_enc: response.get_header("x-enc"),
+                    challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")};
+                if !value.blocked() && value.status < 500 { return value.checked(); }
+                if mode == "native" { return value.checked(); }
+            }
+            Err(error) if mode == "native" => return Err(error.into()),
+            Err(_) => {}
         }
+        browser_get(&url, allowed, &headers)
     }
+
 }
 
 pub fn get(url: &str, allowed: &'static [&'static str], headers: HashMap<String, String>) -> Result<ReaderResponse> {
