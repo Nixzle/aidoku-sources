@@ -1,0 +1,19 @@
+[package]
+name = "aidoku-catalog-smoke"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+aidoku-test-runner = { git = "https://github.com/Aidoku/aidoku-rs", rev = "e1320b0a2e11afb59e4dee374883a2212d325699" }
+aidoku = { git = "https://github.com/Aidoku/aidoku-rs", rev = "e1320b0a2e11afb59e4dee374883a2212d325699", default-features = false }
+anyhow = "1"
+postcard = { version = "1.1", features = ["alloc"] }
+reqwest = { version = "0.12", features = ["blocking"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+wasmer = "6.1"
+
+[profile.dev]
+debug = 0
