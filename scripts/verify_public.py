@@ -13,12 +13,17 @@ import sys
 import time
 import zipfile
 from pathlib import Path, PurePosixPath
+from datetime import datetime, timezone
 from urllib.parse import urljoin, urlsplit, unquote
 
 try:
     from scripts import update_sources as updater
 except ModuleNotFoundError:
     import update_sources as updater
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
 
 BASE_URL = "https://nixzle.github.io/aidoku-sources/"
 TEXT_FILES = ("index.min.json", "index.json", "inventory.json", "CHECKSUMS.sha256",
@@ -143,7 +148,7 @@ def verify(root: Path, commit: str, *, attempts=6, retry_seconds=15) -> tuple[di
         if fetch(path) != expected[path]:
             raise ValueError("Public deployment changed during acceptance; re-run against the new commit")
     report = {"schema": "AIDOKU_PUBLIC_ACCEPTANCE_V1", "status": "passed", "expectedCommit": commit,
-              "checkedAt": updater.source_health.utc_now(), "baseURL": BASE_URL,
+              "checkedAt": utc_now(), "baseURL": BASE_URL,
               "scope": "Public feeds, package metadata, package bytes and icons. Not chapter reading.",
               "manifests": manifests, "packages": sorted(packages, key=lambda p: p["path"]),
               "packageCount": len(packages)}
@@ -170,7 +175,7 @@ def main() -> int:
         code = 0
     except Exception as error:
         report = {"schema": "AIDOKU_PUBLIC_ACCEPTANCE_V1", "status": "failed",
-                  "expectedCommit": args.expected_commit, "checkedAt": updater.source_health.utc_now(),
+                  "expectedCommit": args.expected_commit, "checkedAt": utc_now(),
                   "error": str(error)[:1500]}
         code = 1
     args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

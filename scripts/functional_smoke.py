@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from datetime import datetime, timezone
 import subprocess
 import sys
 import tempfile
@@ -15,6 +16,10 @@ try:
     from scripts import update_sources as updater
 except ModuleNotFoundError:
     import update_sources as updater
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
 
 CASES = {"en.comix": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
 
@@ -80,7 +85,7 @@ def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path)
         except subprocess.TimeoutExpired:
             report = {"status": "blocked", "error": "150-second per-source timeout"}
         report.update(id=source_id, version=item["version"], packageSha256=digest,
-                      wasmSha256=hashlib.sha256(wasm).hexdigest(), checkedAt=updater.source_health.utc_now())
+                      wasmSha256=hashlib.sha256(wasm).hexdigest(), checkedAt=utc_now())
         return report
 
 
@@ -101,7 +106,7 @@ def main() -> int:
         (args.output / f"{source_id}.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
         results.append(result)
         print(source_id, result["status"], result.get("stage", "setup"), result.get("error", ""))
-    report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":updater.source_health.utc_now(),
+    report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":utc_now(),
               "status":"passed" if all(valid_pass(item) for item in results) else "needs_attention",
               "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
               "cases":results}
