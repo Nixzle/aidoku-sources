@@ -4,12 +4,26 @@
     "title": "Connection recovery",
     "items": [
       {
-        "type": "switch",
-        "key": "browserFallback",
-        "title": "Browser fallback for blocked requests",
-        "default": true
+        "type": "select",
+        "key": "connectionMode",
+        "title": "Connection",
+        "values": [
+          "auto",
+          "native",
+          "browser"
+        ],
+        "titles": [
+          "Auto (recommended)",
+          "Native only",
+          "WebView only"
+        ],
+        "default": "auto",
+        "refreshes": [
+          "content"
+        ]
       }
-    ]
+    ],
+    "footer": "Auto tries Aidoku networking first and recovers blocked or transient server-edge requests through WebView. WebView only is useful when Cloudflare accepts the browser session but rejects native requests."
   },
   {
     "type": "group",
@@ -265,5 +279,24 @@
       }
     ],
     "footer": "Please use this button to resolve captcha issues that can cause the source to fail to load. The result is only valid for 30 minutes, so you may have to repeat this process. This button is not for Account Login!"
+  },
+  {
+    "type": "group",
+    "title": "Fallback domain verification",
+    "items": [
+      {
+        "type": "login",
+        "method": "web",
+        "url": "https://comix.ws/@waf/challenge?return=/",
+        "key": "verifyFallback",
+        "title": "Verify comix.ws Captcha",
+        "logoutTitle": "Re-Verify comix.ws Captcha",
+        "notification": "verifyFallback",
+        "refreshes": [
+          "content"
+        ]
+      }
+    ],
+    "footer": "Use only when comix.to is unavailable and the official comix.ws fallback asks for verification."
   }
 ]

@@ -104,20 +104,30 @@ impl ReaderRequest {
         Ok(Self {request, url: url.into(), allowed, headers})
     }
     pub fn send(self) -> Result<ReaderResponse> {
-        // Keep the native attempt: Aidoku uses it to present the user's challenge sheet.
+        let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
+        let legacy_fallback = defaults_get::<bool>("browserFallback").unwrap_or(true);
+        if mode == "browser" {
+            return browser_get(&self.url, self.allowed, &self.headers);
+        }
+
+        // Keep the native attempt in Auto/Native: Aidoku can use it to present the
+        // user's challenge sheet. Auto also recovers native-only 5xx edge failures.
         match self.request.send() {
             Ok(response) => {
                 let value = ReaderResponse {status: response.status_code(),
                     body: response.get_string()?, url: self.url.clone(),
                     x_enc: response.get_header("x-enc"),
                     challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")};
-                if !value.blocked() { return value.checked(); }
+                if !value.blocked() && value.status < 500 { return value.checked(); }
+                if mode == "native" { return value.checked(); }
             }
             Err(error) => {
-                if !defaults_get::<bool>("browserFallback").unwrap_or(true) { return Err(error.into()); }
+                if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error.into()); }
             }
         }
-        if !defaults_get::<bool>("browserFallback").unwrap_or(true) { bail!("Source request blocked; browser recovery is disabled in source settings"); }
+        if mode == "auto" && !legacy_fallback {
+            bail!("Source request blocked; browser recovery is disabled in source settings");
+        }
         browser_get(&self.url, self.allowed, &self.headers)
     }
 }

@@ -1,4 +1,4 @@
-use crate::{VERIFY_COOKIE_KEY, models::ComixChapter, settings::get_verify_cookie};
+use crate::{COMIX_ORIGINS, VERIFY_COOKIE_KEY, models::ComixChapter, settings::get_verify_cookie};
 use aidoku::{
 	HashMap, Result,
 	alloc::{
@@ -11,8 +11,8 @@ use aidoku::{
 
 pub fn create_request_get(url: &str) -> Result<Request> {
 	let mut request = Request::get(url)?;
-	if (url == crate::BASE_URL || url.starts_with(&format!("{}/", crate::BASE_URL)))
-        && let Some(token) = get_verify_cookie() {
+	if COMIX_ORIGINS.iter().any(|base| url == *base || url.starts_with(&format!("{base}/")))
+        && let Some(token) = get_verify_cookie(url) {
 		request = request.header("Cookie", &format!("{VERIFY_COOKIE_KEY}={token}"));
 	}
 	Ok(request)
