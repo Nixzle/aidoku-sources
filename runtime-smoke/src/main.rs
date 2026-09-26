@@ -271,3 +271,7 @@ mod tests {
     }
 
 }
+
+#[cfg(test)]
+#[path = "../../source-fixes/en.asurascans/src/page_data.rs"]
+mod asura_page_data;

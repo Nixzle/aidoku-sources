@@ -1,0 +1,27 @@
+{
+  "sourceCount": 2,
+  "sources": [
+    {
+      "id": "en.asurascans",
+      "version": 20,
+      "file": "sources/en.asurascans-v20.aix",
+      "sha256": "11e55c8e06a384835296da4ef64ec03283e0941b2ef4083e7cd1b9f1b963fb06",
+      "wasmSha256": "b60941d88b4e8241ccd626a4304f5af490d6559b0c772f4e6455851b47a4ab8d",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/9081a2d581561f8b2c3f22a90d99a23ad29d43fc/source-fixes",
+      "sourceCommit": "9081a2d581561f8b2c3f22a90d99a23ad29d43fc",
+      "acceptance": "Candidate: requires iOS reader verification",
+      "license": "MIT OR Apache-2.0"
+    },
+    {
+      "id": "en.comix",
+      "version": 24,
+      "file": "sources/en.comix-v24.aix",
+      "sha256": "839c7004bb7e5319b01bd17d93cfe0f701f66e17e59e4237d3d8f0da69ad05e9",
+      "wasmSha256": "34038491751d30ef1f6ce78a08f9d3ba04524a278b2d79bd7045cf1b30a2bce4",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/9081a2d581561f8b2c3f22a90d99a23ad29d43fc/source-fixes",
+      "sourceCommit": "9081a2d581561f8b2c3f22a90d99a23ad29d43fc",
+      "acceptance": "Candidate: requires iOS reader verification",
+      "license": "MIT OR Apache-2.0"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "AIDOKU_FUNCTIONAL_SMOKE_V1",
+  "checkedAt": "2026-09-26T05:29:57+00:00",
+  "status": "blocked",
+  "scope": "Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
+  "catalogRoot": "reader-candidates",
+  "cases": [
+    {
+      "chapterCount": 145,
+      "firstPageBytes": 267618,
+      "firstPageSha256": "26a4bf1132e6bb68deaf6bf6670d9ec8c3641dc48df7fa3225171166ee30b3bb",
+      "network": [
+        {
+          "host": "asurascans.com",
+          "status": 200
+        },
+        {
+          "host": "asurascans.com",
+          "status": 302
+        },
+        {
+          "host": "asurascans.com",
+          "status": 200
+        },
+        {
+          "host": "api.asurascans.com",
+          "status": 200
+        },
+        {
+          "host": "cdn.asurascans.com",
+          "status": 200
+        }
+      ],
+      "pageCount": 22,
+      "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
+      "runtimeLoaded": true,
+      "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
+      "searchCount": 10,
+      "stage": "complete",
+      "status": "passed",
+      "id": "en.asurascans",
+      "version": 20,
+      "packageSha256": "11e55c8e06a384835296da4ef64ec03283e0941b2ef4083e7cd1b9f1b963fb06",
+      "wasmSha256": "b60941d88b4e8241ccd626a4304f5af490d6559b0c772f4e6455851b47a4ab8d",
+      "checkedAt": "2026-09-26T05:29:52+00:00"
+    },
+    {
+      "error": "source returned error -1 at get_search_manga_list",
+      "network": [
+        {
+          "host": "comix.to",
+          "status": 403
+        }
+      ],
+      "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
+      "runtimeLoaded": true,
+      "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
+      "stage": "search",
+      "status": "blocked",
+      "limitation": "Protected HTTP response observed. Headless run cannot establish in-app usability.",
+      "id": "en.comix",
+      "version": 24,
+      "packageSha256": "839c7004bb7e5319b01bd17d93cfe0f701f66e17e59e4237d3d8f0da69ad05e9",
+      "wasmSha256": "34038491751d30ef1f6ce78a08f9d3ba04524a278b2d79bd7045cf1b30a2bce4",
+      "checkedAt": "2026-09-26T05:29:57+00:00"
+    }
+  ],
+  "iosVerified": false,
+  "buildRun": 36220911474,
+  "sourceCommit": "9081a2d581561f8b2c3f22a90d99a23ad29d43fc"
+}
