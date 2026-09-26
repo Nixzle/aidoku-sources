@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-26T07:10:34+00:00",
-  "sourceCount": 53,
+  "generatedAt": "2026-09-26T07:23:04+00:00",
+  "sourceCount": 52,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -74,20 +74,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v1.aix",
       "sha256": "da4cac00572b12e3269d7de9c0b7f330d1a5f17558e3455a3f56569cee1b54f0"
-    },
-    {
-      "id": "en.comix",
-      "name": "Comix",
-      "version": 128,
-      "file": "sources/en.comix-v128.aix",
-      "repository": "Aidoku-Community/sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/3121d586ec63f6104273b8217bd8c2185870c31d/overrides/en.comix-v128.aix",
-      "sha256": "5da4ee3ebf1ecd86c885a4edd36af7e807a141bc3a0ef3d978d0096d190e854e",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/3121d586ec63f6104273b8217bd8c2185870c31d/overrides/en.comix-v128.aix",
-      "packageRepository": "Nixzle/aidoku-sources",
-      "sourceCommit": "3121d586ec63f6104273b8217bd8c2185870c31d",
-      "sourcePath": "overrides/en.comix-v128.aix"
     },
     {
       "id": "en.dankefurslesen",

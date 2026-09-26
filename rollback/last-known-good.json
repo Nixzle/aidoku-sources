@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-26T07:12:43+00:00",
+  "capturedAt": "2026-09-26T07:23:43+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -66,19 +66,6 @@
         "contentRating": 1,
         "baseURL": "https://chikari.moe",
         "minAppVersion": "0.8.3"
-      },
-      {
-        "id": "en.comix",
-        "name": "Comix",
-        "version": 128,
-        "iconURL": "icons/en.comix-v128.png",
-        "downloadURL": "sources/en.comix-v128.aix",
-        "languages": [
-          "en"
-        ],
-        "contentRating": 1,
-        "baseURL": "https://comix.to",
-        "minAppVersion": "0.9"
       },
       {
         "id": "en.dankefurslesen",
@@ -931,8 +918,8 @@
   },
   "inventory": {
     "name": "Nixzle's Maintained Public English Aidoku Sources",
-    "generatedAt": "2026-09-26T07:10:34+00:00",
-    "sourceCount": 53,
+    "generatedAt": "2026-09-26T07:23:04+00:00",
+    "sourceCount": 52,
     "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
     "languagePolicy": "English or multilingual entries advertising en, All, or multi",
     "excludedPersonalUseOnly": [
@@ -1005,20 +992,6 @@
         "license": "MIT OR Apache-2.0",
         "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v1.aix",
         "sha256": "da4cac00572b12e3269d7de9c0b7f330d1a5f17558e3455a3f56569cee1b54f0"
-      },
-      {
-        "id": "en.comix",
-        "name": "Comix",
-        "version": 128,
-        "file": "sources/en.comix-v128.aix",
-        "repository": "Aidoku-Community/sources",
-        "license": "MIT OR Apache-2.0",
-        "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/3121d586ec63f6104273b8217bd8c2185870c31d/overrides/en.comix-v128.aix",
-        "sha256": "5da4ee3ebf1ecd86c885a4edd36af7e807a141bc3a0ef3d978d0096d190e854e",
-        "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/3121d586ec63f6104273b8217bd8c2185870c31d/overrides/en.comix-v128.aix",
-        "packageRepository": "Nixzle/aidoku-sources",
-        "sourceCommit": "3121d586ec63f6104273b8217bd8c2185870c31d",
-        "sourcePath": "overrides/en.comix-v128.aix"
       },
       {
         "id": "en.dankefurslesen",
@@ -1497,30 +1470,20 @@
     ]
   },
   "status": {
-    "generatedAt": "2026-09-26T05:23:59+00:00",
+    "generatedAt": "2026-09-26T07:23:04+00:00",
     "summary": {
-      "maintained": 53,
-      "legacyOnly": 47,
-      "manualQuarantined": 4,
+      "maintained": 52,
+      "legacyOnly": 48,
+      "manualQuarantined": 5,
       "automaticQuarantined": 4,
       "degraded": 2,
       "requiredDegraded": 1
     },
     "requiredMaintainedSources": [
-      "en.comix",
       "en.mangadistrict",
       "en.readcomicsonline"
     ],
     "requiredHealth": [
-      {
-        "id": "en.comix",
-        "name": "Comix",
-        "severity": "healthy",
-        "kind": "healthy",
-        "reachable": true,
-        "conclusive": true,
-        "httpStatus": 200
-      },
       {
         "id": "en.mangadistrict",
         "name": "MangaDistrict",
@@ -1567,6 +1530,16 @@
           "maintained"
         ],
         "issue": "https://github.com/Aidoku-Community/sources/issues/605"
+      },
+      {
+        "id": "en.comix",
+        "name": "Comix",
+        "type": "manual",
+        "reason": "Nixzle v127/v128 failed owner-device acceptance on the affected Aidoku Cloudflare client. Do not advertise these builds as reliable. Use a separately maintained Comix implementation with full WebView page-image/cover handling until the app image transport is fixed.",
+        "catalogs": [
+          "maintained"
+        ],
+        "issue": "https://github.com/Aidoku/Aidoku/issues/1034"
       },
       {
         "id": "en.firescans",
