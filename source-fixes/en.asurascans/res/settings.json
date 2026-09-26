@@ -1,0 +1,50 @@
+[
+  {
+    "type": "group",
+    "title": "Connection recovery",
+    "items": [
+      {
+        "type": "switch",
+        "key": "browserFallback",
+        "title": "Browser fallback for blocked requests",
+        "default": true
+      },
+      {
+        "type": "login",
+        "key": "verifyAccess",
+        "method": "web",
+        "url": "https://asurascans.com",
+        "title": "Verify Asura Access",
+        "logoutTitle": "Re-verify Asura Access"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "title": "SETTINGS",
+    "items": [
+      {
+        "type": "switch",
+        "key": "showLocked",
+        "title": "Show Locked Chapters",
+        "default": true
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "items": [
+      {
+        "type": "login",
+        "key": "login",
+        "notification": "login",
+        "method": "web",
+        "title": "LOGIN",
+        "url": "https://asurascans.com/login",
+        "refreshes": [
+          "listings"
+        ]
+      }
+    ]
+  }
+]

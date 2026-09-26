@@ -1,0 +1,65 @@
+name: Build reader repair candidates
+on:
+  push:
+    branches: [fix/comix-asura-reader-20260926]
+    paths: ["source-fixes/**", "scripts/package_reader_fixes.py", "scripts/functional_smoke.py", "runtime-smoke/**", ".github/workflows/reader-fixes.yml"]
+  pull_request:
+    paths: ["source-fixes/**", "scripts/package_reader_fixes.py", ".github/workflows/reader-fixes.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: reader-fixes-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CARGO_BUILD_JOBS: "2"
+  RUST_FONTCONFIG_DLOPEN: "on"
+  PYTHONDONTWRITEBYTECODE: "1"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - name: Baseline and browser transport regression tests
+        run: |
+          python -m unittest discover -s tests
+          node --test source-fixes/tests/transport.test.cjs
+          python scripts/validate_catalog.py
+      - name: Add WASM target on disposable CI runner
+        run: rustup target add wasm32-unknown-unknown
+      - name: Build locked source replacements
+        run: |
+          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.comix/Cargo.toml
+          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.asurascans/Cargo.toml
+          python scripts/package_reader_fixes.py
+      - name: Restore reader runtime cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            runtime-smoke/target
+          key: reader-repair-${{ runner.os }}-${{ hashFiles('runtime-smoke/Cargo.lock', 'source-fixes/**') }}
+          restore-keys: aidoku-runtime-${{ runner.os }}-
+      - name: Test actual parser and reader runtime
+        run: |
+          cargo test --locked --manifest-path runtime-smoke/Cargo.toml
+          cargo build --locked --manifest-path runtime-smoke/Cargo.toml
+      - name: Execute candidate source WASM
+        run: python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke --root reader-candidates --source en.asurascans --source en.comix
+      - name: Retain candidate packages and exact functional evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: reader-repair-${{ github.sha }}
+          path: |
+            reader-candidates
+            acceptance/functional
+          if-no-files-found: warn
+          retention-days: 30
