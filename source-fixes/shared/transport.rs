@@ -76,20 +76,25 @@ pub fn origin_for<'a>(url: &str, allowed: &'a [&str]) -> Result<&'a str> {
         .ok_or_else(|| error!("Unexpected source host; request rejected"))
 }
 
-pub fn browser_get(url: &str, allowed: &[&str], headers: &HashMap<String, String>) -> Result<ReaderResponse> {
-    let origin = origin_for(url, allowed)?;
-    // A fresh local document has no remote load that can strand wait_for_load.
-    let view = WebView::new();
-    view.load_html_blocking("<!doctype html><html><head></head><body></body></html>", Some(origin))?;
+pub fn browser_get_in(view: &WebView, url: &str, allowed: &[&str], headers: &HashMap<String, String>) -> Result<ReaderResponse> {
+    origin_for(url, allowed)?;
     let url_js = serde_json::to_string(url)?;
-    // Cookies stay in WebKit. Never inject Cookie/Host or send credentials across redirects.
+    // Cookies remain in the caller's persistent WebKit session. Never inject
+    // Cookie/Host or send credentials across redirects.
     let mut safe_headers = HashMap::new();
     if let Some(value) = headers.get("Authorization") { safe_headers.insert("Authorization", value); }
     let header_js = serde_json::to_string(&safe_headers)?;
-    let encoded = run_task(&view, &format!("({FETCH_JS})({url_js}, {header_js})"))?;
+    let encoded = run_task(view, &format!("({FETCH_JS})({url_js}, {header_js})"))?;
     let response: ReaderResponse = serde_json::from_str(&encoded)?;
     origin_for(&response.url, allowed)?;
     response.checked()
+}
+
+pub fn browser_get(url: &str, allowed: &[&str], headers: &HashMap<String, String>) -> Result<ReaderResponse> {
+    let origin = origin_for(url, allowed)?;
+    let view = WebView::new();
+    view.load_html_blocking("<!doctype html><html><head></head><body></body></html>", Some(origin))?;
+    browser_get_in(&view, url, allowed, headers)
 }
 
 pub struct ReaderRequest {
@@ -103,32 +108,46 @@ impl ReaderRequest {
         origin_for(url, allowed)?;
         Ok(Self {request, url: url.into(), allowed, headers})
     }
-    pub fn send(self) -> Result<ReaderResponse> {
+    fn native_attempt(&self) -> Result<ReaderResponse> {
+        let response = self.request.send()?;
+        Ok(ReaderResponse {status: response.status_code(),
+            body: response.get_string()?, url: self.url.clone(),
+            x_enc: response.get_header("x-enc"),
+            challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")})
+    }
+
+    pub fn send_with_view(self, view: &WebView) -> Result<ReaderResponse> {
         let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
         let legacy_fallback = defaults_get::<bool>("browserFallback").unwrap_or(true);
         if mode == "browser" {
-            return browser_get(&self.url, self.allowed, &self.headers);
+            return browser_get_in(view, &self.url, self.allowed, &self.headers);
         }
-
-        // Keep the native attempt in Auto/Native: Aidoku can use it to present the
-        // user's challenge sheet. Auto also recovers native-only 5xx edge failures.
-        match self.request.send() {
-            Ok(response) => {
-                let value = ReaderResponse {status: response.status_code(),
-                    body: response.get_string()?, url: self.url.clone(),
-                    x_enc: response.get_header("x-enc"),
-                    challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")};
+        match self.native_attempt() {
+            Ok(value) => {
                 if !value.blocked() && value.status < 500 { return value.checked(); }
                 if mode == "native" { return value.checked(); }
             }
             Err(error) => {
-                if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error.into()); }
+                if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error); }
             }
         }
         if mode == "auto" && !legacy_fallback {
             bail!("Source request blocked; browser recovery is disabled in source settings");
         }
-        browser_get(&self.url, self.allowed, &self.headers)
+        browser_get_in(view, &self.url, self.allowed, &self.headers)
+    }
+
+    pub fn send(self) -> Result<ReaderResponse> {
+        let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
+        if mode == "browser" {
+            return browser_get(&self.url, self.allowed, &self.headers);
+        }
+        match self.native_attempt() {
+            Ok(value) if !value.blocked() && value.status < 500 => value.checked(),
+            Ok(value) if mode == "native" => value.checked(),
+            Err(error) if mode == "native" => Err(error),
+            _ => browser_get(&self.url, self.allowed, &self.headers),
+        }
     }
 }
 

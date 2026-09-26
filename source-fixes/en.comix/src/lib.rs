@@ -79,7 +79,7 @@ impl Source for Comix {
 						"{API_URL}/terms?type={id}&keyword={}&limit=1",
 						encode_uri_component(value)
 					);
-					let response = web_view.build_request(&url)?.send()?;
+					let response = web_view.send_request(&url)?;
 					web_view
 						.decode_json_owned::<TermResponse>(&response)?
 						.result
@@ -185,7 +185,7 @@ impl Source for Comix {
 		}
 
 		let url = format!("{API_URL}/manga?{qs}");
-		let response = web_view.build_request(&url)?.send()?;
+		let response = web_view.send_request(&url)?;
 		web_view
 			.decode_json_owned::<SearchResponse>(&response)
 			.map(Into::into)
@@ -209,7 +209,7 @@ impl Source for Comix {
 									&includes[]=publisher",
 				manga.key
 			);
-			let response = web_view.build_request(&url)?.send()?;
+			let response = web_view.send_request(&url)?;
 			let json: SingleMangaResponse = web_view.decode_json_owned(&response)?;
 
 			manga.copy_from(json.result.into());
@@ -233,7 +233,7 @@ impl Source for Comix {
 				params.push("order[number]", Some("desc"));
 
 				let url = format!("{API_URL}/manga/{}/chapters?{params}", manga.key);
-				let response = web_view.build_request(&url)?.send()?;
+				let response = web_view.send_request(&url)?;
 				let res = web_view.decode_json_owned::<ChapterDetailsResponse>(&response)?;
 
 				let items = res.result.items;
@@ -276,7 +276,7 @@ impl Source for Comix {
 	fn get_page_list(&self, _manga: Manga, chapter: Chapter) -> Result<Vec<Page>> {
 		let mut web_view = self.web_view.borrow_mut();
 		let url = format!("{API_URL}/chapters/{}", chapter.key);
-		let response = web_view.build_request(&url)?.send()?;
+		let response = web_view.send_request(&url)?;
 		let json: ChapterResponse = web_view.decode_json_owned(&response)?;
 
 		let Some(result) = json.result else {
@@ -355,21 +355,21 @@ impl Home for Comix {
 
 		let responses: [Result<Response>; 4] = [
 			// most recent popular
-			web_view.build_request(&format!(
+			web_view.send_request(&format!(
 				"{API_URL}/manga/top?type=trending&days=1&limit=20{extra_qs}"
-			))?.send(),
+			)),
 			// most follows new comics
-			web_view.build_request(&format!(
+			web_view.send_request(&format!(
 				"{API_URL}/manga/top?type=follows&days=1&limit=20{extra_qs}"
-			))?.send(),
+			)),
 			// latest updates (hot)
-			web_view.build_request(&format!(
+			web_view.send_request(&format!(
 				"{API_URL}/manga?scope=hot&limit=30&order[chapter_updated_at]=desc&page=1{extra_qs}"
-			))?.send(),
+			)),
 			// recently added
-			web_view.build_request(&format!(
+			web_view.send_request(&format!(
 				"{API_URL}/manga?order[created_at]=desc&limit=10&page=1{extra_qs}"
-			))?.send(),
+			)),
 		];
 
 		let [popular_res, follows_res, latest_res, recent_res] = responses;
@@ -483,7 +483,7 @@ impl ListingProvider for Comix {
 			let url = format!("{url}{extra_qs}");
 			let mut web_view = comix.web_view.borrow_mut();
 
-			let response = web_view.build_request(&url)?.send()?;
+			let response = web_view.send_request(&url)?;
 			web_view
 				.decode_json_owned::<SearchResponse>(&response)
 				.map(|r| r.result.into_filtered(&hidden_types, &hidden_terms))
