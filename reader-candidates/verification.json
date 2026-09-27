@@ -1,8 +1,8 @@
 {
   "schema": "AIDOKU_FUNCTIONAL_SMOKE_V1",
-  "checkedAt": "2026-09-27T14:53:27Z",
+  "checkedAt": "2026-09-27T15:43:28Z",
   "status": "inconclusive",
-  "scope": "Exact published candidate packages and local build checks. Comix v129 still requires real iOS WebView acceptance.",
+  "scope": "Exact published candidate packages and local build checks. Comix v130 still requires real iOS WebView acceptance.",
   "catalogRoot": "reader-candidates",
   "cases": [
     {
@@ -16,9 +16,9 @@
     },
     {
       "id": "en.comix",
-      "version": 129,
-      "packageSha256": "0299a0b5319ecfbd28c2fe8055e28f98ff720cf5f8e31738b54b523d32ce37c6",
-      "wasmSha256": "b251429b935a4fb7cc49e4b4f635405f89abc9c463fd735a016548ba8441605a",
+      "version": 130,
+      "packageSha256": "d6d649bd997e973ec38551375374e6e086a65857b2410cea541e360c066c073a",
+      "wasmSha256": "5c32c4ff4c1d78fc75f9f60987294347f694f29da7fc176912dc5382aa33e07c",
       "runtimeLoaded": false,
       "status": "inconclusive",
       "stage": "device-acceptance",
@@ -26,5 +26,5 @@
     }
   ],
   "iosVerified": false,
-  "sourceCommit": "3a28911b3d757b99d697d24002f3e503416f59bc"
+  "sourceCommit": "c3cce2f486f2eb11d1f28c4e1ca616e3aa81b202"
 }
