@@ -1,0 +1,18 @@
+{
+  "name": "Nixzle Comix v132 Update",
+  "sources": [
+    {
+      "id": "en.comix",
+      "name": "Comix",
+      "version": 132,
+      "downloadURL": "sources/en.comix-v132.aix",
+      "iconURL": "icons/en.comix-v132.png",
+      "languages": [
+        "en"
+      ],
+      "baseURL": "https://comix.to",
+      "contentRating": 1,
+      "minAppVersion": "0.9"
+    }
+  ]
+}
