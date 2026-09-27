@@ -40,6 +40,5 @@ def main():
     (OUTPUT/'index.min.json').write_text(json.dumps(feed,separators=(',',':'))+'\n')
     (OUTPUT/'inventory.json').write_text(json.dumps({'sourceCount':len(inventory),'sources':inventory},indent=2)+'\n')
     (OUTPUT/'CHECKSUMS.sha256').write_text(''.join(x['sha256']+'  '+x['file']+'\n' for x in inventory))
-    (OUTPUT/'README.md').write_text('Reader repair candidates. Source IDs are unchanged. Back up Aidoku before testing. Comix v24 and Asura v20 require Aidoku 0.9+. Website challenges and premium chapter permissions remain enforced. Compile/fixture tests are not an iPhone acceptance result.\n')
     print(json.dumps(inventory,indent=2))
 if __name__=='__main__':main()

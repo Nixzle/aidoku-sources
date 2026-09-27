@@ -5,7 +5,7 @@ use aidoku::{
 	alloc::{string::String, string::ToString, vec::Vec},
 	helpers::uri::QueryParameters,
 	imports::{
-		js::WebView,
+		js::{WebView, WebViewUserScript},
 		std::sleep,
 	},
 	prelude::*,
@@ -35,9 +35,6 @@ const EMPTY_DESCRAMBLER_RESPONSE_OBJECT: &str =
 	"{ data: null, error: null, isDone: false, isAbort: false }";
 const FETCH_TIMEOUT_RESPONSE: &str =
 	"Fetch timeout after 30s. If problem persist, please restart the application.";
-
-const JS_PATCHER: &str = "<head>\
-<script>window['__AIDOKU_CANVAS_TO_DATA_URL_TOKEN__'] = HTMLCanvasElement.prototype.toDataURL;</script>";
 
 const CF_CHALLENGE_HTML_ERROR_MESSAGE: &str = "Response returned CF challenge page. If problem persist, please clear the source cache and restart the application to resolve this issue.";
 const CF_CHALLENGE_ERROR_MESSAGE: &str = "Response returned CF challenge page instead of JSON data. If problem persist, please clear the source cache and restart the application to resolve this issue.";
@@ -93,36 +90,53 @@ impl ComixWebView {
 
     fn load_webview_from(&mut self, base_url: &'static str) -> Result<()> {
         self.reset();
-        // Seed the persistent view with the target origin first. In browser mode,
-        // every subsequent request stays in this exact WKWebView session.
-        self.web_view.load_html_blocking("<!doctype html><html><head></head><body></body></html>", Some(base_url))?;
-        let response = ReaderRequest::new(create_request_get(base_url)?, base_url,
-            COMIX_ORIGINS, HashMap::new())?.send_with_view(&self.web_view)?;
-        let body = response.get_string()?.replace("<head>", JS_PATCHER);
-        let body = body.replace("<head>", "<head><meta name=\"aidoku-reader-document\" content=\"128\">");
-        self.web_view.load_html(&body, Some(base_url))?;
+        // Navigate the persistent WKWebView as a real first-party page. Loading a
+        // fetched HTML string under a synthetic base URL does not carry the same
+        // WebKit navigation/session state and failed on the affected iOS client.
+        self.web_view.add_user_script(WebViewUserScript {
+            source: "window['__AIDOKU_CANVAS_TO_DATA_URL_TOKEN__'] = HTMLCanvasElement.prototype.toDataURL;".into(),
+            at_document_end: false,
+            for_main_frame_only: true,
+        })?;
+        self.web_view.load_blocking(create_request_get(base_url)?)?;
+
+        let origin = serde_json::to_string(base_url)?;
         let mut loaded = false;
-        for _ in 0..15 {
-            if self.web_view.eval("String(document.querySelector('meta[name=aidoku-reader-document]')?.content === '128' && document.readyState !== 'loading')").unwrap_or_default() == "true" {
+        for _ in 0..20 {
+            if self.web_view.eval(&format!(
+                "String(location.origin === {origin} && document.readyState !== 'loading' && !/just a moment|security check/i.test(document.title))"
+            )).unwrap_or_default() == "true" {
                 loaded = true;
                 break;
             }
             sleep(1);
         }
-        if !loaded { bail!("Comix page initialization timed out. Verify Comix Captcha, then retry"); }
-        if self.find_functions().is_err() {
-            self.find_secure_module_src(&response)?;
-            self.find_functions()?;
+        if !loaded {
+            bail!("Comix first-party page did not finish loading. Open Source Settings, verify the Comix captcha, then retry")
         }
+
+        // The site's module graph may finish shortly after DOM readiness.
+        for _ in 0..10 {
+            if self.find_functions().is_ok() {
+                self.is_initialized = true;
+                return Ok(());
+            }
+            sleep(1);
+        }
+
+        self.find_secure_module_src()?;
+        self.find_functions()?;
         self.is_initialized = true;
         Ok(())
     }
 
-    fn find_secure_module_src(&mut self, response: &Response) -> Result<()> {
-        let main_url = response.get_html()?
-            .select_first("head > script[type=\"module\"][src*=\"main\"]")
-            .and_then(|e| e.attr("abs:src"))
-            .ok_or_else(|| error!("Comix main module was not found; website layout may have changed"))?;
+    fn find_secure_module_src(&mut self) -> Result<()> {
+        let main_url = self.web_view.eval(
+            "document.querySelector('head > script[type=\"module\"][src*=\"main\"]')?.src || ''"
+        )?;
+        if main_url.is_empty() {
+            bail!("Comix main module was not found; website layout may have changed")
+        }
         let contents = ReaderRequest::new(create_request_get(&main_url)?, &main_url,
             COMIX_ORIGINS, HashMap::new())?.send_with_view(&self.web_view)?.get_string()?;
         let regex = Regex::new("(secure-[A-Za-z0-9_-]+?\\.js)")
