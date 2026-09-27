@@ -22,6 +22,8 @@ def utc_now() -> str:
 
 
 CASES = {"en.asurascans": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
+OPTIONAL_CASES = {"en.comix": "solo"}
+ALL_CASES = CASES | OPTIONAL_CASES
 
 
 def settings_defaults(items) -> dict:
@@ -55,6 +57,20 @@ def overall_status(results: list[dict]) -> str:
     if any(item.get("status") == "inconclusive" for item in results):
         return "inconclusive"
     return "blocked"
+
+
+def classify_incomplete(source_id: str, report: dict) -> dict:
+    network = report.get("network", [])
+    if network and network[-1].get("status") in (401, 403, 429, 451):
+        report["status"] = "blocked"
+        report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
+    elif source_id in OPTIONAL_CASES and report.get("runtimeLoaded") is True and not network:
+        report["status"] = "inconclusive"
+        report["limitation"] = (
+            "The headless runtime loaded the source but exposed no WebView network trace; "
+            "real iOS WebView acceptance is required."
+        )
+    return report
 
 
 def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path) -> dict:
@@ -92,10 +108,7 @@ def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path)
             if process.returncode != 0 or not valid_pass(report):
                 report["status"] = "failed"
                 report.setdefault("error", "incomplete functional acceptance")
-                network = report.get("network", [])
-                if network and network[-1].get("status") in (401, 403, 429, 451):
-                    report["status"] = "blocked"
-                    report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
+                classify_incomplete(source_id, report)
         except subprocess.TimeoutExpired as error:
             (output / f"{source_id}.stdout.log").write_bytes(error.stdout or b"")
             (output / f"{source_id}.stderr.log").write_bytes(error.stderr or b"")
@@ -110,14 +123,15 @@ def main() -> int:
     parser.add_argument("--runner", type=Path, required=True)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, default=Path("acceptance/functional"))
-    parser.add_argument("--source", action="append", choices=sorted(CASES))
+    parser.add_argument("--source", action="append", choices=sorted(ALL_CASES))
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     runner = args.runner.resolve()
     results = []
-    for source_id, query in CASES.items():
-        if args.source and source_id not in args.source:
-            continue
+    selected = CASES if not args.source else {
+        source_id: ALL_CASES[source_id] for source_id in args.source
+    }
+    for source_id, query in selected.items():
         try:
             result = run_case(args.root, runner, source_id, query, args.output)
         except Exception as error:
