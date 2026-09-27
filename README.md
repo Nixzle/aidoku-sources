@@ -65,3 +65,5 @@ Never post account cookies or access tokens.
 ### Comix reliability notice
 
 Nixzle's experimental Comix v127/v128 packages are retired after failing real-device acceptance on an affected Cloudflare client. They are not considered working releases. This repository does not rehost third-party replacement packages. The independently maintained Yomu Comix list documents full WebView transport plus bad-page-image recovery: https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json . Back up Aidoku before changing an installed source.
+
+For testing Nixzle Comix v129 without a stale candidate-list cache, add the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v129/index.min.json`. The normal catalog remains quarantined until v129 passes on the affected iPhone.
