@@ -59,6 +59,14 @@ class FunctionalStatusTests(unittest.TestCase):
         self.assertEqual(smoke.OPTIONAL_CASES['en.comix'], 'solo')
         self.assertEqual(smoke.ALL_CASES['en.comix'], 'solo')
 
+    def test_optional_webview_case_without_headless_trace_is_inconclusive(self):
+        report = {'status': 'failed', 'runtimeLoaded': True, 'stage': 'search', 'network': []}
+        self.assertEqual(smoke.classify_incomplete('en.comix', report)['status'], 'inconclusive')
+        required = {'status': 'failed', 'runtimeLoaded': True, 'network': []}
+        self.assertEqual(smoke.classify_incomplete('en.mangadistrict', required)['status'], 'failed')
+        protected = {'status': 'failed', 'runtimeLoaded': True, 'network': [{'status': 403}]}
+        self.assertEqual(smoke.classify_incomplete('en.comix', protected)['status'], 'blocked')
+
 
 class FunctionalIncidentTests(unittest.TestCase):
     def call_report(self, acceptance, execution='success'):

@@ -59,6 +59,20 @@ def overall_status(results: list[dict]) -> str:
     return "blocked"
 
 
+def classify_incomplete(source_id: str, report: dict) -> dict:
+    network = report.get("network", [])
+    if network and network[-1].get("status") in (401, 403, 429, 451):
+        report["status"] = "blocked"
+        report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
+    elif source_id in OPTIONAL_CASES and report.get("runtimeLoaded") is True and not network:
+        report["status"] = "inconclusive"
+        report["limitation"] = (
+            "The headless runtime loaded the source but exposed no WebView network trace; "
+            "real iOS WebView acceptance is required."
+        )
+    return report
+
+
 def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path) -> dict:
     inventory = json.loads((root / "inventory.json").read_text(encoding="utf-8-sig"))
     item = next((entry for entry in inventory["sources"] if entry["id"] == source_id), None)
@@ -94,10 +108,7 @@ def run_case(root: Path, runner: Path, source_id: str, query: str, output: Path)
             if process.returncode != 0 or not valid_pass(report):
                 report["status"] = "failed"
                 report.setdefault("error", "incomplete functional acceptance")
-                network = report.get("network", [])
-                if network and network[-1].get("status") in (401, 403, 429, 451):
-                    report["status"] = "blocked"
-                    report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
+                classify_incomplete(source_id, report)
         except subprocess.TimeoutExpired as error:
             (output / f"{source_id}.stdout.log").write_bytes(error.stdout or b"")
             (output / f"{source_id}.stderr.log").write_bytes(error.stderr or b"")
