@@ -352,9 +352,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 4,
-      "iconURL": "icons/en.readcomicsonline-v4.png",
-      "downloadURL": "sources/en.readcomicsonline-v4.aix",
+      "version": 5,
+      "iconURL": "icons/en.readcomicsonline-v5.png",
+      "downloadURL": "sources/en.readcomicsonline-v5.aix",
       "languages": [
         "en"
       ],
@@ -797,9 +797,9 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 3,
-      "iconURL": "icons/multi.xcomic-v3.png",
-      "downloadURL": "sources/multi.xcomic-v3.aix",
+      "version": 4,
+      "iconURL": "icons/multi.xcomic-v4.png",
+      "downloadURL": "sources/multi.xcomic-v4.aix",
       "languages": [
         "en",
         "fr",

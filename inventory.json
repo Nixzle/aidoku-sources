@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-26T07:23:04+00:00",
+  "generatedAt": "2026-09-27T15:01:20+00:00",
   "sourceCount": 52,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -308,14 +308,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 4,
-      "file": "sources/en.readcomicsonline-v4.aix",
+      "version": 5,
+      "file": "sources/en.readcomicsonline-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "a6cc725ee5c5b78750435881ac2c8ee54e0965dc319af583cd63c4b5f511082d",
+      "sha256": "38fd33010b1ec12eaeff4b8199ee9d456b268eb4d50e824174b52cf4e1ec0d1b",
       "upstreamVersion": 3,
-      "upstreamSha256": "dbd339716dd354e4aec75e845fab6256d9333b201af5d2d22a0fbec13d6bf94f",
+      "upstreamSha256": "4e8cc9e40ed9f7a254f77a9918679c62916c0d4590e63f857260f76b2156d581",
       "upstreamWasmSha256": "81204688b94b38501850cfa0dfaacc5ed7a4a698e2786fa24f3acc5acd6ee016",
       "publicationTransform": "metadata-version-v1"
     },
@@ -542,12 +542,12 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 3,
-      "file": "sources/multi.xcomic-v3.aix",
+      "version": 4,
+      "file": "sources/multi.xcomic-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v3.aix",
-      "sha256": "8a5acba90a4332834ba8868f2684577381d3c282d83997869349b067f2ba0a4d"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v4.aix",
+      "sha256": "e22604833624f88e69416a5f4721b3962fff2821e8ea0a04136b4a2fba207ac7"
     }
   ]
 }
