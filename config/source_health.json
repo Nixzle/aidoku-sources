@@ -7,6 +7,12 @@
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15"
     },
+    "en.mangatx": {
+      "status": "failing",
+      "consecutiveFailures": 1,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-09-27"
+    },
     "en.manhuagold": {
       "status": "quarantined",
       "consecutiveFailures": 3,
@@ -18,12 +24,6 @@
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
       "lastObservationDate": "2026-08-15"
-    },
-    "en.tcbscans": {
-      "status": "quarantined",
-      "consecutiveFailures": 3,
-      "consecutiveSuccesses": 1,
-      "lastObservationDate": "2026-09-05"
     }
   }
 }

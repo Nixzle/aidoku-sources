@@ -444,6 +444,16 @@ class SelectionAndDeterminismTests(unittest.TestCase):
             {"en.comix", "en.mangadistrict", "en.readcomicsonline"},
         )
 
+    def test_comix_override_forces_aidoku_09_upgrade(self):
+        policy = updater.load_policy()
+        detail = policy["localPackageOverrides"]["en.comix"]
+        package = (updater.ROOT / detail["path"]).read_bytes()
+        info, _ = updater.read_package(package, "Comix override", expected_id="en.comix")
+        self.assertEqual(info["version"], 24)
+        self.assertEqual(info["minAppVersion"], "0.9")
+        self.assertEqual(policy["minAppVersionOverrides"]["en.comix"], "0.9")
+        self.assertEqual(updater.hashlib.sha256(package).hexdigest(), detail["sha256"])
+
     def test_status_report_matches_policy_and_health(self):
         policy = {
             "quarantinedSources": {

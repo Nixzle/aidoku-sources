@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-05T02:26:50+00:00",
-  "sourceCount": 51,
+  "generatedAt": "2026-09-27T14:42:11+00:00",
+  "sourceCount": 54,
   "catalogPolicy": "Packages currently published by the active Aidoku community repository and not quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -78,12 +78,12 @@
     {
       "id": "en.comix",
       "name": "Comix",
-      "version": 23,
-      "file": "sources/en.comix-v23.aix",
+      "version": 24,
+      "file": "sources/en.comix-v24.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.comix-v23.aix",
-      "sha256": "f00b717d6972b46024d2fc83bd07e06a4e50cce929c15650da20908e4b77ed27"
+      "upstreamPackageURL": "https://github.com/Nixzle/aidoku-sources/blob/ff038d706c62682f9cd3d14c3be364b9548dfa4d/overrides/en.comix-v24.aix",
+      "sha256": "59e61fb230216ed9f81e0bfbd683a22cfae86a487089d135173ccec54dcc09da"
     },
     {
       "id": "en.dankefurslesen",
@@ -98,12 +98,22 @@
     {
       "id": "en.drakescans",
       "name": "Drake Scans",
-      "version": 1,
-      "file": "sources/en.drakescans-v1.aix",
+      "version": 2,
+      "file": "sources/en.drakescans-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v1.aix",
-      "sha256": "d4f7281707f7cc1c922ef86e5e32616215d9abb3387cf69c705ba8ff75ec8f48"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v2.aix",
+      "sha256": "a81fb9d60d8e1cfaba169b736faedbfacc5310c74d62da86000dfab2bdfe9ee4"
+    },
+    {
+      "id": "en.dynastyscans",
+      "name": "Dynasty Scans",
+      "version": 4,
+      "file": "sources/en.dynastyscans-v4.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.dynastyscans-v4.aix",
+      "sha256": "863fb34f9678b6c31541f664d9a69a94c33734bd628bd8187f3fb81fc05f490a"
     },
     {
       "id": "en.elftoon",
@@ -346,6 +356,16 @@
       "sha256": "f9b233349c048150de14e1401dc4c17de69ff9b10b229005d90e913e87807aee"
     },
     {
+      "id": "en.tcbscans",
+      "name": "TCB Scans",
+      "version": 6,
+      "file": "sources/en.tcbscans-v6.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.tcbscans-v6.aix",
+      "sha256": "4139a717dc6743594246a9a36bee495a6686cc625ea05a500682889b1dd2f140"
+    },
+    {
       "id": "en.toonily",
       "name": "Toonily",
       "version": 10,
@@ -468,12 +488,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 6,
-      "file": "sources/multi.mangadotnet-v6.aix",
+      "version": 7,
+      "file": "sources/multi.mangadotnet-v7.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v6.aix",
-      "sha256": "6835ebe00cc7b05abe0e84ce2de6e7ca5c7fa32f1519cfa2100847656653db3f"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v7.aix",
+      "sha256": "faee49f0f49bee33ac4527873347b8104f9fb047274a8f0f171c7b1d35ae42b8"
     },
     {
       "id": "multi.mangafire",
@@ -526,14 +546,24 @@
       "sha256": "8b6ca200f4fd83aa6f9a79d543df3cbb23e2b951b7683bb3a2ff23929bfa6efb"
     },
     {
-      "id": "multi.xcomic",
-      "name": "XCOMIC",
-      "version": 1,
-      "file": "sources/multi.xcomic-v1.aix",
+      "id": "multi.webtoon",
+      "name": "WEBTOON",
+      "version": 4,
+      "file": "sources/multi.webtoon-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v1.aix",
-      "sha256": "4f16de1647c38fa8bc20cfb40d8a5a95780cc338beacb34eca9926869793e31d"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.webtoon-v4.aix",
+      "sha256": "06e9fe092b56226f4e427efca84b34333fe9fe14bb12dc5c2031e40334ccc8d1"
+    },
+    {
+      "id": "multi.xcomic",
+      "name": "XCOMIC",
+      "version": 4,
+      "file": "sources/multi.xcomic-v4.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v4.aix",
+      "sha256": "e22604833624f88e69416a5f4721b3962fff2821e8ea0a04136b4a2fba207ac7"
     }
   ]
 }

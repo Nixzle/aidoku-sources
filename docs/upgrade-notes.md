@@ -18,14 +18,16 @@
 - PoppingMango's experimental Paperback ports are linked to their original install
   page, not mirrored, in keeping with the author's redistribution request.
 
-## Still requires separate work
+## Comix follow-up
 
-Comix's adaptive WebView fallback has not been implemented or device-tested in
-this update. Hosting the catalog on GitHub cannot remove a source site's human
-verification checks. Do not claim that package validation or HTTP reachability
-proves home, search, chapter parsing, or image loading works on an iPhone.
+Comix v24 was added later as a reproducible rebuild of the official community
+source with Aidoku 0.9 as its minimum app version. Aidoku 0.9 contains the app-
+level Cloudflare repair; hosting the catalog on GitHub still cannot remove
+Comix's own human-verification checks. Package validation and HTTP reachability
+do not by themselves prove home, search, chapter parsing, or image loading on
+an iPhone, so the installed v24 build still needs device acceptance.
 
-Yomu's packages must not be repackaged here. Any transport implementation needs
+Yomu's packages must not be repackaged here. Any independent transport implementation needs
 independent code, supported Aidoku APIs, bounded retries, persistent-session
 testing, and a new version to avoid replacing already-published package bytes.
 
