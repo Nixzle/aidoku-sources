@@ -1,13 +1,13 @@
 {
   "upstreamRepository": "Aidoku-Community/sources",
-  "upstreamCommit": "5964c70831435db2109c020fa7dafbffaf40b525",
+  "upstreamCommit": "0b512d60d5337de5baf7bb4f2ee85afe111e7203",
   "license": "MIT OR Apache-2.0",
   "sources": [
     {
       "id": "en.comix",
       "upstreamPath": "sources/en.comix",
       "baseVersion": 23,
-      "candidateVersion": 24,
+      "candidateVersion": 131,
       "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
     },
     {
@@ -18,6 +18,6 @@
       "sdkCommit": "b0818704a5487778999bcd11239fa4c7a44da6ab"
     }
   ],
-  "modifications": "Bounded native-to-WebView transport, reader error handling, page parser, verification state and request-header fixes. See README.md.",
+  "modifications": "Comix v131 restores the maintained upstream implementation and changes only its package version and Aidoku 0.9 application floor. Asura retains the bounded reader fixes described in README.md.",
   "restrictedDonors": "No Yomu binary or code was copied."
 }
