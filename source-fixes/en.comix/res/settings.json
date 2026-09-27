@@ -217,6 +217,22 @@
 	},
 	{
 		"type": "group",
+		"title": "Connection",
+		"items": [
+			{
+				"type": "select",
+				"key": "connectionMode",
+				"title": "Request Mode",
+				"values": ["auto", "browser", "native"],
+				"titles": ["Automatic", "WebView", "Native"],
+				"default": "auto",
+				"refreshes": ["content"]
+			}
+		],
+		"footer": "Automatic tries the normal network path first, then uses the same private WebView session when Cloudflare blocks it. Choose WebView if Automatic still stalls; verification may still be required."
+	},
+	{
+		"type": "group",
 		"title": "Verify Captcha",
 		"items": [
 			{

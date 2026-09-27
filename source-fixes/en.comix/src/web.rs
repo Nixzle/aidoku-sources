@@ -1,12 +1,17 @@
 // reference: https://github.com/nobottomline/extensions-source/blob/c8fe930f315f3baee23587559edfceab5e969202/src/en/comix/src/eu/kanade/tachiyomi/extension/en/comix/Signer.kt
-use crate::{BASE_URL, helpers::create_request_get, models::ErrorResponse};
+use crate::{
+	BASE_URL, COMIX_ORIGINS,
+	helpers::create_request_get,
+	models::ErrorResponse,
+	transport::{self, ReaderRequest, ReaderResponse as Response},
+};
 use aidoku::{
 	HashMap, Result,
 	alloc::{string::String, string::ToString, vec::Vec},
 	helpers::uri::QueryParameters,
 	imports::{
 		js::WebView,
-		net::{Request, Response},
+		std::sleep,
 	},
 	prelude::*,
 };
@@ -35,14 +40,13 @@ const EMPTY_DESCRAMBLER_RESPONSE_OBJECT: &str =
 const FETCH_TIMEOUT_RESPONSE: &str =
 	"Fetch timeout after 30s. If problem persist, please restart the application.";
 
-const JS_PATCHER: &str = "<head>\
-<script>window['__AIDOKU_CANVAS_TO_DATA_URL_TOKEN__'] = HTMLCanvasElement.prototype.toDataURL;</script>";
+const SAFE_STUB: &str = "<!doctype html><html><head><meta charset=\"utf-8\"></head>\
+<body><script>window['__AIDOKU_CANVAS_TO_DATA_URL_TOKEN__'] = \
+HTMLCanvasElement.prototype.toDataURL;</script></body></html>";
 
-const CF_CHALLENGE_HTML_ERROR_MESSAGE: &str = "Response returned CF challenge page. If problem persist, please clear the source cache and restart the application to resolve this issue.";
 const CF_CHALLENGE_ERROR_MESSAGE: &str = "Response returned CF challenge page instead of JSON data. If problem persist, please clear the source cache and restart the application to resolve this issue.";
 
 const WAF_CHALLENGE_KEY: &str = "captcha_required";
-const WAF_CHALLENGE_HTML_ERROR_MESSAGE: &str = "Response returned WAF challenge page. Please open Comix Settings and Verify Captcha to resolve this issue.";
 const WAF_CHALLENGE_ERROR_MESSAGE: &str = "Response returned WAF challenge page instead of JSON data. Please open Comix Settings and Verify Captcha to resolve this issue.";
 
 #[derive(Deserialize)]
@@ -70,39 +74,52 @@ impl ComixWebView {
 		}
 	}
 
-	fn load_webview(&mut self) -> Result<()> {
-		let request = create_request_get(BASE_URL)?;
-		let response = request.send()?;
+	pub fn reset(&mut self) {
+		self.is_initialized = false;
+		self.web_view = WebView::new();
+	}
 
-		let status_code = response.status_code();
-
-		if status_code == 403
-			&& response
+	fn native_request_succeeded() -> bool {
+		let Ok(request) = create_request_get(BASE_URL) else {
+			return false;
+		};
+		let Ok(response) = request.send() else {
+			return false;
+		};
+		response.status_code() < 400
+			&& !response
 				.get_header("cf-mitigated")
 				.is_some_and(|value| value == "challenge")
-		{
-			bail!("{CF_CHALLENGE_HTML_ERROR_MESSAGE}")
-		} else if status_code >= 400 {
-			bail!("Response Error: {}", response.status_code())
-		} else if response
-			.get_html()?
-			.select_first("head > title")
-			.is_some_and(|e| e.text().is_some_and(|t| t == "Security check"))
-		{
-			bail!("{}", WAF_CHALLENGE_HTML_ERROR_MESSAGE)
-		}
+	}
 
-		self.web_view.load_html_blocking(
-			response
-				.get_string()?
-				.replace("<head>", JS_PATCHER)
-				.as_str(),
-			Some(BASE_URL),
-		)?;
-		if self.find_functions().is_err() {
-			self.find_secure_module_src(&response)?;
-			self.find_functions()?;
+	/// A native request is deliberately retained because Aidoku uses it to
+	/// present Cloudflare's verification sheet. WebKit may receive clearance
+	/// while URLSession remains blocked, so failure here is not fatal.
+	fn warm_cloudflare_clearance() {
+		if !Self::native_request_succeeded() {
+			sleep(15);
+			let _ = Self::native_request_succeeded();
 		}
+	}
+
+	fn load_webview(&mut self) -> Result<()> {
+		self.reset();
+		// Do not navigate the hidden view to the live SPA: ads and challenge
+		// subresources can prevent the page-finished callback from returning.
+		// A local document with the real origin gives fetch() the first-party
+		// cookie jar without introducing an unbounded navigation.
+		self.web_view.load_html_blocking(SAFE_STUB, Some(BASE_URL))?;
+		Self::warm_cloudflare_clearance();
+
+		let response = ReaderRequest::new(
+			create_request_get(BASE_URL)?,
+			BASE_URL,
+			COMIX_ORIGINS,
+			HashMap::new(),
+		)?
+		.send_with_view(&self.web_view)?;
+		self.find_secure_module_src(&response)?;
+		self.find_functions()?;
 		self.is_initialized = true;
 		Ok(())
 	}
@@ -114,35 +131,52 @@ impl ComixWebView {
 			.and_then(|e| e.first())
 			.and_then(|e| e.attr("src"))
 			.ok_or(error!("Main module not found"))?;
-		if let Some(js_asset_path_index) = main_module_src.rfind("/") {
-			let js_asset_path = &main_module_src[0..js_asset_path_index + 1];
-			let secure_script_regex = Regex::new("(secure-[A-Za-z0-9-_]+?\\.js)").unwrap();
-			let main_module_contents =
-				Request::get(format!("{BASE_URL}{main_module_src}"))?.string()?;
-			if let Some(secure_script_path) = secure_script_regex
-				.captures(main_module_contents.as_str())
-				.and_then(|captures| captures.get(1).map(|m| m.as_str()))
-			{
-				self.web_view.eval(&format!(
-					"(() => {{
-						import('{BASE_URL}{js_asset_path}{secure_script_path}')
-							.then((m) => window['vm'] = m)
-							.catch((e) => window['vm'] = {{}});
-						return '';
-					}})()"
-				))?;
-				while self
-					.web_view
-					.eval("(() => { return window['vm'] == null ? 'true' : 'false'; })()")?
-					== "true"
-				{}
-				Ok(())
-			} else {
-				bail!("Secure module not found");
-			}
+		let main_module_url = if main_module_src.starts_with("https://") {
+			main_module_src.to_string()
 		} else {
-			bail!("Invalid path")
-		}
+			format!("{BASE_URL}/{}", main_module_src.trim_start_matches('/'))
+		};
+		transport::origin_for(&main_module_url, COMIX_ORIGINS)?;
+		let main_module_contents = ReaderRequest::new(
+			create_request_get(&main_module_url)?,
+			&main_module_url,
+			COMIX_ORIGINS,
+			HashMap::new(),
+		)?
+		.send_with_view(&self.web_view)?
+		.get_string()?;
+		let secure_script_regex = Regex::new("(secure-[A-Za-z0-9_-]+?\\.js)")
+			.map_err(|_| error!("Invalid Comix module pattern"))?;
+		let secure_script_path = secure_script_regex
+			.captures(&main_module_contents)
+			.and_then(|captures| captures.get(1).map(|value| value.as_str()))
+			.ok_or_else(|| error!("Secure module not found"))?;
+		let module_directory = main_module_url
+			.rsplit_once('/')
+			.map(|(directory, _)| directory)
+			.ok_or_else(|| error!("Invalid main module path"))?;
+		let secure_module_url = format!("{module_directory}/{secure_script_path}");
+		transport::origin_for(&secure_module_url, COMIX_ORIGINS)?;
+		let secure_module_source = ReaderRequest::new(
+			create_request_get(&secure_module_url)?,
+			&secure_module_url,
+			COMIX_ORIGINS,
+			HashMap::new(),
+		)?
+		.send_with_view(&self.web_view)?
+		.get_string()?;
+		let source_literal = serde_json::to_string(&secure_module_source)?;
+		transport::run_task(
+			&self.web_view,
+			&format!(
+				"(async () => {{
+					const blobUrl = URL.createObjectURL(new Blob([{source_literal}], {{type:'text/javascript'}}));
+					try {{ window.vm = await import(blobUrl); return ''; }}
+					finally {{ URL.revokeObjectURL(blobUrl); }}
+				}})()"
+			),
+		)?;
+		Ok(())
 	}
 
 	fn find_functions(&mut self) -> Result<()> {
@@ -225,15 +259,17 @@ impl ComixWebView {
 		Ok(())
 	}
 
-	pub fn build_request(&mut self, url: &str) -> Result<Request> {
+	fn build_request(&mut self, url: &str) -> Result<ReaderRequest> {
 		if !self.is_initialized {
 			self.load_webview()?
 		}
 
-		let result = self.web_view.eval(&format!(
-			"(() => {{
-			const url = new URL('{url}');
-			const result = {{}};
+		transport::origin_for(url, COMIX_ORIGINS)?;
+		let url_literal = serde_json::to_string(url)?;
+		let result = transport::run_task(&self.web_view, &format!(
+			"(async () => {{
+			const url = new URL({url_literal});
+			const result = Object.create(null);
 
 			for (const [key, rawValue] of url.searchParams) {{
 				const value = /^\\d+$/.test(rawValue)
@@ -241,6 +277,9 @@ impl ComixWebView {
 					: rawValue;
 
 				const parts = key.replace(/\\]/g, '').split('[');
+				if (parts.some(part => ['__proto__', 'constructor', 'prototype'].includes(part))) {{
+					throw new Error('Unsafe query key');
+				}}
 
 				let current = result;
 
@@ -267,7 +306,7 @@ impl ComixWebView {
 				}}
 			}}
 
-			const request = window['{INSTALLER_REQUEST_TOKEN}']({{
+			const request = await window['{INSTALLER_REQUEST_TOKEN}']({{
 				url: `${{url.origin}}${{url.pathname}}`,
 				method: 'GET',
 				params: result,
@@ -334,10 +373,25 @@ impl ComixWebView {
 
 		if let Some(params) = axios_request.params {
 			let query = build_query(&params);
-			create_request_get(&format!("{}?{query}", axios_request.url))
+			let signed_url = format!("{}?{query}", axios_request.url);
+			ReaderRequest::new(
+				create_request_get(&signed_url)?,
+				&signed_url,
+				COMIX_ORIGINS,
+				HashMap::new(),
+			)
 		} else {
-			create_request_get(&axios_request.url)
+			ReaderRequest::new(
+				create_request_get(&axios_request.url)?,
+				&axios_request.url,
+				COMIX_ORIGINS,
+				HashMap::new(),
+			)
 		}
+	}
+
+	pub fn send_request(&mut self, url: &str) -> Result<Response> {
+		self.build_request(url)?.send_with_view(&self.web_view)
 	}
 
 	pub fn decode_json_owned<T>(&mut self, response: &Response) -> Result<T>
@@ -369,16 +423,13 @@ impl ComixWebView {
 			.get_header("x-enc")
 			.is_some_and(|value| value == "1")
 		{
-			let encoded_response = response
-				.get_string()?
-				.replace("\\", "\\\\")
-				.replace("'", "\\'");
+			let encoded_response = serde_json::to_string(&response.get_string()?)?;
 
-			let result = self.web_view.eval(&format!(
-				"(() => {{
+			let result = transport::run_task(&self.web_view, &format!(
+				"(async () => {{
 					try {{
-						let decoded = window['{INSTALLER_RESPONSE_TOKEN}']({{
-							data: JSON.parse('{encoded_response}'),
+						let decoded = await window['{INSTALLER_RESPONSE_TOKEN}']({{
+							data: JSON.parse({encoded_response}),
 							status: 200,
 							headers: {{
 								'x-enc': '1',
@@ -408,6 +459,15 @@ impl ComixWebView {
 		if !self.is_initialized {
 			self.load_webview()?
 		}
+		if !width.is_finite()
+			|| !height.is_finite()
+			|| width <= 0.0
+			|| height <= 0.0
+			|| width * height > 40_000_000.0
+		{
+			bail!("Invalid page dimensions")
+		}
+		let url_literal = serde_json::to_string(url)?;
 
 		self.web_view.eval(&format!(
 			"(() => {{
@@ -426,7 +486,7 @@ impl ComixWebView {
 				}}, 30000);
 
 				if (window['{DESCRAMBLER_BLOB_TOKEN}'] != null) {{
-					window['{DESCRAMBLER_BLOB_TOKEN}']('{url}', signal)
+					window['{DESCRAMBLER_BLOB_TOKEN}']({url_literal}, signal)
 						.then((data) => {{
 							if (typeof data === 'object' && data.mode && typeof data.mode === 'string') {{
 								if (data.mode === 'blob') {{
@@ -485,7 +545,7 @@ impl ComixWebView {
 						}})
 						.catch((error) => {{
 							if (window['{DESCRAMBLER_CANVAS_TOKEN}'] != null) {{
-								window['{DESCRAMBLER_CANVAS_TOKEN}']('{url}', canvas, signal)
+								window['{DESCRAMBLER_CANVAS_TOKEN}']({url_literal}, canvas, signal)
 									.then(() => {{
 										const data = window['{CANVAS_TO_DATA_URL_TOKEN}'].call(canvas);
 										window['{DESCRAMBLER_RESPONSE_TOKEN}'].data = data;
@@ -504,7 +564,7 @@ impl ComixWebView {
 							}}
 						}});
 				}} else if (window['{DESCRAMBLER_CANVAS_TOKEN}'] != null) {{
-					window['{DESCRAMBLER_CANVAS_TOKEN}']('{url}', canvas, signal)
+					window['{DESCRAMBLER_CANVAS_TOKEN}']({url_literal}, canvas, signal)
 						.then(() => {{
 							const data = window['{CANVAS_TO_DATA_URL_TOKEN}'].call(canvas);
 							window['{DESCRAMBLER_RESPONSE_TOKEN}'].data = data;
