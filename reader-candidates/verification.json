@@ -1,77 +1,30 @@
 {
   "schema": "AIDOKU_FUNCTIONAL_SMOKE_V1",
-  "checkedAt": "2026-09-26T06:37:59+00:00",
-  "status": "blocked",
-  "scope": "Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
+  "checkedAt": "2026-09-27T14:53:27Z",
+  "status": "inconclusive",
+  "scope": "Exact published candidate packages and local build checks. Comix v129 still requires real iOS WebView acceptance.",
   "catalogRoot": "reader-candidates",
   "cases": [
     {
-      "chapterCount": 145,
-      "firstPageBytes": 267618,
-      "firstPageSha256": "26a4bf1132e6bb68deaf6bf6670d9ec8c3641dc48df7fa3225171166ee30b3bb",
-      "network": [
-        {
-          "host": "asurascans.com",
-          "status": 200
-        },
-        {
-          "host": "asurascans.com",
-          "status": 302
-        },
-        {
-          "host": "asurascans.com",
-          "status": 200
-        },
-        {
-          "host": "api.asurascans.com",
-          "status": 200
-        },
-        {
-          "host": "cdn.asurascans.com",
-          "status": 200
-        }
-      ],
-      "pageCount": 22,
-      "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
-      "runtimeLoaded": true,
-      "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
-      "searchCount": 10,
-      "stage": "complete",
-      "status": "passed",
-      "exitCode": 0,
       "id": "en.asurascans",
       "version": 20,
-      "packageSha256": "258bf9a4e8b8fa8528eac450664e69085a0c75342b6ea5b79196994aaa5866da",
-      "wasmSha256": "9f7e229df63dae9bbe3394b1c6b73547cda4d5c011fcee1f6d7ec95fe54794b2",
-      "checkedAt": "2026-09-26T06:37:56+00:00"
+      "packageSha256": "11e55c8e06a384835296da4ef64ec03283e0941b2ef4083e7cd1b9f1b963fb06",
+      "wasmSha256": "b60941d88b4e8241ccd626a4304f5af490d6559b0c772f4e6455851b47a4ab8d",
+      "status": "inconclusive",
+      "stage": "package",
+      "limitation": "The candidate package is validated, but the previously recorded reader pass covered different package bytes."
     },
     {
-      "error": "source error or invalid result at get_search_manga_list",
-      "network": [
-        {
-          "host": "comix.to",
-          "status": 403
-        },
-        {
-          "host": "comix.ws",
-          "status": 403
-        }
-      ],
-      "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
-      "runtimeLoaded": true,
-      "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
-      "stage": "search",
-      "status": "blocked",
-      "exitCode": 1,
-      "limitation": "Protected HTTP response observed. Headless run cannot establish in-app usability.",
       "id": "en.comix",
-      "version": 127,
-      "packageSha256": "748e56573028f4f8a2a861c2fbe6286fc5bb3f07f0e851c65fef07d3a0edbb8f",
-      "wasmSha256": "d7c30e956adb09b16d1fde46012ade49a0ec84c3d9f42abc112bb7556debb680",
-      "checkedAt": "2026-09-26T06:37:59+00:00"
+      "version": 129,
+      "packageSha256": "0299a0b5319ecfbd28c2fe8055e28f98ff720cf5f8e31738b54b523d32ce37c6",
+      "wasmSha256": "b251429b935a4fb7cc49e4b4f635405f89abc9c463fd735a016548ba8441605a",
+      "runtimeLoaded": false,
+      "status": "inconclusive",
+      "stage": "device-acceptance",
+      "limitation": "Desktop and headless checks cannot establish whether the affected iPhone accepts this first-party WKWebView session."
     }
   ],
   "iosVerified": false,
-  "buildRun": 36224294334,
-  "sourceCommit": "aca6e74cd50aee627845f29e4ceac084dc722f57"
+  "sourceCommit": "3a28911b3d757b99d697d24002f3e503416f59bc"
 }
