@@ -1,0 +1,15 @@
+{
+  "sourceCount": 1,
+  "sources": [
+    {
+      "id": "en.comix",
+      "version": 129,
+      "file": "sources/en.comix-v129.aix",
+      "sha256": "0299a0b5319ecfbd28c2fe8055e28f98ff720cf5f8e31738b54b523d32ce37c6",
+      "wasmSha256": "b251429b935a4fb7cc49e4b4f635405f89abc9c463fd735a016548ba8441605a",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/3a28911b3d757b99d697d24002f3e503416f59bc/source-fixes/en.comix",
+      "sourceCommit": "3a28911b3d757b99d697d24002f3e503416f59bc",
+      "acceptance": "Candidate: requires iOS reader verification"
+    }
+  ]
+}
