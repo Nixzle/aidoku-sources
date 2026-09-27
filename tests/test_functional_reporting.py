@@ -54,6 +54,11 @@ class FunctionalStatusTests(unittest.TestCase):
         self.assertIn('acceptance: ${{ steps.functional.outputs.acceptance }}', text)
         self.assertIn("Build candidate catalog\n        if: github.event_name == 'pull_request'", text)
 
+    def test_quarantined_comix_is_available_only_when_explicitly_selected(self):
+        self.assertNotIn('en.comix', smoke.CASES)
+        self.assertEqual(smoke.OPTIONAL_CASES['en.comix'], 'solo')
+        self.assertEqual(smoke.ALL_CASES['en.comix'], 'solo')
+
 
 class FunctionalIncidentTests(unittest.TestCase):
     def call_report(self, acceptance, execution='success'):

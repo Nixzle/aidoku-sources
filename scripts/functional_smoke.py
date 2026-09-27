@@ -22,6 +22,8 @@ def utc_now() -> str:
 
 
 CASES = {"en.asurascans": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
+OPTIONAL_CASES = {"en.comix": "solo"}
+ALL_CASES = CASES | OPTIONAL_CASES
 
 
 def settings_defaults(items) -> dict:
@@ -110,14 +112,15 @@ def main() -> int:
     parser.add_argument("--runner", type=Path, required=True)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, default=Path("acceptance/functional"))
-    parser.add_argument("--source", action="append", choices=sorted(CASES))
+    parser.add_argument("--source", action="append", choices=sorted(ALL_CASES))
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     runner = args.runner.resolve()
     results = []
-    for source_id, query in CASES.items():
-        if args.source and source_id not in args.source:
-            continue
+    selected = CASES if not args.source else {
+        source_id: ALL_CASES[source_id] for source_id in args.source
+    }
+    for source_id, query in selected.items():
         try:
             result = run_case(args.root, runner, source_id, query, args.output)
         except Exception as error:
