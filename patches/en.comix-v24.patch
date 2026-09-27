@@ -1,0 +1,18 @@
+diff --git a/sources/en.comix/res/source.json b/sources/en.comix/res/source.json
+index 4157225..c116c86 100644
+--- a/sources/en.comix/res/source.json
++++ b/sources/en.comix/res/source.json
+@@ -2,11 +2,11 @@
+ 	"info": {
+ 		"id": "en.comix",
+ 		"name": "Comix",
+-		"version": 23,
++		"version": 24,
+ 		"url": "https://comix.to",
+ 		"contentRating": 1,
+ 		"languages": ["en"],
+-		"minAppVersion": "0.8.4"
++		"minAppVersion": "0.9"
+ 	},
+ 	"listings": [
+ 		{
