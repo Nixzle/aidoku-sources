@@ -98,7 +98,11 @@ impl ComixWebView {
             at_document_end: false,
             for_main_frame_only: true,
         })?;
-        self.web_view.load_blocking(create_request_get(base_url)?)?;
+        // Do not wait on WebKit's page-finished callback here. Comix is a SPA and
+        // challenge/ad subresources can keep that callback open indefinitely,
+        // leaving Aidoku's already-emitted Home skeletons spinning forever. The
+        // bounded readiness loop below is the single navigation deadline.
+        self.web_view.load(create_request_get(base_url)?)?;
 
         let origin = serde_json::to_string(base_url)?;
         let mut loaded = false;
