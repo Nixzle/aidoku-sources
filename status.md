@@ -1,19 +1,21 @@
 # Aidoku Source Status
 
-Status last changed: 2026-09-27T15:01:21+00:00
+Status last changed: 2026-09-28T15:23:32+00:00
 
-Last website sweep: 2026-09-27T15:00:54+00:00
+Last website sweep: 2026-09-28T15:23:03+00:00
 Website reachability, package delivery and chapter reading are separate checks.
 [Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
-- Maintained: 52
+- Maintained: 54
 - Legacy-only: 47
 - Manually quarantined: 5
 - Automatically quarantined: 4
-- Degraded/under observation: 10
+- Degraded/under observation: 11
 
 ## Required source health
 
+- **Atsumaru** (`en.atsumaru`): healthy (healthy); reader not certified by reachability
+- **Comix WS** (`en.comixws`): healthy (healthy); reader not certified by reachability
 - **MangaDistrict** (`en.mangadistrict`): healthy (healthy); reader not certified by reachability
 - **Read Comics Online** (`en.readcomicsonline`): degraded (cloudflare_protected); reader not certified by reachability
 
@@ -24,20 +26,21 @@ Website reachability, package delivery and chapter reading are separate checks.
 - **Fire Scans** (`en.firescans`): The configured source domain does not currently resolve.
 - **Qi Scans** (`en.qiscans`): The configured source domain does not currently resolve.
 - **ReadComicOnline** (`en.readcomiconline`): The original ReadComicOnline service has no live domain; use en.readcomicsonline instead. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/639))
-- **Hive Scans** (`en.hivescans`): unreachable for 3 consecutive daily checks
 - **Manga Sect** (`en.mangasect`): unreachable for 3 consecutive daily checks
+- **MangaTx** (`en.mangatx`): unreachable for 3 consecutive daily checks
 - **Manhuagold** (`en.manhuagold`): unreachable for 3 consecutive daily checks
 - **Manhwax** (`en.manhwax`): unreachable for 3 consecutive daily checks
 
 ## Under observation
 
 - **Armageddon** (`en.armageddon`): 0 failed sample(s); forbidden; last probe 2026-09-27T15:00:54+00:00
-- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-27T15:00:54+00:00
-- **Madokami** (`en.madokami`): 0 failed sample(s); auth_required; last probe 2026-09-27T15:00:54+00:00
-- **MangaTx** (`en.mangatx`): 2 failed sample(s); tls_failure; last probe 2026-09-27T15:00:54+00:00
-- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-27T15:00:54+00:00; protected as a required source
-- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); forbidden; last probe 2026-09-27T15:00:54+00:00
-- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-09-27T15:00:54+00:00
-- **Kagane** (`multi.kagane`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-27T15:00:54+00:00
-- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-27T15:00:54+00:00
-- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-27T15:00:54+00:00
+- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00
+- **Drake Scans** (`en.drakescans`): 1 failed sample(s); timeout; last probe 2026-09-28T15:23:03+00:00
+- **Madokami** (`en.madokami`): 0 failed sample(s); auth_required; last probe 2026-09-28T15:23:03+00:00
+- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00; protected as a required source
+- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00
+- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-09-28T15:23:03+00:00
+- **E-Hentai** (`multi.ehentai`): 0 failed sample(s); restricted; last probe 2026-09-28T15:23:03+00:00
+- **Kagane** (`multi.kagane`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00
+- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00
+- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-09-28T15:23:03+00:00

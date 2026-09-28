@@ -42,6 +42,20 @@ Do not add the legacy list unless you specifically need an old source. It no lon
 
 Packages marked for personal download only by their maintainer are intentionally excluded from this public repository. External sources are unofficial and are not affiliated with Aidoku or the websites they access.
 
+### Recommended alternatives
+
+The main list includes **Atsumaru**, **Weeb Central**, **Kagane**, and
+**MangaDex**. It also includes **Comix WS**, an independent source ID for the
+active `comix.ws` deployment. Comix WS does not overwrite the quarantined
+`en.comix` package or migrate its library entries; install it as a separate
+source. If the site presents a challenge, open the source settings and use
+**Verify Comix WS Captcha**.
+
+Atsumaru is mirrored from the dual-licensed `Amqx/sources` implementation. The
+mirror is allowlisted to that one source, so later unrelated donor packages do
+not enter this catalog automatically. No restricted Yomu package or code is
+copied into this repository.
+
 ### Updating an existing installation
 
 Refresh this source list and install the Read Comics Online **v4 or newer** source
@@ -67,3 +81,9 @@ Never post account cookies or access tokens.
 Nixzle's experimental Comix v127/v128 packages are retired after failing real-device acceptance on an affected Cloudflare client. They are not considered working releases. This repository does not rehost third-party replacement packages. The independently maintained Yomu Comix list documents full WebView transport plus bad-page-image recovery: https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json . Back up Aidoku before changing an installed source.
 
 For testing Nixzle Comix v132 without a stale candidate-list cache, add the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. v132 keeps Aidoku's native verification trigger but moves blocked signed API traffic into a bounded, persistent, same-origin WebView. The normal catalog remains quarantined until it passes on the affected iPhone.
+
+Comix WS v1 uses the active `comix.ws` host under the separate `en.comixws`
+identity. Its API and image requests are restricted to `comix.ws` and
+`static.comix.ws`; the package is checksum-pinned and updated by the same daily
+catalog workflow. A successful website probe is not proof of iOS reader
+rendering, so real-device results remain the final acceptance check.

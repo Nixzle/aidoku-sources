@@ -58,6 +58,7 @@ class FunctionalStatusTests(unittest.TestCase):
         self.assertNotIn('en.comix', smoke.CASES)
         self.assertEqual(smoke.OPTIONAL_CASES['en.comix'], 'solo')
         self.assertEqual(smoke.ALL_CASES['en.comix'], 'solo')
+        self.assertEqual(smoke.OPTIONAL_CASES['en.comixws'], 'solo')
 
     def test_optional_webview_case_without_headless_trace_is_inconclusive(self):
         report = {'status': 'failed', 'runtimeLoaded': True, 'stage': 'search', 'network': []}

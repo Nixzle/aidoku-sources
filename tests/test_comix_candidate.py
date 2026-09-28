@@ -33,6 +33,22 @@ class ComixCandidateTests(unittest.TestCase):
         self.assertNotIn('self.web_view.load(', web)
         self.assertNotIn('load_blocking(create_request_get', web)
 
+    def test_comix_ws_is_independent_and_host_bounded(self):
+        source_root = ROOT / "source-fixes" / "en.comixws"
+        manifest = json.loads((source_root / "res" / "source.json").read_text(encoding="utf-8"))
+        lib = (source_root / "src" / "lib.rs").read_text(encoding="utf-8")
+        settings = (source_root / "res" / "settings.json").read_text(encoding="utf-8")
+
+        self.assertEqual(manifest["info"]["id"], "en.comixws")
+        self.assertEqual(manifest["info"]["name"], "Comix WS")
+        self.assertEqual(manifest["info"]["version"], 1)
+        self.assertEqual(manifest["info"]["url"], "https://comix.ws")
+        self.assertIn('const BASE_URL: &str = "https://comix.ws";', lib)
+        self.assertIn('"https://static.comix.ws/"', lib)
+        self.assertIn('Rejected unexpected Comix WS image host', lib)
+        self.assertNotIn('https://comix.to', lib)
+        self.assertIn('https://comix.ws/@waf/challenge?return=/', settings)
+
 
 if __name__ == "__main__":
     unittest.main()

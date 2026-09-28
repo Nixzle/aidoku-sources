@@ -78,6 +78,16 @@ UPSTREAMS = (
         "license": "MIT OR Apache-2.0",
     },
     {
+        "name": "Amqx/sources",
+        "index": "https://raw.githubusercontent.com/Amqx/sources/gh-pages/index.min.json",
+        "asset_base": "https://raw.githubusercontent.com/Amqx/sources/gh-pages/",
+        "priority": 250,
+        "license": "MIT OR Apache-2.0",
+        # Keep this mirror deliberately narrow. A growing donor catalog must
+        # not silently widen the reviewed public surface.
+        "includeIds": ("en.atsumaru",),
+    },
+    {
         "name": "tachibana-shin/aidoku-community-sources",
         "index": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/index.min.json",
         "asset_base": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/",
@@ -768,6 +778,75 @@ def apply_local_package_overrides(
     return result
 
 
+def apply_local_package_sources(
+    candidates: list[dict],
+    policy: dict,
+    *,
+    root: Path = ROOT,
+) -> list[dict]:
+    """Add reviewed, repository-pinned packages that have no upstream entry."""
+    additions = policy.get("localPackageSources", {})
+    if not additions:
+        return candidates
+    result = list(candidates)
+    minimum_versions = {
+        str(key): str(value)
+        for key, value in policy.get("minAppVersionOverrides", {}).items()
+    }
+    for source_id, detail in sorted(additions.items()):
+        path = _safe_local_reference(root, str(detail["path"]))
+        package_root = (root / "overrides").resolve()
+        if package_root not in path.parents or path.suffix.casefold() != ".aix":
+            raise ValueError(f"Local source {source_id} must be an .aix inside overrides/")
+        package = path.read_bytes()
+        if len(package) > MAX_PACKAGE_BYTES:
+            raise ValueError(f"Local source {source_id} exceeds the package size limit")
+        expected_digest = detail.get("sha256")
+        if not isinstance(expected_digest, str) or not re.fullmatch(r"[0-9a-f]{64}", expected_digest):
+            raise ValueError(f"Local source {source_id} requires a pinned SHA-256 checksum")
+        if hashlib.sha256(package).hexdigest() != expected_digest:
+            raise ValueError(f"Pinned checksum mismatch for {source_id}")
+        info, _ = read_package(package, f"local source {source_id}", expected_id=source_id)
+        try:
+            version = int(info["version"])
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError(f"Local source {source_id} has no valid version") from error
+        repository = str(detail.get("repository", "Nixzle/aidoku-sources"))
+        license_name = str(detail.get("license", "MIT OR Apache-2.0"))
+        if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+            raise ValueError(f"Local source {source_id} has an invalid repository")
+        if not license_name or len(license_name) > 100:
+            raise ValueError(f"Local source {source_id} has an invalid license")
+        provenance = override_provenance(detail)
+        local_upstream = {
+            "name": repository,
+            "priority": 1000,
+            "license": license_name,
+        }
+        entry = {
+            "id": source_id,
+            "name": info.get("name"),
+            "version": version,
+            "languages": info.get("languages", info.get("lang")),
+            "contentRating": info.get("contentRating", info.get("nsfw")),
+            "baseURL": info.get("url"),
+            "minAppVersion": info.get("minAppVersion"),
+        }
+        candidate = candidate_from_package(
+            local_upstream,
+            entry,
+            package,
+            expected_version=version,
+            min_app_version_overrides=minimum_versions,
+            upstream_package_url=provenance["upstreamPackageURL"],
+        )
+        candidate.update(provenance)
+        result = [item for item in result if item["id"] != source_id]
+        result.append(candidate)
+        print(f"Added reviewed local source {source_id} v{version}")
+    return result
+
+
 def load_policy(path: Path = POLICY_PATH) -> dict:
     try:
         policy = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -822,6 +901,29 @@ def load_policy(path: Path = POLICY_PATH) -> dict:
             raise ValueError(f"Local package override for {source_id} has an invalid path")
         provenance_url = detail.get("provenanceURL")
         _safe_https_url(str(provenance_url), f"local package override provenance for {source_id}")
+    package_sources = policy.get("localPackageSources", {})
+    if not isinstance(package_sources, dict):
+        raise ValueError("localPackageSources must be an object")
+    for source_id, detail in package_sources.items():
+        validate_source_id(source_id, "local package source ID")
+        if not isinstance(detail, dict):
+            raise ValueError(f"Local package source for {source_id} must be an object")
+        path = detail.get("path")
+        if not isinstance(path, str) or not path.startswith("overrides/") or len(path) > 300:
+            raise ValueError(f"Local package source for {source_id} has an invalid path")
+        _safe_https_url(
+            str(detail.get("provenanceURL")),
+            f"local package source provenance for {source_id}",
+        )
+    promoted_sources = policy.get("promotedSources", [])
+    if not isinstance(promoted_sources, list) or any(
+        not isinstance(source_id, str) for source_id in promoted_sources
+    ):
+        raise ValueError("promotedSources must be a list of source IDs")
+    if len(promoted_sources) != len(set(promoted_sources)):
+        raise ValueError("promotedSources must not contain duplicates")
+    for source_id in promoted_sources:
+        validate_source_id(source_id, "promoted source ID")
     return policy
 
 
@@ -1155,7 +1257,7 @@ def write_catalog(
             "sourceCount": len(inventory_entries),
             "catalogPolicy": catalog_policy,
             "languagePolicy": "English or multilingual entries advertising en, All, or multi",
-            "excludedPersonalUseOnly": ["en.atsumaru", "multi.mangaball", "multi.onisaga"],
+            "excludedPersonalUseOnly": ["multi.mangaball", "multi.onisaga"],
             "replacedWithCommunityBuilds": ["multi.mangadotnet", "multi.kagane"],
             "excludedNonEnglish": ["Non-English-only source packages"],
             "upstreams": [
@@ -1453,12 +1555,14 @@ def main() -> None:
         entries = payload.get("sources", []) if isinstance(payload, dict) else payload
         if not isinstance(entries, list):
             raise ValueError(f"{upstream['name']} index sources must be a list")
+        include_ids = set(upstream.get("includeIds", ()))
         english_entries = [
             entry
             for entry in entries
             if isinstance(entry, dict)
             and is_english_entry(entry)
             and str(entry.get("id", "")) not in excluded_everywhere
+            and (not include_ids or str(entry.get("id", "")) in include_ids)
         ]
         print(
             f"{upstream['name']}: {len(english_entries)} eligible English/multilingual index entries"
@@ -1492,13 +1596,18 @@ def main() -> None:
         print(f"WARNING: {len(errors)} source package(s) could not be refreshed or recovered")
 
     candidates = apply_local_package_overrides(candidates, policy)
+    candidates = apply_local_package_sources(candidates, policy)
     candidates = publication.apply(candidates, policy, root=ROOT, updater=sys.modules[__name__])
 
     required_maintained = set(policy.get("requiredMaintainedSources", []))
+    promoted_sources = set(policy.get("promotedSources", []))
     active_health_candidates = [
         candidate
         for candidate in candidates
-        if candidate["repository"] == ACTIVE_REPOSITORY
+        if (
+            candidate["repository"] == ACTIVE_REPOSITORY
+            or candidate["id"] in promoted_sources
+        )
         and candidate["id"] not in manual_maintained
     ]
     automatic_quarantine, health_state = refresh_health_state(active_health_candidates, policy)
@@ -1546,8 +1655,9 @@ def main() -> None:
         maximum_removal_ratio=float(safety.get("maximumRemovalRatio", 0.25)),
     )
 
+    active_repositories = {candidate["repository"] for candidate in active_selected}
     active_upstreams = tuple(
-        upstream for upstream in UPSTREAMS if upstream["name"] == ACTIVE_REPOSITORY
+        upstream for upstream in UPSTREAMS if upstream["name"] in active_repositories
     )
     write_rollback_snapshot()
     write_catalog(
@@ -1556,7 +1666,7 @@ def main() -> None:
         ROOT,
         "Nixzle's Maintained English Aidoku Sources",
         "Nixzle's Maintained Public English Aidoku Sources",
-        "Packages currently published by the active Aidoku community repository and not quarantined",
+        "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
         active_upstreams,
     )
     write_catalog(

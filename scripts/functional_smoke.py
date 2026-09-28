@@ -22,7 +22,7 @@ def utc_now() -> str:
 
 
 CASES = {"en.asurascans": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
-OPTIONAL_CASES = {"en.comix": "solo"}
+OPTIONAL_CASES = {"en.comix": "solo", "en.comixws": "solo"}
 ALL_CASES = CASES | OPTIONAL_CASES
 
 

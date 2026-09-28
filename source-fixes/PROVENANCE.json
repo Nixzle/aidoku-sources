@@ -16,8 +16,15 @@
       "baseVersion": 19,
       "candidateVersion": 20,
       "sdkCommit": "b0818704a5487778999bcd11239fa4c7a44da6ab"
+    },
+    {
+      "id": "en.comixws",
+      "upstreamPath": "sources/en.comix",
+      "baseVersion": 23,
+      "candidateVersion": 1,
+      "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
     }
   ],
-  "modifications": "Comix v131 restores the maintained upstream implementation and changes only its package version and Aidoku 0.9 application floor. Asura retains the bounded reader fixes described in README.md.",
+  "modifications": "Comix v132 adds bounded same-origin WebView recovery. Comix WS v1 gives the active comix.ws deployment an independent source ID, exact host restrictions, and the same bounded transport. Asura retains the bounded reader fixes described in README.md.",
   "restrictedDonors": "No Yomu binary or code was copied."
 }
