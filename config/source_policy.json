@@ -46,11 +46,19 @@
   },
   "minAppVersionOverrides": {
     "en.readcomicsonline": "0.9",
-    "en.comix": "0.9"
+    "en.comix": "0.9",
+    "en.comixws": "0.9",
+    "en.atsumaru": "0.9"
   },
   "requiredMaintainedSources": [
+    "en.atsumaru",
+    "en.comixws",
     "en.mangadistrict",
     "en.readcomicsonline"
+  ],
+  "promotedSources": [
+    "en.atsumaru",
+    "en.comixws"
   ],
   "automaticHealth": {
     "enabled": true,
@@ -70,6 +78,24 @@
       "requiredSubstrings": [
         "Second Half",
         "Ch"
+      ],
+      "allowProtected": true,
+      "level": "chapter"
+    },
+    "en.comixws": {
+      "url": "https://comix.ws/title/x55j7-second-half/8927229-chapter-1",
+      "requiredSubstrings": [
+        "Second Half",
+        "Chapter"
+      ],
+      "allowProtected": true,
+      "level": "chapter"
+    },
+    "en.atsumaru": {
+      "url": "https://atsu.moe/read/v8Kbg/P7297ifE",
+      "requiredSubstrings": [
+        "window.bootTheme",
+        "viewport-fit"
       ],
       "allowProtected": true,
       "level": "chapter"
@@ -98,5 +124,16 @@
       "reason": "Replace previously distributed different v3 bytes with a detectable client update. Keep source ID, WASM and chapter keys unchanged; future upstream revisions remain monotonic."
     }
   },
-  "localPackageOverrides": {}
+  "localPackageOverrides": {},
+  "localPackageSources": {
+    "en.comixws": {
+      "path": "overrides/en.comixws-v1.aix",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/overrides/en.comixws-v1.aix",
+      "sourceCommit": "2226a821b9fc65061f8f0dfb8f3aa51e74a5694a",
+      "sourcePath": "overrides/en.comixws-v1.aix",
+      "sha256": "1259556c49e7387f2eaf774f41701bc416a06138e6d82fdf43892d9aafedf684",
+      "repository": "Nixzle/aidoku-sources",
+      "license": "MIT OR Apache-2.0"
+    }
+  }
 }

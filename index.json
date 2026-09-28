@@ -40,6 +40,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.atsumaru",
+      "name": "Atsumaru",
+      "version": 1,
+      "iconURL": "icons/en.atsumaru-v1.png",
+      "downloadURL": "sources/en.atsumaru-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://atsu.moe",
+      "minAppVersion": "0.9"
+    },
+    {
       "id": "en.batcave",
       "name": "BatCave",
       "version": 2,
@@ -64,6 +77,19 @@
       "contentRating": 1,
       "baseURL": "https://chikari.moe",
       "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.comixws",
+      "name": "Comix WS",
+      "version": 1,
+      "iconURL": "icons/en.comixws-v1.png",
+      "downloadURL": "sources/en.comixws-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://comix.ws",
+      "minAppVersion": "0.9"
     },
     {
       "id": "en.dankefurslesen",
@@ -178,6 +204,18 @@
       ],
       "contentRating": 0,
       "baseURL": "https://hennoveltranslations.com"
+    },
+    {
+      "id": "en.hivescans",
+      "name": "Hive Scans",
+      "version": 2,
+      "iconURL": "icons/en.hivescans-v2.png",
+      "downloadURL": "sources/en.hivescans-v2.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://hivetoons.org"
     },
     {
       "id": "en.madokami",
@@ -301,18 +339,6 @@
       "baseURL": "https://www.mangaread.org"
     },
     {
-      "id": "en.mangatx",
-      "name": "MangaTx",
-      "version": 10,
-      "iconURL": "icons/en.mangatx-v10.png",
-      "downloadURL": "sources/en.mangatx-v10.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 2,
-      "baseURL": "https://mangatx.cc"
-    },
-    {
       "id": "en.manhuaplusorg",
       "name": "Manhuaplus.org",
       "version": 1,
@@ -352,9 +378,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 5,
-      "iconURL": "icons/en.readcomicsonline-v5.png",
-      "downloadURL": "sources/en.readcomicsonline-v5.aix",
+      "version": 6,
+      "iconURL": "icons/en.readcomicsonline-v6.png",
+      "downloadURL": "sources/en.readcomicsonline-v6.aix",
       "languages": [
         "en"
       ],

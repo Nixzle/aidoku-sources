@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import hashlib
 import json
 import tempfile
 import unittest
@@ -380,6 +381,39 @@ class SelectionAndDeterminismTests(unittest.TestCase):
             result = updater.apply_local_package_overrides([original], policy, root=root)
             self.assertIs(result[0], original)
 
+    def test_reviewed_local_source_is_added_with_pinned_bytes(self):
+        package = make_aix("en.local", 1)
+        digest = hashlib.sha256(package).hexdigest()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "overrides").mkdir()
+            (root / "overrides/en.local-v1.aix").write_bytes(package)
+            policy = {"localPackageSources": {"en.local": {
+                "path": "overrides/en.local-v1.aix",
+                "provenanceURL": "https://example.com/en.local-v1.aix",
+                "sha256": digest,
+                "repository": "Example/sources",
+                "license": "MIT",
+            }}}
+            result = updater.apply_local_package_sources([], policy, root=root)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["id"], "en.local")
+        self.assertEqual(result[0]["repository"], "Example/sources")
+
+    def test_reviewed_local_source_rejects_tampered_bytes(self):
+        package = make_aix("en.local", 1)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "overrides").mkdir()
+            (root / "overrides/en.local-v1.aix").write_bytes(package)
+            policy = {"localPackageSources": {"en.local": {
+                "path": "overrides/en.local-v1.aix",
+                "provenanceURL": "https://example.com/en.local-v1.aix",
+                "sha256": "0" * 64,
+            }}}
+            with self.assertRaisesRegex(ValueError, "Pinned checksum"):
+                updater.apply_local_package_sources([], policy, root=root)
+
     def test_legacy_delta_excludes_maintained_ids(self):
         selected = [
             {"id": "en.active"},
@@ -457,7 +491,12 @@ class SelectionAndDeterminismTests(unittest.TestCase):
         policy = updater.load_policy()
         self.assertEqual(
             set(policy["requiredMaintainedSources"]),
-            {"en.mangadistrict", "en.readcomicsonline"},
+            {
+                "en.atsumaru",
+                "en.comixws",
+                "en.mangadistrict",
+                "en.readcomicsonline",
+            },
         )
 
     def test_status_report_matches_policy_and_health(self):

@@ -1,0 +1,21 @@
+{
+  "info": {
+    "id": "en.comixws",
+    "name": "Comix WS",
+    "version": 1,
+    "url": "https://comix.ws",
+    "contentRating": 1,
+    "languages": [
+      "en"
+    ],
+    "minAppVersion": "0.9"
+  },
+  "listings": [
+    {
+      "id": "Trending Webtoon"
+    },
+    {
+      "id": "Trending Manga"
+    }
+  ]
+}

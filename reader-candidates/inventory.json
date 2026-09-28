@@ -1,5 +1,5 @@
 {
-  "sourceCount": 2,
+  "sourceCount": 3,
   "sources": [
     {
       "id": "en.asurascans",
@@ -19,6 +19,16 @@
       "wasmSha256": "ec085d4610befd1b8c5ab65f8b74da1f302ed4503de750fce15e1a242ddf3d37",
       "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/5b169d642bbc643fbeca2ad6e2cb9fd1943c8355/source-fixes/en.comix",
       "sourceCommit": "5b169d642bbc643fbeca2ad6e2cb9fd1943c8355",
+      "acceptance": "Candidate: requires iOS reader verification"
+    },
+    {
+      "id": "en.comixws",
+      "version": 1,
+      "file": "sources/en.comixws-v1.aix",
+      "sha256": "1259556c49e7387f2eaf774f41701bc416a06138e6d82fdf43892d9aafedf684",
+      "wasmSha256": "015eeddbf7b7fb87465e26d5836bd5ebeeca74d91959ff16868112ca5e31692a",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/source-fixes/en.comixws",
+      "sourceCommit": "2226a821b9fc65061f8f0dfb8f3aa51e74a5694a",
       "acceptance": "Candidate: requires iOS reader verification"
     }
   ]

@@ -8,7 +8,8 @@ import zipfile
 from update_sources import read_package
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'reader-candidates'
-SOURCES={'en.comix':'comix','en.asurascans':'asurascans'}
+SOURCES={'en.comix':'comix','en.comixws':'comixws','en.asurascans':'asurascans'}
+LOCAL_MAIN_SOURCES={'en.comixws'}
 def main():
     OUTPUT.mkdir(exist_ok=True)
     previous_inventory_path=OUTPUT/'inventory.json'
@@ -36,6 +37,10 @@ def main():
                     if item.is_file():archive.write(item,'Payload/'+item.name)
                 archive.write(wasm,'Payload/main.wasm')
         data=target.read_bytes()
+        if source_id in LOCAL_MAIN_SOURCES:
+            override=ROOT/'overrides'/f'{source_id}-v{info["version"]}.aix'
+            override.parent.mkdir(exist_ok=True)
+            override.write_bytes(data)
         _,icon=read_package(data,source_id,expected_id=source_id,expected_version=info['version'])
         with zipfile.ZipFile(target) as archive:
             packaged_wasm=archive.read('Payload/main.wasm')
@@ -45,7 +50,7 @@ def main():
             and source_id in previous_inventory
             and previous_inventory[source_id].get('version') == info['version']
             else os.environ.get('GITHUB_SHA')
-        )
+        ) or os.environ.get('GITHUB_SHA')
         provenance=(
             f'https://github.com/Nixzle/aidoku-sources/tree/{source_commit}/source-fixes/{source_id}'
             if source_commit

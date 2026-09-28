@@ -541,6 +541,83 @@ def validate_policy(root: Path, maintained_ids: set[str], legacy_ids: set[str]) 
             f"local override {source_id} does not match its published package",
         )
 
+    promoted_sources = policy.get("promotedSources", [])
+    require(isinstance(promoted_sources, list), "source policy promotedSources must be a list")
+    require(
+        all(
+            isinstance(source_id, str) and SOURCE_ID_PATTERN.fullmatch(source_id) is not None
+            for source_id in promoted_sources
+        ),
+        "source policy promotedSources contains an invalid id",
+    )
+    require(
+        len(promoted_sources) == len(set(promoted_sources)),
+        "source policy promotedSources contains duplicates",
+    )
+    require(
+        not (set(promoted_sources) - maintained_ids),
+        "promoted sources are missing from the maintained catalog: "
+        + ", ".join(sorted(set(promoted_sources) - maintained_ids)),
+    )
+
+    local_sources = policy.get("localPackageSources", {})
+    require(isinstance(local_sources, dict), "source policy localPackageSources must be an object")
+    require(
+        set(local_sources) <= set(promoted_sources),
+        "every local package source must be explicitly promoted",
+    )
+    for source_id, details in local_sources.items():
+        require(
+            isinstance(source_id, str) and SOURCE_ID_PATTERN.fullmatch(source_id) is not None,
+            f"source policy contains an invalid local source id {source_id!r}",
+        )
+        require(isinstance(details, dict), f"local source for {source_id} must be an object")
+        require(source_id in maintained_entries, f"local source {source_id} is not maintained")
+        package_relative = safe_relative_path(
+            details.get("path"), f"local source path for {source_id}", "overrides"
+        )
+        source_commit = details.get("sourceCommit")
+        require(
+            isinstance(source_commit, str)
+            and re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
+            f"local source commit for {source_id} is invalid",
+        )
+        source_path = details.get("sourcePath")
+        require(
+            source_path == details.get("path"),
+            f"local source path for {source_id} must identify the pinned package",
+        )
+        repository = details.get("repository")
+        require(
+            isinstance(repository, str)
+            and re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository) is not None,
+            f"local source repository for {source_id} is invalid",
+        )
+        require(
+            isinstance(details.get("license"), str) and bool(details["license"].strip()),
+            f"local source license for {source_id} is invalid",
+        )
+        package_path = root.joinpath(*package_relative.parts)
+        with zipfile.ZipFile(package_path) as archive:
+            manifest = json.loads(archive.read("Payload/source.json"))
+        info = manifest.get("info", manifest)
+        package_entry = {"id": source_id, "version": info.get("version")}
+        package_digest = validate_aix(package_path, package_entry, f"local source {source_id}")
+        require(
+            package_digest == details.get("sha256"),
+            f"Pinned checksum mismatch for {source_id}",
+        )
+        published_relative = safe_relative_path(
+            maintained_entries[source_id].get("downloadURL"),
+            f"published package for {source_id}",
+            "sources",
+        )
+        published_digest = hashlib.sha256(root.joinpath(*published_relative.parts).read_bytes()).hexdigest()
+        require(
+            package_digest == published_digest,
+            f"local source {source_id} does not match its published package",
+        )
+
     smoke_tests = policy.get("criticalSmokeTests")
     require(isinstance(smoke_tests, dict), "source policy criticalSmokeTests must be an object")
     require(
