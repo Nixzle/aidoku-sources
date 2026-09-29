@@ -127,11 +127,11 @@
   "localPackageOverrides": {},
   "localPackageSources": {
     "en.comixws": {
-      "path": "overrides/en.comixws-v1.aix",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/overrides/en.comixws-v1.aix",
-      "sourceCommit": "2226a821b9fc65061f8f0dfb8f3aa51e74a5694a",
-      "sourcePath": "overrides/en.comixws-v1.aix",
-      "sha256": "1259556c49e7387f2eaf774f41701bc416a06138e6d82fdf43892d9aafedf684",
+      "path": "overrides/en.comixws-v2.aix",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
+      "sourceCommit": "cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318",
+      "sourcePath": "overrides/en.comixws-v2.aix",
+      "sha256": "dbc53c168ed78f8878b234d29263be69e985c7dfd51e24896689b210ccf62cd6",
       "repository": "Nixzle/aidoku-sources",
       "license": "MIT OR Apache-2.0"
     }

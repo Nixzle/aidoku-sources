@@ -81,9 +81,9 @@
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "version": 1,
-      "iconURL": "icons/en.comixws-v1.png",
-      "downloadURL": "sources/en.comixws-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.comixws-v2.png",
+      "downloadURL": "sources/en.comixws-v2.aix",
       "languages": [
         "en"
       ],
