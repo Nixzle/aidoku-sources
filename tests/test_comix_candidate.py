@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ComixCandidateTests(unittest.TestCase):
-    def test_v132_has_bounded_same_origin_webview_recovery(self):
+    def test_v133_has_bounded_same_origin_webview_recovery(self):
         source_root = ROOT / "source-fixes" / "en.comix"
         manifest = json.loads((source_root / "res" / "source.json").read_text(encoding="utf-8"))
         web = (source_root / "src" / "web.rs").read_text(encoding="utf-8")
@@ -15,7 +15,7 @@ class ComixCandidateTests(unittest.TestCase):
 
         settings = (source_root / "res" / "settings.json").read_text(encoding="utf-8")
 
-        self.assertEqual(manifest["info"]["version"], 132)
+        self.assertEqual(manifest["info"]["version"], 133)
         self.assertEqual(manifest["info"]["minAppVersion"], "0.9")
         self.assertIn('const COMIX_ORIGINS: &[&str] = &[BASE_URL];', lib)
         self.assertIn('mod transport;', lib)
@@ -28,6 +28,10 @@ class ComixCandidateTests(unittest.TestCase):
         self.assertIn('Object.create(null)', web)
         self.assertIn("['__proto__', 'constructor', 'prototype']", web)
         self.assertIn('serde_json::to_string', web)
+        self.assertIn('const MODULE_TOKEN: &str = "__AIDOKU_COMIX_MODULE__";', web)
+        self.assertIn("const vmKey = '__AIDOKU_COMIX_MODULE__';", web)
+        self.assertNotIn("startsWith('vm')", web)
+        self.assertNotIn('window.vm = await import', web)
         self.assertIn('web_view.send_request(&url)?', lib)
         self.assertIn('"key": "connectionMode"', settings)
         self.assertNotIn('self.web_view.load(', web)
@@ -41,7 +45,7 @@ class ComixCandidateTests(unittest.TestCase):
 
         self.assertEqual(manifest["info"]["id"], "en.comixws")
         self.assertEqual(manifest["info"]["name"], "Comix WS")
-        self.assertEqual(manifest["info"]["version"], 1)
+        self.assertEqual(manifest["info"]["version"], 2)
         self.assertEqual(manifest["info"]["url"], "https://comix.ws")
         self.assertIn('const BASE_URL: &str = "https://comix.ws";', lib)
         self.assertIn('"https://static.comix.ws/"', lib)

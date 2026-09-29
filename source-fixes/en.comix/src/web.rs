@@ -19,8 +19,10 @@ use regex::Regex;
 use serde::{Deserialize, de::DeserializeOwned};
 use serde_json::Value;
 
+const MODULE_TOKEN: &str = "__AIDOKU_COMIX_MODULE__";
+
 const GET_VMOBJ_JS: &str = "\
-const vmKey = Object.keys(window).find(key => key.startsWith('vm'));\
+const vmKey = '__AIDOKU_COMIX_MODULE__';\
 const vmObj = window[vmKey];\
 if (!vmObj || typeof vmObj !== 'object' || vmObj === window) {\
 	return '';\
@@ -171,7 +173,7 @@ impl ComixWebView {
 			&format!(
 				"(async () => {{
 					const blobUrl = URL.createObjectURL(new Blob([{source_literal}], {{type:'text/javascript'}}));
-					try {{ window.vm = await import(blobUrl); return ''; }}
+					try {{ window['{MODULE_TOKEN}'] = await import(blobUrl); return ''; }}
 					finally {{ URL.revokeObjectURL(blobUrl); }}
 				}})()"
 			),

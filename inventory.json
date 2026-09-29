@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-09-28T15:23:32+00:00",
+  "generatedAt": "2026-09-29T13:39:46+00:00",
   "sourceCount": 54,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -92,16 +92,16 @@
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "version": 1,
-      "file": "sources/en.comixws-v1.aix",
+      "version": 2,
+      "file": "sources/en.comixws-v2.aix",
       "repository": "Nixzle/aidoku-sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/overrides/en.comixws-v1.aix",
-      "sha256": "1259556c49e7387f2eaf774f41701bc416a06138e6d82fdf43892d9aafedf684",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/overrides/en.comixws-v1.aix",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
+      "sha256": "dbc53c168ed78f8878b234d29263be69e985c7dfd51e24896689b210ccf62cd6",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
       "packageRepository": "Nixzle/aidoku-sources",
-      "sourceCommit": "2226a821b9fc65061f8f0dfb8f3aa51e74a5694a",
-      "sourcePath": "overrides/en.comixws-v1.aix"
+      "sourceCommit": "cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318",
+      "sourcePath": "overrides/en.comixws-v2.aix"
     },
     {
       "id": "en.dankefurslesen",
