@@ -1,12 +1,12 @@
 {
-  "name": "Nixzle Comix v132 Update",
+  "name": "Nixzle Comix v133 Update",
   "sources": [
     {
       "id": "en.comix",
       "name": "Comix",
-      "version": 132,
-      "downloadURL": "sources/en.comix-v132.aix",
-      "iconURL": "icons/en.comix-v132.png",
+      "version": 133,
+      "downloadURL": "sources/en.comix-v133.aix",
+      "iconURL": "icons/en.comix-v133.png",
       "languages": [
         "en"
       ],

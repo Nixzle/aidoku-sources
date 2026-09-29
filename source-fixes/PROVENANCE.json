@@ -7,7 +7,7 @@
       "id": "en.comix",
       "upstreamPath": "sources/en.comix",
       "baseVersion": 23,
-      "candidateVersion": 131,
+      "candidateVersion": 133,
       "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
     },
     {
@@ -21,7 +21,7 @@
       "id": "en.comixws",
       "upstreamPath": "sources/en.comix",
       "baseVersion": 23,
-      "candidateVersion": 1,
+      "candidateVersion": 2,
       "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
     }
   ],

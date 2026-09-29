@@ -13,22 +13,22 @@
     },
     {
       "id": "en.comix",
-      "version": 132,
-      "file": "sources/en.comix-v132.aix",
-      "sha256": "1c8fb1dd55091877e6625d5466a9aa9c736e197011e1d29ef24226df3d336ca0",
-      "wasmSha256": "ec085d4610befd1b8c5ab65f8b74da1f302ed4503de750fce15e1a242ddf3d37",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/5b169d642bbc643fbeca2ad6e2cb9fd1943c8355/source-fixes/en.comix",
-      "sourceCommit": "5b169d642bbc643fbeca2ad6e2cb9fd1943c8355",
+      "version": 133,
+      "file": "sources/en.comix-v133.aix",
+      "sha256": "1bb7335fa85f2bfdab7595f88868c42c9e02fe4598698913133901ede7b40877",
+      "wasmSha256": "64a5806095825092288ff754f9b3be6ed431b8aa0d43543951306fa7030739de",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/45a64e77d64a4d744652a597b70f4401c487a095/source-fixes/en.comix",
+      "sourceCommit": "45a64e77d64a4d744652a597b70f4401c487a095",
       "acceptance": "Candidate: requires iOS reader verification"
     },
     {
       "id": "en.comixws",
-      "version": 1,
-      "file": "sources/en.comixws-v1.aix",
-      "sha256": "1259556c49e7387f2eaf774f41701bc416a06138e6d82fdf43892d9aafedf684",
-      "wasmSha256": "015eeddbf7b7fb87465e26d5836bd5ebeeca74d91959ff16868112ca5e31692a",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/2226a821b9fc65061f8f0dfb8f3aa51e74a5694a/source-fixes/en.comixws",
-      "sourceCommit": "2226a821b9fc65061f8f0dfb8f3aa51e74a5694a",
+      "version": 2,
+      "file": "sources/en.comixws-v2.aix",
+      "sha256": "dbc53c168ed78f8878b234d29263be69e985c7dfd51e24896689b210ccf62cd6",
+      "wasmSha256": "e903a619adf3ae88f728968c572b451aaa43a035cf55a1a1227521f6b6f2ab66",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/45a64e77d64a4d744652a597b70f4401c487a095/source-fixes/en.comixws",
+      "sourceCommit": "45a64e77d64a4d744652a597b70f4401c487a095",
       "acceptance": "Candidate: requires iOS reader verification"
     }
   ]
