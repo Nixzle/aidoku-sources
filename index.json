@@ -353,9 +353,9 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 6,
-      "iconURL": "icons/en.novelbuddy-v6.png",
-      "downloadURL": "sources/en.novelbuddy-v6.aix",
+      "version": 7,
+      "iconURL": "icons/en.novelbuddy-v7.png",
+      "downloadURL": "sources/en.novelbuddy-v7.aix",
       "languages": [
         "en"
       ],
@@ -378,9 +378,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 7,
-      "iconURL": "icons/en.readcomicsonline-v7.png",
-      "downloadURL": "sources/en.readcomicsonline-v7.aix",
+      "version": 8,
+      "iconURL": "icons/en.readcomicsonline-v8.png",
+      "downloadURL": "sources/en.readcomicsonline-v8.aix",
       "languages": [
         "en"
       ],
