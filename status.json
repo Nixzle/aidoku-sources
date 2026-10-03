@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-02T19:21:14+00:00",
+  "generatedAt": "2026-10-03T17:58:11+00:00",
   "summary": {
     "maintained": 54,
     "legacyOnly": 47,
     "manualQuarantined": 5,
     "automaticQuarantined": 4,
-    "degraded": 10,
-    "requiredDegraded": 1
+    "degraded": 11,
+    "requiredDegraded": 2
   },
   "requiredMaintainedSources": [
     "en.atsumaru",
@@ -29,13 +29,13 @@
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "severity": "healthy",
-      "classification": "ok",
-      "httpStatus": 200,
+      "severity": "degraded",
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "kind": "healthy"
+      "kind": "cloudflare_protected"
     },
     {
       "id": "en.mangadistrict",
@@ -61,11 +61,11 @@
     }
   ],
   "healthSweep": {
-    "lastSweepAt": "2026-10-02T19:20:48+00:00",
+    "lastSweepAt": "2026-10-03T17:57:44+00:00",
     "summary": {
       "attempted": 58,
-      "conclusive": 52,
-      "conclusiveRatio": 0.896551724137931,
+      "conclusive": 53,
+      "conclusiveRatio": 0.9137931034482759,
       "networkObserved": true,
       "accepted": true,
       "reason": "accepted",
@@ -150,11 +150,11 @@
       "status": "quarantined",
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "timeout",
       "httpStatus": null,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -182,11 +182,11 @@
       "status": "quarantined",
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "timeout",
       "httpStatus": null,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -198,11 +198,11 @@
       "status": "quarantined",
       "consecutiveFailures": 3,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "timeout",
       "httpStatus": null,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-29T13:39:18+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -216,11 +216,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "forbidden",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -232,13 +232,29 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "cloudflare_protected",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
+      "functional": "not_tested"
+    },
+    {
+      "id": "en.comixws",
+      "name": "Comix WS",
+      "baseURL": "https://comix.ws",
+      "status": "protected",
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 0,
+      "lastObservationDate": "2026-10-03",
+      "required": true,
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
+      "lastStateChangeAt": "2026-10-03T17:57:44+00:00",
+      "severity": "high",
       "functional": "not_tested"
     },
     {
@@ -264,11 +280,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "auth_required",
       "httpStatus": 401,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -280,11 +296,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": true,
       "classification": "cloudflare_protected",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "high",
       "functional": "not_tested"
@@ -296,11 +312,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "forbidden",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-30T19:22:21+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -312,11 +328,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "forbidden",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -328,11 +344,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "cloudflare_protected",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -344,11 +360,11 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "cloudflare_protected",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
@@ -360,21 +376,21 @@
       "status": "protected",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 0,
-      "lastObservationDate": "2026-10-02",
+      "lastObservationDate": "2026-10-03",
       "required": false,
       "classification": "cloudflare_protected",
       "httpStatus": 403,
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00",
       "severity": "warning",
       "functional": "not_tested"
     }
   ],
-  "lastHealthSweepAt": "2026-10-02T19:20:48+00:00",
+  "lastHealthSweepAt": "2026-10-03T17:57:44+00:00",
   "lastSweep": {
     "attempted": 58,
-    "conclusive": 52,
-    "conclusiveRatio": 0.896551724137931,
+    "conclusive": 53,
+    "conclusiveRatio": 0.9137931034482759,
     "networkObserved": true,
     "accepted": true,
     "reason": "accepted",
@@ -402,7 +418,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-30T19:22:21+00:00"
     },
     "en.asurascans": {
@@ -411,7 +427,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.athreascans": {
@@ -420,7 +436,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.atsumaru": {
@@ -429,7 +445,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-28T15:23:03+00:00"
     },
     "en.batcave": {
@@ -438,7 +454,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.chikari": {
@@ -447,17 +463,17 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.comixws": {
-      "classification": "ok",
-      "httpStatus": 200,
+      "classification": "cloudflare_protected",
+      "httpStatus": 403,
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
-      "lastStateChangeAt": "2026-09-28T15:23:03+00:00"
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
+      "lastStateChangeAt": "2026-10-03T17:57:44+00:00"
     },
     "en.dankefurslesen": {
       "classification": "ok",
@@ -465,7 +481,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.drakescans": {
@@ -474,7 +490,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-29T13:39:18+00:00"
     },
     "en.dynastyscans": {
@@ -483,17 +499,17 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.elftoon": {
-      "classification": "redirect_blocked",
-      "httpStatus": null,
-      "conclusive": false,
-      "reachable": false,
+      "classification": "ok",
+      "httpStatus": 200,
+      "conclusive": true,
+      "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
-      "lastStateChangeAt": "2026-10-01T19:32:55+00:00"
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
+      "lastStateChangeAt": "2026-10-03T17:57:44+00:00"
     },
     "en.ezmanga": {
       "classification": "ok",
@@ -501,7 +517,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.flamecomics": {
@@ -510,7 +526,7 @@
       "conclusive": false,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-10-02T19:20:48+00:00"
     },
     "en.freewebnovel": {
@@ -519,7 +535,7 @@
       "conclusive": false,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.guya": {
@@ -528,7 +544,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.hennoveltranslations": {
@@ -537,7 +553,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.hivescans": {
@@ -546,7 +562,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.madokami": {
@@ -555,7 +571,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.magusmanga": {
@@ -564,7 +580,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangabat": {
@@ -573,7 +589,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangademon": {
@@ -582,7 +598,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangadistrict": {
@@ -591,7 +607,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangago": {
@@ -600,7 +616,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangakakalot": {
@@ -609,7 +625,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.manganato": {
@@ -618,7 +634,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.manganelo": {
@@ -627,7 +643,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangareadorg": {
@@ -636,7 +652,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangasect": {
@@ -645,7 +661,7 @@
       "conclusive": true,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.mangatx": {
@@ -654,7 +670,7 @@
       "conclusive": false,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-10-02T19:20:48+00:00"
     },
     "en.manhuagold": {
@@ -663,7 +679,7 @@
       "conclusive": true,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.manhuaplusorg": {
@@ -672,7 +688,7 @@
       "conclusive": false,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.manhwax": {
@@ -681,7 +697,7 @@
       "conclusive": true,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-29T13:39:18+00:00"
     },
     "en.novelbuddy": {
@@ -690,7 +706,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.nyxscans": {
@@ -699,7 +715,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.readcomicsonline": {
@@ -708,7 +724,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.rizzfables": {
@@ -717,7 +733,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.stonescape": {
@@ -726,7 +742,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.tcbscans": {
@@ -735,7 +751,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.toonily": {
@@ -744,7 +760,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.toonilyme": {
@@ -753,7 +769,7 @@
       "conclusive": false,
       "reachable": false,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.vortexscans": {
@@ -762,7 +778,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "en.webtoonxyz": {
@@ -771,7 +787,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-30T19:22:21+00:00"
     },
     "en.weebcentral": {
@@ -780,7 +796,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.cubari": {
@@ -789,7 +805,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.ehentai": {
@@ -798,7 +814,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-30T19:22:21+00:00"
     },
     "multi.grabberzone": {
@@ -807,7 +823,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.hitomi": {
@@ -816,7 +832,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.kagane": {
@@ -825,7 +841,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.lanraragi": {
@@ -834,7 +850,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.mangadex": {
@@ -843,7 +859,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.mangadotnet": {
@@ -852,7 +868,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.mangafire": {
@@ -861,7 +877,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.mangaplus": {
@@ -870,7 +886,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.myreadingmanga": {
@@ -879,7 +895,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.nhentai": {
@@ -888,7 +904,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.suwayomi": {
@@ -897,7 +913,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.webtoon": {
@@ -906,7 +922,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     },
     "multi.xcomic": {
@@ -915,7 +931,7 @@
       "conclusive": true,
       "reachable": true,
       "functional": "not_tested",
-      "lastProbeAt": "2026-10-02T19:20:48+00:00",
+      "lastProbeAt": "2026-10-03T17:57:44+00:00",
       "lastStateChangeAt": "2026-09-27T15:00:54+00:00"
     }
   },

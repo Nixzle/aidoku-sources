@@ -133,14 +133,15 @@
     {
       "id": "en.elftoon",
       "name": "Elf Toon",
-      "version": 2,
-      "iconURL": "icons/en.elftoon-v2.png",
-      "downloadURL": "sources/en.elftoon-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.elftoon-v3.png",
+      "downloadURL": "sources/en.elftoon-v3.aix",
       "languages": [
         "en"
       ],
       "contentRating": 1,
-      "baseURL": "https://elftoon.com"
+      "baseURL": "https://elftoon.net",
+      "minAppVersion": "0.7.1"
     },
     {
       "id": "en.ezmanga",
@@ -378,9 +379,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 9,
-      "iconURL": "icons/en.readcomicsonline-v9.png",
-      "downloadURL": "sources/en.readcomicsonline-v9.aix",
+      "version": 10,
+      "iconURL": "icons/en.readcomicsonline-v10.png",
+      "downloadURL": "sources/en.readcomicsonline-v10.aix",
       "languages": [
         "en"
       ],
@@ -603,9 +604,9 @@
     {
       "id": "multi.lanraragi",
       "name": "LANraragi",
-      "version": 2,
-      "iconURL": "icons/multi.lanraragi-v2.png",
-      "downloadURL": "sources/multi.lanraragi-v2.aix",
+      "version": 3,
+      "iconURL": "icons/multi.lanraragi-v3.png",
+      "downloadURL": "sources/multi.lanraragi-v3.aix",
       "languages": [
         "multi"
       ],
