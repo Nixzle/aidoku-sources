@@ -354,9 +354,9 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 7,
-      "iconURL": "icons/en.novelbuddy-v7.png",
-      "downloadURL": "sources/en.novelbuddy-v7.aix",
+      "version": 8,
+      "iconURL": "icons/en.novelbuddy-v8.png",
+      "downloadURL": "sources/en.novelbuddy-v8.aix",
       "languages": [
         "en"
       ],
@@ -379,9 +379,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 11,
-      "iconURL": "icons/en.readcomicsonline-v11.png",
-      "downloadURL": "sources/en.readcomicsonline-v11.aix",
+      "version": 12,
+      "iconURL": "icons/en.readcomicsonline-v12.png",
+      "downloadURL": "sources/en.readcomicsonline-v12.aix",
       "languages": [
         "en"
       ],
@@ -604,9 +604,9 @@
     {
       "id": "multi.lanraragi",
       "name": "LANraragi",
-      "version": 3,
-      "iconURL": "icons/multi.lanraragi-v3.png",
-      "downloadURL": "sources/multi.lanraragi-v3.aix",
+      "version": 4,
+      "iconURL": "icons/multi.lanraragi-v4.png",
+      "downloadURL": "sources/multi.lanraragi-v4.aix",
       "languages": [
         "multi"
       ],

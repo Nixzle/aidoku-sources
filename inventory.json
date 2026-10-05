@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-04T18:11:13+00:00",
+  "generatedAt": "2026-10-05T21:30:15+00:00",
   "sourceCount": 54,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -316,12 +316,12 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 7,
-      "file": "sources/en.novelbuddy-v7.aix",
+      "version": 8,
+      "file": "sources/en.novelbuddy-v8.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v7.aix",
-      "sha256": "264c5a999e4df3d1453178d5bc966e85358d4e67ecb80c974d94cd0328d267e3"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v8.aix",
+      "sha256": "7571195218741303b9374566dd99ffa39a0b76f278b786e97726ed6319eb993f"
     },
     {
       "id": "en.nyxscans",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 11,
-      "file": "sources/en.readcomicsonline-v11.aix",
+      "version": 12,
+      "file": "sources/en.readcomicsonline-v12.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "684d05ec95acee4f0a513e23d3fb0df674b7ef33b81f48a00b751d5ffb18ca38",
+      "sha256": "a2565050b615241b5ec86e82cd47b21a11463014b3af7639346e78b1b792dfdc",
       "upstreamVersion": 3,
-      "upstreamSha256": "440d99f6087da43a299a2ad8270482cea8b3e83629d0f6c260d8eaaef061b14e",
+      "upstreamSha256": "2feda7a5abaae0e05229271d1c86bffc561d0353eb9763cb9ee7e142535b0587",
       "upstreamWasmSha256": "4e26504f398b8c2c430b42ed7154e3e150de1f71be08ca381eccbcbaf64aa021",
       "publicationTransform": "metadata-version-v1"
     },
@@ -480,12 +480,12 @@
     {
       "id": "multi.lanraragi",
       "name": "LANraragi",
-      "version": 3,
-      "file": "sources/multi.lanraragi-v3.aix",
+      "version": 4,
+      "file": "sources/multi.lanraragi-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.lanraragi-v3.aix",
-      "sha256": "f65d7af5493fba8351263d8374596717c74e1ac68bd94b5b8ea68951b0410710"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.lanraragi-v4.aix",
+      "sha256": "fa39be32e604ce3db00ea9df43e2156eb01610fda8645ce7c0c825770dcf9d6b"
     },
     {
       "id": "multi.mangadex",
