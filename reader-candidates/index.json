@@ -4,9 +4,9 @@
     {
       "id": "en.asurascans",
       "name": "Asura Scans",
-      "version": 20,
-      "downloadURL": "sources/en.asurascans-v20.aix",
-      "iconURL": "icons/en.asurascans-v20.png",
+      "version": 21,
+      "downloadURL": "sources/en.asurascans-v21.aix",
+      "iconURL": "icons/en.asurascans-v21.png",
       "languages": [
         "en"
       ],
@@ -17,9 +17,9 @@
     {
       "id": "en.comix",
       "name": "Comix",
-      "version": 133,
-      "downloadURL": "sources/en.comix-v133.aix",
-      "iconURL": "icons/en.comix-v133.png",
+      "version": 134,
+      "downloadURL": "sources/en.comix-v134.aix",
+      "iconURL": "icons/en.comix-v134.png",
       "languages": [
         "en"
       ],
@@ -30,9 +30,9 @@
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "version": 2,
-      "downloadURL": "sources/en.comixws-v2.aix",
-      "iconURL": "icons/en.comixws-v2.png",
+      "version": 3,
+      "downloadURL": "sources/en.comixws-v3.aix",
+      "iconURL": "icons/en.comixws-v3.png",
       "languages": [
         "en"
       ],

@@ -1,14 +1,14 @@
 {
   "schema": "AIDOKU_FUNCTIONAL_SMOKE_V1",
-  "checkedAt": "2026-09-27T16:20:41+00:00",
+  "checkedAt": "2026-10-06T23:36:11+00:00",
   "status": "inconclusive",
   "scope": "Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
   "catalogRoot": "reader-candidates",
   "cases": [
     {
-      "chapterCount": 18,
-      "firstPageBytes": 226794,
-      "firstPageSha256": "4b40d28244bffa6a4032a18ab0e925f6d32b0ca2eb187f423b3b3eda36d83d36",
+      "chapterCount": 21,
+      "firstPageBytes": 220380,
+      "firstPageSha256": "e951a2ec62a98300b3319fc92732985e8864c7d8f1c490c5ab073098520dc32a",
       "network": [
         {
           "host": "asurascans.com",
@@ -31,19 +31,19 @@
           "status": 200
         }
       ],
-      "pageCount": 26,
+      "pageCount": 27,
       "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
       "runtimeLoaded": true,
       "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
-      "searchCount": 10,
+      "searchCount": 11,
       "stage": "complete",
       "status": "passed",
       "exitCode": 0,
       "id": "en.asurascans",
-      "version": 20,
-      "packageSha256": "11e55c8e06a384835296da4ef64ec03283e0941b2ef4083e7cd1b9f1b963fb06",
-      "wasmSha256": "b60941d88b4e8241ccd626a4304f5af490d6559b0c772f4e6455851b47a4ab8d",
-      "checkedAt": "2026-09-27T16:20:37+00:00"
+      "version": 21,
+      "packageSha256": "6c1619e065599ae9e62240ba771db1629d97d699d523281a863a785958384a84",
+      "wasmSha256": "c0aa210de10aee41404d07374da60ee05c9aea79417b31ba2fc7f555a007d229",
+      "checkedAt": "2026-10-06T23:36:07+00:00"
     },
     {
       "error": "source returned error -1 at get_search_manga_list",
@@ -56,10 +56,26 @@
       "exitCode": 1,
       "limitation": "The headless runtime loaded the source but exposed no WebView network trace; real iOS WebView acceptance is required.",
       "id": "en.comix",
-      "version": 132,
-      "packageSha256": "1c8fb1dd55091877e6625d5466a9aa9c736e197011e1d29ef24226df3d336ca0",
-      "wasmSha256": "ec085d4610befd1b8c5ab65f8b74da1f302ed4503de750fce15e1a242ddf3d37",
-      "checkedAt": "2026-09-27T16:20:41+00:00"
+      "version": 134,
+      "packageSha256": "d0713ea4741ab43d729f2d67439d3d774b1ef81ef23ba535bd17795f6606ed8d",
+      "wasmSha256": "781fee75f8684cc9d6382e65ee98ea2ff09c5774fa4fc2b3616a14581e44524f",
+      "checkedAt": "2026-10-06T23:36:09+00:00"
+    },
+    {
+      "error": "source returned error -1 at get_search_manga_list",
+      "network": [],
+      "runnerCommit": "e1320b0a2e11afb59e4dee374883a2212d325699",
+      "runtimeLoaded": true,
+      "scope": "Exact WASM search, metadata, chapters, page list and first page bytes. Not iOS rendering.",
+      "stage": "search",
+      "status": "inconclusive",
+      "exitCode": 1,
+      "limitation": "The headless runtime loaded the source but exposed no WebView network trace; real iOS WebView acceptance is required.",
+      "id": "en.comixws",
+      "version": 3,
+      "packageSha256": "7a9ff81d84c32876612bec80064eff1d98e2104e8789efccf89356f76d18bd0b",
+      "wasmSha256": "70ffcb694e8b860521f852ad36c0ae7f2eb248b0ca61585ee3122fb1974891ed",
+      "checkedAt": "2026-10-06T23:36:11+00:00"
     }
   ]
 }

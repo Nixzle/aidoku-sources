@@ -26,7 +26,7 @@ class ComixUpdateDiscoveryTests(unittest.TestCase):
             expected_version=comix["version"],
         )
         inventory = json.loads((ROOT / "comix-v132" / "inventory.json").read_text(encoding="utf-8"))
-        self.assertEqual(info["version"], 133)
+        self.assertEqual(info["version"], comix["version"])
         self.assertEqual(hashlib.sha256(package).hexdigest(), inventory["sources"][0]["sha256"])
 
 
