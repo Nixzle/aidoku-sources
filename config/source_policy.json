@@ -40,7 +40,7 @@
         "maintained",
         "legacy"
       ],
-      "reason": "Nixzle v127/v128 failed owner-device acceptance on the affected Aidoku Cloudflare client. Do not advertise these builds as reliable. Use a separately maintained Comix implementation with full WebView page-image/cover handling until the app image transport is fixed.",
+      "reason": "Nixzle builds through v133 failed owner-device acceptance on the affected Aidoku Cloudflare client. v134 remains isolated in the dedicated test feed until it passes on that iPhone; do not advertise it as reliable yet.",
       "issue": "https://github.com/Aidoku/Aidoku/issues/1034"
     }
   },
@@ -127,11 +127,11 @@
   "localPackageOverrides": {},
   "localPackageSources": {
     "en.comixws": {
-      "path": "overrides/en.comixws-v2.aix",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
-      "sourceCommit": "cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318",
-      "sourcePath": "overrides/en.comixws-v2.aix",
-      "sha256": "dbc53c168ed78f8878b234d29263be69e985c7dfd51e24896689b210ccf62cd6",
+      "path": "overrides/en.comixws-v3.aix",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/f5d23f9b3cab63e76df57969cfbaf062dcd1998c/overrides/en.comixws-v3.aix",
+      "sourceCommit": "f5d23f9b3cab63e76df57969cfbaf062dcd1998c",
+      "sourcePath": "overrides/en.comixws-v3.aix",
+      "sha256": "7a9ff81d84c32876612bec80064eff1d98e2104e8789efccf89356f76d18bd0b",
       "repository": "Nixzle/aidoku-sources",
       "license": "MIT OR Apache-2.0"
     }

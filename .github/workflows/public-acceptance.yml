@@ -2,6 +2,10 @@ name: Public feed acceptance
 
 on:
   page_build:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+    branches: [main]
   push:
     branches: [main]
     paths:

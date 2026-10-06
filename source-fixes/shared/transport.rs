@@ -1,5 +1,5 @@
 //! Native-first, bounded WebView recovery. No CAPTCHA solving or credential export.
-use aidoku::{HashMap, Result, alloc::{String, Vec, string::ToString},
+use aidoku::{HashMap, Result, alloc::{String, Vec},
     imports::{defaults::defaults_get, html::{Document, Html}, js::WebView,
               net::Request, std::sleep}, prelude::*};
 use serde::Deserialize;
@@ -109,11 +109,20 @@ impl ReaderRequest {
         Ok(Self {request, url: url.into(), allowed, headers})
     }
     pub fn send_with_view(self, view: &WebView) -> Result<ReaderResponse> {
+        self.send_with_view_observed(view, false).map(|(response, _)| response)
+    }
+
+    /// Returns whether the successful request used the persistent WebView.
+    /// Once automatic mode has needed that fallback, callers can keep using
+    /// the same browser session instead of repeating a known-blocked native
+    /// request before every API call.
+    pub fn send_with_view_observed(self, view: &WebView, prefer_browser: bool) -> Result<(ReaderResponse, bool)> {
         let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
         let legacy_fallback = defaults_get::<bool>("browserFallback").unwrap_or(true);
         let Self { request, url, allowed, headers } = self;
-        if mode == "browser" {
-            return browser_get_in(view, &url, allowed, &headers);
+        if mode == "browser" || (mode == "auto" && prefer_browser && legacy_fallback) {
+            return browser_get_in(view, &url, allowed, &headers)
+                .map(|response| (response, true));
         }
         match request.send() {
             Ok(response) => {
@@ -121,8 +130,12 @@ impl ReaderRequest {
                     body: response.get_string()?, url: url.clone(),
                     x_enc: response.get_header("x-enc"),
                     challenge: response.get_header("cf-mitigated").is_some_and(|h| h == "challenge")};
-                if !value.blocked() && value.status < 500 { return value.checked(); }
-                if mode == "native" { return value.checked(); }
+                if !value.blocked() && value.status < 500 {
+                    return value.checked().map(|response| (response, false));
+                }
+                if mode == "native" {
+                    return value.checked().map(|response| (response, false));
+                }
             }
             Err(error) => {
                 if mode == "native" || (mode == "auto" && !legacy_fallback) { return Err(error.into()); }
@@ -131,7 +144,7 @@ impl ReaderRequest {
         if mode == "auto" && !legacy_fallback {
             bail!("Source request blocked; browser recovery is disabled in source settings");
         }
-        browser_get_in(view, &url, allowed, &headers)
+        browser_get_in(view, &url, allowed, &headers).map(|response| (response, true))
     }
 
     pub fn send(self) -> Result<ReaderResponse> {

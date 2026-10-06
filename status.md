@@ -1,6 +1,6 @@
 # Aidoku Source Status
 
-Status last changed: 2026-10-06T19:33:33+00:00
+Status last changed: 2026-10-06T23:40:28+00:00
 
 Last website sweep: 2026-10-06T19:33:06+00:00
 Website reachability, package delivery and chapter reading are separate checks.
@@ -22,7 +22,7 @@ Website reachability, package delivery and chapter reading are separate checks.
 ## Quarantined
 
 - **Aqua Manga** (`en.aquamanga`): The site/parser changed and the source needs a rewrite before it is installable again. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/605))
-- **Comix** (`en.comix`): Nixzle v127/v128 failed owner-device acceptance on the affected Aidoku Cloudflare client. Do not advertise these builds as reliable. Use a separately maintained Comix implementation with full WebView page-image/cover handling until the app image transport is fixed. ([upstream issue](https://github.com/Aidoku/Aidoku/issues/1034))
+- **Comix** (`en.comix`): Nixzle builds through v133 failed owner-device acceptance on the affected Aidoku Cloudflare client. v134 remains isolated in the dedicated test feed until it passes on that iPhone; do not advertise it as reliable yet. ([upstream issue](https://github.com/Aidoku/Aidoku/issues/1034))
 - **Fire Scans** (`en.firescans`): The configured source domain does not currently resolve.
 - **Qi Scans** (`en.qiscans`): The configured source domain does not currently resolve.
 - **ReadComicOnline** (`en.readcomiconline`): The original ReadComicOnline service has no live domain; use en.readcomicsonline instead. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/639))

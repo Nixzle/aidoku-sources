@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-05T21:30:15+00:00",
+  "generatedAt": "2026-10-06T23:40:28+00:00",
   "sourceCount": 54,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -82,26 +82,26 @@
     {
       "id": "en.chikari",
       "name": "Chikari",
-      "version": 1,
-      "file": "sources/en.chikari-v1.aix",
+      "version": 2,
+      "file": "sources/en.chikari-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v1.aix",
-      "sha256": "da4cac00572b12e3269d7de9c0b7f330d1a5f17558e3455a3f56569cee1b54f0"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v2.aix",
+      "sha256": "db1ef91cdeedad85c739d91417366b8709f91df6a77e22ec98ef131128aaef68"
     },
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "version": 2,
-      "file": "sources/en.comixws-v2.aix",
+      "version": 3,
+      "file": "sources/en.comixws-v3.aix",
       "repository": "Nixzle/aidoku-sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
-      "sha256": "dbc53c168ed78f8878b234d29263be69e985c7dfd51e24896689b210ccf62cd6",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318/overrides/en.comixws-v2.aix",
+      "upstreamPackageURL": "https://raw.githubusercontent.com/Nixzle/aidoku-sources/f5d23f9b3cab63e76df57969cfbaf062dcd1998c/overrides/en.comixws-v3.aix",
+      "sha256": "7a9ff81d84c32876612bec80064eff1d98e2104e8789efccf89356f76d18bd0b",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/blob/f5d23f9b3cab63e76df57969cfbaf062dcd1998c/overrides/en.comixws-v3.aix",
       "packageRepository": "Nixzle/aidoku-sources",
-      "sourceCommit": "cb14eb9d4a0bbeb3fdeca7e1ba97dc471d022318",
-      "sourcePath": "overrides/en.comixws-v2.aix"
+      "sourceCommit": "f5d23f9b3cab63e76df57969cfbaf062dcd1998c",
+      "sourcePath": "overrides/en.comixws-v3.aix"
     },
     {
       "id": "en.dankefurslesen",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 12,
-      "file": "sources/en.readcomicsonline-v12.aix",
+      "version": 13,
+      "file": "sources/en.readcomicsonline-v13.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "a2565050b615241b5ec86e82cd47b21a11463014b3af7639346e78b1b792dfdc",
+      "sha256": "8afdce9daa60211a1bee70c0ef3c567f42d06daa1a75677ec0b92427cd6fa292",
       "upstreamVersion": 3,
-      "upstreamSha256": "2feda7a5abaae0e05229271d1c86bffc561d0353eb9763cb9ee7e142535b0587",
+      "upstreamSha256": "b30badbdbeb830f7a061001f79e641d1c5f06b6fd983957102d8abb0eba16c2b",
       "upstreamWasmSha256": "4e26504f398b8c2c430b42ed7154e3e150de1f71be08ca381eccbcbaf64aa021",
       "publicationTransform": "metadata-version-v1"
     },
@@ -560,12 +560,12 @@
     {
       "id": "multi.webtoon",
       "name": "WEBTOON",
-      "version": 4,
-      "file": "sources/multi.webtoon-v4.aix",
+      "version": 5,
+      "file": "sources/multi.webtoon-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.webtoon-v4.aix",
-      "sha256": "16170a99d71bdab4ecd5cc203b1b9a2bcb721ae6284eeab638bfd9455e74bb2a"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.webtoon-v5.aix",
+      "sha256": "e17cf5d367c2079fe76b580893b065eb6a547e3b6d5a74845153e49e33036840"
     },
     {
       "id": "multi.xcomic",

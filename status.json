@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T19:33:33+00:00",
+  "generatedAt": "2026-10-06T23:40:28+00:00",
   "summary": {
     "maintained": 54,
     "legacyOnly": 47,
@@ -103,7 +103,7 @@
       "id": "en.comix",
       "name": "Comix",
       "type": "manual",
-      "reason": "Nixzle v127/v128 failed owner-device acceptance on the affected Aidoku Cloudflare client. Do not advertise these builds as reliable. Use a separately maintained Comix implementation with full WebView page-image/cover handling until the app image transport is fixed.",
+      "reason": "Nixzle builds through v133 failed owner-device acceptance on the affected Aidoku Cloudflare client. v134 remains isolated in the dedicated test feed until it passes on that iPhone; do not advertise it as reliable yet.",
       "catalogs": [
         "legacy",
         "maintained"

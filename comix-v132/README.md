@@ -1,10 +1,11 @@
-# Comix v133 update feed
+# Comix v134 update feed
 
 This dedicated source list tests a clean-room iOS Cloudflare recovery path for
-Comix. v133 binds the current obfuscated security module to a private exact key;
-it no longer searches the page for the first `vm*` global, which could select
-Comix's large internal `vme_*` runtime and leave Home on empty skeletons. It also
-keeps the bounded native verification trigger and same-origin WebView recovery.
+Comix. v134 follows Comix's 6 October secure-module contract, decodes every
+response carrying `x-enc`, removes obsolete image descrambling and does not add
+the Referer/Origin headers rejected by current image hosts. Automatic mode now
+keeps using a successful WebView fallback instead of repeating a blocked native
+request, and Home emits each healthy section without waiting for all four.
 
 Add this URL in Aidoku Settings > Source Lists:
 
@@ -16,6 +17,7 @@ Captcha, wait for it to complete, and retry Home. Back up Aidoku before testing
 and do not delete the existing library. Website challenges and premium
 permissions remain enforced.
 
-The package compiled and loaded in the headless Aidoku runtime. That runtime has
-no iOS WebView network trace, so acceptance remains pending on the affected
-iPhone.
+The package compiled and loaded in the headless Aidoku runtime, and the same
+signer/decoder algorithm returned live Comix results in an isolated browser.
+That runtime still has no iOS WebView network trace, so acceptance remains
+pending on the affected iPhone.

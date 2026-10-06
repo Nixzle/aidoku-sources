@@ -68,9 +68,9 @@
     {
       "id": "en.chikari",
       "name": "Chikari",
-      "version": 1,
-      "iconURL": "icons/en.chikari-v1.png",
-      "downloadURL": "sources/en.chikari-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.chikari-v2.png",
+      "downloadURL": "sources/en.chikari-v2.aix",
       "languages": [
         "en"
       ],
@@ -81,9 +81,9 @@
     {
       "id": "en.comixws",
       "name": "Comix WS",
-      "version": 2,
-      "iconURL": "icons/en.comixws-v2.png",
-      "downloadURL": "sources/en.comixws-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.comixws-v3.png",
+      "downloadURL": "sources/en.comixws-v3.aix",
       "languages": [
         "en"
       ],
@@ -379,9 +379,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 12,
-      "iconURL": "icons/en.readcomicsonline-v12.png",
-      "downloadURL": "sources/en.readcomicsonline-v12.aix",
+      "version": 13,
+      "iconURL": "icons/en.readcomicsonline-v13.png",
+      "downloadURL": "sources/en.readcomicsonline-v13.aix",
       "languages": [
         "en"
       ],
@@ -805,9 +805,9 @@
     {
       "id": "multi.webtoon",
       "name": "WEBTOON",
-      "version": 4,
-      "iconURL": "icons/multi.webtoon-v4.png",
-      "downloadURL": "sources/multi.webtoon-v4.aix",
+      "version": 5,
+      "iconURL": "icons/multi.webtoon-v5.png",
+      "downloadURL": "sources/multi.webtoon-v5.aix",
       "languages": [
         "en",
         "zh-Hant",
