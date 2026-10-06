@@ -94,6 +94,12 @@ class RepositoryStabilityTests(unittest.TestCase):
         policy = json.loads((ROOT / "config/source_policy.json").read_text(encoding="utf-8"))
         self.assertLessEqual(set(policy["requiredMaintainedSources"]), set(functional_smoke.CASES))
         self.assertEqual(functional_smoke.OPTIONAL_CASES, {"en.comix": "solo"})
+        comixws = policy["localPackageSources"]["en.comixws"]
+        self.assertEqual(comixws["path"], "overrides/en.comixws-v3.aix")
+        self.assertEqual(
+            comixws["sha256"],
+            "7a9ff81d84c32876612bec80064eff1d98e2104e8789efccf89356f76d18bd0b",
+        )
 
     def test_public_acceptance_runs_after_pages_deployment(self):
         workflow = (ROOT / ".github/workflows/public-acceptance.yml").read_text(
