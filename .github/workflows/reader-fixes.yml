@@ -33,25 +33,45 @@ jobs:
           python scripts/validate_catalog.py
       - name: Add WASM target on disposable CI runner
         run: rustup target add wasm32-unknown-unknown
-      - name: Build locked source replacements
-        run: |
-          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.comix/Cargo.toml
-          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.comixws/Cargo.toml
-          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.asurascans/Cargo.toml
-          python scripts/package_reader_fixes.py
-      - name: Restore reader runtime cache
+      - name: Rust toolchain identity
+        id: toolchain
+        run: echo "version=$(rustc --version | tr ' ' '-')" >> "$GITHUB_OUTPUT"
+      - name: Restore reader build cache
+        id: rust-cache
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
             runtime-smoke/target
-          key: reader-repair-${{ runner.os }}-${{ hashFiles('runtime-smoke/Cargo.lock', 'source-fixes/**') }}
-          restore-keys: aidoku-runtime-${{ runner.os }}-
+            source-fixes/en.comix/target
+            source-fixes/en.comixws/target
+            source-fixes/en.asurascans/target
+          key: reader-repair-${{ runner.os }}-${{ steps.toolchain.outputs.version }}-${{ hashFiles('runtime-smoke/Cargo.lock', 'source-fixes/**/Cargo.lock') }}-${{ hashFiles('runtime-smoke/src/**', 'source-fixes/**/src/**', 'source-fixes/shared/**', 'source-fixes/**/Cargo.toml') }}
+          restore-keys: reader-repair-${{ runner.os }}-${{ steps.toolchain.outputs.version }}-${{ hashFiles('runtime-smoke/Cargo.lock', 'source-fixes/**/Cargo.lock') }}-
+      - name: Build locked source replacements
+        run: |
+          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.comix/Cargo.toml
+          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.comixws/Cargo.toml
+          cargo build --locked --release --target wasm32-unknown-unknown --manifest-path source-fixes/en.asurascans/Cargo.toml
+          python scripts/package_reader_fixes.py
       - name: Test actual parser and reader runtime
+        id: build-runtime
         run: |
           cargo test --locked --manifest-path runtime-smoke/Cargo.toml
           cargo build --locked --manifest-path runtime-smoke/Cargo.toml
+      - name: Save successful reader builds before protected-site acceptance
+        if: steps.build-runtime.outcome == 'success' && steps.rust-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            runtime-smoke/target
+            source-fixes/en.comix/target
+            source-fixes/en.comixws/target
+            source-fixes/en.asurascans/target
+          key: ${{ steps.rust-cache.outputs.cache-primary-key }}
       - name: Execute candidate source WASM
         run: python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke --root reader-candidates --source en.asurascans --source en.comix --source en.comixws
       - name: Retain candidate packages and exact functional evidence

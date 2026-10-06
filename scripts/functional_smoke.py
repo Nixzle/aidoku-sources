@@ -21,8 +21,10 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-CASES = {"en.asurascans": "solo", "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
-OPTIONAL_CASES = {"en.comix": "solo", "en.comixws": "solo"}
+CASES = {"en.asurascans": "solo", "en.atsumaru": "solo", "en.comixws": "solo",
+         "en.mangadistrict": "solo", "en.readcomicsonline": "batman"}
+OPTIONAL_CASES = {"en.comix": "solo"}
+WEBVIEW_CASES = {"en.comix", "en.comixws"}
 ALL_CASES = CASES | OPTIONAL_CASES
 
 
@@ -64,7 +66,7 @@ def classify_incomplete(source_id: str, report: dict) -> dict:
     if network and network[-1].get("status") in (401, 403, 429, 451):
         report["status"] = "blocked"
         report["limitation"] = "Protected HTTP response observed. Headless run cannot establish in-app usability."
-    elif source_id in OPTIONAL_CASES and report.get("runtimeLoaded") is True and not network:
+    elif source_id in WEBVIEW_CASES and report.get("runtimeLoaded") is True and not network:
         report["status"] = "inconclusive"
         report["limitation"] = (
             "The headless runtime loaded the source but exposed no WebView network trace; "

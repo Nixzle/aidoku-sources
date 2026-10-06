@@ -58,15 +58,25 @@ class FunctionalStatusTests(unittest.TestCase):
         self.assertNotIn('en.comix', smoke.CASES)
         self.assertEqual(smoke.OPTIONAL_CASES['en.comix'], 'solo')
         self.assertEqual(smoke.ALL_CASES['en.comix'], 'solo')
-        self.assertEqual(smoke.OPTIONAL_CASES['en.comixws'], 'solo')
+        self.assertNotIn('en.comixws', smoke.OPTIONAL_CASES)
+        self.assertEqual(smoke.CASES['en.comixws'], 'solo')
+        self.assertEqual(smoke.CASES['en.atsumaru'], 'solo')
 
-    def test_optional_webview_case_without_headless_trace_is_inconclusive(self):
-        report = {'status': 'failed', 'runtimeLoaded': True, 'stage': 'search', 'network': []}
-        self.assertEqual(smoke.classify_incomplete('en.comix', report)['status'], 'inconclusive')
+    def test_webview_cases_without_headless_trace_are_inconclusive(self):
+        for source_id in ('en.comix', 'en.comixws'):
+            report = {'status': 'failed', 'runtimeLoaded': True, 'stage': 'search', 'network': []}
+            self.assertEqual(smoke.classify_incomplete(source_id, report)['status'], 'inconclusive')
         required = {'status': 'failed', 'runtimeLoaded': True, 'network': []}
         self.assertEqual(smoke.classify_incomplete('en.mangadistrict', required)['status'], 'failed')
         protected = {'status': 'failed', 'runtimeLoaded': True, 'network': [{'status': 403}]}
         self.assertEqual(smoke.classify_incomplete('en.comix', protected)['status'], 'blocked')
+
+    def test_webview_classification_does_not_hide_failed_network_or_unloaded_runtime(self):
+        for report in [{'status': 'failed', 'runtimeLoaded': False, 'network': []},
+                       {'status': 'failed', 'runtimeLoaded': True, 'network': [{'status': 200}]},
+                       {'status': 'failed', 'runtimeLoaded': True, 'network': [{'status': 500}]}]:
+            with self.subTest(report=report):
+                self.assertEqual(smoke.classify_incomplete('en.comixws', report)['status'], 'failed')
 
 
 class FunctionalIncidentTests(unittest.TestCase):

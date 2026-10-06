@@ -1,19 +1,17 @@
 #![no_std]
 use aidoku::{
 	Chapter, DeepLinkHandler, DeepLinkResult, FilterValue, HashMap, Home, HomeComponent,
-	HomeLayout, HomePartialResult, ImageRequestProvider, ImageResponse, Link, LinkValue, Listing,
-	ListingProvider, Manga, MangaPageResult, MangaWithChapter, NotificationHandler, Page,
-	PageContent, PageContext, PageImageProcessor, Result, Source, WebLoginHandler,
+	HomeLayout, HomePartialResult, ImageRequestProvider, Link, LinkValue, Listing, ListingProvider,
+	Manga, MangaPageResult, MangaWithChapter, NotificationHandler, Page, PageContent, PageContext,
+	Result, Source, WebLoginHandler,
 	alloc::{String, Vec, string::ToString, vec},
 	helpers::uri::{QueryParameters, encode_uri_component},
 	imports::{
-		canvas::ImageRef,
 		net::Request,
 		std::{current_date, send_partial_result},
 	},
 	prelude::*,
 };
-use base64::{Engine, engine::general_purpose};
 use core::cell::RefCell;
 
 mod helpers;
@@ -22,8 +20,6 @@ mod settings;
 mod web;
 #[path = "../../shared/transport.rs"]
 mod transport;
-
-use transport::ReaderResponse as Response;
 
 use crate::helpers::create_request_get;
 use crate::settings::VERIFY_KEY;
@@ -36,6 +32,7 @@ const COMIX_ORIGINS: &[&str] = &[BASE_URL];
 const COMIX_ASSET_ORIGINS: &[&str] = &["https://comix.ws/", "https://static.comix.ws/"];
 
 const CONTENT_TYPES: &[&str] = &["manga", "manhwa", "manhua", "other"];
+const MAX_CHAPTER_PAGES: i32 = 1_000;
 // adult, boys love, ecchi, girls love, hentai, smut
 const NSFW_GENRE_IDS: &[&str] = &["87264", "8", "87265", "13", "87266", "87268"];
 
@@ -218,7 +215,7 @@ impl Source for Comix {
 			let response = web_view.send_request(&url)?;
 			let json: SingleMangaResponse = web_view.decode_json_owned(&response)?;
 
-			manga.copy_from(json.result.into());
+			manga.copy_from(json.result.into_detailed_manga());
 
 			if needs_chapters {
 				send_partial_result(&manga);
@@ -231,8 +228,12 @@ impl Source for Comix {
 			let deduplicate = settings::dedupchapter();
 			let mut chapter_map: HashMap<String, ComixChapter> = HashMap::new();
 			let mut chapter_list: Vec<ComixChapter> = Vec::new();
+			let mut previous_response_page = 0;
 
 			loop {
+				if page > MAX_CHAPTER_PAGES {
+					bail!("Comix chapter pagination exceeded the safety limit")
+				}
 				let mut params = QueryParameters::new();
 				params.push("limit", Some(limit.to_string().as_str()));
 				params.push("page", Some(page.to_string().as_str()));
@@ -241,8 +242,17 @@ impl Source for Comix {
 				let url = format!("{API_URL}/manga/{}/chapters?{params}", manga.key);
 				let response = web_view.send_request(&url)?;
 				let res = web_view.decode_json_owned::<ChapterDetailsResponse>(&response)?;
+				let response_page = res.result.meta.page;
+				let last_page = res.result.meta.last_page;
+				if response_page <= previous_response_page || last_page < response_page {
+					bail!("Comix chapter pagination did not advance")
+				}
+				previous_response_page = response_page;
 
 				let items = res.result.items;
+				if items.is_empty() && response_page < last_page {
+					bail!("Comix chapter pagination returned an empty intermediate page")
+				}
 
 				if deduplicate {
 					for item in items {
@@ -252,7 +262,7 @@ impl Source for Comix {
 					chapter_list.extend(items);
 				}
 
-				if res.result.meta.page >= res.result.meta.last_page {
+				if response_page >= last_page {
 					break;
 				}
 
@@ -301,15 +311,7 @@ impl Source for Comix {
 				bail!("Rejected unexpected Comix WS image host")
 			}
 			pages.push(Page {
-				content: if let Some(s) = page.s {
-					let mut context = PageContext::new();
-					context.insert("s".into(), s.to_string());
-					context.insert("width".into(), page.width.to_string());
-					context.insert("height".into(), page.height.to_string());
-					PageContent::url_context(url, context)
-				} else {
-					PageContent::url(url)
-				},
+				content: PageContent::url(url),
 				..Default::default()
 			});
 		}
@@ -317,34 +319,179 @@ impl Source for Comix {
 	}
 }
 
+fn home_layout() -> HomeLayout {
+	HomeLayout {
+		components: vec![
+			HomeComponent {
+				title: Some("Most Recent Popular".into()),
+				subtitle: None,
+				value: aidoku::HomeComponentValue::empty_scroller(),
+			},
+			HomeComponent {
+				title: Some("Most Follows New Comics".into()),
+				subtitle: None,
+				value: aidoku::HomeComponentValue::empty_scroller(),
+			},
+			HomeComponent {
+				title: Some("Latest Updates (Hot)".into()),
+				subtitle: None,
+				value: aidoku::HomeComponentValue::empty_scroller(),
+			},
+			HomeComponent {
+				title: Some("Recently Added".into()),
+				subtitle: None,
+				value: aidoku::HomeComponentValue::empty_manga_chapter_list(),
+			},
+		],
+	}
+}
+
+fn empty_home_scroller(title: &str) -> HomeComponent {
+	HomeComponent {
+		title: Some(title.into()),
+		subtitle: None,
+		value: aidoku::HomeComponentValue::Scroller {
+			entries: Vec::new(),
+			listing: Some(Listing {
+				id: title.into(),
+				name: title.into(),
+				..Default::default()
+			}),
+		},
+	}
+}
+
+fn empty_home_recent() -> HomeComponent {
+	let title = "Recently Added";
+	HomeComponent {
+		title: Some(title.into()),
+		subtitle: None,
+		value: aidoku::HomeComponentValue::MangaChapterList {
+			page_size: None,
+			entries: Vec::new(),
+			listing: Some(Listing {
+				id: title.into(),
+				name: title.into(),
+				..Default::default()
+			}),
+		},
+	}
+}
+
+fn send_home_scroller(
+	web_view: &mut ComixWebView,
+	url: &str,
+	title: &str,
+	hidden_types: &[String],
+	hidden_terms: &[i32],
+) -> Result<HomeComponent> {
+	let response = web_view.send_request(url)?;
+	let entries = web_view
+		.decode_json_owned::<SearchResponse>(&response)?
+		.result
+		.items
+		.into_iter()
+		.filter(|m| !m.is_hidden(hidden_types, hidden_terms))
+		.map(|m| {
+			let manga = Manga::from(m);
+			Link {
+				title: manga.title.clone(),
+				subtitle: None,
+				image_url: manga.cover.clone(),
+				value: Some(LinkValue::Manga(manga)),
+			}
+		})
+		.collect();
+	Ok(HomeComponent {
+		title: Some(title.into()),
+		subtitle: None,
+		value: aidoku::HomeComponentValue::Scroller {
+			entries,
+			listing: Some(Listing {
+				id: title.into(),
+				name: title.into(),
+				..Default::default()
+			}),
+		},
+	})
+}
+
+fn send_home_recent(
+	web_view: &mut ComixWebView,
+	url: &str,
+	hidden_types: &[String],
+	hidden_terms: &[i32],
+) -> Result<HomeComponent> {
+	let response = web_view.send_request(url)?;
+	let entries = web_view
+		.decode_json_owned::<SearchResponse>(&response)?
+		.result
+		.items
+		.into_iter()
+		.filter(|m| !m.is_hidden(hidden_types, hidden_terms))
+		.map(|m| {
+			let chapter_number = m.latest_chapter;
+			let manga = Manga::from(m);
+			MangaWithChapter {
+				manga,
+				chapter: Chapter {
+					chapter_number,
+					..Default::default()
+				},
+			}
+		})
+		.collect();
+	let title = "Recently Added";
+	Ok(HomeComponent {
+		title: Some(title.into()),
+		subtitle: None,
+		value: aidoku::HomeComponentValue::MangaChapterList {
+			page_size: None,
+			entries,
+			listing: Some(Listing {
+				id: title.into(),
+				name: title.into(),
+				..Default::default()
+			}),
+		},
+	})
+}
+
+fn emit_home_result(
+	result: Result<HomeComponent>,
+	failed_component: HomeComponent,
+	layout_sent: &mut bool,
+	pending_failures: &mut Vec<HomeComponent>,
+	successful_sections: &mut usize,
+	first_error: &mut Option<String>,
+) {
+	match result {
+		Ok(component) => {
+			if !*layout_sent {
+				send_partial_result(&HomePartialResult::Layout(home_layout()));
+				*layout_sent = true;
+				for failed in pending_failures.drain(..) {
+					send_partial_result(&HomePartialResult::Component(failed));
+				}
+			}
+			send_partial_result(&HomePartialResult::Component(component));
+			*successful_sections += 1;
+		}
+		Err(error) => {
+			if first_error.is_none() {
+				*first_error = Some(error.to_string());
+			}
+			if *layout_sent {
+				send_partial_result(&HomePartialResult::Component(failed_component));
+			} else {
+				pending_failures.push(failed_component);
+			}
+		}
+	}
+}
+
 impl Home for Comix {
 	fn get_home(&self) -> Result<HomeLayout> {
-		// send basic layout
-		send_partial_result(&HomePartialResult::Layout(HomeLayout {
-			components: vec![
-				HomeComponent {
-					title: Some("Most Recent Popular".into()),
-					subtitle: None,
-					value: aidoku::HomeComponentValue::empty_scroller(),
-				},
-				HomeComponent {
-					title: Some("Most Follows New Comics".into()),
-					subtitle: None,
-					value: aidoku::HomeComponentValue::empty_scroller(),
-				},
-				HomeComponent {
-					title: Some("Latest Updates (Hot)".into()),
-					subtitle: None,
-					value: aidoku::HomeComponentValue::empty_scroller(),
-				},
-				HomeComponent {
-					title: Some("Recently Added".into()),
-					subtitle: None,
-					value: aidoku::HomeComponentValue::empty_manga_chapter_list(),
-				},
-			],
-		}));
-
 		let extra_qs = if settings::hide_nsfw() {
 			NSFW_GENRE_IDS
 				.iter()
@@ -356,98 +503,58 @@ impl Home for Comix {
 
 		let hidden_types = settings::hidden_types();
 		let hidden_terms = settings::hidden_terms();
-
 		let mut web_view = self.web_view.borrow_mut();
+		let mut layout_sent = false;
+		let mut pending_failures = Vec::new();
+		let mut successful_sections = 0;
+		let mut first_error = None;
 
-		let responses: [Result<Response>; 4] = [
-			// most recent popular
-			web_view.send_request(&format!(
-				"{API_URL}/manga/top?type=trending&days=1&limit=20{extra_qs}"
-			)),
-			// most follows new comics
-			web_view.send_request(&format!(
-				"{API_URL}/manga/top?type=follows&days=1&limit=20{extra_qs}"
-			)),
-			// latest updates (hot)
-			web_view.send_request(&format!(
-				"{API_URL}/manga?scope=hot&limit=30&order[chapter_updated_at]=desc&page=1{extra_qs}"
-			)),
-			// recently added
-			web_view.send_request(&format!(
-				"{API_URL}/manga?order[created_at]=desc&limit=10&page=1{extra_qs}"
-			)),
-		];
-
-		let [popular_res, follows_res, latest_res, recent_res] = responses;
-
-		for (response, title) in [
-			(popular_res, "Most Recent Popular"),
-			(follows_res, "Most Follows New Comics"),
-			(latest_res, "Latest Updates (Hot)"),
+		for (url, title) in [
+			(
+				format!("{API_URL}/manga/top?type=trending&days=1&limit=20{extra_qs}"),
+				"Most Recent Popular",
+			),
+			(
+				format!("{API_URL}/manga/top?type=follows&days=1&limit=20{extra_qs}"),
+				"Most Follows New Comics",
+			),
+			(
+				format!(
+					"{API_URL}/manga?scope=hot&limit=30&order[chapter_updated_at]=desc&page=1{extra_qs}"
+				),
+				"Latest Updates (Hot)",
+			),
 		] {
-			let entries = web_view
-				.decode_json_owned::<SearchResponse>(&response?)?
-				.result
-				.items
-				.into_iter()
-				.filter(|m| !m.is_hidden(&hidden_types, &hidden_terms))
-				.map(|m| {
-					let manga = Manga::from(m);
-					Link {
-						title: manga.title.clone(),
-						subtitle: None,
-						image_url: manga.cover.clone(),
-						value: Some(LinkValue::Manga(manga)),
-					}
-				})
-				.collect();
-			send_partial_result(&HomePartialResult::Component(HomeComponent {
-				title: Some(title.into()),
-				subtitle: None,
-				value: aidoku::HomeComponentValue::Scroller {
-					entries,
-					listing: Some(Listing {
-						id: title.into(),
-						name: title.into(),
-						..Default::default()
-					}),
-				},
-			}));
+			let result =
+				send_home_scroller(&mut web_view, &url, title, &hidden_types, &hidden_terms);
+			emit_home_result(
+				result,
+				empty_home_scroller(title),
+				&mut layout_sent,
+				&mut pending_failures,
+				&mut successful_sections,
+				&mut first_error,
+			);
 		}
 
-		{
-			let entries = web_view
-				.decode_json_owned::<SearchResponse>(&recent_res?)?
-				.result
-				.items
-				.into_iter()
-				.filter(|m| !m.is_hidden(&hidden_types, &hidden_terms))
-				.map(|m| {
-					let chapter_number = m.latest_chapter;
-					let manga = Manga::from(m);
-					MangaWithChapter {
-						manga,
-						chapter: Chapter {
-							chapter_number,
-							..Default::default()
-						},
-					}
-				})
-				.collect();
-			let title = "Recently Added";
-			send_partial_result(&HomePartialResult::Component(HomeComponent {
-				title: Some(title.into()),
-				subtitle: None,
-				value: aidoku::HomeComponentValue::MangaChapterList {
-					page_size: None,
-					entries,
-					listing: Some(Listing {
-						id: title.into(),
-						name: title.into(),
-						..Default::default()
-					}),
-				},
-			}));
+		let recent_url =
+			format!("{API_URL}/manga?order[created_at]=desc&limit=10&page=1{extra_qs}");
+		let result =
+			send_home_recent(&mut web_view, &recent_url, &hidden_types, &hidden_terms);
+		emit_home_result(
+			result,
+			empty_home_recent(),
+			&mut layout_sent,
+			&mut pending_failures,
+			&mut successful_sections,
+			&mut first_error,
+		);
+
+		if successful_sections == 0 {
+			bail!(
+				"Unable to load Comix home: {}",
+				first_error.unwrap_or_else(|| "no section returned data".into())
+			);
 		}
 
 		Ok(HomeLayout::default())
@@ -529,47 +636,9 @@ impl ImageRequestProvider for Comix {
 		if !is_allowed_asset_url(&url) {
 			bail!("Rejected unexpected Comix WS image host")
 		}
-		Ok(create_request_get(&url)?.header("Referer", &format!("{BASE_URL}/")))
-	}
-}
-
-impl PageImageProcessor for Comix {
-	fn process_page_image(
-		&self,
-		response: ImageResponse,
-		context: Option<PageContext>,
-	) -> Result<ImageRef> {
-		if let Some(context) = context {
-			if context.get("s").is_some_and(|s| s == "1") {
-				let Some(url) = response.request.url else {
-					bail!("Unable to get the image url")
-				};
-
-				let Some(width) = context.get("width").and_then(|s| s.parse::<f32>().ok()) else {
-					bail!("Unable to get the image width")
-				};
-
-				let Some(height) = context.get("height").and_then(|s| s.parse::<f32>().ok()) else {
-					bail!("Unable to get the image height")
-				};
-
-				let mut web_view = self.web_view.borrow_mut();
-
-				let data_url = web_view.descramble_image(width, height, url.as_ref())?;
-				let Some((_, base64_data)) = data_url.split_once(',') else {
-					bail!("Unable to get the raw image data")
-				};
-				let bytes: Vec<u8> = general_purpose::STANDARD
-					.decode(base64_data)
-					.map_err(|_| error!("Invalid base64 data given"))?;
-
-				Ok(ImageRef::new(bytes.as_ref()))
-			} else {
-				Ok(response.image)
-			}
-		} else {
-			Ok(response.image)
-		}
+		// Comix image hosts reject Origin and Referer. Aidoku's plain GET does
+		// not add either header, while retaining the explicit host allowlist.
+		create_request_get(&url)
 	}
 }
 
@@ -644,7 +713,6 @@ register_source!(
 	Home,
 	ListingProvider,
 	ImageRequestProvider,
-	PageImageProcessor,
 	NotificationHandler,
 	DeepLinkHandler,
 	WebLoginHandler

@@ -5,11 +5,31 @@ import json
 import os
 from pathlib import Path
 import zipfile
-from update_sources import read_package
+try:
+    from scripts.update_sources import read_package
+except ModuleNotFoundError:
+    from update_sources import read_package
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'reader-candidates'
 SOURCES={'en.comix':'comix','en.comixws':'comixws','en.asurascans':'asurascans'}
 LOCAL_MAIN_SOURCES={'en.comixws'}
+def package_payload_mismatches(package_path: Path, source: Path, wasm: Path) -> list[str]:
+    """Compare member bytes, not ZIP timestamps/compression, before immutable reuse."""
+    expected={'Payload/'+item.name:item.read_bytes()
+              for item in sorted((source/'res').glob('*')) if item.is_file()}
+    expected['Payload/main.wasm']=wasm.read_bytes()
+    with zipfile.ZipFile(package_path) as archive:
+        members={}
+        for member in archive.infolist():
+            if not member.is_dir() and member.filename.startswith('Payload/'):
+                members.setdefault(member.filename, []).append(member)
+        mismatches=set(expected).symmetric_difference(members)
+        for name in expected.keys() & members.keys():
+            # Duplicate ZIP members are ambiguous even when their bytes agree.
+            if len(members[name]) != 1 or archive.read(members[name][0]) != expected[name]:
+                mismatches.add(name)
+    return sorted(mismatches)
+
 def main():
     OUTPUT.mkdir(exist_ok=True)
     previous_inventory_path=OUTPUT/'inventory.json'
@@ -27,10 +47,19 @@ def main():
         keep_existing=False
         if target.is_file():
             try:
-                existing,_=read_package(target.read_bytes(),source_id,expected_id=source_id,expected_version=info['version'])
-                keep_existing=existing['version']==info['version']
-            except Exception:
-                keep_existing=False
+                read_package(target.read_bytes(),source_id,expected_id=source_id,expected_version=info['version'])
+                mismatches=package_payload_mismatches(target,source,wasm)
+            except Exception as error:
+                raise RuntimeError(
+                    f'Existing immutable candidate {target.name} is invalid; '
+                    'bump the source version instead of overwriting it.'
+                ) from error
+            if mismatches:
+                raise RuntimeError(
+                    f'Existing immutable candidate {target.name} differs at {", ".join(mismatches)}; '
+                    'bump the source version before packaging changed payloads.'
+                )
+            keep_existing=True
         if not keep_existing:
             with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as archive:
                 for item in sorted((source/'res').glob('*')):
