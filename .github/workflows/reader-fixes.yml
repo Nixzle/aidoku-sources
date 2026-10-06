@@ -14,6 +14,7 @@ concurrency:
 env:
   CARGO_BUILD_JOBS: "2"
   RUST_FONTCONFIG_DLOPEN: "on"
+  RUST_TOOLCHAIN: "1.98.1"
   PYTHONDONTWRITEBYTECODE: "1"
 jobs:
   build:
@@ -31,8 +32,10 @@ jobs:
           python -m unittest discover -s tests
           node --test source-fixes/tests/transport.test.cjs
           python scripts/validate_catalog.py
-      - name: Add WASM target on disposable CI runner
-        run: rustup target add wasm32-unknown-unknown
+      - name: Install pinned Rust toolchain on disposable CI runner
+        run: |
+          rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal --target wasm32-unknown-unknown
+          rustup default "$RUST_TOOLCHAIN"
       - name: Rust toolchain identity
         id: toolchain
         run: echo "version=$(rustc --version | tr ' ' '-')" >> "$GITHUB_OUTPUT"

@@ -108,6 +108,8 @@ class RepositoryStabilityTests(unittest.TestCase):
         workflow = (ROOT / ".github/workflows/reader-fixes.yml").read_text(
             encoding="utf-8"
         )
+        self.assertIn('RUST_TOOLCHAIN: "1.98.1"', workflow)
+        self.assertIn('rustup default "$RUST_TOOLCHAIN"', workflow)
         self.assertLess(
             workflow.index("Restore reader build cache"),
             workflow.index("Build locked source replacements"),
