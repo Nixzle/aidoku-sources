@@ -1,5 +1,5 @@
 //! Native-first, bounded WebView recovery. No CAPTCHA solving or credential export.
-use aidoku::{HashMap, Result, alloc::{String, Vec, string::ToString},
+use aidoku::{HashMap, Result, alloc::{String, Vec},
     imports::{defaults::defaults_get, html::{Document, Html}, js::WebView,
               net::Request, std::sleep}, prelude::*};
 use serde::Deserialize;

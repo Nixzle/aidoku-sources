@@ -463,7 +463,6 @@ fn emit_home_result(
 	layout_sent: &mut bool,
 	pending_failures: &mut Vec<HomeComponent>,
 	successful_sections: &mut usize,
-	first_error: &mut Option<String>,
 ) {
 	match result {
 		Ok(component) => {
@@ -477,10 +476,7 @@ fn emit_home_result(
 			send_partial_result(&HomePartialResult::Component(component));
 			*successful_sections += 1;
 		}
-		Err(error) => {
-			if first_error.is_none() {
-				*first_error = Some(error.to_string());
-			}
+		Err(_) => {
 			if *layout_sent {
 				send_partial_result(&HomePartialResult::Component(failed_component));
 			} else {
@@ -507,7 +503,6 @@ impl Home for Comix {
 		let mut layout_sent = false;
 		let mut pending_failures = Vec::new();
 		let mut successful_sections = 0;
-		let mut first_error = None;
 
 		for (url, title) in [
 			(
@@ -533,7 +528,6 @@ impl Home for Comix {
 				&mut layout_sent,
 				&mut pending_failures,
 				&mut successful_sections,
-				&mut first_error,
 			);
 		}
 
@@ -547,14 +541,10 @@ impl Home for Comix {
 			&mut layout_sent,
 			&mut pending_failures,
 			&mut successful_sections,
-			&mut first_error,
 		);
 
 		if successful_sections == 0 {
-			bail!(
-				"Unable to load Comix home: {}",
-				first_error.unwrap_or_else(|| "no section returned data".into())
-			);
+			bail!("Unable to load any Comix home section");
 		}
 
 		Ok(HomeLayout::default())

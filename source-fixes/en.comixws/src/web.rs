@@ -7,7 +7,7 @@ use crate::{
 };
 use aidoku::{
 	HashMap, Result,
-	alloc::{string::String, string::ToString, vec::Vec},
+	alloc::{string::String, string::ToString},
 	helpers::uri::QueryParameters,
 	imports::js::WebView,
 	prelude::*,
