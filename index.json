@@ -379,9 +379,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 15,
-      "iconURL": "icons/en.readcomicsonline-v15.png",
-      "downloadURL": "sources/en.readcomicsonline-v15.aix",
+      "version": 16,
+      "iconURL": "icons/en.readcomicsonline-v16.png",
+      "downloadURL": "sources/en.readcomicsonline-v16.aix",
       "languages": [
         "en"
       ],
