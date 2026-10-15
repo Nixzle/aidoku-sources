@@ -394,9 +394,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 18,
-      "iconURL": "icons/en.readcomicsonline-v18.png",
-      "downloadURL": "sources/en.readcomicsonline-v18.aix",
+      "version": 19,
+      "iconURL": "icons/en.readcomicsonline-v19.png",
+      "downloadURL": "sources/en.readcomicsonline-v19.aix",
       "languages": [
         "en"
       ],
@@ -603,9 +603,9 @@
     {
       "id": "multi.kagane",
       "name": "Kagane",
-      "version": 3,
-      "iconURL": "icons/multi.kagane-v3.png",
-      "downloadURL": "sources/multi.kagane-v3.aix",
+      "version": 4,
+      "iconURL": "icons/multi.kagane-v4.png",
+      "downloadURL": "sources/multi.kagane-v4.aix",
       "languages": [
         "en",
         "es",
@@ -624,7 +624,7 @@
         "he"
       ],
       "contentRating": 1,
-      "baseURL": "https://kagane.to",
+      "baseURL": "https://kagane.org",
       "minAppVersion": "0.7.1"
     },
     {
