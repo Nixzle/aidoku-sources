@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-15T18:19:28+00:00",
-  "sourceCount": 54,
+  "generatedAt": "2026-10-17T17:13:05+00:00",
+  "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 19,
-      "file": "sources/en.readcomicsonline-v19.aix",
+      "version": 20,
+      "file": "sources/en.readcomicsonline-v20.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "dbc21f4abd18db5363b4cafd3584b534a6a6e75a22aaeb139d04ea997264b1de",
+      "sha256": "19503b9136b2cd0d9dd01ed62d8f9027669ea19dd89173df9b78b60bfb5f888b",
       "upstreamVersion": 3,
-      "upstreamSha256": "20cb88df438894a486c0b375cb3b4e4a27bdce5aa4984cb0255839fc33e554c2",
+      "upstreamSha256": "70255b086a584dd014183d3e56d85dfa7bee05a3617882062b70493346b3c0ab",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -396,6 +396,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v1.aix",
       "sha256": "773fc2c71626839075efdfb0127ed3e900d36ba5519aa9a63225e285315f53cd"
+    },
+    {
+      "id": "en.toonkotsu",
+      "name": "Toonkotsu",
+      "version": 1,
+      "file": "sources/en.toonkotsu-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonkotsu-v1.aix",
+      "sha256": "fc600929f67bbc80a8e0abb4c21132ed7461f9c2d20e0b39ea4dd16cb5b61469"
     },
     {
       "id": "en.vortexscans",
@@ -500,12 +510,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 7,
-      "file": "sources/multi.mangadotnet-v7.aix",
+      "version": 8,
+      "file": "sources/multi.mangadotnet-v8.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v7.aix",
-      "sha256": "9c58cb31f64b7a98fb7c51dd9e65e49e41538a8d1551f8b321fc5c2577c60bf4"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v8.aix",
+      "sha256": "4261a7eb66281c1f270c0ef91b3f69c159c093920f2597f0d7403ff4375b4e50"
     },
     {
       "id": "multi.mangafire",

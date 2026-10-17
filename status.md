@@ -1,12 +1,12 @@
 # Aidoku Source Status
 
-Status last changed: 2026-10-16T18:04:51+00:00
+Status last changed: 2026-10-17T17:13:05+00:00
 
-Last website sweep: 2026-10-16T18:04:25+00:00
+Last website sweep: 2026-10-17T17:12:37+00:00
 Website reachability, package delivery and chapter reading are separate checks.
 [Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
-- Maintained: 54
+- Maintained: 55
 - Legacy-only: 47
 - Manually quarantined: 5
 - Automatically quarantined: 4
@@ -33,12 +33,12 @@ Website reachability, package delivery and chapter reading are separate checks.
 
 ## Under observation
 
-- **Armageddon** (`en.armageddon`): 0 failed sample(s); forbidden; last probe 2026-10-16T18:04:25+00:00
-- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-16T18:04:25+00:00
-- **Comix WS** (`en.comixws`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-16T18:04:25+00:00; protected as a required source
-- **Madokami** (`en.madokami`): 0 failed sample(s); auth_required; last probe 2026-10-16T18:04:25+00:00
-- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-16T18:04:25+00:00; protected as a required source
-- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); forbidden; last probe 2026-10-16T18:04:25+00:00
-- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-10-16T18:04:25+00:00
-- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-16T18:04:25+00:00
-- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-16T18:04:25+00:00
+- **Armageddon** (`en.armageddon`): 0 failed sample(s); forbidden; last probe 2026-10-17T17:12:37+00:00
+- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-17T17:12:37+00:00
+- **Comix WS** (`en.comixws`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-17T17:12:37+00:00; protected as a required source
+- **Madokami** (`en.madokami`): 0 failed sample(s); auth_required; last probe 2026-10-17T17:12:37+00:00
+- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-17T17:12:37+00:00; protected as a required source
+- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); forbidden; last probe 2026-10-17T17:12:37+00:00
+- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-10-17T17:12:37+00:00
+- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-17T17:12:37+00:00
+- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-17T17:12:37+00:00
