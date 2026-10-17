@@ -289,22 +289,24 @@ impl Source for Comix {
 		};
 
 		let base_url = result.pages.base_url.trim_end_matches('/');
-		Ok(result
+		result
 			.pages
 			.items
 			.into_iter()
 			.map(|page| {
-				let url = if page.url.starts_with("http") {
+				let url = if page.url.starts_with("https://") {
 					page.url
+				} else if !base_url.starts_with("https://") || page.url.is_empty() || page.url.starts_with("http://") {
+					bail!("Comix returned an image without a valid HTTPS URL or base URL")
 				} else {
 					format!("{base_url}/{}", page.url.trim_start_matches('/'))
 				};
-				Page {
+				Ok(Page {
 					content: PageContent::url(url),
 					..Default::default()
-				}
+				})
 			})
-			.collect())
+			.collect()
 	}
 }
 
