@@ -14,7 +14,7 @@ class ComixCandidateTests(unittest.TestCase):
         lib = (source_root / "src" / "lib.rs").read_text(encoding="utf-8")
         settings = (source_root / "res" / "settings.json").read_text(encoding="utf-8")
 
-        self.assertEqual(manifest["info"]["version"], 134)
+        self.assertEqual(manifest["info"]["version"], 135)
         self.assertEqual(manifest["info"]["minAppVersion"], "0.9")
         self.assertIn('const COMIX_ORIGINS: &[&str] = &[BASE_URL];', lib)
         self.assertIn('mod transport;', lib)

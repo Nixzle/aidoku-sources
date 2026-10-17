@@ -311,6 +311,8 @@ pub struct ScanlationGroup {
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ComixPages {
+	// New Comix responses include complete page URLs and omit baseUrl.
+	#[serde(default)]
 	pub base_url: String,
 	pub items: Vec<ComixPage>,
 }
@@ -365,4 +367,28 @@ fn bool_from_any<'de, D: Deserializer<'de>>(deserializer: D) -> Result<bool, D::
 	}
 
 	deserializer.deserialize_any(BoolVisitor)
+}
+
+#[cfg(test)]
+mod comix_pages_tests {
+	use super::ComixPages;
+
+	#[test]
+	fn accepts_current_absolute_pages_without_base_url() {
+		let pages: ComixPages = serde_json::from_str(
+			r#"{"items":[{"url":"https://img.example.net/i/page.jpg"}]}"#,
+		).unwrap();
+		assert!(pages.base_url.is_empty());
+		assert_eq!(pages.items.len(), 1);
+		assert_eq!(pages.items[0].url, "https://img.example.net/i/page.jpg");
+	}
+
+	#[test]
+	fn retains_legacy_shared_base_url() {
+		let pages: ComixPages = serde_json::from_str(
+			r#"{"baseUrl":"https://img.example.net","items":[{"url":"/i/page.jpg"}]}"#,
+		).unwrap();
+		assert_eq!(pages.base_url, "https://img.example.net");
+		assert_eq!(pages.items[0].url, "/i/page.jpg");
+	}
 }
