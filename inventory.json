@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-17T17:13:05+00:00",
+  "generatedAt": "2026-10-19T19:57:59+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 20,
-      "file": "sources/en.readcomicsonline-v20.aix",
+      "version": 21,
+      "file": "sources/en.readcomicsonline-v21.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "19503b9136b2cd0d9dd01ed62d8f9027669ea19dd89173df9b78b60bfb5f888b",
+      "sha256": "bf20a98d4d00bc08d0130c037d8432918339ae75c7a53ba6c514d100a7969715",
       "upstreamVersion": 3,
-      "upstreamSha256": "70255b086a584dd014183d3e56d85dfa7bee05a3617882062b70493346b3c0ab",
+      "upstreamSha256": "8d4b7197554644bc3c3dd605db813cfced5759a4f89409beaf91cef73a2b0e1b",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -400,12 +400,12 @@
     {
       "id": "en.toonkotsu",
       "name": "Toonkotsu",
-      "version": 1,
-      "file": "sources/en.toonkotsu-v1.aix",
+      "version": 2,
+      "file": "sources/en.toonkotsu-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonkotsu-v1.aix",
-      "sha256": "fc600929f67bbc80a8e0abb4c21132ed7461f9c2d20e0b39ea4dd16cb5b61469"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonkotsu-v2.aix",
+      "sha256": "753c7ef31340c602ab4e4e44fb4380ab3ee82fda14379583a60fa9c20a65dfc2"
     },
     {
       "id": "en.vortexscans",
