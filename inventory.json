@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-20T18:28:49+00:00",
+  "generatedAt": "2026-10-21T18:40:16+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 22,
-      "file": "sources/en.readcomicsonline-v22.aix",
+      "version": 23,
+      "file": "sources/en.readcomicsonline-v23.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "2b1c2ac963c8e0fc3a54a57d81766749dd82c2094ee44750eb5aba93fb7a3423",
+      "sha256": "d8b92fcfc82e8b8ca74f8989394e2d4b61b685b8289c8e728cb8fccdbee13dd6",
       "upstreamVersion": 3,
-      "upstreamSha256": "4bc03f182095e73a514ecf52d9dff41561008b308ba4d74c676fc83bf6db6b3d",
+      "upstreamSha256": "f56113671ce8570b12243ac93ed4898c227cfcc8aef4c8ae0c620a66de6675f6",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -480,12 +480,12 @@
     {
       "id": "multi.kagane",
       "name": "Kagane",
-      "version": 4,
-      "file": "sources/multi.kagane-v4.aix",
+      "version": 5,
+      "file": "sources/multi.kagane-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v4.aix",
-      "sha256": "8aaca839c1be954cd7416e8e8a3e268945792374c1c1503c8d30c645750b9566"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v5.aix",
+      "sha256": "6b5e15dc6cb2a737a2f0751bb45b9e9c7ed06a3030587173f395fb26842953de"
     },
     {
       "id": "multi.lanraragi",
