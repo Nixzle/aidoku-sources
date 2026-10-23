@@ -1,16 +1,16 @@
 # Aidoku Source Status
 
-Status last changed: 2026-10-22T18:33:55+00:00
+Status last changed: 2026-10-23T18:23:14+00:00
 
-Last website sweep: 2026-10-22T18:33:28+00:00
+Last website sweep: 2026-10-23T18:22:47+00:00
 Website reachability, package delivery and chapter reading are separate checks.
 [Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
 - Maintained: 55
-- Legacy-only: 47
+- Legacy-only: 46
 - Manually quarantined: 5
-- Automatically quarantined: 4
-- Degraded/under observation: 8
+- Automatically quarantined: 5
+- Degraded/under observation: 7
 
 ## Required source health
 
@@ -26,6 +26,7 @@ Website reachability, package delivery and chapter reading are separate checks.
 - **Fire Scans** (`en.firescans`): The configured source domain does not currently resolve.
 - **Qi Scans** (`en.qiscans`): The configured source domain does not currently resolve.
 - **ReadComicOnline** (`en.readcomiconline`): The original ReadComicOnline service has no live domain; use en.readcomicsonline instead. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/639))
+- **Madokami** (`en.madokami`): unreachable for 3 consecutive daily checks
 - **Manga Sect** (`en.mangasect`): unreachable for 3 consecutive daily checks
 - **MangaTx** (`en.mangatx`): unreachable for 3 consecutive daily checks
 - **Manhuagold** (`en.manhuagold`): unreachable for 3 consecutive daily checks
@@ -33,11 +34,10 @@ Website reachability, package delivery and chapter reading are separate checks.
 
 ## Under observation
 
-- **Armageddon** (`en.armageddon`): 0 failed sample(s); forbidden; last probe 2026-10-22T18:33:28+00:00
-- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-22T18:33:28+00:00
-- **Madokami** (`en.madokami`): 2 failed sample(s); server_error; last probe 2026-10-22T18:33:28+00:00
-- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-22T18:33:28+00:00; protected as a required source
-- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); forbidden; last probe 2026-10-22T18:33:28+00:00
-- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-10-22T18:33:28+00:00
-- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-22T18:33:28+00:00
-- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-22T18:33:28+00:00
+- **Armageddon** (`en.armageddon`): 0 failed sample(s); forbidden; last probe 2026-10-23T18:22:47+00:00
+- **BatCave** (`en.batcave`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-23T18:22:47+00:00
+- **Read Comics Online** (`en.readcomicsonline`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-23T18:22:47+00:00; protected as a required source
+- **WebtoonXYZ** (`en.webtoonxyz`): 0 failed sample(s); forbidden; last probe 2026-10-23T18:22:47+00:00
+- **Weeb Central** (`en.weebcentral`): 0 failed sample(s); forbidden; last probe 2026-10-23T18:22:47+00:00
+- **Mangadotnet** (`multi.mangadotnet`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-23T18:22:47+00:00
+- **MyReadingManga** (`multi.myreadingmanga`): 0 failed sample(s); cloudflare_protected; last probe 2026-10-23T18:22:47+00:00

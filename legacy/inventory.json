@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Legacy Public English Aidoku Sources",
-  "generatedAt": "2026-09-28T15:23:32+00:00",
-  "sourceCount": 47,
+  "generatedAt": "2026-10-23T18:23:14+00:00",
+  "sourceCount": 46,
   "catalogPolicy": "Older unique packages not present in the maintained catalog; these may no longer work",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -138,16 +138,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.harimanga-v2.aix",
       "sha256": "623276871a8194b7a766535c8af7c99a8d9bc9184665a8120cec73c2dc00965c"
-    },
-    {
-      "id": "en.hentai2read",
-      "name": "Hentai2Read",
-      "version": 2,
-      "file": "sources/en.hentai2read-v2.aix",
-      "repository": "tachibana-shin/aidoku-community-sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/tachibana-shin/aidoku-community-sources/gh-pages/sources/en.hentai2read-v2.aix",
-      "sha256": "6005a71dc70f9e798643864f436d77039883fe4084b1fa742021da540e7be85c"
     },
     {
       "id": "en.hentaifox",

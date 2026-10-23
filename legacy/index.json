@@ -122,18 +122,6 @@
       "baseURL": "https://harimanga.me"
     },
     {
-      "id": "en.hentai2read",
-      "name": "Hentai2Read",
-      "version": 2,
-      "iconURL": "icons/en.hentai2read-v2.png",
-      "downloadURL": "sources/en.hentai2read-v2.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 2,
-      "baseURL": "https://hentai2read.com"
-    },
-    {
       "id": "en.hentaifox",
       "name": "HentaiFox",
       "version": 4,

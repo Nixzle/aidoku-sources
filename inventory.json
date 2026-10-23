@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-21T18:40:16+00:00",
+  "generatedAt": "2026-10-23T18:23:14+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -194,6 +194,16 @@
       "sha256": "c4d624122957079f55c32702f9e4590d025b38ab9f94f158b2dfa4e51ff8e94f"
     },
     {
+      "id": "en.hentai2read",
+      "name": "Hentai2Read",
+      "version": 3,
+      "file": "sources/en.hentai2read-v3.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hentai2read-v3.aix",
+      "sha256": "587c39664b5f431cdca832fdac32003891d1ea6b3d9e3a8a6fd7cc6391333e17"
+    },
+    {
       "id": "en.hivescans",
       "name": "Hive Scans",
       "version": 2,
@@ -202,16 +212,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v2.aix",
       "sha256": "b151919d948d6a1aac62fe7afc8149402690e4c580998ffda8be90bcc1a17f83"
-    },
-    {
-      "id": "en.madokami",
-      "name": "Madokami",
-      "version": 1,
-      "file": "sources/en.madokami-v1.aix",
-      "repository": "Aidoku-Community/sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.madokami-v1.aix",
-      "sha256": "4a05f9c87e3305b9c7af9547f4a25e4a9377f307be92109b950372711fb4a7a3"
     },
     {
       "id": "en.magusmanga",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 23,
-      "file": "sources/en.readcomicsonline-v23.aix",
+      "version": 24,
+      "file": "sources/en.readcomicsonline-v24.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "d8b92fcfc82e8b8ca74f8989394e2d4b61b685b8289c8e728cb8fccdbee13dd6",
+      "sha256": "ed9f0f241a867a46854904baf503ba08dea7642f80031daad8e7e9bc2773019c",
       "upstreamVersion": 3,
-      "upstreamSha256": "f56113671ce8570b12243ac93ed4898c227cfcc8aef4c8ae0c620a66de6675f6",
+      "upstreamSha256": "adbbaa863ccdf81e40c0f38d8470c4d1a9a461f46ec266aac736652b51f4608f",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },

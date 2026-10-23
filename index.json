@@ -210,6 +210,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.hentai2read",
+      "name": "Hentai2Read",
+      "version": 3,
+      "iconURL": "icons/en.hentai2read-v3.png",
+      "downloadURL": "sources/en.hentai2read-v3.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://hentai2read.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.hivescans",
       "name": "Hive Scans",
       "version": 2,
@@ -220,19 +233,6 @@
       ],
       "contentRating": 0,
       "baseURL": "https://hivetoons.org",
-      "minAppVersion": "0.7.1"
-    },
-    {
-      "id": "en.madokami",
-      "name": "Madokami",
-      "version": 1,
-      "iconURL": "icons/en.madokami-v1.png",
-      "downloadURL": "sources/en.madokami-v1.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 1,
-      "baseURL": "https://manga.madokami.al",
       "minAppVersion": "0.7.1"
     },
     {
@@ -394,9 +394,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 23,
-      "iconURL": "icons/en.readcomicsonline-v23.png",
-      "downloadURL": "sources/en.readcomicsonline-v23.aix",
+      "version": 24,
+      "iconURL": "icons/en.readcomicsonline-v24.png",
+      "downloadURL": "sources/en.readcomicsonline-v24.aix",
       "languages": [
         "en"
       ],
