@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-23T18:23:14+00:00",
+  "generatedAt": "2026-10-25T17:40:08+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -62,12 +62,12 @@
     {
       "id": "en.atsumaru",
       "name": "Atsumaru",
-      "version": 1,
-      "file": "sources/en.atsumaru-v1.aix",
+      "version": 2,
+      "file": "sources/en.atsumaru-v2.aix",
       "repository": "Amqx/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://raw.githubusercontent.com/Amqx/sources/gh-pages/sources/en.atsumaru-v1.aix",
-      "sha256": "b48443bcf98b634324f543cc7a59b84d4e6fe11c83bfcf00e0006d56af01b116"
+      "upstreamPackageURL": "https://raw.githubusercontent.com/Amqx/sources/gh-pages/sources/en.atsumaru-v2.aix",
+      "sha256": "5269ac80d22153f4b65a5c15a1b539ff69c15e04ee145e859100c494718ab33b"
     },
     {
       "id": "en.batcave",
