@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-25T17:40:08+00:00",
+  "generatedAt": "2026-10-26T19:57:58+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -256,12 +256,12 @@
     {
       "id": "en.mangago",
       "name": "Mangago",
-      "version": 3,
-      "file": "sources/en.mangago-v3.aix",
+      "version": 4,
+      "file": "sources/en.mangago-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangago-v3.aix",
-      "sha256": "fd95c6e964903382e49251ec85ba5ef25f1895b4480a2b522a1466b3ec262f52"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangago-v4.aix",
+      "sha256": "559eeca778753a3a602aca4c49b1bdcc8fdb9ca18cd81519f51b8685146feaaf"
     },
     {
       "id": "en.mangakakalot",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 24,
-      "file": "sources/en.readcomicsonline-v24.aix",
+      "version": 25,
+      "file": "sources/en.readcomicsonline-v25.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "ed9f0f241a867a46854904baf503ba08dea7642f80031daad8e7e9bc2773019c",
+      "sha256": "e1f398bcd1910fa81d6098f974dcd8169abf3291122919c77f8d203339a2e607",
       "upstreamVersion": 3,
-      "upstreamSha256": "adbbaa863ccdf81e40c0f38d8470c4d1a9a461f46ec266aac736652b51f4608f",
+      "upstreamSha256": "1835597ab9f14b05289114ca3ae202289229328004e6534f9db5dbc94f45af58",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -389,13 +389,13 @@
     },
     {
       "id": "en.toonilyme",
-      "name": "Toonily.me",
-      "version": 1,
-      "file": "sources/en.toonilyme-v1.aix",
+      "name": "ToonTop",
+      "version": 2,
+      "file": "sources/en.toonilyme-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v1.aix",
-      "sha256": "773fc2c71626839075efdfb0127ed3e900d36ba5519aa9a63225e285315f53cd"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v2.aix",
+      "sha256": "d5dbd399806a3d90409b3ee3c9127a27422834d997271af51a449e3b83d2a463"
     },
     {
       "id": "en.toonkotsu",

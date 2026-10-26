@@ -290,9 +290,9 @@
     {
       "id": "en.mangago",
       "name": "Mangago",
-      "version": 3,
-      "iconURL": "icons/en.mangago-v3.png",
-      "downloadURL": "sources/en.mangago-v3.aix",
+      "version": 4,
+      "iconURL": "icons/en.mangago-v4.png",
+      "downloadURL": "sources/en.mangago-v4.aix",
       "languages": [
         "en"
       ],
@@ -394,9 +394,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 24,
-      "iconURL": "icons/en.readcomicsonline-v24.png",
-      "downloadURL": "sources/en.readcomicsonline-v24.aix",
+      "version": 25,
+      "iconURL": "icons/en.readcomicsonline-v25.png",
+      "downloadURL": "sources/en.readcomicsonline-v25.aix",
       "languages": [
         "en"
       ],
@@ -458,15 +458,15 @@
     },
     {
       "id": "en.toonilyme",
-      "name": "Toonily.me",
-      "version": 1,
-      "iconURL": "icons/en.toonilyme-v1.png",
-      "downloadURL": "sources/en.toonilyme-v1.aix",
+      "name": "ToonTop",
+      "version": 2,
+      "iconURL": "icons/en.toonilyme-v2.png",
+      "downloadURL": "sources/en.toonilyme-v2.aix",
       "languages": [
         "en"
       ],
       "contentRating": 2,
-      "baseURL": "https://toonily.me",
+      "baseURL": "https://toontop.io",
       "minAppVersion": "0.7.1"
     },
     {
