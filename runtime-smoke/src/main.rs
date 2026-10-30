@@ -275,3 +275,11 @@ mod tests {
 #[cfg(test)]
 #[path = "../../source-fixes/en.asurascans/src/page_data.rs"]
 mod asura_page_data;
+
+#[cfg(test)]
+#[path = "../../source-fixes/en.comix/src/pages.rs"]
+mod comix_page_data;
+
+#[cfg(test)]
+#[path = "../../source-fixes/en.comix/src/verification.rs"]
+mod comix_verification;

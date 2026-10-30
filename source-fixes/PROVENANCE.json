@@ -7,8 +7,14 @@
       "id": "en.comix",
       "upstreamPath": "sources/en.comix",
       "baseVersion": 23,
-      "candidateVersion": 133,
-      "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72"
+      "candidateVersion": 139,
+      "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72",
+      "repairDate": "2026-10-31",
+      "compatibilityReferences": [
+        "Aidoku-Community/sources@dd0fe4e87a45d055aa6dde8209f917307f03596c",
+        "Aidoku-Community/sources#810"
+      ],
+      "acceptance": "Compiled candidate and executable regression tests required; iPhone reader verification remains required before promotion"
     },
     {
       "id": "en.asurascans",
