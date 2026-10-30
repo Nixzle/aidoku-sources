@@ -22,7 +22,7 @@ Website reachability, package delivery and chapter reading are separate checks.
 ## Quarantined
 
 - **Aqua Manga** (`en.aquamanga`): The site/parser changed and the source needs a rewrite before it is installable again. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/605))
-- **Comix** (`en.comix`): Nixzle builds through v133 failed owner-device acceptance on the affected Aidoku Cloudflare client. v134 remains isolated in the dedicated test feed until it passes on that iPhone; do not advertise it as reliable yet. ([upstream issue](https://github.com/Aidoku/Aidoku/issues/1034))
+- **Comix** (`en.comix`): Earlier Nixzle Comix builds failed owner-device acceptance. v139 repairs current page parsing, verification and secure-module discovery; it remains isolated in the dedicated test feed until it passes on the affected iPhone. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/814))
 - **Fire Scans** (`en.firescans`): The configured source domain does not currently resolve.
 - **Qi Scans** (`en.qiscans`): The configured source domain does not currently resolve.
 - **ReadComicOnline** (`en.readcomiconline`): The original ReadComicOnline service has no live domain; use en.readcomicsonline instead. ([upstream issue](https://github.com/Aidoku-Community/sources/issues/639))

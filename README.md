@@ -78,9 +78,9 @@ Never post account cookies or access tokens.
 
 ### Comix reliability notice
 
-Nixzle's experimental Comix v127/v128 packages are retired after failing real-device acceptance on an affected Cloudflare client. They are not considered working releases. This repository does not rehost third-party replacement packages. The independently maintained Yomu Comix list documents full WebView transport plus bad-page-image recovery: https://smexhy.github.io/yomu-aidoku-sources/comix/index.min.json . Back up Aidoku before changing an installed source.
+Earlier experimental Nixzle Comix packages failed real-device acceptance. The current v139 repair updates our existing `en.comix` source: it supports current image responses without `baseUrl`, validates verification through an API request, finds both secure-module callbacks reliably, and spaces API attempts.
 
-For testing Nixzle Comix v134 without a stale candidate-list cache, add the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. The URL stays unchanged so existing testers receive the update. v134 follows Comix's 6 October secure-module/decoder change, removes obsolete image rewriting and blocked image headers, remembers a successful browser fallback, and streams Home sections independently. The normal catalog remains quarantined until it passes on the affected iPhone.
+For testing, refresh the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. The URL and source identity stay unchanged so existing testers can update in place. Confirm Comix shows v139, run Verify Comix Captcha, then try the affected chapter. The normal catalog remains quarantined until it passes on the affected iPhone. This repository does not rehost third-party replacement packages.
 
 Comix WS v3 uses the active `comix.ws` host under the separate `en.comixws`
 identity. Its API and image requests are restricted to `comix.ws` and
