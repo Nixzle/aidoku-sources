@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-28T19:35:46+00:00",
+  "generatedAt": "2026-10-30T19:25:03+00:00",
   "sourceCount": 55,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -336,14 +336,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 27,
-      "file": "sources/en.readcomicsonline-v27.aix",
+      "version": 28,
+      "file": "sources/en.readcomicsonline-v28.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "922d9497d8cbc2db34ec0efb80f5a8dd2a2f46b8246b01b3c359c5de0bc1315d",
+      "sha256": "7f1af74d024c1ef1ab73b0f6fa330a452e57a6f892f0b89c166685c89f4464bb",
       "upstreamVersion": 3,
-      "upstreamSha256": "2a8a99ee45eb085d6b2b8c8219cf3b046e503295356e9ad6c51aef1f3ce655f5",
+      "upstreamSha256": "3dfafbfa8c13099dcfc13728ba74873fed06c3827757c6cf472a56f5cd71ff6a",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
