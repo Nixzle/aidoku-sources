@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-01T05:27:22+00:00",
+  "capturedAt": "2026-11-01T14:59:42+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -1701,7 +1701,7 @@
         "id": "en.comix",
         "name": "Comix",
         "type": "manual",
-        "reason": "Earlier Nixzle Comix builds failed owner-device acceptance. v140 retains those fixes and adds bounded chapter-list checkpoints for resumable pagination; it remains isolated in the dedicated test feed until it passes on the affected iPhone.",
+        "reason": "Comix v140 was published and verified byte-for-byte but failed the owner's iPhone reading acceptance (reported 2026-11-02; exact error not yet captured). Earlier versions also failed. Source remains manually quarantined; do not treat its green CI as chapter success. See docs/COMIX_DEVICE_RECOVERY.md for a publisher-hosted replacement route without deleting the library.",
         "catalogs": [
           "legacy",
           "maintained"
