@@ -13,6 +13,8 @@ use core::cell::RefCell;
 
 mod helpers;
 mod models;
+mod pages;
+mod verification;
 mod settings;
 mod web;
 #[path = "../../shared/transport.rs"]
@@ -33,12 +35,14 @@ const NSFW_GENRE_IDS: &[&str] = &["87264", "8", "87265", "13", "87266", "87268"]
 
 struct Comix {
 	web_view: RefCell<ComixWebView>,
+	verification: RefCell<verification::VerificationState>,
 }
 
 impl Source for Comix {
 	fn new() -> Self {
 		Self {
 			web_view: RefCell::new(ComixWebView::new()),
+			verification: RefCell::new(verification::VerificationState::default()),
 		}
 	}
 
@@ -288,25 +292,11 @@ impl Source for Comix {
 			bail!("Missing chapter")
 		};
 
-		let base_url = result.pages.base_url.trim_end_matches('/');
-		result
-			.pages
-			.items
-			.into_iter()
-			.map(|page| {
-				let url = if page.url.starts_with("https://") {
-					page.url
-				} else if !base_url.starts_with("https://") || page.url.is_empty() || page.url.starts_with("http://") {
-					bail!("Comix returned an image without a valid HTTPS URL or base URL")
-				} else {
-					format!("{base_url}/{}", page.url.trim_start_matches('/'))
-				};
-				Ok(Page {
-					content: PageContent::url(url),
-					..Default::default()
-				})
-			})
-			.collect()
+		let urls = result.pages.into_urls().map_err(|message| error!("{message}"))?;
+		Ok(urls.into_iter().map(|url| Page {
+			content: PageContent::url(url),
+			..Default::default()
+		}).collect())
 	}
 }
 
@@ -616,6 +606,9 @@ impl NotificationHandler for Comix {
 	fn handle_notification(&self, notification: String) {
 		if notification == "resetFilters" {
 			settings::reset_filters();
+		} else if notification == VERIFY_KEY {
+			self.web_view.borrow_mut().reset();
+			self.verification.borrow_mut().reset();
 		}
 	}
 }
@@ -657,24 +650,25 @@ const VERIFY_COOKIE_KEY: &str = "waf_pass";
 
 impl WebLoginHandler for Comix {
 	fn handle_web_login(&self, key: String, cookies: HashMap<String, String>) -> Result<bool> {
-		if key == VERIFY_KEY {
-			// This is verifying button not to be confused with actual login button.
-			// We need to intercept waf_pass cookie so that we can pass the checks.
-			// This will not log you in even if you do the login page afterward.
-			let verified = cookies.get(VERIFY_COOKIE_KEY).is_some_and(|pass| {
-				let Some((timestamp, _)) = pass.split_once('.') else {
-					return false;
-				};
-				let current_timestamp = current_date();
-				current_timestamp - timestamp.parse::<i64>().unwrap_or(0) < 30 * 60
-			});
-			if verified {
-				self.web_view.borrow_mut().reset();
-			}
-			return Ok(verified);
+		if key != VERIFY_KEY {
+			return Ok(false);
 		}
-
-		Ok(false)
+		let cookie = cookies.get(VERIFY_COOKIE_KEY).map(String::as_str);
+		Ok(self.verification.borrow_mut().check(cookie, current_date(), || {
+			let mut web_view = self.web_view.borrow_mut();
+			// Aidoku saves the observed cookie map before invoking this handler.
+			// Rebuild signing state, then validate actual API access with that session.
+			web_view.reset();
+			let verified = (|| -> Result<()> {
+				let response = web_view.send_request(&format!("{API_URL}/manga?limit=1"))?;
+				web_view.decode_json_owned::<SearchResponse>(&response)?;
+				Ok(())
+			})().is_ok();
+			if !verified {
+				web_view.reset();
+			}
+			verified
+		}))
 	}
 }
 

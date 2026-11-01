@@ -13,7 +13,7 @@ from scripts import package_reader_fixes
 
 
 COMIX_SOURCES = {
-    "en.comix": 135,
+    "en.comix": 139,
     "en.comixws": 3,
 }
 

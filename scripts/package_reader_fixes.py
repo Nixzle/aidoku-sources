@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build installable candidate AIX packages; never modify the maintained feed."""
+import argparse
 import hashlib
 import json
 import os
@@ -30,14 +31,28 @@ def package_payload_mismatches(package_path: Path, source: Path, wasm: Path) -> 
                 mismatches.add(name)
     return sorted(mismatches)
 
-def main():
+def main(source_ids=None):
+    selected=set(SOURCES if source_ids is None else source_ids)
+    if not selected or not selected.issubset(SOURCES):
+        raise ValueError('Select one or more known reader sources')
     OUTPUT.mkdir(exist_ok=True)
     previous_inventory_path=OUTPUT/'inventory.json'
-    previous_inventory={}
+    previous_inventory_rows=[]
     if previous_inventory_path.is_file():
-        previous_inventory={item['id']:item for item in json.loads(previous_inventory_path.read_text()).get('sources',[])}
+        previous_inventory_rows=json.loads(previous_inventory_path.read_text()).get('sources',[])
+    previous_inventory={item['id']:item for item in previous_inventory_rows}
     entries=[]; inventory=[]
+    if source_ids is not None:
+        previous_feed_path=OUTPUT/'index.json'
+        previous_entries=(json.loads(previous_feed_path.read_text()).get('sources',[])
+                          if previous_feed_path.is_file() else [])
+        entries=[item for item in previous_entries if item['id'] not in selected]
+        inventory=[item for item in previous_inventory_rows if item['id'] not in selected]
+        if {item['id'] for item in entries} != {item['id'] for item in inventory}:
+            raise RuntimeError('Cannot preserve unselected candidates: feed and inventory IDs differ')
     for source_id,crate in SOURCES.items():
+        if source_id not in selected:
+            continue
         source=ROOT/'source-fixes'/source_id
         info=json.loads((source/'res/source.json').read_text())['info']
         wasm=source/'target/wasm32-unknown-unknown/release'/f'{crate}.wasm'
@@ -102,4 +117,8 @@ def main():
     (OUTPUT/'inventory.json').write_text(json.dumps({'sourceCount':len(inventory),'sources':inventory},indent=2)+'\n')
     (OUTPUT/'CHECKSUMS.sha256').write_text(''.join(x['sha256']+'  '+x['file']+'\n' for x in inventory))
     print(json.dumps(inventory,indent=2))
-if __name__=='__main__':main()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source', action='append', choices=sorted(SOURCES), dest='source_ids',
+                        help='Package only this source; repeat to select multiple. Preserve other candidates.')
+    main(parser.parse_args().source_ids)

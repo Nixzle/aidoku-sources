@@ -2,7 +2,7 @@
 
 Based on MIT OR Apache-2.0 Aidoku-Community/sources. Comix v131 is synchronized to upstream commit 0b512d60d5337de5baf7bb4f2ee85afe111e7203. Original license files are retained here. No Yomu packages/code are included.
 
-Comix v131: the maintained upstream v23 implementation with only the package version and Aidoku 0.9 application floor changed. It uses Aidoku's repaired native Cloudflare request path and the upstream hidden WebView only for Comix's signer and response decoder. The previous custom transport layer was removed after it failed real-device acceptance.
+Comix v139: the current candidate retains the existing source identity and chapter keys. It supports full image URLs with missing or null baseUrl as well as legacy relative pages, validates opaque verification cookies with a signed API probe, and resets stale signing state after verification. Installer selection requires both request and response callbacks; Comix API requests are paced across native and WebView modes. The source's pure page and verification modules run in the executable runtime regression suite. A compiled candidate and a successful website probe still require an iPhone reader check before normal-catalog promotion.
 
 Asura v20: native-first bounded WebView recovery for search, details, chapter API and reader HTML; robust page formats with explicit errors instead of empty/partial chapters; preserve subscription gates; add image Referer and separate access-verification control.
 

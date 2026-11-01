@@ -16,14 +16,7 @@ use regex::Regex;
 use serde::{Deserialize, de::DeserializeOwned};
 use serde_json::Value;
 
-const MODULE_TOKEN: &str = "__AIDOKU_COMIX_MODULE__";
-
-const GET_VMOBJ_JS: &str = "\
-const vmKey = '__AIDOKU_COMIX_MODULE__';\
-const vmObj = window[vmKey];\
-if (!vmObj || typeof vmObj !== 'object' || vmObj === window) {\
-	return '';\
-}";
+const INSTALLER_JS: &str = include_str!("installer.js");
 
 const INSTALLER_REQUEST_TOKEN: &str = "__AIDOKU_INSTALLER_REQUEST_TOKEN__";
 const INSTALLER_RESPONSE_TOKEN: &str = "__AIDOKU_INSTALLER_RESPONSE_TOKEN__";
@@ -46,6 +39,7 @@ pub struct ComixWebView {
 	web_view: WebView,
 	is_initialized: bool,
 	prefer_browser: bool,
+	api_request_started: bool,
 }
 
 impl ComixWebView {
@@ -54,10 +48,12 @@ impl ComixWebView {
 			web_view: WebView::new(),
 			is_initialized: false,
 			prefer_browser: false,
+			api_request_started: false,
 		}
 	}
 
 	pub fn reset(&mut self) {
+		// Preserve API pacing across verification and signer resets.
 		self.is_initialized = false;
 		self.prefer_browser = false;
 		self.web_view = WebView::new();
@@ -146,20 +142,10 @@ impl ComixWebView {
 		else {
 			bail!("Secure module exports not found");
 		};
-		let module_token = serde_json::to_string(MODULE_TOKEN)?;
 		let result = self.web_view.eval(&format!(
 			"(() => {{
-				const before = new Set(Object.keys(window));
 				try {{
 					{module_body}
-					const candidates = Object.keys(window).filter((key) => {{
-						if (before.has(key) || !key.startsWith('vm')) return false;
-						const value = window[key];
-						return value && typeof value === 'object' && value !== window &&
-							Object.values(value).some((item) => typeof item === 'function');
-					}});
-					if (candidates.length !== 1) return 'error: secure module object not found';
-					window[{module_token}] = window[candidates[0]];
 					return 'ok';
 				}} catch (e) {{
 					return 'error: ' + e;
@@ -172,50 +158,24 @@ impl ComixWebView {
 		Ok(())
 	}
 
-	fn find_functions(&mut self) -> Result<()> {
+	fn find_functions(&self) -> Result<()> {
 		let result = self.web_view.eval(&format!(
 			"(() => {{
-			try {{
-				{GET_VMOBJ_JS}
-				let fnames = Object.keys(vmObj);
-				let inst = '';
-				for (let j = 0; j < fnames.length; j++) {{
-					let fn = vmObj[fnames[j]];
-					if (typeof fn !== 'function') continue;
-					let ref = 'window[' + JSON.stringify(vmKey) + '].' + fnames[j];
-					if (!inst) {{
-						try {{
-							let got = false;
-							fn({{
-								interceptors: {{
-									request: {{ use: function() {{ got = true; }} }},
-									response: {{ use: function() {{ got = true; }} }}
-								}}
-							}});
-							if (got) {{
-								inst = ref;
-								fn({{
-									interceptors: {{
-										request: {{
-											use: function (fn) {{ window['{INSTALLER_REQUEST_TOKEN}'] = fn; }},
-										}},
-										response: {{
-											use: function (fn) {{ window['{INSTALLER_RESPONSE_TOKEN}'] = fn; }},
-										}},
-									}}
-								}});
-							}}
-						}} catch (e) {{}}
-					}}
-				}}
-				return inst;
-			}} catch (e) {{}}
-			return '';
-		}})()",
+				{INSTALLER_JS}
+				return installComixInterceptors(window, '{INSTALLER_REQUEST_TOKEN}', '{INSTALLER_RESPONSE_TOKEN}');
+			}})()"
 		))?;
-		if result.is_empty() {
-			bail!("Failed to find installer function");
+		if result != "ok" {
+			bail!("Failed to initialize secure interceptors: {result}");
 		}
+		Ok(())
+	}
+
+	fn wait_api_interval(view: &WebView) -> Result<()> {
+		transport::run_task(
+			view,
+			"(async () => { await new Promise(resolve => setTimeout(resolve, 1000)); return 'ok'; })()",
+		)?;
 		Ok(())
 	}
 
@@ -225,6 +185,11 @@ impl ComixWebView {
 		}
 
 		transport::origin_for(url, COMIX_ORIGINS)?;
+		// Space API requests before signing, including after failed attempts.
+		if self.api_request_started {
+			Self::wait_api_interval(&self.web_view)?;
+		}
+		self.api_request_started = true;
 		let url_literal = serde_json::to_string(url)?;
 		let result = transport::run_task(&self.web_view, &format!(
 			"(async () => {{
@@ -352,7 +317,15 @@ impl ComixWebView {
 
 	pub fn send_request(&mut self, url: &str) -> Result<Response> {
 		let request = self.build_request(url)?;
-		self.send_reader_request(request)
+		let (response, used_browser) = request.send_with_view_observed_paced(
+			&self.web_view,
+			self.prefer_browser,
+			|| Self::wait_api_interval(&self.web_view),
+		)?;
+		if used_browser {
+			self.prefer_browser = true;
+		}
+		Ok(response)
 	}
 
 	pub fn decode_json_owned<T>(&mut self, response: &Response) -> Result<T>

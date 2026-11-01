@@ -248,6 +248,6 @@
 				]
 			}
 		],
-		"footer": "Please use this button to resolve captcha issues that can cause the source to fail to load. The result is only valid for 30 minutes, so you may have to repeat this process. This button is not for Account Login!"
+		"footer": "Complete the website check, then return to Aidoku. Comix controls how long verification remains valid. Re-verify if access is refused. This does not sign into a Comix account."
 	}
 ]

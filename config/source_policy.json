@@ -40,8 +40,8 @@
         "maintained",
         "legacy"
       ],
-      "reason": "Nixzle builds through v133 failed owner-device acceptance on the affected Aidoku Cloudflare client. v134 remains isolated in the dedicated test feed until it passes on that iPhone; do not advertise it as reliable yet.",
-      "issue": "https://github.com/Aidoku/Aidoku/issues/1034"
+      "reason": "Earlier Nixzle Comix builds failed owner-device acceptance. v139 repairs current page parsing, verification and secure-module discovery; it remains isolated in the dedicated test feed until it passes on the affected iPhone.",
+      "issue": "https://github.com/Aidoku-Community/sources/issues/814"
     }
   },
   "minAppVersionOverrides": {

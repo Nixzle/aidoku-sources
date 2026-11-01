@@ -117,6 +117,20 @@ impl ReaderRequest {
     /// the same browser session instead of repeating a known-blocked native
     /// request before every API call.
     pub fn send_with_view_observed(self, view: &WebView, prefer_browser: bool) -> Result<(ReaderResponse, bool)> {
+        self.send_with_view_observed_paced(view, prefer_browser, || Ok(()))
+    }
+
+    /// Optional source-specific spacing before a native-to-browser recovery attempt.
+    /// Existing callers retain their original timing through the no-op wrapper.
+    pub fn send_with_view_observed_paced<F>(
+        self,
+        view: &WebView,
+        prefer_browser: bool,
+        before_browser_recovery: F,
+    ) -> Result<(ReaderResponse, bool)>
+    where
+        F: FnOnce() -> Result<()>,
+    {
         let mode = defaults_get::<String>("connectionMode").unwrap_or_else(|| "auto".into());
         let legacy_fallback = defaults_get::<bool>("browserFallback").unwrap_or(true);
         let Self { request, url, allowed, headers } = self;
@@ -144,6 +158,7 @@ impl ReaderRequest {
         if mode == "auto" && !legacy_fallback {
             bail!("Source request blocked; browser recovery is disabled in source settings");
         }
+        before_browser_recovery()?;
         browser_get_in(view, &url, allowed, &headers).map(|response| (response, true))
     }
 
