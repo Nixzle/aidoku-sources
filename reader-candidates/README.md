@@ -5,6 +5,8 @@ sources to the normal catalog.
 
 ## Comix v140
 
+**Owner iPhone chapter-reading acceptance failed on 2 November 2026. This build is retained for diagnosis and should not be installed as a fix.** See [Comix device recovery](../docs/COMIX_DEVICE_RECOVERY.md).
+
 Comix v140 keeps the earlier image-URL, verification, secure-module discovery,
 and API pacing repairs. It additionally stores one recent, bounded chapter-list
 checkpoint, validates the live first page before reusing it, and resumes
@@ -15,7 +17,7 @@ Add this test feed in Aidoku Settings > Source Lists:
 
 https://nixzle.github.io/aidoku-sources/reader-candidates/index.min.json
 
-Refresh the feed, update Comix to v140, then verify the site if prompted and
+For historic testing only, updating to v140 and verifying the site if prompted was intended to
 test the previously failing chapter. Try Connection > WebView if Automatic
 cannot complete a normal website request.
 

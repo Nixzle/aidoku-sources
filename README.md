@@ -78,13 +78,6 @@ Never post account cookies or access tokens.
 
 ### Comix reliability notice
 
-Earlier experimental Nixzle Comix packages failed real-device acceptance. The current v140 repair updates our existing `en.comix` source: it supports current image responses without `baseUrl`, validates verification through an API request, finds both secure-module callbacks reliably, and spaces API attempts. v140 also resumes interrupted chapter lists using a recent validated checkpoint.
+**Comix v140 failed owner-device chapter reading on 2 November 2026, despite successful compilation and public package checks.** It remains isolated and manually quarantined. Stop repeating v140 verification attempts. We maintain its package for regression/rollback evidence, not as a proven fix.
 
-For testing, refresh the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. The URL and source identity stay unchanged so existing testers can update in place. Confirm Comix shows v140, run Verify Comix Captcha, then try the affected chapter. The normal catalog remains quarantined until it passes on the affected iPhone. This repository does not rehost third-party replacement packages.
-
-Comix WS v3 uses the active `comix.ws` host under the separate `en.comixws`
-identity. Its API and image requests are restricted to `comix.ws` and
-`static.comix.ws`, and its image requests omit Referer/Origin; the package is
-checksum-pinned and updated by the same daily catalog workflow. A successful
-website probe is not proof of iOS reader rendering, so real-device results
-remain the final acceptance check.
+For a safer replacement, see [Comix owner-device recovery](docs/COMIX_DEVICE_RECOVERY.md), which describes how to import the original publisher-hosted Yomu source under the same `en.comix` identity without deleting library entries. The replacement is not certified on the affected phone and is not rehosted by this repository.

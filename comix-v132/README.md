@@ -7,7 +7,9 @@ Add this URL in Aidoku Settings > Source Lists:
 
 `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`
 
-Refresh the list and update Comix to v140. Aidoku 0.9 or newer is required.
+**Owner-device result: FAILED. Do not install or update to v140 expecting reliable chapter reading.** Aidoku 0.9 or newer is required for this historical candidate.
+
+See [device recovery](../docs/COMIX_DEVICE_RECOVERY.md) for an original-publisher replacement that preserves the source identity.
 Use the current Aidoku build, leave Request Mode on Automatic initially, then
 run Verify Comix Captcha in the source settings and complete the website check.
 Back up Aidoku before testing and keep the existing library.
