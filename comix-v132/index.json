@@ -1,12 +1,12 @@
 {
-  "name": "Nixzle Comix v139 Repair",
+  "name": "Nixzle Comix v140 Chapter Recovery",
   "sources": [
     {
       "id": "en.comix",
       "name": "Comix",
-      "version": 139,
-      "downloadURL": "sources/en.comix-v139.aix",
-      "iconURL": "icons/en.comix-v139.png",
+      "version": 140,
+      "downloadURL": "sources/en.comix-v140.aix",
+      "iconURL": "icons/en.comix-v140.png",
       "languages": [
         "en"
       ],

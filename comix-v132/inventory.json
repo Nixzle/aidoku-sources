@@ -3,12 +3,12 @@
   "sources": [
     {
       "id": "en.comix",
-      "version": 139,
-      "file": "sources/en.comix-v139.aix",
-      "sha256": "d29f65991aac5df7831a5f2a5952ec594399c721a68b2181e75c6d6fd60ff4f4",
-      "wasmSha256": "d9b704dc425a820d989cf4e277854aa64cd31f1052839e98153324d283deba61",
-      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/4fa7c8ca9a14aad56f8e87db7532e6fbfa6660cc/source-fixes/en.comix",
-      "sourceCommit": "4fa7c8ca9a14aad56f8e87db7532e6fbfa6660cc",
+      "version": 140,
+      "file": "sources/en.comix-v140.aix",
+      "sha256": "6617baf124dca001e77896c3384a0e73afce4115cd522c4f93a62dcd1f781c97",
+      "wasmSha256": "d449550a2d0907fd0d07e5f8d9f6785f8062829fe67f869b7326cca2a2ba47e6",
+      "provenanceURL": "https://github.com/Nixzle/aidoku-sources/tree/9f685b1da1a22fe7c85c16094fefa428547bc9eb/source-fixes/en.comix",
+      "sourceCommit": "9f685b1da1a22fe7c85c16094fefa428547bc9eb",
       "acceptance": "Candidate: requires iOS reader verification"
     }
   ]
