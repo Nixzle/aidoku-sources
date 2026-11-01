@@ -233,6 +233,20 @@
 	},
 	{
 		"type": "group",
+		"title": "Chapter List Recovery",
+		"items": [
+			{
+				"type": "button",
+				"key": "resetChapterCache",
+				"title": "Reset Chapter Checkpoint",
+				"notification": "resetChapterCache",
+				"refreshes": ["content"]
+			}
+		],
+		"footer": "One recent chapter list is saved briefly. Interrupted downloads can resume after validating the live first page. Clear this checkpoint if a chapter list looks outdated; it does not erase Aidoku reading history."
+	},
+	{
+		"type": "group",
 		"title": "Verify Captcha",
 		"items": [
 			{

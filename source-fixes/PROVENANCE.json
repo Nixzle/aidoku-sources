@@ -7,9 +7,9 @@
       "id": "en.comix",
       "upstreamPath": "sources/en.comix",
       "baseVersion": 23,
-      "candidateVersion": 139,
+      "candidateVersion": 140,
       "sdkCommit": "1a6bb691dd67c7151fc76fc852fb5a364d325f72",
-      "repairDate": "2026-10-31",
+      "repairDate": "2026-11-01",
       "compatibilityReferences": [
         "Aidoku-Community/sources@dd0fe4e87a45d055aa6dde8209f917307f03596c",
         "Aidoku-Community/sources#810"
