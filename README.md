@@ -78,9 +78,9 @@ Never post account cookies or access tokens.
 
 ### Comix reliability notice
 
-Earlier experimental Nixzle Comix packages failed real-device acceptance. The current v139 repair updates our existing `en.comix` source: it supports current image responses without `baseUrl`, validates verification through an API request, finds both secure-module callbacks reliably, and spaces API attempts.
+Earlier experimental Nixzle Comix packages failed real-device acceptance. The current v140 repair updates our existing `en.comix` source: it supports current image responses without `baseUrl`, validates verification through an API request, finds both secure-module callbacks reliably, and spaces API attempts. v140 also resumes interrupted chapter lists using a recent validated checkpoint.
 
-For testing, refresh the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. The URL and source identity stay unchanged so existing testers can update in place. Confirm Comix shows v139, run Verify Comix Captcha, then try the affected chapter. The normal catalog remains quarantined until it passes on the affected iPhone. This repository does not rehost third-party replacement packages.
+For testing, refresh the dedicated update feed: `https://nixzle.github.io/aidoku-sources/comix-v132/index.min.json`. The URL and source identity stay unchanged so existing testers can update in place. Confirm Comix shows v140, run Verify Comix Captcha, then try the affected chapter. The normal catalog remains quarantined until it passes on the affected iPhone. This repository does not rehost third-party replacement packages.
 
 Comix WS v3 uses the active `comix.ws` host under the separate `en.comixws`
 identity. Its API and image requests are restricted to `comix.ws` and

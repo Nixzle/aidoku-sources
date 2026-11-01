@@ -283,3 +283,7 @@ mod comix_page_data;
 #[cfg(test)]
 #[path = "../../source-fixes/en.comix/src/verification.rs"]
 mod comix_verification;
+
+#[cfg(test)]
+#[path = "../../source-fixes/en.comix/src/chapter_checkpoint.rs"]
+mod comix_chapter_checkpoint;

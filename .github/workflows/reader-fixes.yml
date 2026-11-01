@@ -1,7 +1,7 @@
 name: Build reader repair candidates
 on:
   push:
-    branches: [fix/comix-asura-reader-20260926, fix/comix-reader-20261031]
+    branches: [fix/comix-asura-reader-20260926, fix/comix-reader-20261031, fix/comix-chapter-resume-20261101]
     paths: ["source-fixes/**", "tests/**", "scripts/package_reader_fixes.py", "scripts/functional_smoke.py", "runtime-smoke/**", ".github/workflows/reader-fixes.yml"]
   pull_request:
     paths: ["source-fixes/**", "tests/**", "scripts/package_reader_fixes.py", "scripts/functional_smoke.py", "runtime-smoke/**", ".github/workflows/reader-fixes.yml"]
@@ -23,7 +23,7 @@ env:
   RUST_FONTCONFIG_DLOPEN: "on"
   RUST_TOOLCHAIN: "1.98.1"
   PYTHONDONTWRITEBYTECODE: "1"
-  REPAIR_SCOPE: ${{ (github.event_name == 'workflow_dispatch' && inputs.scope == 'comix' || github.ref_name == 'fix/comix-reader-20261031' || github.head_ref == 'fix/comix-reader-20261031') && 'comix' || 'all' }}
+  REPAIR_SCOPE: ${{ (github.event_name == 'workflow_dispatch' && inputs.scope == 'comix' || startsWith(github.ref_name, 'fix/comix-') || startsWith(github.head_ref, 'fix/comix-')) && 'comix' || 'all' }}
 jobs:
   build:
     runs-on: ubuntu-latest

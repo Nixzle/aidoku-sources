@@ -103,7 +103,7 @@
       "id": "en.comix",
       "name": "Comix",
       "type": "manual",
-      "reason": "Earlier Nixzle Comix builds failed owner-device acceptance. v139 repairs current page parsing, verification and secure-module discovery; it remains isolated in the dedicated test feed until it passes on the affected iPhone.",
+      "reason": "Earlier Nixzle Comix builds failed owner-device acceptance. v140 retains those fixes and adds bounded chapter-list checkpoints for resumable pagination; it remains isolated in the dedicated test feed until it passes on the affected iPhone.",
       "catalogs": [
         "legacy",
         "maintained"

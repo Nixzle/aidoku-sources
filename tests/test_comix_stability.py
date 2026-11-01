@@ -13,7 +13,7 @@ from scripts import package_reader_fixes
 
 
 COMIX_SOURCES = {
-    "en.comix": 139,
+    "en.comix": 140,
     "en.comixws": 3,
 }
 
@@ -71,7 +71,7 @@ class ComixCurrentContractTests(unittest.TestCase):
                     encoding="utf-8"
                 )
                 self.assertIn("const MAX_CHAPTER_PAGES", lib)
-                self.assertIn("response_page <= previous_response_page", lib)
+                self.assertIn("response_page != page" if source_id == "en.comix" else "response_page <= previous_response_page", lib)
                 self.assertIn("items.is_empty() && response_page < last_page", lib)
 
     def test_auto_transport_latches_browser_after_first_fallback(self):

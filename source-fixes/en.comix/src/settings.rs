@@ -13,6 +13,8 @@ const HIDDEN_GENRES_KEY: &str = "hiddenGenres";
 const HIDDEN_THEMES_KEY: &str = "hiddenThemes";
 
 pub const VERIFY_KEY: &str = "verify";
+pub const RESET_CHAPTER_CACHE_KEY: &str = "resetChapterCache";
+const CHAPTER_CACHE_KEY: &str = "comixChapterCheckpointV1";
 
 pub fn hide_nsfw() -> bool {
 	defaults_get::<bool>(HIDE_NSFW_KEY).unwrap_or(true)
@@ -60,4 +62,13 @@ pub fn get_verify_cookie() -> Option<String> {
 	defaults_get_map(VERIFY_KEY)?
 		.get(VERIFY_COOKIE_KEY)
 		.cloned()
+}
+
+pub fn chapter_checkpoint() -> Option<String> {
+    defaults_get::<String>(CHAPTER_CACHE_KEY)
+}
+
+pub fn save_chapter_checkpoint(value: Option<&str>) {
+    let value = value.map_or(DefaultValue::Null, |data| DefaultValue::String(String::from(data)));
+    defaults_set(CHAPTER_CACHE_KEY, value);
 }

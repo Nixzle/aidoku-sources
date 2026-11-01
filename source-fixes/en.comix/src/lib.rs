@@ -15,6 +15,7 @@ mod helpers;
 mod models;
 mod pages;
 mod verification;
+mod chapter_checkpoint;
 mod settings;
 mod web;
 #[path = "../../shared/transport.rs"]
@@ -22,6 +23,7 @@ mod transport;
 
 use crate::settings::VERIFY_KEY;
 use models::*;
+use chapter_checkpoint::ChapterCheckpoint;
 use web::*;
 
 const BASE_URL: &str = "https://comix.to";
@@ -218,12 +220,8 @@ impl Source for Comix {
 		if needs_chapters {
 			let limit = 100;
 			let mut page = 1;
-			let deduplicate = settings::dedupchapter();
-			let mut chapter_map: HashMap<String, ComixChapter> = HashMap::new();
-			let mut chapter_list: Vec<ComixChapter> = Vec::new();
-			let mut previous_response_page = 0;
-
-			loop {
+			let mut checkpoint: Option<ChapterCheckpoint<ComixChapter>> = None;
+			let chapter_list = loop {
 				if page > MAX_CHAPTER_PAGES {
 					bail!("Comix chapter pagination exceeded the safety limit")
 				}
@@ -231,43 +229,59 @@ impl Source for Comix {
 				params.push("limit", Some(limit.to_string().as_str()));
 				params.push("page", Some(page.to_string().as_str()));
 				params.push("order[number]", Some("desc"));
-
 				let url = format!("{API_URL}/manga/{}/chapters?{params}", manga.key);
 				let response = web_view.send_request(&url)?;
 				let res = web_view.decode_json_owned::<ChapterDetailsResponse>(&response)?;
 				let response_page = res.result.meta.page;
 				let last_page = res.result.meta.last_page;
-				if response_page <= previous_response_page || last_page < response_page {
-					bail!("Comix chapter pagination did not advance")
+				if response_page != page || last_page < response_page || last_page > MAX_CHAPTER_PAGES {
+					bail!("Comix chapter pagination did not advance as expected")
 				}
-				previous_response_page = response_page;
-
 				let items = res.result.items;
 				if items.is_empty() && response_page < last_page {
 					bail!("Comix chapter pagination returned an empty intermediate page")
 				}
-
-				if deduplicate {
-					for item in items {
-						helpers::dedup_insert(&mut chapter_map, item);
+				if page == 1 {
+					let first_ids: Vec<i32> = items.iter().map(|item| item.id).collect();
+					let resume = settings::chapter_checkpoint().and_then(|saved| {
+						ChapterCheckpoint::<ComixChapter>::resume(
+							&saved, &manga.key, &first_ids, last_page, current_date())
+					});
+					if let Some(saved) = resume {
+						if saved.is_complete() {
+							break saved.chapters;
+						}
+						page = saved.completed_page + 1;
+						checkpoint = Some(saved);
+						continue;
 					}
+					checkpoint = Some(ChapterCheckpoint::new(
+						manga.key.clone(), first_ids, last_page, items, current_date()));
 				} else {
-					chapter_list.extend(items);
+					let Some(ref mut saved) = checkpoint else {
+						bail!("Comix chapter checkpoint was unexpectedly missing")
+					};
+					if !saved.advance(page, last_page, items, current_date()) {
+						bail!("Comix chapter pagination changed during refresh")
+					}
 				}
-
-				if response_page >= last_page {
-					break;
+				let encoded = checkpoint.as_ref().and_then(|saved| saved.encode());
+				settings::save_chapter_checkpoint(encoded.as_deref());
+				if checkpoint.as_ref().is_some_and(|saved| saved.is_complete()) {
+					break checkpoint.take().unwrap().chapters;
 				}
-
 				page += 1;
-			}
-
+			};
+			let deduplicate = settings::dedupchapter();
 			let mut chapters: Vec<Chapter> = if deduplicate {
+				let mut chapter_map: HashMap<String, ComixChapter> = HashMap::new();
+				for item in chapter_list {
+					helpers::dedup_insert(&mut chapter_map, item);
+				}
 				chapter_map.into_values().map(Into::into).collect()
 			} else {
 				chapter_list.into_iter().map(Into::into).collect()
 			};
-
 			if deduplicate {
 				chapters.sort_by(|a, b| {
 					b.chapter_number
@@ -275,7 +289,6 @@ impl Source for Comix {
 						.unwrap_or(core::cmp::Ordering::Equal)
 				});
 			}
-
 			manga.chapters = Some(chapters);
 		}
 
@@ -606,6 +619,8 @@ impl NotificationHandler for Comix {
 	fn handle_notification(&self, notification: String) {
 		if notification == "resetFilters" {
 			settings::reset_filters();
+		} else if notification == settings::RESET_CHAPTER_CACHE_KEY {
+			settings::save_chapter_checkpoint(None);
 		} else if notification == VERIFY_KEY {
 			self.web_view.borrow_mut().reset();
 			self.verification.borrow_mut().reset();

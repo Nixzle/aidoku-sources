@@ -4,7 +4,7 @@ use aidoku::{
 	alloc::{String, Vec, string::ToString, vec},
 	prelude::*,
 };
-use serde::{Deserialize, Deserializer, de};
+use serde::{Deserialize, Serialize, Deserializer, de};
 
 #[derive(Deserialize)]
 pub struct ErrorResponse {
@@ -244,7 +244,7 @@ impl From<ComixManga> for Manga {
 	}
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ComixChapter {
 	pub id: i32,
@@ -302,7 +302,7 @@ pub struct Term {
 	pub title: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ScanlationGroup {
 	pub id: i32,
 	pub name: String,
