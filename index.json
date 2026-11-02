@@ -160,15 +160,15 @@
     {
       "id": "en.flamecomics",
       "name": "Flame Comics",
-      "version": 4,
-      "iconURL": "icons/en.flamecomics-v4.png",
-      "downloadURL": "sources/en.flamecomics-v4.aix",
+      "version": 5,
+      "iconURL": "icons/en.flamecomics-v5.png",
+      "downloadURL": "sources/en.flamecomics-v5.aix",
       "languages": [
         "en"
       ],
       "contentRating": 0,
       "baseURL": "https://flamecomics.xyz",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.freewebnovel",
@@ -301,6 +301,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.mangak",
+      "name": "MangaK",
+      "version": 1,
+      "iconURL": "icons/en.mangak-v1.png",
+      "downloadURL": "sources/en.mangak-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://mangak.io",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.mangakakalot",
       "name": "MangaKakalot",
       "version": 5,
@@ -407,9 +420,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 29,
-      "iconURL": "icons/en.readcomicsonline-v29.png",
-      "downloadURL": "sources/en.readcomicsonline-v29.aix",
+      "version": 30,
+      "iconURL": "icons/en.readcomicsonline-v30.png",
+      "downloadURL": "sources/en.readcomicsonline-v30.aix",
       "languages": [
         "en"
       ],
@@ -472,9 +485,9 @@
     {
       "id": "en.toonilyme",
       "name": "ToonTop",
-      "version": 2,
-      "iconURL": "icons/en.toonilyme-v2.png",
-      "downloadURL": "sources/en.toonilyme-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.toonilyme-v3.png",
+      "downloadURL": "sources/en.toonilyme-v3.aix",
       "languages": [
         "en"
       ],
@@ -881,9 +894,9 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 4,
-      "iconURL": "icons/multi.xcomic-v4.png",
-      "downloadURL": "sources/multi.xcomic-v4.aix",
+      "version": 5,
+      "iconURL": "icons/multi.xcomic-v5.png",
+      "downloadURL": "sources/multi.xcomic-v5.aix",
       "languages": [
         "en",
         "fr",

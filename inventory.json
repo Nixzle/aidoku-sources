@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-10-31T18:35:27+00:00",
-  "sourceCount": 56,
+  "generatedAt": "2026-11-02T22:47:41+00:00",
+  "sourceCount": 57,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -151,12 +151,12 @@
     {
       "id": "en.flamecomics",
       "name": "Flame Comics",
-      "version": 4,
-      "file": "sources/en.flamecomics-v4.aix",
+      "version": 5,
+      "file": "sources/en.flamecomics-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v4.aix",
-      "sha256": "26bba1041d45872e382e089744bc26df76f017bbc0fdfed7a05c967b3e921afc"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v5.aix",
+      "sha256": "dcbb96d96cfec071a67af0911c1616882f830cbb738e9bfb84e3971c7c55e3b7"
     },
     {
       "id": "en.freewebnovel",
@@ -259,6 +259,16 @@
       "sha256": "559eeca778753a3a602aca4c49b1bdcc8fdb9ca18cd81519f51b8685146feaaf"
     },
     {
+      "id": "en.mangak",
+      "name": "MangaK",
+      "version": 1,
+      "file": "sources/en.mangak-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangak-v1.aix",
+      "sha256": "2ba117b4dddaf992e8262f7611ebce1f19c687fcb4db11535d21228e243d9b79"
+    },
+    {
       "id": "en.mangakakalot",
       "name": "MangaKakalot",
       "version": 5,
@@ -341,14 +351,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 29,
-      "file": "sources/en.readcomicsonline-v29.aix",
+      "version": 30,
+      "file": "sources/en.readcomicsonline-v30.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "16969f2b4fcd7da359c0cc4a393e45ff02fb88b16bdbc5f4ba81f23976eed9f0",
+      "sha256": "a5675d1d36ec856f241128740c4860c3ccd1a8eb3bf1da27bab475b9342aa427",
       "upstreamVersion": 3,
-      "upstreamSha256": "00c40336f1ed1c47e018d4021a5fd39291b2bef3647f4f1c8af18f54b95eaf35",
+      "upstreamSha256": "e5dd9ccb0031207ed971279b24bafbeddb541c638c6a356d6be561bcb4d6c7bf",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -395,12 +405,12 @@
     {
       "id": "en.toonilyme",
       "name": "ToonTop",
-      "version": 2,
-      "file": "sources/en.toonilyme-v2.aix",
+      "version": 3,
+      "file": "sources/en.toonilyme-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v2.aix",
-      "sha256": "d5dbd399806a3d90409b3ee3c9127a27422834d997271af51a449e3b83d2a463"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonilyme-v3.aix",
+      "sha256": "b1aea3e4daf05d9fd2581722419a9de16713128568d4ec42b22a5495047d96da"
     },
     {
       "id": "en.toonkotsu",
@@ -585,12 +595,12 @@
     {
       "id": "multi.xcomic",
       "name": "XCOMIC",
-      "version": 4,
-      "file": "sources/multi.xcomic-v4.aix",
+      "version": 5,
+      "file": "sources/multi.xcomic-v5.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v4.aix",
-      "sha256": "e22604833624f88e69416a5f4721b3962fff2821e8ea0a04136b4a2fba207ac7"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v5.aix",
+      "sha256": "eb939c6fc7867a4b1824340ed7e21bc05bcfe0281312bc209ca7ef62e03f110c"
     }
   ]
 }
