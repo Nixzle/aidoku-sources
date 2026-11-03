@@ -4,6 +4,10 @@
 
 Public, unofficial English and multilingual source packages for Aidoku. The main list follows the active Aidoku community catalog so removed, unmaintained packages do not continue to appear healthy.
 
+## Aidoku-native migration for broken Comix titles
+
+[Follow the Aidoku migration guide](docs/AIDOKU_NATIVE_MIGRATION.md): back up your library and copy individual titles from Comix to a verified source using Aidoku’s own migration flow. Keep the existing Comix entries until new source chapters and read markers have been checked. Suwayomi is optional and does not bypass third-party website restrictions.
+
 ## Sanctum Reader: portable bookshelf
 
 [Open Sanctum Reader](https://nixzle.github.io/aidoku-sources/reader/) to import an Aidoku .aib backup, recover saved series and chapter progress, open source websites directly and read user-owned CBZ files without depending on blocked third-party reader APIs. It runs locally in your browser with no account cookies, no telemetry and no uploaded backups. Export/import a JSON library backup to move metadata across devices; automatic cross-device catalogue sync is not yet provided. Comix may still deny access on its own website. [Technical details](reader/README.md).

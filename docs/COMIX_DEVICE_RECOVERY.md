@@ -1,5 +1,7 @@
 # Comix recovery after Nixzle v140 failed on the owner iPhone
 
+**Current preferred recovery:** [Migrate titles natively in Aidoku](AIDOKU_NATIVE_MIGRATION.md) using Copy after an exported backup. This preserves the original library entry during validation. The original publisher-hosted source replacement below is retained as a historical troubleshooting option, not the primary recommendation.
+
 **Status, 2 November 2026:** The owner reports that Comix v140 did not work
 on the affected iPhone. Its precise failure stage and error message have not
 been captured. Green CI/package checks do not override this failed
