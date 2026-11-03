@@ -21,6 +21,7 @@ class SanctumReaderShellTests(unittest.TestCase):
         self.assertIn("Content-Security-Policy", page)
         self.assertIn("No scraping", page)
         self.assertIn("indexedDB", script)
+        self.assertIn('dataset.sanctumReady = "true"', script)
         self.assertIn("sourceFilter", script)
         self.assertNotIn("localStorage.setItem('token'", script)
         self.assertNotIn('document.cookie', script)

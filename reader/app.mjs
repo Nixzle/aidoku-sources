@@ -285,5 +285,6 @@ document.addEventListener("keydown", event => {
     entries = mergeEntries([], Array.isArray(saved) ? saved : []);
   } catch { showToast("Local database storage unavailable. You can import and export, but changes may not persist."); }
   render();
+  document.documentElement.dataset.sanctumReady = "true";
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => {});
 })();

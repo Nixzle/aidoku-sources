@@ -15,7 +15,7 @@ async function run(){
       res.setHeader("Content-Type",mime[path.extname(file)]||"application/octet-stream");fs.createReadStream(file).pipe(res);
     });
     await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
-    const base="http://127.0.0.1:"+server.address().port;
+    const base=process.env.SANCTUM_READER_TEST_URL || "http://127.0.0.1:"+server.address().port;
     browser=cp.spawn(chromePath,["--headless=new","--no-first-run","--disable-gpu","--disable-extensions","--no-default-browser-check","--remote-debugging-port=0","--remote-allow-origins=*","--user-data-dir="+profile,base+"/reader/"],{windowsHide:true,stdio:"ignore"});
     const debug=path.join(profile,"DevToolsActivePort");
     for(let i=0;i<90&&!fs.existsSync(debug);i++)await sleep(120);
@@ -35,12 +35,13 @@ async function run(){
     const evalJs=async expression=>{const r=await send("Runtime.evaluate",{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value};
     const until=async(expression,expected,label)=>{for(let i=0;i<50;i++){if(await evalJs(expression)===expected)return;await sleep(130)}throw Error("Timed out: "+label)};
     await send("Runtime.enable");
+    await until('document.documentElement.dataset.sanctumReady',"true","App modules ready");
     await until('document.querySelector("#statTotal")?.textContent',"0","App boot");
-    const importAib='(async()=>{const r=await fetch("/reader/test-fixtures/sample.aib");const dt=new DataTransfer();dt.items.add(new File([await r.arrayBuffer()],"sample.aib"));const el=document.getElementById("aidokuFile");el.files=dt.files;el.dispatchEvent(new Event("change",{bubbles:true}));return true})()';
+    const importAib='(async()=>{const r=await fetch("./test-fixtures/sample.aib");const dt=new DataTransfer();dt.items.add(new File([await r.arrayBuffer()],"sample.aib"));const el=document.getElementById("aidokuFile");el.files=dt.files;el.dispatchEvent(new Event("change",{bubbles:true}));return true})()';
     assert.equal(await evalJs(importAib),true);
     await until('document.querySelector("#statTotal")?.textContent',"2","Aidoku import");
     assert.equal(await evalJs('document.querySelector("#library").textContent.includes("Second Half")'),true);
-    const importCbz='(async()=>{const r=await fetch("/reader/test-fixtures/sample.cbz");const dt=new DataTransfer();dt.items.add(new File([await r.arrayBuffer()],"sample.cbz"));const el=document.getElementById("cbzFile");el.files=dt.files;el.dispatchEvent(new Event("change",{bubbles:true}));return true})()';
+    const importCbz='(async()=>{const r=await fetch("./test-fixtures/sample.cbz");const dt=new DataTransfer();dt.items.add(new File([await r.arrayBuffer()],"sample.cbz"));const el=document.getElementById("cbzFile");el.files=dt.files;el.dispatchEvent(new Event("change",{bubbles:true}));return true})()';
     assert.equal(await evalJs(importCbz),true);
     await until('document.querySelector("#cbzCounter")?.textContent',"Page 1 / 2","CBZ first page");
     await evalJs('document.querySelector("#cbzNext").click()');
