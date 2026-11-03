@@ -12,7 +12,7 @@ A static, local-first bookshelf at `https://nixzle.github.io/aidoku-sources/read
 
 **Privacy and safety:** zero telemetry, zero server-side upload, no third-party JS dependencies, strict URL sanitizing, CSP, local-only IndexedDB, explicit user export. Avoid uploading `.aib` files to unknown websites, as they may contain sensitive settings.
 
-**Testing:** `node --test reader/*.test.mjs` validates binary plist parsing (including generated Aidoku-style fixtures), extraction, malicious URL rejection, versioned export/import, merge semantics and regression rules. The static shell is independently validated by `tests/test_reader_shell.py`.
+**Testing:** `node --test reader/*.test.mjs` validates binary plist parsing (including generated Aidoku-style fixtures), extraction, malicious URL rejection, versioned export/import, merge semantics and regression rules. The static shell is independently validated by `reader/test_shell.py`.
 
 **Known limitations:** Direct chapter image rendering in Aidoku is not repaired; Comix may block third-party apps. Chapter web URLs are used only if present in the backup. Some source-specific URL formats may require manually correcting a reading link. No claim of successful iPhone acceptance without a user-device test.
 
