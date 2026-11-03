@@ -26,7 +26,7 @@ def utc_now() -> str:
 
 
 BASE_URL = "https://nixzle.github.io/aidoku-sources/"
-TEXT_FILES = ("README.md", "index.html", "web/status.js", "web/style.css", "index.min.json", "index.json", "inventory.json", "CHECKSUMS.sha256",
+TEXT_FILES = ("README.md", "index.html", "web/status.js", "web/style.css", "reader/index.html", "reader/style.css", "reader/app.mjs", "reader/core.mjs", "reader/plist.mjs", "reader/cbz.mjs", "reader/sw.js", "reader/manifest.webmanifest", "reader/icon.svg", "index.min.json", "index.json", "inventory.json", "CHECKSUMS.sha256",
               "legacy/index.min.json", "legacy/index.json", "legacy/inventory.json",
               "legacy/CHECKSUMS.sha256", "status.json", "status.md",
               "config/source_policy.json", "config/source_health.json")

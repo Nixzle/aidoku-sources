@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1320">
+  <meta name="description" content="Your portable reading library. Import Aidoku backups, keep private progress, and open official reading websites.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <title>Sanctum Reader | Library without lock-in</title>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="brandmark">S</div><span>Sanctum <strong>Reader</strong></span></div>
+      <div class="top-actions"><span class="local-pill"><span class="dot"></span> Device-private</span><a href="https://comix.to/" target="_blank" rel="noopener noreferrer" class="subtle">Open Comix <span aria-hidden="true">↗</span></a></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">YOUR LIBRARY · YOUR CHOICE</div>
+          <h1>Keep the story.<br><em>Not the lock-in.</em></h1>
+          <p>Bring your Aidoku library with you. Continue on a source’s own website, track your place, and export your data whenever you want.</p>
+          <div class="hero-actions">
+            <button id="importAidoku" class="primary"><span aria-hidden="true">↥</span> Import Aidoku backup</button>
+            <button id="addToggle" class="secondary">+ Add a title</button>
+            <button id="openCbz" class="secondary">Read local CBZ</button>
+          </div>
+          <div class="micro">No scraping. No private API. No backup uploaded to our servers.</div>
+        </div>
+        <aside class="hero-aside">
+          <div class="aside-label">READING CONTROL</div>
+          <div class="stat-block"><span id="statTotal" class="stat-number">0</span><span class="stat-label">Saved titles</span></div>
+          <div class="thin-rule"></div>
+          <div class="stat-pair"><div><span id="statInProgress" class="stat-mini">0</span><span class="stat-label">Started</span></div><div><span id="statComix" class="stat-mini">0</span><span class="stat-label">Comix titles</span></div></div>
+          <div class="aside-footer">Your reading metadata stays on this device unless you explicitly export it.</div>
+        </aside>
+      </section>
+      <section class="notice" aria-label="Reading limitation">
+        <div class="notice-mark">i</div>
+        <div><strong>Official-site reading</strong><p>Comix blocks some third-party readers. This app opens its website directly instead of bypassing those restrictions. Sign into Comix on both devices for its own progress synchronization; this catalogue does not automatically sync between devices.</p></div>
+      </section>
+      <section class="workspace">
+        <div class="workspace-title">
+          <div><div class="eyebrow">LIBRARY</div><h2>Your bookshelf</h2></div>
+          <div class="workspace-actions"><button id="exportBtn" class="utility" title="Download a portable JSON copy">Export backup</button><button id="importJsonBtn" class="utility" title="Merge a previously exported Sanctum Reader library">Import backup</button></div>
+        </div>
+        <form id="addForm" class="add-form" hidden>
+          <label>Title<input id="newTitle" type="text" placeholder="Series name" maxlength="320" required autocomplete="off"></label>
+          <label>Reading URL<input id="newUrl" type="url" placeholder="https://comix.to/title/..." required autocomplete="off"></label>
+          <button type="submit" class="primary small">Save title</button>
+          <button type="button" class="secondary small" id="cancelAdd">Cancel</button>
+        </form>
+        <div class="searchbar"><label class="search"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search titles or sources…" autocomplete="off" aria-label="Search library"></label><select id="sourceFilter" aria-label="Filter by source"><option value="all">All sources</option><option value="en.comix">Comix</option><option value="other">Other sources</option></select></div>
+        <div id="emptyState" class="empty-state"><div class="empty-symbol">S</div><h3>Stories are waiting.</h3><p>Import your exported Aidoku .aib backup to recover your bookshelf, or add a reading link manually.</p><button id="emptyImport" class="secondary">Import a backup</button></div>
+        <div id="library" class="library" aria-live="polite"></div>
+      </section>
+      <section class="workflow">
+        <div><span class="step">01</span><h3>Bring your library</h3><p>Import an Aidoku .aib backup. The app reads it locally and extracts titles and last-read chapters.</p></div>
+        <div><span class="step">02</span><h3>Read at the source</h3><p>Open first-party reading links in a new tab. Your website account manages its own reading session.</p></div>
+        <div><span class="step">03</span><h3>Own the record</h3><p>Update your place here, then export the catalogue for another device or safekeeping.</p></div>
+      </section>
+    </main>
+    <footer><span>Sanctum Reader · Version 1</span><span>Local-first · No advertising · No telemetry</span></footer>
+  </div>
+  <input id="aidokuFile" type="file" accept=".aib,.json,application/octet-stream,application/json" hidden>
+  <input id="jsonFile" type="file" accept=".json,application/json" hidden>
+  <input id="cbzFile" type="file" accept=".cbz,.zip,application/zip" hidden>
+  <dialog id="progressDialog" class="dialog">
+    <form id="progressForm" method="dialog">
+      <div class="eyebrow">READING POSITION</div><h2 id="progressTitle">Update progress</h2>
+      <label>Chapter<input id="chapterInput" type="text" maxlength="320" placeholder="Chapter 12"></label>
+      <label>Page number<input id="pageInput" type="number" min="0" max="100000" step="1" value="0"></label>
+      <label class="check-label"><input id="completedInput" type="checkbox"> Finished this chapter</label>
+      <div class="dialog-buttons"><button id="closeDialog" type="button" class="secondary">Cancel</button><button type="submit" class="primary small">Save progress</button></div>
+    </form>
+  </dialog>
+  <dialog id="cbzDialog" class="cbz-dialog" aria-label="Local comic file reader">
+    <div class="cbz-header"><div><div class="eyebrow">LOCAL FILE · NO UPLOAD</div><h2 id="cbzTitle">Comic</h2></div><button id="cbzClose" class="utility" type="button">Close</button></div>
+    <div class="cbz-canvas"><img id="cbzImage" alt="Comic page from your local file"></div>
+    <div class="cbz-controls"><button id="cbzPrevious" class="secondary small" type="button">← Previous</button><span id="cbzCounter">Page 1 / 1</span><button id="cbzNext" class="primary small" type="button">Next →</button></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -5,6 +5,7 @@ on:
     paths:
       - "index.html"
       - "web/**"
+      - "reader/**"
       - ".github/workflows/**"
       - "config/**"
       - "scripts/**"
@@ -24,6 +25,7 @@ on:
     paths:
       - "index.html"
       - "web/**"
+      - "reader/**"
       - ".github/workflows/**"
       - "config/**"
       - "scripts/**"
@@ -78,3 +80,10 @@ jobs:
 
       - name: Check install-page JavaScript
         run: node --check web/status.js
+
+      - name: Test Sanctum Reader browser modules and CBZ/Aidoku parsers
+        run: |
+          python -m unittest discover -s reader -p "test_shell.py"
+          node --test reader/*.test.mjs
+          node --check reader/app.mjs
+          node --check reader/sw.js
