@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-03T20:30:48+00:00",
+  "capturedAt": "2026-11-04T20:50:00+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -396,9 +396,9 @@
       {
         "id": "en.novelbuddy",
         "name": "NovelBuddy",
-        "version": 8,
-        "iconURL": "icons/en.novelbuddy-v8.png",
-        "downloadURL": "sources/en.novelbuddy-v8.aix",
+        "version": 9,
+        "iconURL": "icons/en.novelbuddy-v9.png",
+        "downloadURL": "sources/en.novelbuddy-v9.aix",
         "languages": [
           "en"
         ],
@@ -422,9 +422,9 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 30,
-        "iconURL": "icons/en.readcomicsonline-v30.png",
-        "downloadURL": "sources/en.readcomicsonline-v30.aix",
+        "version": 31,
+        "iconURL": "icons/en.readcomicsonline-v31.png",
+        "downloadURL": "sources/en.readcomicsonline-v31.aix",
         "languages": [
           "en"
         ],
@@ -1015,7 +1015,7 @@
   },
   "inventory": {
     "name": "Nixzle's Maintained Public English Aidoku Sources",
-    "generatedAt": "2026-11-02T22:47:41+00:00",
+    "generatedAt": "2026-11-03T20:30:48+00:00",
     "sourceCount": 57,
     "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
     "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -1346,12 +1346,12 @@
       {
         "id": "en.novelbuddy",
         "name": "NovelBuddy",
-        "version": 8,
-        "file": "sources/en.novelbuddy-v8.aix",
+        "version": 9,
+        "file": "sources/en.novelbuddy-v9.aix",
         "repository": "Aidoku-Community/sources",
         "license": "MIT OR Apache-2.0",
-        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v8.aix",
-        "sha256": "7571195218741303b9374566dd99ffa39a0b76f278b786e97726ed6319eb993f"
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v9.aix",
+        "sha256": "f720185ffd540739e37a0b721695293e387aef23ae9a49bfeb08deac4c221703"
       },
       {
         "id": "en.nyxscans",
@@ -1366,14 +1366,14 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 30,
-        "file": "sources/en.readcomicsonline-v30.aix",
+        "version": 31,
+        "file": "sources/en.readcomicsonline-v31.aix",
         "repository": "Aidoku-Community/sources",
         "license": "MIT OR Apache-2.0",
         "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-        "sha256": "a5675d1d36ec856f241128740c4860c3ccd1a8eb3bf1da27bab475b9342aa427",
+        "sha256": "5d0f5a34fc2254591c1259518510178232ef722b9e97468518fa99d315dd0bbb",
         "upstreamVersion": 3,
-        "upstreamSha256": "e5dd9ccb0031207ed971279b24bafbeddb541c638c6a356d6be561bcb4d6c7bf",
+        "upstreamSha256": "344c9e5f27f5c2f1112f50fe0018529236d299f021c079aa21c5d50af493976a",
         "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
         "publicationTransform": "metadata-version-v1"
       },

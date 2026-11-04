@@ -69,9 +69,9 @@
     {
       "id": "en.chikari",
       "name": "Chikari",
-      "version": 2,
-      "iconURL": "icons/en.chikari-v2.png",
-      "downloadURL": "sources/en.chikari-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.chikari-v3.png",
+      "downloadURL": "sources/en.chikari-v3.aix",
       "languages": [
         "en"
       ],
@@ -379,19 +379,6 @@
       "minAppVersion": "0.7.1"
     },
     {
-      "id": "en.manhwax",
-      "name": "Manhwax",
-      "version": 5,
-      "iconURL": "icons/en.manhwax-v5.png",
-      "downloadURL": "sources/en.manhwax-v5.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 2,
-      "baseURL": "https://manhwax.top",
-      "minAppVersion": "0.7.1"
-    },
-    {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
       "version": 9,
@@ -420,9 +407,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 31,
-      "iconURL": "icons/en.readcomicsonline-v31.png",
-      "downloadURL": "sources/en.readcomicsonline-v31.aix",
+      "version": 32,
+      "iconURL": "icons/en.readcomicsonline-v32.png",
+      "downloadURL": "sources/en.readcomicsonline-v32.aix",
       "languages": [
         "en"
       ],
