@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-04T20:50:00+00:00",
-  "sourceCount": 56,
+  "generatedAt": "2026-11-05T21:06:01+00:00",
+  "sourceCount": 57,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -341,14 +341,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 32,
-      "file": "sources/en.readcomicsonline-v32.aix",
+      "version": 33,
+      "file": "sources/en.readcomicsonline-v33.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "6cd38d0aba63f070354aec82efdb1812c95007d8ae281bcf97498b880fb53916",
+      "sha256": "10edf7230a6eb9f3762cb69765da23607c1242fcb4a9001d98363390895c5c63",
       "upstreamVersion": 3,
-      "upstreamSha256": "f8b5460a4d2c3a542cbdd85eee3dca8872d443d6c3a07bfe0110453df4f85bd2",
+      "upstreamSha256": "7f87a3e81af5d13332c098b25ef062ade38beb369b924eade67ae82e28e83cc8",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -561,6 +561,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.nhentai-v17.aix",
       "sha256": "d2ba853418fad777b41076fa5cb551f59a451904f0225e598bde845617b8d5d3"
+    },
+    {
+      "id": "multi.sumidoku",
+      "name": "Sumidoku",
+      "version": 1,
+      "file": "sources/multi.sumidoku-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.sumidoku-v1.aix",
+      "sha256": "fbc7d8122677fa7cc6655b0cb973b4b11946cd52f49268d78aa4cd1e3690bed1"
     },
     {
       "id": "multi.suwayomi",

@@ -407,9 +407,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 32,
-      "iconURL": "icons/en.readcomicsonline-v32.png",
-      "downloadURL": "sources/en.readcomicsonline-v32.aix",
+      "version": 33,
+      "iconURL": "icons/en.readcomicsonline-v33.png",
+      "downloadURL": "sources/en.readcomicsonline-v33.aix",
       "languages": [
         "en"
       ],
@@ -844,6 +844,19 @@
       ],
       "contentRating": 2,
       "baseURL": "https://nhentai.net",
+      "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "multi.sumidoku",
+      "name": "Sumidoku",
+      "version": 1,
+      "iconURL": "icons/multi.sumidoku-v1.png",
+      "downloadURL": "sources/multi.sumidoku-v1.aix",
+      "languages": [
+        "multi"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://github.com/Sumidoku",
       "minAppVersion": "0.7.1"
     },
     {
