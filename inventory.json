@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-05T21:06:01+00:00",
+  "generatedAt": "2026-11-07T18:49:09+00:00",
   "sourceCount": 57,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -341,14 +341,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 33,
-      "file": "sources/en.readcomicsonline-v33.aix",
+      "version": 34,
+      "file": "sources/en.readcomicsonline-v34.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "10edf7230a6eb9f3762cb69765da23607c1242fcb4a9001d98363390895c5c63",
+      "sha256": "0a5aa6ae73de772e3412745f18974fe90ac7ad881f10e1241d561f75d9557723",
       "upstreamVersion": 3,
-      "upstreamSha256": "7f87a3e81af5d13332c098b25ef062ade38beb369b924eade67ae82e28e83cc8",
+      "upstreamSha256": "d626ae1362356455e3078d525e3223f7d03d27953e2a12aced61fabca0b211a8",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -515,12 +515,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 8,
-      "file": "sources/multi.mangadotnet-v8.aix",
+      "version": 9,
+      "file": "sources/multi.mangadotnet-v9.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v8.aix",
-      "sha256": "4261a7eb66281c1f270c0ef91b3f69c159c093920f2597f0d7403ff4375b4e50"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v9.aix",
+      "sha256": "bd8df47ed81833a8f159786058a3d7c563fbc76739a1578494bbc7dd624d8618"
     },
     {
       "id": "multi.mangafire",
