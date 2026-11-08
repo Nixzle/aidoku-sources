@@ -236,6 +236,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.kingofshojo",
+      "name": "KingOfShojo",
+      "version": 1,
+      "iconURL": "icons/en.kingofshojo-v1.png",
+      "downloadURL": "sources/en.kingofshojo-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://kingofshojo.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.magusmanga",
       "name": "Magus Manga",
       "version": 2,
@@ -379,6 +392,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.novelarchive",
+      "name": "Novel Archive",
+      "version": 1,
+      "iconURL": "icons/en.novelarchive-v1.png",
+      "downloadURL": "sources/en.novelarchive-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://novelarchive.st",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
       "version": 9,
@@ -407,9 +433,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 34,
-      "iconURL": "icons/en.readcomicsonline-v34.png",
-      "downloadURL": "sources/en.readcomicsonline-v34.aix",
+      "version": 35,
+      "iconURL": "icons/en.readcomicsonline-v35.png",
+      "downloadURL": "sources/en.readcomicsonline-v35.aix",
       "languages": [
         "en"
       ],
@@ -428,6 +454,19 @@
       ],
       "contentRating": 0,
       "baseURL": "https://rizzfables.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "en.rokaricomics",
+      "name": "RokariComics",
+      "version": 1,
+      "iconURL": "icons/en.rokaricomics-v1.png",
+      "downloadURL": "sources/en.rokaricomics-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://rokaricomics.com",
       "minAppVersion": "0.7.1"
     },
     {
