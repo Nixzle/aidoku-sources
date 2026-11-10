@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-09T23:27:36+00:00",
-  "sourceCount": 60,
+  "generatedAt": "2026-11-10T20:50:36+00:00",
+  "sourceCount": 63,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -219,6 +219,16 @@
       "sha256": "8f4355240cbfab35e8c10b03a7403f9ac3c1c06b068cbfce1a415842a5a379a2"
     },
     {
+      "id": "en.lagoonscans",
+      "name": "Lagoon Scans",
+      "version": 1,
+      "file": "sources/en.lagoonscans-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.lagoonscans-v1.aix",
+      "sha256": "2305263e5fe48559cd18f72c3ae586cc3bd0c35c4c2616d8560fb6fe265ea6d8"
+    },
+    {
       "id": "en.magusmanga",
       "name": "Magus Manga",
       "version": 2,
@@ -329,6 +339,16 @@
       "sha256": "0e12e24d6b982f824f883ec0d8326f7732f9cc1b74366df9a10c33e94fe7c033"
     },
     {
+      "id": "en.manhwax",
+      "name": "Manhwax",
+      "version": 5,
+      "file": "sources/en.manhwax-v5.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhwax-v5.aix",
+      "sha256": "eed5e88e7d2adb6bfcdca70219a84bb8ba5ed4ed52602528c49ed7725a04e30e"
+    },
+    {
       "id": "en.novelarchive",
       "name": "Novel Archive",
       "version": 1,
@@ -359,16 +379,26 @@
       "sha256": "19311e4ed532ded6a64452e22bdc39b3e65234a3824e020c038c6a62e5b69bf9"
     },
     {
+      "id": "en.ravenscans",
+      "name": "Raven Scans",
+      "version": 1,
+      "file": "sources/en.ravenscans-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.ravenscans-v1.aix",
+      "sha256": "8c293f80287df0592b8e1942d509783738f1d61861fb12674c7df8bd681e9ee2"
+    },
+    {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 36,
-      "file": "sources/en.readcomicsonline-v36.aix",
+      "version": 37,
+      "file": "sources/en.readcomicsonline-v37.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "e884f733385ecb6f0a46ce8210c6af1f33778551ae07cb561aeae3eaf4babde5",
+      "sha256": "9f1daccf6e5ec36c77461b6b97f3ca6b56264b5c698195b4831ee9394f4d4d71",
       "upstreamVersion": 3,
-      "upstreamSha256": "0635a240c0831abcf237761d4e58bf7c0760710b74521e0a6d5322a51e36be74",
+      "upstreamSha256": "513b560139a6b5d3b2a8ebc3d367fe75fdf57b82f6b88943905261d1f387a497",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -545,12 +575,12 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 9,
-      "file": "sources/multi.mangadotnet-v9.aix",
+      "version": 10,
+      "file": "sources/multi.mangadotnet-v10.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v9.aix",
-      "sha256": "bd8df47ed81833a8f159786058a3d7c563fbc76739a1578494bbc7dd624d8618"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.mangadotnet-v10.aix",
+      "sha256": "bbc9a3fc291b02383c8e42ab8079897f8c608392caecfba82c17574df6277822"
     },
     {
       "id": "multi.mangafire",

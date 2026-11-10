@@ -249,6 +249,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.lagoonscans",
+      "name": "Lagoon Scans",
+      "version": 1,
+      "iconURL": "icons/en.lagoonscans-v1.png",
+      "downloadURL": "sources/en.lagoonscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://lagoonscans.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.magusmanga",
       "name": "Magus Manga",
       "version": 2,
@@ -392,6 +405,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.manhwax",
+      "name": "Manhwax",
+      "version": 5,
+      "iconURL": "icons/en.manhwax-v5.png",
+      "downloadURL": "sources/en.manhwax-v5.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://manhwax.top",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.novelarchive",
       "name": "Novel Archive",
       "version": 1,
@@ -431,11 +457,24 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.ravenscans",
+      "name": "Raven Scans",
+      "version": 1,
+      "iconURL": "icons/en.ravenscans-v1.png",
+      "downloadURL": "sources/en.ravenscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://ravenscans.org",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 36,
-      "iconURL": "icons/en.readcomicsonline-v36.png",
-      "downloadURL": "sources/en.readcomicsonline-v36.aix",
+      "version": 37,
+      "iconURL": "icons/en.readcomicsonline-v37.png",
+      "downloadURL": "sources/en.readcomicsonline-v37.aix",
       "languages": [
         "en"
       ],
@@ -774,9 +813,9 @@
     {
       "id": "multi.mangadotnet",
       "name": "Mangadotnet",
-      "version": 9,
-      "iconURL": "icons/multi.mangadotnet-v9.png",
-      "downloadURL": "sources/multi.mangadotnet-v9.aix",
+      "version": 10,
+      "iconURL": "icons/multi.mangadotnet-v10.png",
+      "downloadURL": "sources/multi.mangadotnet-v10.aix",
       "languages": [
         "ar",
         "bg",
