@@ -15,11 +15,24 @@
       "minAppVersion": "0.8.3"
     },
     {
+      "id": "en.asmotoon",
+      "name": "Asmodeus Scans",
+      "version": 1,
+      "iconURL": "icons/en.asmotoon-v1.png",
+      "downloadURL": "sources/en.asmotoon-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://asmotoon.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.asurascans",
       "name": "Asura Scans",
-      "version": 19,
-      "iconURL": "icons/en.asurascans-v19.png",
-      "downloadURL": "sources/en.asurascans-v19.aix",
+      "version": 20,
+      "iconURL": "icons/en.asurascans-v20.png",
+      "downloadURL": "sources/en.asurascans-v20.aix",
       "languages": [
         "en"
       ],
@@ -145,6 +158,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.erisscans",
+      "name": "Eris Scans",
+      "version": 1,
+      "iconURL": "icons/en.erisscans-v1.png",
+      "downloadURL": "sources/en.erisscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://erisscans.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.evascans",
       "name": "Eva Scans",
       "version": 1,
@@ -194,6 +220,32 @@
       ],
       "contentRating": 1,
       "baseURL": "https://freewebnovel.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.genztoons",
+      "name": "Genz Toon",
+      "version": 1,
+      "iconURL": "icons/en.genztoons-v1.png",
+      "downloadURL": "sources/en.genztoons-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://genztoons.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.grimscans",
+      "name": "Grim Scans",
+      "version": 1,
+      "iconURL": "icons/en.grimscans-v1.png",
+      "downloadURL": "sources/en.grimscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://grimscans.com",
       "minAppVersion": "0.8.3"
     },
     {
@@ -249,6 +301,32 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.kaizenscan",
+      "name": "Kaizen Scan",
+      "version": 1,
+      "iconURL": "icons/en.kaizenscan-v1.png",
+      "downloadURL": "sources/en.kaizenscan-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://kaizenscan.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.kewnscans",
+      "name": "Kewn Scans",
+      "version": 1,
+      "iconURL": "icons/en.kewnscans-v1.png",
+      "downloadURL": "sources/en.kewnscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://kewnscans.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.kingofshojo",
       "name": "KingOfShojo",
       "version": 2,
@@ -272,6 +350,19 @@
       ],
       "contentRating": 0,
       "baseURL": "https://lagoonscans.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.lunatoons",
+      "name": "Luna Toons",
+      "version": 1,
+      "iconURL": "icons/en.lunatoons-v1.png",
+      "downloadURL": "sources/en.lunatoons-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://lunatoons.net",
       "minAppVersion": "0.8.3"
     },
     {
@@ -444,6 +535,19 @@
       "minAppVersion": "0.8.3"
     },
     {
+      "id": "en.mistscans",
+      "name": "Mist Scans",
+      "version": 1,
+      "iconURL": "icons/en.mistscans-v1.png",
+      "downloadURL": "sources/en.mistscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://mistscans.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.novelarchive",
       "name": "Novel Archive",
       "version": 1,
@@ -511,9 +615,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 38,
-      "iconURL": "icons/en.readcomicsonline-v38.png",
-      "downloadURL": "sources/en.readcomicsonline-v38.aix",
+      "version": 39,
+      "iconURL": "icons/en.readcomicsonline-v39.png",
+      "downloadURL": "sources/en.readcomicsonline-v39.aix",
       "languages": [
         "en"
       ],
@@ -545,6 +649,19 @@
       ],
       "contentRating": 1,
       "baseURL": "https://rokaricomics.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.sirenscans",
+      "name": "Siren Scans",
+      "version": 1,
+      "iconURL": "icons/en.sirenscans-v1.png",
+      "downloadURL": "sources/en.sirenscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://sirenscans.com",
       "minAppVersion": "0.8.3"
     },
     {
@@ -584,6 +701,19 @@
       ],
       "contentRating": 0,
       "baseURL": "https://en-thunderscans.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.timelesstoons",
+      "name": "Timeless Toons",
+      "version": 1,
+      "iconURL": "icons/en.timelesstoons-v1.png",
+      "downloadURL": "sources/en.timelesstoons-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://timelesstoons.org",
       "minAppVersion": "0.8.3"
     },
     {
@@ -812,9 +942,9 @@
     {
       "id": "multi.mangadex",
       "name": "MangaDex",
-      "version": 14,
-      "iconURL": "icons/multi.mangadex-v14.png",
-      "downloadURL": "sources/multi.mangadex-v14.aix",
+      "version": 15,
+      "iconURL": "icons/multi.mangadex-v15.png",
+      "downloadURL": "sources/multi.mangadex-v15.aix",
       "languages": [
         "en",
         "sq",
