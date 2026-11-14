@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-13T20:54:44+00:00",
-  "sourceCount": 80,
+  "generatedAt": "2026-11-14T19:11:24+00:00",
+  "sourceCount": 79,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -207,16 +207,6 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.genztoons-v1.aix",
       "sha256": "1b3371fc10293ef25a13628783438eaf49926cd63c9285009b8c31ec456a3310"
-    },
-    {
-      "id": "en.grimscans",
-      "name": "Grim Scans",
-      "version": 1,
-      "file": "sources/en.grimscans-v1.aix",
-      "repository": "Aidoku-Community/sources",
-      "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.grimscans-v1.aix",
-      "sha256": "ab69809fc38d0ee163b7a874017a209dd25eff7550f1018f642df1c9968c4c70"
     },
     {
       "id": "en.guya",
@@ -501,14 +491,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 40,
-      "file": "sources/en.readcomicsonline-v40.aix",
+      "version": 41,
+      "file": "sources/en.readcomicsonline-v41.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "05b3ac364937e8d1f42809161ea1ba86e6d72f148ef28f7aa3f1b3ee6d7143dd",
+      "sha256": "225b9502860ca5d928e3815227c30c755a700eac6ee3a966a480efe5e7c94c48",
       "upstreamVersion": 3,
-      "upstreamSha256": "1afca835033a0c9b5d6a5b323bb854a402abca95abede1a4d8326787fe9e5285",
+      "upstreamSha256": "49ce4bee7c44f87619ebf8bd220adb552b88e502e34af086a92995ebef633e88",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },

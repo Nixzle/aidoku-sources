@@ -236,19 +236,6 @@
       "minAppVersion": "0.8.3"
     },
     {
-      "id": "en.grimscans",
-      "name": "Grim Scans",
-      "version": 1,
-      "iconURL": "icons/en.grimscans-v1.png",
-      "downloadURL": "sources/en.grimscans-v1.aix",
-      "languages": [
-        "en"
-      ],
-      "contentRating": 0,
-      "baseURL": "https://grimscans.com",
-      "minAppVersion": "0.8.3"
-    },
-    {
       "id": "en.guya",
       "name": "Guya",
       "version": 2,
@@ -615,9 +602,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 40,
-      "iconURL": "icons/en.readcomicsonline-v40.png",
-      "downloadURL": "sources/en.readcomicsonline-v40.aix",
+      "version": 41,
+      "iconURL": "icons/en.readcomicsonline-v41.png",
+      "downloadURL": "sources/en.readcomicsonline-v41.aix",
       "languages": [
         "en"
       ],
