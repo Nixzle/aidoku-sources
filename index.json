@@ -119,17 +119,30 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.divascans",
+      "name": "DivaScans",
+      "version": 1,
+      "iconURL": "icons/en.divascans-v1.png",
+      "downloadURL": "sources/en.divascans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://divascans.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.drakescans",
       "name": "Drake Scans",
-      "version": 2,
-      "iconURL": "icons/en.drakescans-v2.png",
-      "downloadURL": "sources/en.drakescans-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.drakescans-v3.png",
+      "downloadURL": "sources/en.drakescans-v3.aix",
       "languages": [
         "en"
       ],
       "contentRating": 1,
       "baseURL": "https://drakecomic.net",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.dynastyscans",
@@ -147,15 +160,15 @@
     {
       "id": "en.elftoon",
       "name": "Elf Toon",
-      "version": 3,
-      "iconURL": "icons/en.elftoon-v3.png",
-      "downloadURL": "sources/en.elftoon-v3.aix",
+      "version": 4,
+      "iconURL": "icons/en.elftoon-v4.png",
+      "downloadURL": "sources/en.elftoon-v4.aix",
       "languages": [
         "en"
       ],
       "contentRating": 1,
       "baseURL": "https://elftoon.net",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.erisscans",
@@ -275,17 +288,30 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.hijalascans",
+      "name": "Hijala Scans",
+      "version": 1,
+      "iconURL": "icons/en.hijalascans-v1.png",
+      "downloadURL": "sources/en.hijalascans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://en-hijala.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.hivescans",
       "name": "Hive Scans",
-      "version": 2,
-      "iconURL": "icons/en.hivescans-v2.png",
-      "downloadURL": "sources/en.hivescans-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.hivescans-v3.png",
+      "downloadURL": "sources/en.hivescans-v3.aix",
       "languages": [
         "en"
       ],
       "contentRating": 0,
       "baseURL": "https://hivetoons.org",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.kaizenscan",
@@ -298,6 +324,19 @@
       ],
       "contentRating": 2,
       "baseURL": "https://kaizenscan.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.kaynscans",
+      "name": "Kayn Scans",
+      "version": 1,
+      "iconURL": "icons/en.kaynscans-v1.png",
+      "downloadURL": "sources/en.kaynscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://kaynscans.com",
       "minAppVersion": "0.8.3"
     },
     {
@@ -368,15 +407,15 @@
     {
       "id": "en.magusmanga",
       "name": "Magus Manga",
-      "version": 2,
-      "iconURL": "icons/en.magusmanga-v2.png",
-      "downloadURL": "sources/en.magusmanga-v2.aix",
+      "version": 3,
+      "iconURL": "icons/en.magusmanga-v3.png",
+      "downloadURL": "sources/en.magusmanga-v3.aix",
       "languages": [
         "en"
       ],
       "contentRating": 0,
       "baseURL": "https://magustoon.org",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.mangabat",
@@ -563,15 +602,15 @@
     {
       "id": "en.nyxscans",
       "name": "Nyx Scans",
-      "version": 1,
-      "iconURL": "icons/en.nyxscans-v1.png",
-      "downloadURL": "sources/en.nyxscans-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.nyxscans-v2.png",
+      "downloadURL": "sources/en.nyxscans-v2.aix",
       "languages": [
         "en"
       ],
       "contentRating": 0,
       "baseURL": "https://nyxscans.com",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.ragescans",
@@ -602,9 +641,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 41,
-      "iconURL": "icons/en.readcomicsonline-v41.png",
-      "downloadURL": "sources/en.readcomicsonline-v41.aix",
+      "version": 42,
+      "iconURL": "icons/en.readcomicsonline-v42.png",
+      "downloadURL": "sources/en.readcomicsonline-v42.aix",
       "languages": [
         "en"
       ],
@@ -636,6 +675,19 @@
       ],
       "contentRating": 1,
       "baseURL": "https://rokaricomics.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.sanascans",
+      "name": "Sana Scans",
+      "version": 1,
+      "iconURL": "icons/en.sanascans-v1.png",
+      "downloadURL": "sources/en.sanascans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 0,
+      "baseURL": "https://sanascans.com",
       "minAppVersion": "0.8.3"
     },
     {
@@ -756,6 +808,19 @@
       "minAppVersion": "0.9.0"
     },
     {
+      "id": "en.valirscans",
+      "name": "ValirScans",
+      "version": 1,
+      "iconURL": "icons/en.valirscans-v1.png",
+      "downloadURL": "sources/en.valirscans-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://valirscans.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.violetscans",
       "name": "Violet Scans",
       "version": 1,
@@ -771,15 +836,15 @@
     {
       "id": "en.vortexscans",
       "name": "Vortex Scans",
-      "version": 3,
-      "iconURL": "icons/en.vortexscans-v3.png",
-      "downloadURL": "sources/en.vortexscans-v3.aix",
+      "version": 4,
+      "iconURL": "icons/en.vortexscans-v4.png",
+      "downloadURL": "sources/en.vortexscans-v4.aix",
       "languages": [
         "en"
       ],
       "contentRating": 0,
       "baseURL": "https://vortexscans.org",
-      "minAppVersion": "0.7.1"
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.webtoonxyz",

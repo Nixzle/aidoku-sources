@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-14T19:11:24+00:00",
-  "sourceCount": 79,
+  "generatedAt": "2026-11-16T23:24:26+00:00",
+  "sourceCount": 84,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -119,14 +119,24 @@
       "sha256": "13a81d834823d741a80b1abf70e239525682dc81a57aa5f981f6ea9450a8be04"
     },
     {
-      "id": "en.drakescans",
-      "name": "Drake Scans",
-      "version": 2,
-      "file": "sources/en.drakescans-v2.aix",
+      "id": "en.divascans",
+      "name": "DivaScans",
+      "version": 1,
+      "file": "sources/en.divascans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v2.aix",
-      "sha256": "2db85aede3ac1c41629fd7041d443bfb6216d31666aae3be623d70abbd7b68b1"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.divascans-v1.aix",
+      "sha256": "edf8d81f71825686043824b4eddfc8244f8b53f8942dd4b590dcaf946f729e5f"
+    },
+    {
+      "id": "en.drakescans",
+      "name": "Drake Scans",
+      "version": 3,
+      "file": "sources/en.drakescans-v3.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.drakescans-v3.aix",
+      "sha256": "7966816dbb84c73b6019b2d1a8e347ea848435dcc7332f7735a0cce6d84c6483"
     },
     {
       "id": "en.dynastyscans",
@@ -141,12 +151,12 @@
     {
       "id": "en.elftoon",
       "name": "Elf Toon",
-      "version": 3,
-      "file": "sources/en.elftoon-v3.aix",
+      "version": 4,
+      "file": "sources/en.elftoon-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.elftoon-v3.aix",
-      "sha256": "8e605cc7f10785b326c148bc90c2fb961920697377ee2eb9ea9435c040cee3bf"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.elftoon-v4.aix",
+      "sha256": "c3c610637603794c113426f1fff31e18fef10b393f3ab3d877a359586fb95a08"
     },
     {
       "id": "en.erisscans",
@@ -239,14 +249,24 @@
       "sha256": "587c39664b5f431cdca832fdac32003891d1ea6b3d9e3a8a6fd7cc6391333e17"
     },
     {
-      "id": "en.hivescans",
-      "name": "Hive Scans",
-      "version": 2,
-      "file": "sources/en.hivescans-v2.aix",
+      "id": "en.hijalascans",
+      "name": "Hijala Scans",
+      "version": 1,
+      "file": "sources/en.hijalascans-v1.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v2.aix",
-      "sha256": "b151919d948d6a1aac62fe7afc8149402690e4c580998ffda8be90bcc1a17f83"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hijalascans-v1.aix",
+      "sha256": "d1ea8fbb2280e0517fb4f607ddc9c1d8d40ad5f8c5fb3fc6330c5b4a749e96a0"
+    },
+    {
+      "id": "en.hivescans",
+      "name": "Hive Scans",
+      "version": 3,
+      "file": "sources/en.hivescans-v3.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.hivescans-v3.aix",
+      "sha256": "3bcd44376e091bd09f9c2f010c3e49034cf40d07955b8a3667901990aac23088"
     },
     {
       "id": "en.kaizenscan",
@@ -257,6 +277,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.kaizenscan-v1.aix",
       "sha256": "bc5a4b80d9399767d4056d4411a0d8f107284ba6e683d24c5f61655b102a4c31"
+    },
+    {
+      "id": "en.kaynscans",
+      "name": "Kayn Scans",
+      "version": 1,
+      "file": "sources/en.kaynscans-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.kaynscans-v1.aix",
+      "sha256": "0be1e04b378ca2056c39adc5bede315c3179f96e91d262c26b3faaa088a6bc4a"
     },
     {
       "id": "en.kewnscans",
@@ -311,12 +341,12 @@
     {
       "id": "en.magusmanga",
       "name": "Magus Manga",
-      "version": 2,
-      "file": "sources/en.magusmanga-v2.aix",
+      "version": 3,
+      "file": "sources/en.magusmanga-v3.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v2.aix",
-      "sha256": "1b74c60d4cf67fcfdee386a71f5f59d71bcf1531d4dc7acb940afc427d263299"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.magusmanga-v3.aix",
+      "sha256": "06797cb5efba261b0d94afc1e8a700afe8b4143af6be01521a0e8b786934ad89"
     },
     {
       "id": "en.mangabat",
@@ -461,12 +491,12 @@
     {
       "id": "en.nyxscans",
       "name": "Nyx Scans",
-      "version": 1,
-      "file": "sources/en.nyxscans-v1.aix",
+      "version": 2,
+      "file": "sources/en.nyxscans-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.nyxscans-v1.aix",
-      "sha256": "19311e4ed532ded6a64452e22bdc39b3e65234a3824e020c038c6a62e5b69bf9"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.nyxscans-v2.aix",
+      "sha256": "97fd00d4d0b39438b119424cb1f1743af3abf3d338200c68bc31f4b3282d0a73"
     },
     {
       "id": "en.ragescans",
@@ -491,14 +521,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 41,
-      "file": "sources/en.readcomicsonline-v41.aix",
+      "version": 42,
+      "file": "sources/en.readcomicsonline-v42.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "225b9502860ca5d928e3815227c30c755a700eac6ee3a966a480efe5e7c94c48",
+      "sha256": "c8ebea99d7bcc14a02e58d08bae732ebc42b6b6fe9eaf73e30e583eb9221f842",
       "upstreamVersion": 3,
-      "upstreamSha256": "49ce4bee7c44f87619ebf8bd220adb552b88e502e34af086a92995ebef633e88",
+      "upstreamSha256": "fa9316fd46314510dd87735b4583a4a59a0b4b7ebe6ebb8e2871425d585d3e63",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -521,6 +551,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.rokaricomics-v2.aix",
       "sha256": "185d6d00c49ba33a9b6df203241cb99702e6034f8aa330a45793f5179a3a4ff4"
+    },
+    {
+      "id": "en.sanascans",
+      "name": "Sana Scans",
+      "version": 1,
+      "file": "sources/en.sanascans-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.sanascans-v1.aix",
+      "sha256": "d780a95ef776a0f59bea92e45057ead110768d91918207915561896b60b42fe7"
     },
     {
       "id": "en.scythescans",
@@ -613,6 +653,16 @@
       "sha256": "753c7ef31340c602ab4e4e44fb4380ab3ee82fda14379583a60fa9c20a65dfc2"
     },
     {
+      "id": "en.valirscans",
+      "name": "ValirScans",
+      "version": 1,
+      "file": "sources/en.valirscans-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.valirscans-v1.aix",
+      "sha256": "00dfb90cabf761e3e42fc28e3030a0737f4c04953cf6bc197c5941d358f42c2b"
+    },
+    {
       "id": "en.violetscans",
       "name": "Violet Scans",
       "version": 1,
@@ -625,12 +675,12 @@
     {
       "id": "en.vortexscans",
       "name": "Vortex Scans",
-      "version": 3,
-      "file": "sources/en.vortexscans-v3.aix",
+      "version": 4,
+      "file": "sources/en.vortexscans-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v3.aix",
-      "sha256": "71a8a00b95e3088be5791b151c6e5234a56248b9505905e52e03254094901ebc"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v4.aix",
+      "sha256": "1f791c59965e74bb7d2306e12cc69019dce72a92da77cea42e11454551907b16"
     },
     {
       "id": "en.webtoonxyz",
