@@ -535,6 +535,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.mangataro",
+      "name": "MangaTaro",
+      "version": 1,
+      "iconURL": "icons/en.mangataro-v1.png",
+      "downloadURL": "sources/en.mangataro-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://mangataro.org",
+      "minAppVersion": "0.8.3"
+    },
+    {
       "id": "en.manhuaplusorg",
       "name": "Manhuaplus.org",
       "version": 1,
@@ -572,6 +585,19 @@
       "contentRating": 0,
       "baseURL": "https://mistscans.org",
       "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.mkissa",
+      "name": "MKissa",
+      "version": 1,
+      "iconURL": "icons/en.mkissa-v1.png",
+      "downloadURL": "sources/en.mkissa-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://mkissa.to",
+      "minAppVersion": "0.8.4"
     },
     {
       "id": "en.novelarchive",
@@ -641,9 +667,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 42,
-      "iconURL": "icons/en.readcomicsonline-v42.png",
-      "downloadURL": "sources/en.readcomicsonline-v42.aix",
+      "version": 43,
+      "iconURL": "icons/en.readcomicsonline-v43.png",
+      "downloadURL": "sources/en.readcomicsonline-v43.aix",
       "languages": [
         "en"
       ],
@@ -675,6 +701,19 @@
       ],
       "contentRating": 1,
       "baseURL": "https://rokaricomics.com",
+      "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.roliascan",
+      "name": "Rolia Scan",
+      "version": 1,
+      "iconURL": "icons/en.roliascan-v1.png",
+      "downloadURL": "sources/en.roliascan-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://roliascan.com",
       "minAppVersion": "0.8.3"
     },
     {
