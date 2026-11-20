@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-19T22:10:26+00:00",
-  "sourceCount": 87,
+  "generatedAt": "2026-11-20T21:50:08+00:00",
+  "sourceCount": 88,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -459,6 +459,16 @@
       "sha256": "0e12e24d6b982f824f883ec0d8326f7732f9cc1b74366df9a10c33e94fe7c033"
     },
     {
+      "id": "en.manhwa18net",
+      "name": "Manhwa18.net",
+      "version": 1,
+      "file": "sources/en.manhwa18net-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.manhwa18net-v1.aix",
+      "sha256": "fa64dff29b9c98dfb10dfdfbc6a28df366582ee28209e8c83b1ab09760d38f44"
+    },
+    {
       "id": "en.manhwax",
       "name": "Manhwax",
       "version": 6,
@@ -541,14 +551,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 43,
-      "file": "sources/en.readcomicsonline-v43.aix",
+      "version": 44,
+      "file": "sources/en.readcomicsonline-v44.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "15727e48ea5abe016b1f67bfc65797248d74b8d556832e482af2357759ead580",
+      "sha256": "107163c3f904d2d97be388f76850f44f12dbe419951d83cb427bde1fb3b09ee7",
       "upstreamVersion": 3,
-      "upstreamSha256": "1327362c80a9d160e9ebb03a092afb86f9a019a74e0c1e63061026554b8d248d",
+      "upstreamSha256": "d5f8fd814b0d53db3be8d0e28ff468c32f5f5b856ba17be1753109d24df0a5f1",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },

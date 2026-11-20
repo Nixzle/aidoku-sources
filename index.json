@@ -561,6 +561,19 @@
       "minAppVersion": "0.7.1"
     },
     {
+      "id": "en.manhwa18net",
+      "name": "Manhwa18.net",
+      "version": 1,
+      "iconURL": "icons/en.manhwa18net-v1.png",
+      "downloadURL": "sources/en.manhwa18net-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://manhwa18.net",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.manhwax",
       "name": "Manhwax",
       "version": 6,
@@ -667,9 +680,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 43,
-      "iconURL": "icons/en.readcomicsonline-v43.png",
-      "downloadURL": "sources/en.readcomicsonline-v43.aix",
+      "version": 44,
+      "iconURL": "icons/en.readcomicsonline-v44.png",
+      "downloadURL": "sources/en.readcomicsonline-v44.aix",
       "languages": [
         "en"
       ],
