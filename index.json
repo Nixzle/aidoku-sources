@@ -537,9 +537,9 @@
     {
       "id": "en.mangataro",
       "name": "MangaTaro",
-      "version": 1,
-      "iconURL": "icons/en.mangataro-v1.png",
-      "downloadURL": "sources/en.mangataro-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.mangataro-v2.png",
+      "downloadURL": "sources/en.mangataro-v2.aix",
       "languages": [
         "en"
       ],
@@ -602,9 +602,9 @@
     {
       "id": "en.mkissa",
       "name": "MKissa",
-      "version": 1,
-      "iconURL": "icons/en.mkissa-v1.png",
-      "downloadURL": "sources/en.mkissa-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.mkissa-v2.png",
+      "downloadURL": "sources/en.mkissa-v2.aix",
       "languages": [
         "en"
       ],
@@ -680,9 +680,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 44,
-      "iconURL": "icons/en.readcomicsonline-v44.png",
-      "downloadURL": "sources/en.readcomicsonline-v44.aix",
+      "version": 45,
+      "iconURL": "icons/en.readcomicsonline-v45.png",
+      "downloadURL": "sources/en.readcomicsonline-v45.aix",
       "languages": [
         "en"
       ],
@@ -719,9 +719,9 @@
     {
       "id": "en.roliascan",
       "name": "Rolia Scan",
-      "version": 1,
-      "iconURL": "icons/en.roliascan-v1.png",
-      "downloadURL": "sources/en.roliascan-v1.aix",
+      "version": 2,
+      "iconURL": "icons/en.roliascan-v2.png",
+      "downloadURL": "sources/en.roliascan-v2.aix",
       "languages": [
         "en"
       ],
@@ -897,6 +897,19 @@
       "contentRating": 0,
       "baseURL": "https://vortexscans.org",
       "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.vymanga",
+      "name": "VyManga",
+      "version": 1,
+      "iconURL": "icons/en.vymanga-v1.png",
+      "downloadURL": "sources/en.vymanga-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://mangavyvy.com",
+      "minAppVersion": "0.7.1"
     },
     {
       "id": "en.webtoonxyz",
@@ -1461,6 +1474,59 @@
       ],
       "contentRating": 2,
       "baseURL": "https://xcomic.me",
+      "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "multi.yaoime",
+      "name": "yaoi.me",
+      "version": 1,
+      "iconURL": "icons/multi.yaoime-v1.png",
+      "downloadURL": "sources/multi.yaoime-v1.aix",
+      "languages": [
+        "en",
+        "ja",
+        "zh",
+        "vi",
+        "id",
+        "es",
+        "ko",
+        "pl",
+        "tr",
+        "fr",
+        "it",
+        "ru",
+        "pt",
+        "hu",
+        "uk",
+        "cs",
+        "th",
+        "ar",
+        "es-419",
+        "mn",
+        "de",
+        "fa",
+        "pt-BR",
+        "ca",
+        "sk",
+        "bg",
+        "ro",
+        "bn",
+        "he",
+        "km",
+        "my",
+        "ms",
+        "nl",
+        "hi",
+        "kk",
+        "hr",
+        "fi",
+        "sr",
+        "el",
+        "sv",
+        "no"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://yaoi.me",
       "minAppVersion": "0.7.1"
     }
   ]

@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-20T21:50:08+00:00",
-  "sourceCount": 88,
+  "generatedAt": "2026-11-22T20:44:23+00:00",
+  "sourceCount": 90,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -441,12 +441,12 @@
     {
       "id": "en.mangataro",
       "name": "MangaTaro",
-      "version": 1,
-      "file": "sources/en.mangataro-v1.aix",
+      "version": 2,
+      "file": "sources/en.mangataro-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangataro-v1.aix",
-      "sha256": "e8a37ae6e1717be8a4a7f2886484989fb3adce0e141a3485487b69a9783c73c1"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mangataro-v2.aix",
+      "sha256": "8ac918d5dbb159b3128be94cf28ec7859be5ddc3bf0ef11d0699af8c3be863a6"
     },
     {
       "id": "en.manhuaplusorg",
@@ -491,12 +491,12 @@
     {
       "id": "en.mkissa",
       "name": "MKissa",
-      "version": 1,
-      "file": "sources/en.mkissa-v1.aix",
+      "version": 2,
+      "file": "sources/en.mkissa-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mkissa-v1.aix",
-      "sha256": "480761f86ae2a42423aa920c7088737394d689054b743bb2b4c3c5d5cdf89e7f"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.mkissa-v2.aix",
+      "sha256": "604330916cc07442fadad17e35ffb1e5b4ab07e4bd1a7dd20669ee45fa3179a9"
     },
     {
       "id": "en.novelarchive",
@@ -551,14 +551,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 44,
-      "file": "sources/en.readcomicsonline-v44.aix",
+      "version": 45,
+      "file": "sources/en.readcomicsonline-v45.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "107163c3f904d2d97be388f76850f44f12dbe419951d83cb427bde1fb3b09ee7",
+      "sha256": "30b982db7504fd5463896e7cce57d9b4b407483ab3abf3471362e69cbfc1f89e",
       "upstreamVersion": 3,
-      "upstreamSha256": "d5f8fd814b0d53db3be8d0e28ff468c32f5f5b856ba17be1753109d24df0a5f1",
+      "upstreamSha256": "d8618cdffa177d98fc86b496ea07cc464c9a5f7e9241cbf179f47e6b416341a2",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -585,12 +585,12 @@
     {
       "id": "en.roliascan",
       "name": "Rolia Scan",
-      "version": 1,
-      "file": "sources/en.roliascan-v1.aix",
+      "version": 2,
+      "file": "sources/en.roliascan-v2.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.roliascan-v1.aix",
-      "sha256": "0225d5e140124a3e9c59430f459bc35b462fed92f1ce27b60b1b25b1fca8c6c8"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.roliascan-v2.aix",
+      "sha256": "557aa222f5dd1e43d08b631b83a24092a63173973de08bf9eec83bbfa347bed7"
     },
     {
       "id": "en.sanascans",
@@ -721,6 +721,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vortexscans-v4.aix",
       "sha256": "1f791c59965e74bb7d2306e12cc69019dce72a92da77cea42e11454551907b16"
+    },
+    {
+      "id": "en.vymanga",
+      "name": "VyManga",
+      "version": 1,
+      "file": "sources/en.vymanga-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vymanga-v1.aix",
+      "sha256": "bdd0096a28accc643445fc261b6f595db8107e80324fe98522261ab7ada32e8d"
     },
     {
       "id": "en.webtoonxyz",
@@ -911,6 +921,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v5.aix",
       "sha256": "eb939c6fc7867a4b1824340ed7e21bc05bcfe0281312bc209ca7ef62e03f110c"
+    },
+    {
+      "id": "multi.yaoime",
+      "name": "yaoi.me",
+      "version": 1,
+      "file": "sources/multi.yaoime-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.yaoime-v1.aix",
+      "sha256": "c0d2341a371371f11c981c131bfee4b12769011e6c9b70445301cb5892d5ea8f"
     }
   ]
 }
