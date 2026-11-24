@@ -379,6 +379,19 @@
       "minAppVersion": "0.8.3"
     },
     {
+      "id": "en.lewdmanhwa",
+      "name": "LewdManhwa",
+      "version": 1,
+      "iconURL": "icons/en.lewdmanhwa-v1.png",
+      "downloadURL": "sources/en.lewdmanhwa-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://lewdmanhwa.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.lunatoons",
       "name": "Luna Toons",
       "version": 1,
@@ -680,9 +693,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 46,
-      "iconURL": "icons/en.readcomicsonline-v46.png",
-      "downloadURL": "sources/en.readcomicsonline-v46.aix",
+      "version": 47,
+      "iconURL": "icons/en.readcomicsonline-v47.png",
+      "downloadURL": "sources/en.readcomicsonline-v47.aix",
       "languages": [
         "en"
       ],
@@ -860,6 +873,32 @@
       "minAppVersion": "0.9.0"
     },
     {
+      "id": "en.toonx",
+      "name": "Toonx",
+      "version": 1,
+      "iconURL": "icons/en.toonx-v1.png",
+      "downloadURL": "sources/en.toonx-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://toonx.to",
+      "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "en.toonz",
+      "name": "Toonz",
+      "version": 1,
+      "iconURL": "icons/en.toonz-v1.png",
+      "downloadURL": "sources/en.toonz-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://toonz.to",
+      "minAppVersion": "0.7.1"
+    },
+    {
       "id": "en.valirscans",
       "name": "ValirScans",
       "version": 1,
@@ -923,6 +962,19 @@
       "contentRating": 1,
       "baseURL": "https://webnex.cc",
       "minAppVersion": "0.8.3"
+    },
+    {
+      "id": "en.webtoonclub",
+      "name": "WebtoonClub",
+      "version": 1,
+      "iconURL": "icons/en.webtoonclub-v1.png",
+      "downloadURL": "sources/en.webtoonclub-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://webtoonclub.com",
+      "minAppVersion": "0.7.1"
     },
     {
       "id": "en.webtoonxyz",

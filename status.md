@@ -1,12 +1,12 @@
 # Aidoku Source Status
 
-Status last changed: 2026-11-24T01:41:42+00:00
+Status last changed: 2026-11-24T23:29:12+00:00
 
 Last website sweep: 2026-11-24T01:41:14+00:00
 Website reachability, package delivery and chapter reading are separate checks.
 [Public feed acceptance](https://github.com/Nixzle/aidoku-sources/actions/workflows/public-acceptance.yml) | [Functional source checks](https://github.com/Nixzle/aidoku-sources/actions/workflows/functional-smoke.yml)
 
-- Maintained: 91
+- Maintained: 95
 - Legacy-only: 46
 - Manually quarantined: 5
 - Automatically quarantined: 5
