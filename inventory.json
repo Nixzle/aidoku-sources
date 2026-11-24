@@ -1,7 +1,7 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-22T20:44:23+00:00",
-  "sourceCount": 90,
+  "generatedAt": "2026-11-24T01:41:41+00:00",
+  "sourceCount": 91,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
   "excludedPersonalUseOnly": [
@@ -87,12 +87,12 @@
     {
       "id": "en.chikari",
       "name": "Chikari",
-      "version": 3,
-      "file": "sources/en.chikari-v3.aix",
+      "version": 4,
+      "file": "sources/en.chikari-v4.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v3.aix",
-      "sha256": "79c2b2deff411c9116a8d3224498cb87895b1e76e05ae733cf886ebdcf4e9a3e"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.chikari-v4.aix",
+      "sha256": "f997e9c681113cd2748c79b676553e776566b34b1c5f109ed3034513f3585ff7"
     },
     {
       "id": "en.comixws",
@@ -511,12 +511,12 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 9,
-      "file": "sources/en.novelbuddy-v9.aix",
+      "version": 10,
+      "file": "sources/en.novelbuddy-v10.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v9.aix",
-      "sha256": "f720185ffd540739e37a0b721695293e387aef23ae9a49bfeb08deac4c221703"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.novelbuddy-v10.aix",
+      "sha256": "4cbb7a6a8ef9256370b8969937a74fe69211f0a2a567511453bebe3fda4aa511"
     },
     {
       "id": "en.nyxscans",
@@ -551,14 +551,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 45,
-      "file": "sources/en.readcomicsonline-v45.aix",
+      "version": 46,
+      "file": "sources/en.readcomicsonline-v46.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "30b982db7504fd5463896e7cce57d9b4b407483ab3abf3471362e69cbfc1f89e",
+      "sha256": "b0dcab31e1953f9e2f77731c8ea300349eb9fa7bfe165bda9ac633391e054424",
       "upstreamVersion": 3,
-      "upstreamSha256": "d8618cdffa177d98fc86b496ea07cc464c9a5f7e9241cbf179f47e6b416341a2",
+      "upstreamSha256": "3cda06261ea75022a3adcc345ca513b4ef1e933a864e0189715c437f74e40b4a",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -731,6 +731,16 @@
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.vymanga-v1.aix",
       "sha256": "bdd0096a28accc643445fc261b6f595db8107e80324fe98522261ab7ada32e8d"
+    },
+    {
+      "id": "en.webnex",
+      "name": "Webnex",
+      "version": 1,
+      "file": "sources/en.webnex-v1.aix",
+      "repository": "Aidoku-Community/sources",
+      "license": "MIT OR Apache-2.0",
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.webnex-v1.aix",
+      "sha256": "edcd399034ab55902cc7ab4bfb02a85007b7987e26afdd37e85467f54b1754d4"
     },
     {
       "id": "en.webtoonxyz",

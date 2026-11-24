@@ -82,9 +82,9 @@
     {
       "id": "en.chikari",
       "name": "Chikari",
-      "version": 3,
-      "iconURL": "icons/en.chikari-v3.png",
-      "downloadURL": "sources/en.chikari-v3.aix",
+      "version": 4,
+      "iconURL": "icons/en.chikari-v4.png",
+      "downloadURL": "sources/en.chikari-v4.aix",
       "languages": [
         "en"
       ],
@@ -628,9 +628,9 @@
     {
       "id": "en.novelbuddy",
       "name": "NovelBuddy",
-      "version": 9,
-      "iconURL": "icons/en.novelbuddy-v9.png",
-      "downloadURL": "sources/en.novelbuddy-v9.aix",
+      "version": 10,
+      "iconURL": "icons/en.novelbuddy-v10.png",
+      "downloadURL": "sources/en.novelbuddy-v10.aix",
       "languages": [
         "en"
       ],
@@ -680,9 +680,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 45,
-      "iconURL": "icons/en.readcomicsonline-v45.png",
-      "downloadURL": "sources/en.readcomicsonline-v45.aix",
+      "version": 46,
+      "iconURL": "icons/en.readcomicsonline-v46.png",
+      "downloadURL": "sources/en.readcomicsonline-v46.aix",
       "languages": [
         "en"
       ],
@@ -910,6 +910,19 @@
       "contentRating": 2,
       "baseURL": "https://mangavyvy.com",
       "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "en.webnex",
+      "name": "Webnex",
+      "version": 1,
+      "iconURL": "icons/en.webnex-v1.png",
+      "downloadURL": "sources/en.webnex-v1.aix",
+      "languages": [
+        "en"
+      ],
+      "contentRating": 1,
+      "baseURL": "https://webnex.cc",
+      "minAppVersion": "0.8.3"
     },
     {
       "id": "en.webtoonxyz",
