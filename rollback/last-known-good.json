@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-24T23:29:11+00:00",
+  "capturedAt": "2026-11-25T15:03:13+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -381,6 +381,19 @@
         "minAppVersion": "0.8.3"
       },
       {
+        "id": "en.lewdmanhwa",
+        "name": "LewdManhwa",
+        "version": 1,
+        "iconURL": "icons/en.lewdmanhwa-v1.png",
+        "downloadURL": "sources/en.lewdmanhwa-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://lewdmanhwa.com",
+        "minAppVersion": "0.7.1"
+      },
+      {
         "id": "en.lunatoons",
         "name": "Luna Toons",
         "version": 1,
@@ -682,9 +695,9 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 46,
-        "iconURL": "icons/en.readcomicsonline-v46.png",
-        "downloadURL": "sources/en.readcomicsonline-v46.aix",
+        "version": 47,
+        "iconURL": "icons/en.readcomicsonline-v47.png",
+        "downloadURL": "sources/en.readcomicsonline-v47.aix",
         "languages": [
           "en"
         ],
@@ -862,6 +875,32 @@
         "minAppVersion": "0.9.0"
       },
       {
+        "id": "en.toonx",
+        "name": "Toonx",
+        "version": 1,
+        "iconURL": "icons/en.toonx-v1.png",
+        "downloadURL": "sources/en.toonx-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 2,
+        "baseURL": "https://toonx.to",
+        "minAppVersion": "0.7.1"
+      },
+      {
+        "id": "en.toonz",
+        "name": "Toonz",
+        "version": 1,
+        "iconURL": "icons/en.toonz-v1.png",
+        "downloadURL": "sources/en.toonz-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://toonz.to",
+        "minAppVersion": "0.7.1"
+      },
+      {
         "id": "en.valirscans",
         "name": "ValirScans",
         "version": 1,
@@ -925,6 +964,19 @@
         "contentRating": 1,
         "baseURL": "https://webnex.cc",
         "minAppVersion": "0.8.3"
+      },
+      {
+        "id": "en.webtoonclub",
+        "name": "WebtoonClub",
+        "version": 1,
+        "iconURL": "icons/en.webtoonclub-v1.png",
+        "downloadURL": "sources/en.webtoonclub-v1.aix",
+        "languages": [
+          "en"
+        ],
+        "contentRating": 1,
+        "baseURL": "https://webtoonclub.com",
+        "minAppVersion": "0.7.1"
       },
       {
         "id": "en.webtoonxyz",
@@ -1548,8 +1600,8 @@
   },
   "inventory": {
     "name": "Nixzle's Maintained Public English Aidoku Sources",
-    "generatedAt": "2026-11-24T01:41:41+00:00",
-    "sourceCount": 91,
+    "generatedAt": "2026-11-24T23:29:11+00:00",
+    "sourceCount": 95,
     "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
     "languagePolicy": "English or multilingual entries advertising en, All, or multi",
     "excludedPersonalUseOnly": [
@@ -1867,6 +1919,16 @@
         "sha256": "3d388a03fa3ec995bfcb36eb8c687b9192ecb76306bf4365df9e36d7b2b29111"
       },
       {
+        "id": "en.lewdmanhwa",
+        "name": "LewdManhwa",
+        "version": 1,
+        "file": "sources/en.lewdmanhwa-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.lewdmanhwa-v1.aix",
+        "sha256": "d74c71abb33e100bdbb4f87c14d652dc69bf69d2801313b4163ad691c23ebd98"
+      },
+      {
         "id": "en.lunatoons",
         "name": "Luna Toons",
         "version": 1,
@@ -2099,14 +2161,14 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 46,
-        "file": "sources/en.readcomicsonline-v46.aix",
+        "version": 47,
+        "file": "sources/en.readcomicsonline-v47.aix",
         "repository": "Aidoku-Community/sources",
         "license": "MIT OR Apache-2.0",
         "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-        "sha256": "b0dcab31e1953f9e2f77731c8ea300349eb9fa7bfe165bda9ac633391e054424",
+        "sha256": "545e82353ef81e38d41b2953805d3fe641f160377731894613e3becfea2b1cce",
         "upstreamVersion": 3,
-        "upstreamSha256": "3cda06261ea75022a3adcc345ca513b4ef1e933a864e0189715c437f74e40b4a",
+        "upstreamSha256": "1e8fde08a7dc3600226ff198c5aeef9c6a15782f9c2a214177f48fd0835ba47e",
         "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
         "publicationTransform": "metadata-version-v1"
       },
@@ -2241,6 +2303,26 @@
         "sha256": "753c7ef31340c602ab4e4e44fb4380ab3ee82fda14379583a60fa9c20a65dfc2"
       },
       {
+        "id": "en.toonx",
+        "name": "Toonx",
+        "version": 1,
+        "file": "sources/en.toonx-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonx-v1.aix",
+        "sha256": "ace506b3e1b467670dcde5ba770a2110e539dfd30cd66edccfdc88da55bc31bc"
+      },
+      {
+        "id": "en.toonz",
+        "name": "Toonz",
+        "version": 1,
+        "file": "sources/en.toonz-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.toonz-v1.aix",
+        "sha256": "4123be9cac64b542777ef01806f2e7b122969bb0e228d6a59d9c1e8c59ff5c51"
+      },
+      {
         "id": "en.valirscans",
         "name": "ValirScans",
         "version": 1,
@@ -2289,6 +2371,16 @@
         "license": "MIT OR Apache-2.0",
         "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.webnex-v1.aix",
         "sha256": "edcd399034ab55902cc7ab4bfb02a85007b7987e26afdd37e85467f54b1754d4"
+      },
+      {
+        "id": "en.webtoonclub",
+        "name": "WebtoonClub",
+        "version": 1,
+        "file": "sources/en.webtoonclub-v1.aix",
+        "repository": "Aidoku-Community/sources",
+        "license": "MIT OR Apache-2.0",
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.webtoonclub-v1.aix",
+        "sha256": "f6c592628df349dc9bce5e1cbb54ff356c7ff405d72807695df8aab587cee62a"
       },
       {
         "id": "en.webtoonxyz",
@@ -2493,9 +2585,9 @@
     ]
   },
   "status": {
-    "generatedAt": "2026-11-24T01:41:42+00:00",
+    "generatedAt": "2026-11-24T23:29:12+00:00",
     "summary": {
-      "maintained": 91,
+      "maintained": 95,
       "legacyOnly": 46,
       "manualQuarantined": 5,
       "automaticQuarantined": 5,
