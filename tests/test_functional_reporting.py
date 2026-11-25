@@ -54,6 +54,38 @@ class FunctionalStatusTests(unittest.TestCase):
         self.assertIn('acceptance: ${{ steps.functional.outputs.acceptance }}', text)
         self.assertIn("Build candidate catalog\n        if: github.event_name == 'pull_request'", text)
 
+    def test_full_catalog_selection_has_every_maintained_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            ids = ["multi.kagane", "en.toonkotsu", "en.example"]
+            (root / "index.min.json").write_text(json.dumps({"sources": [{"id": item} for item in ids]}))
+            self.assertEqual(set(smoke.maintained_cases(root)), set(ids))
+            self.assertEqual(smoke.maintained_cases(root)["en.toonkotsu"], "solo")
+            self.assertEqual(smoke.maintained_cases(root)["en.example"], "a")
+            self.assertNotIn("en.comix", smoke.maintained_cases(root))
+
+    def test_full_catalog_run_preserves_blocked_and_records_every_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "index.min.json").write_text(json.dumps({"sources": [
+                {"id": "en.example"}, {"id": "en.blocked"}, {"id": "en.nomatch"}]}))
+            cases = {
+                "en.example": passed_case(),
+                "en.blocked": {"id": "en.blocked", "status": "blocked", "error": "search returned no entries"},
+                "en.nomatch": {"id": "en.nomatch", "status": "failed", "error": "search returned no entries"},
+            }
+            def fake_run(root, runner, source_id, query, output):
+                return cases[source_id].copy()
+            with mock.patch.object(smoke, "run_case", side_effect=fake_run), \
+                 mock.patch("sys.argv", ["functional_smoke.py", "--runner", "unused",
+                     "--root", str(root), "--output", str(root / "results"),
+                     "--all-maintained", "--workers", "2"]):
+                self.assertEqual(smoke.main(), 0)
+            report = json.loads((root / "results/summary.json").read_text())
+            self.assertEqual(report["selectedCount"], 3)
+            self.assertEqual(report["counts"], {"passed": 1, "blocked": 1, "inconclusive": 1})
+            self.assertEqual(report["status"], "inconclusive")
+
     def test_quarantined_comix_is_available_only_when_explicitly_selected(self):
         self.assertNotIn('en.comix', smoke.CASES)
         self.assertEqual(smoke.OPTIONAL_CASES['en.comix'], 'solo')

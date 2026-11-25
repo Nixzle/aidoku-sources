@@ -22,11 +22,17 @@ on:
   pull_request:
     paths: ["runtime-smoke/**", "scripts/functional_smoke.py", "scripts/update_sources.py", "scripts/validate_catalog.py", ".github/workflows/functional-smoke.yml", "config/source_policy.json", "overrides/**"]
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "Functional test coverage"
+        type: choice
+        options: [critical, all-maintained]
+        default: critical
 
 permissions:
   contents: read
 concurrency:
-  group: functional-smoke-${{ github.event.workflow_run.head_branch || github.ref }}
+  group: functional-smoke-${{ github.event.workflow_run.head_branch || github.ref }}-${{ inputs.scope || 'critical' }}
   cancel-in-progress: true
 
 env:
@@ -41,7 +47,7 @@ jobs:
       unverified_sources: ${{ steps.functional.outputs.unverified_sources }}
     if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -98,12 +104,19 @@ jobs:
           key: ${{ steps.rust-cache.outputs.cache-primary-key }}
       - name: Run real source exports through first-page content
         id: functional
-        run: python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke
+        env:
+          SMOKE_SCOPE: ${{ inputs.scope || 'critical' }}
+        run: |
+          if [ "$SMOKE_SCOPE" = "all-maintained" ]; then
+            python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke --all-maintained --workers 4
+          else
+            python scripts/functional_smoke.py --runner runtime-smoke/target/debug/aidoku-catalog-smoke
+          fi
       - name: Retain functional evidence and dependency lock
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: functional-evidence-${{ github.event.workflow_run.head_sha || github.sha }}
+          name: functional-evidence-${{ github.event.workflow_run.head_sha || github.sha }}-${{ inputs.scope || 'critical' }}
           path: |
             acceptance/functional
             runtime-smoke/Cargo.lock
@@ -111,7 +124,7 @@ jobs:
           retention-days: 30
   report:
     needs: smoke
-    if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && (needs.smoke.result == 'success' || needs.smoke.result == 'failure')
+    if: always() && inputs.scope != 'all-maintained' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && (needs.smoke.result == 'success' || needs.smoke.result == 'failure')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

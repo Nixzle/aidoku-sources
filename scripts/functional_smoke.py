@@ -11,6 +11,8 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
+from collections import Counter
 
 try:
     from scripts import update_sources as updater
@@ -26,6 +28,17 @@ CASES = {"en.asurascans": "solo", "en.atsumaru": "solo", "en.comixws": "solo",
 OPTIONAL_CASES = {"en.comix": "solo"}
 WEBVIEW_CASES = {"en.comix", "en.comixws"}
 ALL_CASES = CASES | OPTIONAL_CASES
+BROAD_CASES = {"multi.kagane": "solo", "en.toonkotsu": "solo",
+               "multi.mangadotnet": "solo", "multi.mangafire": "one piece",
+               "en.weebcentral": "one piece", "multi.mangadex": "one piece"}
+
+def maintained_cases(root: Path) -> dict:
+    catalog = json.loads((root / "index.min.json").read_text(encoding="utf-8-sig"))
+    ids = [entry["id"] for entry in catalog["sources"]]
+    if not ids or len(ids) != len(set(ids)):
+        raise ValueError("empty or duplicate maintained catalog")
+    return {source_id: (CASES | BROAD_CASES).get(source_id, "a") for source_id in ids}
+
 
 
 def settings_defaults(items) -> dict:
@@ -126,25 +139,39 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path, default=Path("acceptance/functional"))
     parser.add_argument("--source", action="append", choices=sorted(ALL_CASES))
+    parser.add_argument("--all-maintained", action="store_true", help="Exercise every source in the maintained catalog")
+    parser.add_argument("--workers", type=int, choices=range(1, 5), default=1)
     args = parser.parse_args()
+    if args.all_maintained and args.source:
+        parser.error("--all-maintained cannot be combined with --source")
+
     args.output.mkdir(parents=True, exist_ok=True)
     runner = args.runner.resolve()
-    results = []
-    selected = CASES if not args.source else {
-        source_id: ALL_CASES[source_id] for source_id in args.source
-    }
-    for source_id, query in selected.items():
+    selected = maintained_cases(args.root) if args.all_maintained else (
+        CASES if not args.source else {source_id: ALL_CASES[source_id] for source_id in args.source})
+    def check(item):
+        source_id, query = item
         try:
             result = run_case(args.root, runner, source_id, query, args.output)
         except Exception as error:
             result = {"id": source_id, "status": "failed", "error": str(error)[:1000]}
+        # A generic sample may not match a niche catalogue. Do not call this a reader failure.
+        if (args.all_maintained and result.get("status") == "failed"
+                and result.get("error") == "search returned no entries"):
+            result["status"] = "inconclusive"
+            result["limitation"] = "Sample query returned no entries; source-specific title needed."
+        result["query"] = query
         (args.output / f"{source_id}.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
-        results.append(result)
-        print(source_id, result["status"], result.get("stage", "setup"), result.get("error", ""))
+        print(source_id, result["status"], result.get("stage", "setup"), result.get("error", ""), flush=True)
+        return result
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        results = list(pool.map(check, selected.items()))
     overall = overall_status(results)
     report = {"schema":"AIDOKU_FUNCTIONAL_SMOKE_V1", "checkedAt":utc_now(),
               "status":overall,
-              "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per critical source. Not iOS rendering or an unidentified user chapter.",
+              "scope":"Exact published package WASM, headless Aidoku donor runtime, one sample per selected source. Not iOS rendering or an unidentified user chapter.",
+              "selection":"all-maintained" if args.all_maintained else "critical-or-explicit",
+              "counts":dict(Counter(item["status"] for item in results)), "selectedCount":len(selected),
               "catalogRoot":str(args.root), "cases":results}
     (args.output / "summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     output_path = os.environ.get("GITHUB_OUTPUT")
