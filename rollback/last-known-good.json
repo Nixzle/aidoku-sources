@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-25T15:04:24+00:00",
+  "capturedAt": "2026-11-26T23:00:17+00:00",
   "index": {
     "name": "Nixzle's Maintained English Aidoku Sources",
     "sources": [
@@ -695,9 +695,9 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 47,
-        "iconURL": "icons/en.readcomicsonline-v47.png",
-        "downloadURL": "sources/en.readcomicsonline-v47.aix",
+        "version": 48,
+        "iconURL": "icons/en.readcomicsonline-v48.png",
+        "downloadURL": "sources/en.readcomicsonline-v48.aix",
         "languages": [
           "en"
         ],
@@ -1428,9 +1428,9 @@
       {
         "id": "multi.xcomic",
         "name": "XCOMIC",
-        "version": 5,
-        "iconURL": "icons/multi.xcomic-v5.png",
-        "downloadURL": "sources/multi.xcomic-v5.aix",
+        "version": 6,
+        "iconURL": "icons/multi.xcomic-v6.png",
+        "downloadURL": "sources/multi.xcomic-v6.aix",
         "languages": [
           "en",
           "fr",
@@ -1600,7 +1600,7 @@
   },
   "inventory": {
     "name": "Nixzle's Maintained Public English Aidoku Sources",
-    "generatedAt": "2026-11-24T23:29:11+00:00",
+    "generatedAt": "2026-11-25T23:06:57+00:00",
     "sourceCount": 95,
     "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
     "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -2161,14 +2161,14 @@
       {
         "id": "en.readcomicsonline",
         "name": "Read Comics Online",
-        "version": 47,
-        "file": "sources/en.readcomicsonline-v47.aix",
+        "version": 48,
+        "file": "sources/en.readcomicsonline-v48.aix",
         "repository": "Aidoku-Community/sources",
         "license": "MIT OR Apache-2.0",
         "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-        "sha256": "545e82353ef81e38d41b2953805d3fe641f160377731894613e3becfea2b1cce",
+        "sha256": "5adb811f568ffb1ff1c6672a7a569d667f25ddba790d5ddbd47c4fa986c97d0f",
         "upstreamVersion": 3,
-        "upstreamSha256": "1e8fde08a7dc3600226ff198c5aeef9c6a15782f9c2a214177f48fd0835ba47e",
+        "upstreamSha256": "a437002149b4ed8263cb1831429f6f422848c4137adf93110c5de370d81264a1",
         "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
         "publicationTransform": "metadata-version-v1"
       },
@@ -2565,12 +2565,12 @@
       {
         "id": "multi.xcomic",
         "name": "XCOMIC",
-        "version": 5,
-        "file": "sources/multi.xcomic-v5.aix",
+        "version": 6,
+        "file": "sources/multi.xcomic-v6.aix",
         "repository": "Aidoku-Community/sources",
         "license": "MIT OR Apache-2.0",
-        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v5.aix",
-        "sha256": "eb939c6fc7867a4b1824340ed7e21bc05bcfe0281312bc209ca7ef62e03f110c"
+        "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.xcomic-v6.aix",
+        "sha256": "22490afaa6c817c4d403e3a7837701f5d98e818ba710cc8d7adc7a4975865c45"
       },
       {
         "id": "multi.yaoime",
