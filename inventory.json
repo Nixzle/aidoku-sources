@@ -1,6 +1,6 @@
 {
   "name": "Nixzle's Maintained Public English Aidoku Sources",
-  "generatedAt": "2026-11-25T23:06:57+00:00",
+  "generatedAt": "2026-11-27T22:44:09+00:00",
   "sourceCount": 95,
   "catalogPolicy": "Active Aidoku community packages plus explicitly reviewed promoted sources; broken sources are quarantined",
   "languagePolicy": "English or multilingual entries advertising en, All, or multi",
@@ -191,12 +191,12 @@
     {
       "id": "en.flamecomics",
       "name": "Flame Comics",
-      "version": 5,
-      "file": "sources/en.flamecomics-v5.aix",
+      "version": 6,
+      "file": "sources/en.flamecomics-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v5.aix",
-      "sha256": "dcbb96d96cfec071a67af0911c1616882f830cbb738e9bfb84e3971c7c55e3b7"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.flamecomics-v6.aix",
+      "sha256": "f61669d2ba695b50cf5af0c3e118bf12752bb6ebfc8261f3fef0d490b905749d"
     },
     {
       "id": "en.freewebnovel",
@@ -561,14 +561,14 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 48,
-      "file": "sources/en.readcomicsonline-v48.aix",
+      "version": 49,
+      "file": "sources/en.readcomicsonline-v49.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
       "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/en.readcomicsonline-v3.aix",
-      "sha256": "5adb811f568ffb1ff1c6672a7a569d667f25ddba790d5ddbd47c4fa986c97d0f",
+      "sha256": "35f86be587eb6575d3348a4cfadef83297ce5660c5cb2f0eff1d2ce49070a65a",
       "upstreamVersion": 3,
-      "upstreamSha256": "a437002149b4ed8263cb1831429f6f422848c4137adf93110c5de370d81264a1",
+      "upstreamSha256": "83b5e7beeb0fe769566c27684e7ff5ce041c006ed30f64a8d6ec5e2f379fb9df",
       "upstreamWasmSha256": "4f1c54f0dfca04467d288ffc8eb937783a34d196a0a40a8be6222f6074d4f5de",
       "publicationTransform": "metadata-version-v1"
     },
@@ -845,12 +845,12 @@
     {
       "id": "multi.kagane",
       "name": "Kagane",
-      "version": 5,
-      "file": "sources/multi.kagane-v5.aix",
+      "version": 6,
+      "file": "sources/multi.kagane-v6.aix",
       "repository": "Aidoku-Community/sources",
       "license": "MIT OR Apache-2.0",
-      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v5.aix",
-      "sha256": "6b5e15dc6cb2a737a2f0751bb45b9e9c7ed06a3030587173f395fb26842953de"
+      "upstreamPackageURL": "https://aidoku-community.github.io/sources/sources/multi.kagane-v6.aix",
+      "sha256": "0bca6105b2a397bc30a03c1836eccb9327ce175dd9f9893f712e67f65caa01b5"
     },
     {
       "id": "multi.lanraragi",

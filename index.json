@@ -212,9 +212,9 @@
     {
       "id": "en.flamecomics",
       "name": "Flame Comics",
-      "version": 5,
-      "iconURL": "icons/en.flamecomics-v5.png",
-      "downloadURL": "sources/en.flamecomics-v5.aix",
+      "version": 6,
+      "iconURL": "icons/en.flamecomics-v6.png",
+      "downloadURL": "sources/en.flamecomics-v6.aix",
       "languages": [
         "en"
       ],
@@ -693,9 +693,9 @@
     {
       "id": "en.readcomicsonline",
       "name": "Read Comics Online",
-      "version": 48,
-      "iconURL": "icons/en.readcomicsonline-v48.png",
-      "downloadURL": "sources/en.readcomicsonline-v48.aix",
+      "version": 49,
+      "iconURL": "icons/en.readcomicsonline-v49.png",
+      "downloadURL": "sources/en.readcomicsonline-v49.aix",
       "languages": [
         "en"
       ],
@@ -1097,9 +1097,9 @@
     {
       "id": "multi.kagane",
       "name": "Kagane",
-      "version": 5,
-      "iconURL": "icons/multi.kagane-v5.png",
-      "downloadURL": "sources/multi.kagane-v5.aix",
+      "version": 6,
+      "iconURL": "icons/multi.kagane-v6.png",
+      "downloadURL": "sources/multi.kagane-v6.aix",
       "languages": [
         "en",
         "es",
@@ -1118,7 +1118,7 @@
         "he"
       ],
       "contentRating": 1,
-      "baseURL": "https://kagane.cx",
+      "baseURL": "https://kagane.moe",
       "minAppVersion": "0.7.1"
     },
     {
